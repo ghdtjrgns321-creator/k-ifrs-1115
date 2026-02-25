@@ -1,9 +1,7 @@
-# Step 1 결과(parsed_elements.json)를 6개 섹션으로 분리
-
+# Step 1 결과(parsed-elements.json)를 6개 섹션으로 분리
 import json
 import os
 
-# ── 입출력 경로 ──
 INPUT_JSON = "data/processed/parsed-elements.json"
 OUTPUT_DIR = "data/sections"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -11,41 +9,70 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 with open(INPUT_JSON, "r", encoding="utf-8") as f:
     parsed = json.load(f)
 
-# ── 섹션 분류 키워드 (헤더 텍스트 기준) ──
-# 순서 중요: 위에서부터 매칭하므로, 더 구체적인 키워드를 먼저 배치
-SECTION_RULES = [
-    ("부록A_용어",      ["부록 A", "용어의 정의"]),
-    ("부록B_적용지침",   ["부록 B", "적용지침"]),
-    ("부록C_경과규정",   ["부록 C", "시행일", "경과 규정"]),
-    ("적용사례",        ["적용사례", "설례"]),
-    ("결론도출근거",     ["결론도출근거", "결론 도출 근거"]),
+SECTION_BOUNDARIES = [
+    # ── 부록 A: "부록 A." (마침표 필수) — "계약의 정의(부록 A)" 오탐 방지 ──
+    ("부록A_용어",
+     lambda cat, txt: cat == "heading1" and "부록 A." in txt),
+
+    # ── 부록 B ──
+    ("부록B_적용지침",
+     lambda cat, txt: cat == "heading1" and txt.strip().startswith("# 부록 B")),
+
+    # ── 부록 C: "시행일" 제외 조건 삭제 (실제 텍스트에 포함됨) ──
+    ("부록C_경과규정",
+     lambda cat, txt: cat == "heading1" and txt.strip().startswith("# 부록 C")),
+
+    # ── 적용사례: ※ 로 시작하는 안내 문구 제외 ──
+    ("적용사례",
+     lambda cat, txt: cat == "paragraph"
+         and "적용사례" in txt
+         and "실무적용지침" in txt
+         and not txt.startswith("[")
+         and not txt.startswith("※")),
+
+    ("적용사례",
+     lambda cat, txt: cat == "heading1" and "적용사례·실무적용지침 목차" in txt),
+
+    # ── 결론도출근거: 정확 일치 또는 목차 제목 ──
+    ("결론도출근거",
+     lambda cat, txt: cat == "paragraph" and txt.strip() == "결론도출근거"),
+
+    ("결론도출근거",
+     lambda cat, txt: cat == "heading1" and "결론도출근거 목차" in txt),
+
+    ("결론도출근거",
+     lambda cat, txt: cat == "heading1"
+         and "K-IFRS 제1115호" in txt
+         and "결론도출근거" in txt),
 ]
 
-# ── 헤더를 만나면 섹션 전환 ──
-current_section = "본문"  # 기본값: 문서 시작은 본문
+# ── 섹션 분리 ──
+current_section = "본문"
 section_elements = {}
+transitions = []
 
-for elem in parsed:
+for i, elem in enumerate(parsed):
     content = elem["content"].strip()
-    category = elem["metadata"].get("category", "")
+    cat = elem["metadata"].get("category", "")
 
-    # 헤더 요소일 때만 섹션 전환 판단
-    if category == "heading" or content.startswith("#"):
-        for section_name, keywords in SECTION_RULES:
-            if any(kw in content for kw in keywords):
-                current_section = section_name
-                break
+    if cat in ("footer", "header"):
+        continue
+
+    for sec_name, match_fn in SECTION_BOUNDARIES:
+        if match_fn(cat, content):
+            if current_section != sec_name:
+                transitions.append((i, current_section, sec_name, content[:60]))
+                current_section = sec_name
+            break
 
     section_elements.setdefault(current_section, []).append(elem)
 
-# ── 섹션별 저장 ──
+# ── 저장 ──
 for section_name, elements in section_elements.items():
-    # JSON (Step 3에서 사용)
     json_path = os.path.join(OUTPUT_DIR, f"{section_name}.json")
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(elements, f, ensure_ascii=False, indent=2)
 
-    # MD (육안 확인용)
     md_path = os.path.join(OUTPUT_DIR, f"{section_name}.md")
     with open(md_path, "w", encoding="utf-8") as f:
         for elem in elements:
@@ -53,27 +80,18 @@ for section_name, elements in section_elements.items():
 
 # ── 검증 ──
 print("✅ 섹션 분리 완료\n")
-for section_name, elements in sorted(section_elements.items()):
-    # 표 개수 별도 집계
+print("── 섹션 전환 기록 ──")
+for idx, from_sec, to_sec, text in transitions:
+    print(f"  [{idx:4d}] {from_sec} → {to_sec}")
+    print(f"         \"{text}\"")
+print()
+
+expected = ["본문", "부록A_용어", "부록B_적용지침", "부록C_경과규정", "적용사례", "결론도출근거"]
+for section_name in expected:
+    elements = section_elements.get(section_name, [])
     tables = sum(1 for e in elements if e["metadata"].get("category") == "table")
     print(f"   {section_name}: {len(elements)}개 요소 (표 {tables}개)")
 
-# 본문 + 부록B가 전체의 핵심 (이 둘만으로 MVP 가능)
 core = len(section_elements.get("본문", [])) + len(section_elements.get("부록B_적용지침", []))
 total = sum(len(v) for v in section_elements.values())
 print(f"\n   → 본문 + 부록B = {core}개 ({core/total*100:.0f}%) ← MVP 핵심")
-"""
-
-**예상 출력**:
-```
-✅ 섹션 분리 완료
-
-   본문: ~450개 요소 (표 12개)
-   부록A_용어: ~30개 요소 (표 0개)
-   부록B_적용지침: ~280개 요소 (표 25개)
-   부록C_경과규정: ~40개 요소 (표 2개)
-   적용사례: ~600개 요소 (표 80개)
-   결론도출근거: ~1100개 요소 (표 30개)
-
-   → 본문 + 부록B = 730개 (29%) ← MVP 핵심
-   """
