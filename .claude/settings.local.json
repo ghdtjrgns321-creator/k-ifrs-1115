@@ -6,7 +6,8 @@
       "WebFetch(domain:www.datacamp.com)",
       "WebFetch(domain:www.eesel.ai)",
       "WebFetch(domain:www.ksred.com)",
-      "WebFetch(domain:docs.anthropic.com)"
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:www.kifrs.com)"
     ]
   }
 }

@@ -6,7 +6,7 @@ import os
 INDEX_URL = "https://www.kifrs.com/api/standard-indexes/1115"
 PARA_URL = "https://kifrs.com/api/paragraphs/1115"
 
-OUTPUT_DIR = "data/raw"
+OUTPUT_DIR = "data/web"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 headers = {"User-Agent": "Mozilla/5.0"}
@@ -41,7 +41,7 @@ for i, section in enumerate(sections):
         
     time.sleep(0.2) # 차단 방지 딜레이
 
-output_path = f"{OUTPUT_DIR}/kifrs_1115_all.json"
+output_path = f"{OUTPUT_DIR}/kifrs-1115-all.json"
 with open(output_path, "w", encoding="utf-8") as f:
     json.dump(all_clauses, f, ensure_ascii=False, indent=2)
 

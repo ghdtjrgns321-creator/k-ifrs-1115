@@ -2,108 +2,105 @@ import requests
 import json
 import os
 import re
+import time
 
 def clean_qna_text(text):
     if not text: return ""
     text = text.replace('&nbsp;', ' ')
     text = re.sub(r'\r\n', '\n', text)
     text = re.sub(r'\n{3,}', '\n\n', text)
+    text = re.sub(r'<[^>]+>', '', text) 
     return text.strip()
 
-def process_qna_chunks():
-    # 앞서 크롤링해둔 1115호 원본 데이터 경로
-    RAW_FILE = "data/web/kifrs_1115_all_clauses.json"
-    OUTPUT_FILE = "data/web/kifrs_1115_qna_chunks.json"
-    
-    print("🔍 1. K-IFRS 1115호 본문 데이터에서 연결된 질의회신 ID를 자동 추출합니다...")
-    
-    # ==========================================
-    # 자동화 로직: 본문 데이터에서 faqDocNumbers 싹쓸이
-    # ==========================================
-    try:
-        with open(RAW_FILE, "r", encoding="utf-8") as f:
-            raw_data = json.load(f)
-    except Exception as e:
-        print(f"❌ 원본 파일을 읽을 수 없습니다. 경로를 확인해주세요: {e}")
-        return
-        
-    doc_numbers = set()
-    for item in raw_data:
-        faq_str = item.get("faqDocNumbers")
-        if faq_str:
-            # 콤마로 구분된 ID들을 쪼개서 set에 넣음 (중복 자동 제거)
-            for q_id in faq_str.split(","):
-                clean_id = q_id.strip()
-                if clean_id:
-                    doc_numbers.add(clean_id)
-                    
-    doc_numbers = list(doc_numbers)
-    print(f"✅ 총 {len(doc_numbers)}개의 수익인식(1115호) 관련 고유 질의회신 문서를 찾아냈습니다!\n")
-    
-    # ==========================================
-    # 2. 추출된 ID 리스트를 순회하며 Q&A 원문 수집
-    # ==========================================
-    print("🚀 2. 질의회신(Q&A) 원문 데이터 자동 수집 및 RAG 청킹을 시작합니다...")
+def fetch_targeted_qnas():
+    OUTPUT_FILE = "data/web/kifrs-1115-qna-chunks.json"
+    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
     
     qna_chunks = []
-    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
-
-    for i, doc_id in enumerate(doc_numbers, 1):
-        url = f"https://www.kifrs.com/api/qnas/v2/{doc_id}"
+    total_found = 0
+    
+    # API 타겟과 실무적 가중치 매핑
+    TARGET_CONFIGS = [
+        {"type": 13, "name": "IFRS 해석위원회", "weight": 1.18},  # 1순위 상단 (1.18)
+        {"type": 25, "name": "금융감독원", "weight": 1.18},       # 1순위 상단 (1.18)
+        {"type": 11, "name": "회계기준원 정규질의", "weight": 1.15}, # 1순위 표준 (1.15)
+        {"type": 15, "name": "신속처리질의", "weight": 1.05}        # 3순위 강등 (1.05)
+    ]
+    
+    print("가중치가 적용된 K-IFRS 타겟 크롤링을 시작합니다\n")
+    
+    for config in TARGET_CONFIGS:
+        category_type = config["type"]
+        category_name = config["name"]
+        weight = config["weight"]
         
-        try:
-            # 서버에 부담을 주지 않도록 타임아웃 설정
-            res = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
-            if res.status_code != 200:
-                print(f"  ❌ [{i}/{len(doc_numbers)}] 실패: {doc_id} (상태코드: {res.status_code})")
-                continue
+        print(f"=============================================")
+        print(f"🔍 [{category_name}] 게시판 스캔 중... (가중치: {weight})")
+        
+        page = 1
+        
+        while True:
+
+            url = f"https://www.kifrs.com/api/qnas/v2?types={category_type}&page={page}&rows=50"
+            
+            try:
+                res = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
+                if res.status_code != 200:
+                    break
+                    
+                data = res.json()
+                # v2 API는 리스트가 'facilityQnas'에 주로 담깁니다
+                qna_list = data.get("facilityQnas") or data.get("qnas") or []
                 
-            data = res.json().get("facilityQna", {})
-            if not data:
-                continue
+                if not qna_list:
+                    print(f"  🏁 {category_name} 데이터 조회가 완료되었습니다.")
+                    break
+                    
+                for qna in qna_list:
+                    doc_id = qna.get("docNumber", "Unknown")
+                    title = qna.get("title", "제목 없음")
+                    full_content = qna.get("fullContent", "")
+                    rel_stds = str(qna.get("relStds", ""))
+                    date_str = str(qna.get("date", "202X"))[:4]
+                    
+                    # 🎯 정밀 타겟팅: '1115' 문자열 포함 여부 확인
+                    if "1115" in rel_stds:
+                        total_found += 1
+                        clean_content = clean_qna_text(full_content)
+                        
+                        # 출처가 명확히 보이는 계층 구조
+                        hierarchy_path = f"질의회신 > {category_name} > K-IFRS 제1115호 > {title} ({date_str})"
+                        
+                        chunk = {
+                            "id": f"QNA-{doc_id}",
+                            "content": clean_content,
+                            "metadata": {
+                                "stdNum": "1115",
+                                "paraNum": doc_id,
+                                "category": f"질의회신({category_name})",
+                                "weight_score": weight,  # 🔥 카테고리별 차등 가중치 적용!
+                                "hierarchy": hierarchy_path,
+                                "sectionLevel": 1
+                            }
+                        }
+                        qna_chunks.append(chunk)
+                        print(f"  🎯 [HIT!] {doc_id} ({title})")
+                
+                page += 1
+                time.sleep(0.3) 
+                
+            except Exception as e:
+                print(f"❌ 통신 에러 발생: {e}")
+                break
 
-            title = data.get("title", "제목 없음")
-            full_content = data.get("fullContent", "")
-            date_str = data.get("date", "202X")[:4] 
-            
-            clean_content = clean_qna_text(full_content)
-            
-            # 관련 조항 추출 (계층 구조용)
-            bookmarks = data.get("bookmarkStdParagraphs", {})
-            para_list = bookmarks.get("1115", [])
-            
-            if para_list:
-                primary_para = para_list[0]
-                para_text = f"문단 {primary_para} 등" if len(para_list) > 1 else f"문단 {primary_para}"
-            else:
-                para_text = "관련문단"
-
-            hierarchy_path = f"질의회신 > K-IFRS 제1115호 > {para_text} > {title} ({date_str})"
-            
-            chunk = {
-                "id": f"QNA-{doc_id}",
-                "content": clean_content,
-                "metadata": {
-                    "stdNum": "1115",
-                    "paraNum": doc_id,
-                    "category": "질의회신",
-                    "weight_score": 1.15,  # 🎯 질의회신 가중치 15% 적용
-                    "hierarchy": hierarchy_path,
-                    "sectionLevel": 1
-                }
-            }
-            qna_chunks.append(chunk)
-            print(f"  ✅ [{i}/{len(doc_numbers)}] 성공: {doc_id} ({title})")
-            
-        except Exception as e:
-            print(f"  ❌ [{i}/{len(doc_numbers)}] 에러 발생 ({doc_id}): {e}")
-
-    # JSON 파일로 일괄 저장
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(qna_chunks, f, ensure_ascii=False, indent=2)
 
-    print(f"\n🎉 총 {len(qna_chunks)}개의 수익 관련 질의회신 청크 자동 수집 완료!")
+    print(f"\n=============================================")
+    print(f"🎉 크롤링 및 가중치 매핑 완벽 종료!")
+    print(f"✨ 총 {total_found}개의 공신력 빵빵한 RAG 데이터가 준비되었습니다.")
     print(f"📁 결과물 저장: {OUTPUT_FILE}")
+    print(f"=============================================")
 
 if __name__ == "__main__":
-    process_qna_chunks()
+    fetch_targeted_qnas()

@@ -84,8 +84,8 @@ def get_category_and_weight(uid, hierarchy):
 
 
 def process_kifrs_chunks():
-    INPUT_FILE = "data/web/kifrs_1115_all.json"
-    OUTPUT_FILE = "data/web/kifrs_1115_chunks.json"
+    INPUT_FILE = "data/web/kifrs-1115-all.json"
+    OUTPUT_FILE = "data/web/kifrs-1115-chunks.json"
     os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 
     print("🚀 JSON 데이터 파싱 및 RAG 청킹 (가중치 태깅)을 시작합니다...")
