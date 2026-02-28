@@ -20,7 +20,6 @@ PARENT_COLLECTION = "kifrs_1115_qna_parents" # 신규 Parent 컬렉션
 import re
 
 def split_qna_to_children(qna_id, full_text, metadata):
-    """줄바꿈이 전혀 없는 통문장 데이터까지 완벽하게 분리하는 최종 병기"""
     
     # 1. 보이지 않는 유니코드 노이즈 제거
     full_text = re.sub(r'[\u200b\u200c\u200d\ufeff\u00a0]', ' ', full_text)
@@ -28,7 +27,7 @@ def split_qna_to_children(qna_id, full_text, metadata):
     hierarchy = metadata.get("hierarchy", "")
     children = []
 
-    # 🌟 2. 강제 분리 전처리 (줄바꿈이 없어도 문맥상 경계를 찾아 \n 주입)
+    # 2. 강제 분리 전처리 (줄바꿈이 없어도 문맥상 경계를 찾아 \n 주입)
     # [패턴 A] 질문 끝(?)과 회신 시작 사이
     full_text = re.sub(r'(\?|있음|함)\s*(회\s*신\s*[□ㅇ▶#\[])', r'\1\n\2', full_text)
     # [패턴 B] 답변 끝과 관련기준 시작 사이 (가장 안 잘리던 부분)
@@ -36,8 +35,7 @@ def split_qna_to_children(qna_id, full_text, metadata):
     # [패턴 C] 본문과 질의 시작 사이
     full_text = re.sub(r'(본문)\s*(질의)', r'\1\n\2', full_text)
 
-    # 🌟 3. 분할 실행
-    # 이제 위에서 \n을 박았기 때문에, \n 기반의 분할이 100% 작동합니다.
+    # 3. 분할 실행
     
     # Q와 A 분리
     # Q/A 분리 패턴 설명:
@@ -52,7 +50,8 @@ def split_qna_to_children(qna_id, full_text, metadata):
     q_text = qa_parts[0].strip()
     children.append(Document(
         page_content=f"[문맥: {hierarchy} > 질의]\n{q_text}",
-        metadata={**metadata, "parent_id": qna_id, "chunk_type": "question"}
+        metadata={**metadata, "parent_id": qna_id, "chunk_type": "question","chunk_id": f"{qna_id}_Q"}
+        
     ))
 
     # 회신(A) 및 부록(S) 처리
@@ -67,7 +66,7 @@ def split_qna_to_children(qna_id, full_text, metadata):
         a_core = supp_parts[0].strip()
         children.append(Document(
             page_content=f"[문맥: {hierarchy} > 회신/판단근거]\n{a_core}",
-            metadata={**metadata, "parent_id": qna_id, "chunk_type": "answer"}
+            metadata={**metadata, "parent_id": qna_id, "chunk_type": "answer", "chunk_id": f"{qna_id}_A"}
         ))
 
         # 부록 (Supplementary)
@@ -75,7 +74,7 @@ def split_qna_to_children(qna_id, full_text, metadata):
             supp_text = supp_parts[1].strip()
             children.append(Document(
                 page_content=f"[문맥: {hierarchy} > 관련기준/부록]\n{supp_text}",
-                metadata={**metadata, "parent_id": qna_id, "chunk_type": "supplementary"}
+                metadata={**metadata, "parent_id": qna_id, "chunk_type": "supplementary", "chunk_id": f"{qna_id}_S"}
             ))
 
     return children
