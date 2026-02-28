@@ -1,9 +1,12 @@
+import sys
 import json
 import os
 import time
 import re
 import unicodedata
 from dotenv import load_dotenv
+
+sys.stdout.reconfigure(encoding="utf-8")
 from pymongo import MongoClient
 from langchain_upstage import UpstageEmbeddings
 from langchain_mongodb import MongoDBAtlasVectorSearch

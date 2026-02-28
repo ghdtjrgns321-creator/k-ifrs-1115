@@ -4,6 +4,17 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
+def clean_breadcrumb_text(html_text):
+    """HTML 태그와 불필요한 주석 기호를 깔끔하게 제거합니다."""
+    if not html_text:
+        return html_text
+        
+    soup = BeautifulSoup(html_text, "html.parser")
+    clean_text = soup.get_text(separator=" ")
+    clean_text = re.sub(r'\(주\d+\)', '', clean_text) # (주9) 같은 텍스트 제거
+    clean_text = re.sub(r'\s+', ' ', clean_text).strip()
+    return clean_text
+
 def clean_html_to_md(item):
     para_num = str(item.get("paraNum", ""))
     prefix = f"{para_num} " if para_num else ""
@@ -127,7 +138,8 @@ def process_kifrs_chunks():
             titles = [t for t in titles if t and "제1115호" not in t]
             if titles:
                 hierarchy_path = " > ".join(titles)
-
+                hierarchy_path = clean_breadcrumb_text(hierarchy_path)
+                
         # 카테고리 및 가중치 계산
         category, weight = get_category_and_weight(uid, hierarchy_path)
 
