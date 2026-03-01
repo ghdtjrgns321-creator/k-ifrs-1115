@@ -1,4 +1,6 @@
+import re
 from pymongo import MongoClient
+from rank_bm25 import BM25Okapi
 from langchain_upstage import UpstageEmbeddings
 from app.config import settings
 
@@ -16,6 +18,11 @@ RRF_K        = 60  # RRF 논문 권장값
 # 테스트 환경에서 .env 없이 모듈을 import해도 에러가 나지 않습니다.
 _db = None
 _embeddings = None
+
+# BM25 인덱스는 최초 검색 시 MongoDB 전체 문서로 빌드 후 메모리에 캐싱합니다.
+# 프로세스 재시작 시에만 재빌드됩니다.
+_bm25: BM25Okapi | None = None
+_bm25_corpus: list[dict] | None = None
 
 
 def _get_db():
@@ -61,22 +68,81 @@ def _search_vector(query_vector: list, limit: int) -> list[dict]:
     return list(_get_db()[settings.mongo_collection_name].aggregate(pipeline))
 
 
+def _tokenize_ko(text: str) -> list[str]:
+    """
+    한국어 텍스트를 BM25용 토큰 리스트로 변환합니다.
+
+    한국어는 조사가 붙어 "본인과", "대리인을"처럼 표현되어 단순 공백 분리로는
+    "본인", "대리인" 키워드 매칭이 실패합니다.
+    → 한글 연속 구간에 2-gram(바이그램)을 적용해 "본인과" → ["본인", "인과"]로
+      분해함으로써 조사 포함 여부에 무관하게 핵심 어절을 잡아냅니다.
+    영문·숫자·조항번호(B34, IE15 등)는 그대로 소문자 처리합니다.
+    """
+    tokens: list[str] = []
+
+    # 한글 연속 구간 → 바이그램
+    for word in re.findall(r'[가-힣]+', text):
+        if len(word) == 1:
+            tokens.append(word)
+        else:
+            tokens.extend(word[i:i+2] for i in range(len(word) - 1))
+
+    # 영문·숫자·혼합 토큰 (예: B34, IE15, BM25) → 소문자
+    tokens.extend(t.lower() for t in re.findall(r'[a-zA-Z0-9]+', text))
+
+    return tokens
+
+
+def _build_bm25_index() -> None:
+    """
+    MongoDB 전체 문서를 로드하여 로컬 BM25 인덱스를 빌드합니다.
+    최초 검색 시 1회만 실행되며, 이후 _bm25/_bm25_corpus에 캐싱됩니다.
+    Atlas Search 키워드 인덱스 설정 없이도 동작하며,
+    한국어 바이그램 토크나이저로 조사 처리 문제를 해결합니다.
+    """
+    global _bm25, _bm25_corpus
+    db = _get_db()
+    # embedding 필드 제외 — 벡터(float 배열)가 빠지면 메모리가 크게 절약됩니다.
+    docs = list(db[settings.mongo_collection_name].find({}, {"embedding": 0}))
+    _bm25_corpus = docs
+    corpus = [_tokenize_ko(doc.get("text", "")) for doc in docs]
+    _bm25 = BM25Okapi(corpus)
+
+
 def _search_keyword(query: str, limit: int) -> list[dict]:
     """
-    Atlas Search (BM25): 조항 번호·용어 등 키워드 정확도 검색.
-    벡터 검색이 놓치는 정확한 단어 매칭을 보완합니다.
+    로컬 BM25 키워드 검색 — MongoDB Atlas Search 인덱스 불필요.
+
+    Atlas Search의 Standard Analyzer는 한국어 조사를 분리하지 못해
+    "본인과" → "본인" 매칭 실패 같은 문제가 발생합니다.
+    rank_bm25 + 한국어 바이그램 토크나이저로 이를 해결합니다.
+
+    score > 0 인 문서만 반환하여 무관한 문서가 RRF 풀을 오염시키는 것을 방지합니다.
     """
-    pipeline = [
-        {
-            "$search": {
-                "index": "keyword_index",
-                "text": {"query": query, "path": "text"},
-            }
-        },
-        {"$limit": limit},
-        {"$project": {"embedding": 0, "score": {"$meta": "searchScore"}}},
-    ]
-    return list(_get_db()[settings.mongo_collection_name].aggregate(pipeline))
+    global _bm25, _bm25_corpus
+    if _bm25 is None:
+        _build_bm25_index()
+
+    query_tokens = _tokenize_ko(query)
+    if not query_tokens:
+        return []
+
+    scores = _bm25.get_scores(query_tokens)
+
+    # BM25 점수가 0 초과인 문서만 추려 상위 limit개 반환
+    ranked_indices = sorted(
+        (i for i in range(len(scores)) if scores[i] > 0),
+        key=lambda i: scores[i],
+        reverse=True,
+    )[:limit]
+
+    results = []
+    for idx in ranked_indices:
+        doc = dict(_bm25_corpus[idx])
+        doc["score"] = float(scores[idx])
+        results.append(doc)
+
+    return results
 
 
 # ── RRF 융합 ─────────────────────────────────────────────────────────────────────
