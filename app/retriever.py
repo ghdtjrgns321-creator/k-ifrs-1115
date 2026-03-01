@@ -30,7 +30,12 @@ def _get_embeddings():
     global _embeddings
     if _embeddings is None:
         # 검색 시에만 query 모델 사용 (passage 모델과 혼용 금지!)
-        _embeddings = UpstageEmbeddings(model=settings.embed_query_model)
+        # api_key를 명시적으로 전달 — UpstageEmbeddings는 os.environ을 직접 참조하므로
+        # pydantic-settings만으로는 키가 전달되지 않을 수 있음
+        _embeddings = UpstageEmbeddings(
+            model=settings.embed_query_model,
+            api_key=settings.upstage_api_key,
+        )
     return _embeddings
 
 

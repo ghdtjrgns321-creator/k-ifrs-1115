@@ -18,6 +18,8 @@ class Settings(BaseSettings):
     # 4. LLM 모델 설정
     llm_model: str = "solar-pro3"
     llm_temperature: float = 0.0
+    # API 응답 대기 최대 시간(초) — 초과 시 TimeoutError 발생하여 파이프라인이 뻗지 않음
+    llm_timeout: int = 60
 
     # 5. 임베딩 모델 (passage/query 혼용 시 검색 품질 급락 — 혼용 금지)
     # passage: 문서를 DB에 저장(적재)할 때 사용용

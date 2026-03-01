@@ -28,7 +28,7 @@ def rerank_results(query: str, unified_results: list[dict], top_n: int = 5) -> l
         "passages": passages,
     }
 
-    response = requests.post(url, headers=headers, json=payload)
+    response = requests.post(url, headers=headers, json=payload, timeout=30)
     response.raise_for_status()  # 4xx/5xx 오류 시 즉시 예외 발생 (조용히 넘기지 않음)
 
     rerank_data = response.json().get("data", [])

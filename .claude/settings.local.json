@@ -10,7 +10,10 @@
       "WebFetch(domain:www.kifrs.com)",
       "WebFetch(domain:www.upstage.ai)",
       "WebFetch(domain:python.langchain.com)",
-      "WebFetch(domain:platform.openai.com)"
+      "WebFetch(domain:platform.openai.com)",
+      "WebFetch(domain:developers.upstage.ai)",
+      "WebFetch(domain:console.upstage.ai)",
+      "WebFetch(domain:openrouter.ai)"
     ]
   }
 }
