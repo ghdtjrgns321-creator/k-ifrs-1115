@@ -15,8 +15,9 @@ from concurrent.futures import ThreadPoolExecutor, TimeoutError as FuturesTimeou
 from pathlib import Path
 
 # LLM 체인 1회 실행의 최대 허용 시간 (초)
-# 벡터검색 + 리랭커 + LLM 생성 전 단계 합산 기준
-CASE_TIMEOUT_SEC = 90
+# HyDE 폴백 + rewrite 폴백이 모두 발동되는 최악 경로를 커버해야 함:
+#   HyDE(15s) + reranks×3(9s) + grades×3(15s) + rewrite(5s) + o4-mini(90s) ≈ 134s
+CASE_TIMEOUT_SEC = 150
 
 sys.path.insert(0, str(Path(__file__).parents[2]))
 sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)
@@ -59,6 +60,7 @@ def _invoke(messages: list) -> dict:
         "relevant_docs":    [],   # → grade_docs 노드가 CRAG 통과 문서로 채움
         "answer":           "",   # → generate → format_response 노드가 최종 답변으로 채움
         "cited_sources":    [],   # → generate 노드가 인용 출처 메타데이터로 채움
+        "findings_case":    None, # → format_response 노드가 감리사례 매칭 결과로 채움
     })
 
 def _check(label: str, condition: bool, detail: str = "") -> bool:

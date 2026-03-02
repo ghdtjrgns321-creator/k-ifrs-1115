@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# 데이터 (런타임에 불필요 — 외부 DB 사용)
+data/
+
+# 전처리/테스트 (런타임에 불필요)
+app/preprocessing/
+app/test/
+
+# Git
+.git/
+.gitignore
+
+# 환경변수 (compose에서 env_file로 주입)
+.env
+.env.example
+
+# IDE / 기타
+.vscode/
+.idea/
+*.md

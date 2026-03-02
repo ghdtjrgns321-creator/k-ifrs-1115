@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from langchain_core.prompts import ChatPromptTemplate
-from app.llm import get_llm
+from app.llm import get_front_llm
 from app.state import RAGState
 from app.prompts import ANALYZE_PROMPT
 
@@ -13,7 +13,7 @@ class AnalyzeResult(BaseModel):
 def analyze_query(state: RAGState):
     """사용자 질문을 분석하여 멀티턴을 재구성하고 라우팅 방향을 결정합니다."""
 
-    structured_llm = get_llm().with_structured_output(AnalyzeResult)
+    structured_llm = get_front_llm().with_structured_output(AnalyzeResult)
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", ANALYZE_PROMPT),

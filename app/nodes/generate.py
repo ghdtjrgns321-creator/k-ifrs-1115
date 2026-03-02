@@ -1,6 +1,6 @@
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from app.llm import get_llm
+from app.llm import get_generate_llm
 from app.state import RAGState
 from app.prompts import GENERATE_PROMPT
 
@@ -31,7 +31,7 @@ def generate_answer(state: RAGState):
 
     context_str = "\n\n---\n\n".join(context_parts)
 
-    chain = ChatPromptTemplate.from_template(GENERATE_PROMPT) | get_llm() | StrOutputParser()
+    chain = ChatPromptTemplate.from_template(GENERATE_PROMPT) | get_generate_llm() | StrOutputParser()
 
     answer = chain.invoke({
         "context": context_str,

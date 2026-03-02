@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from langchain_core.prompts import ChatPromptTemplate
-from app.llm import get_llm
+from app.llm import get_front_llm
 from app.state import RAGState
 from app.prompts import GRADE_PROMPT
 
@@ -21,7 +21,7 @@ def grade_docs(state: RAGState):
     if not reranked_docs:
         return {"relevant_docs": []}
 
-    structured_llm = get_llm().with_structured_output(GradeResult)
+    structured_llm = get_front_llm().with_structured_output(GradeResult)
 
     prompt = ChatPromptTemplate.from_template(GRADE_PROMPT)
     chain = prompt | structured_llm

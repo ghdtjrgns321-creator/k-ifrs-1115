@@ -22,3 +22,4 @@ class RAGState(TypedDict):
     # 4. 생성 결과물
     answer: str                  # LLM이 생성한 최종 답변
     cited_sources: list[dict]    # 인용 출처 메타데이터 ({source, chunk_id, hierarchy, ...})
+    findings_case: dict | None   # 섀도우 매칭된 감리사례 ({title, hierarchy, content}), 없으면 None
