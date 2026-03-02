@@ -49,11 +49,11 @@ def fetch_targeted_qnas():
                     break
                     
                 data = res.json()
-                # v2 API는 리스트가 'facilityQnas'에 주로 담깁니다
+                # v2 API는 리스트가 'facilityQnas'에 주로 담김.
                 qna_list = data.get("facilityQnas") or data.get("qnas") or []
                 
                 if not qna_list:
-                    print(f"  🏁 {category_name} 데이터 조회가 완료되었습니다.")
+                    print(f"{category_name} 데이터 조회가 완료되었습니다.")
                     break
                     
                 for qna in qna_list:
@@ -63,7 +63,7 @@ def fetch_targeted_qnas():
                     rel_stds = str(qna.get("relStds", ""))
                     date_str = str(qna.get("date", "202X"))[:4]
                     
-                    # 🎯 정밀 타겟팅: '1115' 문자열 포함 여부 확인
+                    # 정밀 타겟팅: '1115' 문자열 포함 여부 확인
                     if "1115" in rel_stds:
                         total_found += 1
                         clean_content = clean_qna_text(full_content)
@@ -78,7 +78,7 @@ def fetch_targeted_qnas():
                                 "stdNum": "1115",
                                 "paraNum": doc_id,
                                 "category": f"질의회신({category_name})",
-                                "weight_score": weight,  # 🔥 카테고리별 차등 가중치 적용!
+                                "weight_score": weight,  # 카테고리별 차등 가중치 적용
                                 "hierarchy": hierarchy_path,
                                 "sectionLevel": 1
                             }
@@ -97,9 +97,9 @@ def fetch_targeted_qnas():
         json.dump(qna_chunks, f, ensure_ascii=False, indent=2)
 
     print(f"\n=============================================")
-    print(f"🎉 크롤링 및 가중치 매핑 완벽 종료!")
-    print(f"✨ 총 {total_found}개의 공신력 빵빵한 RAG 데이터가 준비되었습니다.")
-    print(f"📁 결과물 저장: {OUTPUT_FILE}")
+    print(f"크롤링 및 가중치 매핑 완벽 종료")
+    print(f"총 {total_found}개의 공신력 빵빵한 RAG 데이터가 준비되었습니다.")
+    print(f"결과물 저장: {OUTPUT_FILE}")
     print(f"=============================================")
 
 if __name__ == "__main__":

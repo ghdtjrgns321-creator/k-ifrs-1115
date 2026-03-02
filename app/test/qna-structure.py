@@ -10,7 +10,7 @@ DB_NAME = os.getenv("MONGO_DB_NAME", "kifrs_db")
 CHILD_COLLECTION = os.getenv("MONGO_COLLECTION_NAME", "k-ifrs-1115-chatbot")
 
 def verify_qas_structure():
-    print("🔍 QnA 데이터 3단 분리 (Q/A/S) 정합성 검사를 시작합니다...\n")
+    print("QnA 데이터 3단 분리 (Q/A/S) 정합성 검사를 시작합니다...\n")
 
     client = MongoClient(MONGO_URI)
     coll = client[DB_NAME][CHILD_COLLECTION]
@@ -42,13 +42,13 @@ def verify_qas_structure():
         has_a = "answer" in types
         has_s = "supplementary" in types
 
-        # 🚨 [이상 케이스 검출] 
+        # [이상 케이스 검출] 
         # 질문(Q)이나 답변(A)이 없거나, 똑같은 타입이 2개 이상 들어갔거나, 3조각을 초과한 경우
         if not has_q or not has_a or len(types) > 3 or types.count("question") > 1 or types.count("answer") > 1:
             error_list.append({"id": parent_id, "types": types})
             continue
 
-        # 🟢 [정상 케이스 분류]
+        # [정상 케이스 분류]
         if has_s:
             qas_count += 1
             if len(s_examples) < 3: # 예시 출력을 위해 3개만 저장
@@ -59,7 +59,7 @@ def verify_qas_structure():
     # ==========================================
     # 결과 출력
     # ==========================================
-    print(f"📊 [QnA 분리 구조 통계]")
+    print(f"[QnA 분리 구조 통계]")
     print(f"  - 전체 검사 대상 QnA (Parent): {total_qna}개")
     print(f"  - 🟢 기본 2단 분리 (Question + Answer): {qa_count}개")
     print(f"  - 🔵 확장 3단 분리 (Question + Answer + Supplementary): {qas_count}개")

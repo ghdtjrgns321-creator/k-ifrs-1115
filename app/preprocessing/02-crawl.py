@@ -28,7 +28,7 @@ for i, section in enumerate(sections):
         res = requests.get(f"{PARA_URL}/{doc_id}", headers=headers)
         clauses = res.json().get("clauses", [])
         
-        # 메타데이터 꼬리표 달아주기
+        # 메타데이터 꼬리표
         for c in clauses:
             c["sectionTitle"] = title
             c["sectionLevel"] = section.get("level", 0)
@@ -45,4 +45,4 @@ output_path = f"{OUTPUT_DIR}/kifrs-1115-all.json"
 with open(output_path, "w", encoding="utf-8") as f:
     json.dump(all_clauses, f, ensure_ascii=False, indent=2)
 
-print(f"\n🎉 크롤링 완벽 성공! 총 {len(all_clauses)}개의 진짜 본문 데이터가 저장되었습니다.")
+print(f"\n 크롤링 완벽 성공! 총 {len(all_clauses)}개의 진짜 본문 데이터가 저장되었습니다.")

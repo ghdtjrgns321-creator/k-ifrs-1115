@@ -16,11 +16,16 @@ dependencies = [
     "beautifulsoup4>=4.14.3",
     "pymongo>=4.16.0",
     "langchain-mongodb>=0.11.0",
+    "langchain-openai>=0.3.0",
+    "cohere>=5.0.0",
+    "rank-bm25>=0.2.2",
+    "httpx>=0.27.0",
 ]
 
 [dependency-groups]
 dev = [
     "langsmith>=0.7.6",
+    "playwright>=1.58.0",
     "pytest>=9.0.2",
     "ruff>=0.15.2",
 ]

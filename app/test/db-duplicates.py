@@ -11,7 +11,7 @@ CHILD_COLLECTION = os.getenv("MONGO_COLLECTION_NAME", "k-ifrs-1115-chatbot")
 PARENT_COLLECTION = "kifrs_1115_qna_parents"
 
 def check_data_integrity():
-    print("🔍 MongoDB Atlas 데이터 정합성(중복) 검증을 시작합니다...\n")
+    print("MongoDB Atlas 데이터 정합성(중복) 검증을 시작합니다...\n")
 
     client = MongoClient(MONGO_URI)
     db = client[DB_NAME]
@@ -74,7 +74,7 @@ def check_data_integrity():
     parent_duplicates = list(parent_coll.aggregate(qna_parent_pipeline))
     parent_total = parent_coll.count_documents({})
 
-    print(f"\n📙 [QnA Parent (원본 텍스트) 데이터]")
+    print(f"\n[QnA Parent (원본 텍스트) 데이터]")
     print(f"  - 총 적재 건수: {parent_total:,}건")
     if not parent_duplicates:
         print("  - ✅ 중복 데이터 없음! (모든 원본이 고유함)")
@@ -82,7 +82,7 @@ def check_data_integrity():
         print(f"  - ❌ 중복 발견: {len(parent_duplicates)}개의 원본이 중복 적재되었습니다.")
 
     print(f"\n{'='*60}")
-    print("🎉 데이터 정합성 검증 완료!")
+    print("데이터 정합성 검증 완료!")
     print(f"{'='*60}")
 
     client.close()

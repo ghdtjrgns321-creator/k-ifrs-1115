@@ -5,13 +5,13 @@ import requests
 from bs4 import BeautifulSoup
 
 def clean_breadcrumb_text(html_text):
-    """HTML 태그와 불필요한 주석 기호를 깔끔하게 제거합니다."""
+    """HTML 태그와 불필요한 주석 기호를 깔끔하게 제거."""
     if not html_text:
         return html_text
         
     soup = BeautifulSoup(html_text, "html.parser")
     clean_text = soup.get_text(separator=" ")
-    clean_text = re.sub(r'\(주\d+\)', '', clean_text) # (주9) 같은 텍스트 제거
+    clean_text = re.sub(r'\(주\d+\)', '', clean_text)
     clean_text = re.sub(r'\s+', ' ', clean_text).strip()
     return clean_text
 
@@ -76,13 +76,13 @@ def clean_html_to_md(item):
 
 # 계층 정보 기반 카테고리 & 가중치 할당 함수
 def get_category_and_weight(uid, hierarchy):
-    # 1순위: 확실한 식별자(UID) 및 대분류를 가장 먼저 잡아냅니다.
+    # 1순위: 확실한 식별자(UID) 및 대분류를 가장 먼저 잡아냄.
     if "BC" in uid or "결론도출근거" in hierarchy:
         return "결론도출근거", 1.10
     if "IE" in uid or "적용사례" in hierarchy:
         return "적용사례IE", 1.10
         
-    # 2순위: 부록 세부 항목들을 판별합니다.
+    # 2순위: 부록 세부 항목들을 판별.
     if "부록 B" in hierarchy or "적용지침" in hierarchy:
         return "적용지침B", 1.20
     if "부록 A" in hierarchy or "용어의 정의" in hierarchy:
@@ -90,7 +90,7 @@ def get_category_and_weight(uid, hierarchy):
     if "부록 C" in hierarchy or "시행일" in hierarchy or "경과 규정" in hierarchy:
         return "시행일", 1.05
         
-    # 3순위: 위 조건에 모두 해당하지 않으면 일반 본문으로 분류합니다.
+    # 3순위: 위 조건에 모두 해당하지 않으면 일반 본문으로 분류함.
     return "본문", 1.15
 
 
@@ -99,7 +99,7 @@ def process_kifrs_chunks():
     OUTPUT_FILE = "data/web/kifrs-1115-chunks.json"
     os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
 
-    print("🚀 JSON 데이터 파싱 및 RAG 청킹 (가중치 태깅)을 시작합니다...")
+    print("JSON 데이터 파싱 및 RAG 청킹 (가중치 태깅)을 시작합니다...")
     
     res = requests.get("https://www.kifrs.com/api/standard-indexes/1115", headers={"User-Agent": "Mozilla/5.0"})
     sections = res.json().get("standardIndexes", [])
@@ -166,7 +166,7 @@ def process_kifrs_chunks():
     # 적용지침 샘플 하나 출력해서 가중치가 잘 들어갔는지 확인
     sample_chunk = next((c for c in chunks if c["metadata"]["category"] == "적용지침B"), None)
     if sample_chunk:
-        print("\n✨ [데이터 변환 샘플 확인 (적용지침B)]")
+        print("\n [데이터 변환 샘플 확인 (적용지침B)]")
         print(json.dumps(sample_chunk, ensure_ascii=False, indent=2))
 
 if __name__ == "__main__":

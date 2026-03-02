@@ -1,7 +1,4 @@
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
+from app.config import settings
 
 # Solar Pro3 테스트
 from langchain_upstage import ChatUpstage
@@ -16,14 +13,9 @@ print(f"✅ Solar Pro 3: {response.content[:100]}...")
 
 # Solar Embedding 테스트
 from langchain_upstage import UpstageEmbeddings
-embeddings = UpstageEmbeddings(model="solar-embedding-1-large")
+embeddings = UpstageEmbeddings(model=settings.embed_query_model)
 vector = embeddings.embed_query("총액인식 순액인식 판단기준")
 print(f"✅ Embedding 차원: {len(vector)}")
-
-# ChromaDB 연결 테스트
-import chromadb
-client = chromadb.HttpClient(host="localhost", port=8100)
-print(f"✅ ChromaDB heartbeat: {client.heartbeat()}")
 
 # LangSmith 연결 테스트
 from langsmith import Client

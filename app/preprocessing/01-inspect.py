@@ -1,5 +1,3 @@
-# kifrs.com 페이지 HTML 구조 파악
-
 import requests
 from bs4 import BeautifulSoup
 

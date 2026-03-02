@@ -1,24 +1,19 @@
 import sys
 import json
-import os
 import time
 import re
 import unicodedata
-from dotenv import load_dotenv
-
-sys.stdout.reconfigure(encoding="utf-8")
+import os
 from pymongo import MongoClient
 from langchain_upstage import UpstageEmbeddings
 from langchain_mongodb import MongoDBAtlasVectorSearch
 from langchain_core.documents import Document
+from app.config import settings
 
-# 환경 변수 로드
-load_dotenv()
+sys.stdout.reconfigure(encoding="utf-8")
 
-MONGO_URI = os.getenv("MONGO_URI")
-DB_NAME = os.getenv("MONGO_DB_NAME", "kifrs_db")
-CHILD_COLLECTION = os.getenv("MONGO_COLLECTION_NAME", "k-ifrs-1115-chatbot")
-PARENT_COLLECTION = "kifrs_1115_qna_parents" # 신규 Parent 컬렉션
+CHILD_COLLECTION  = settings.mongo_collection_name
+PARENT_COLLECTION = "k-ifrs-1115-qna-parents"
 
 import re
 
@@ -84,7 +79,7 @@ def split_qna_to_children(qna_id, full_text, metadata):
 
 
 def load_pdr_to_atlas():
-    INPUT_FILE = "data/web/kifrs-1115-qna-chunks.json" # 경로 확인 필수
+    INPUT_FILE = "data/web/kifrs-1115-qna-chunks.json"
     
     if not os.path.exists(INPUT_FILE):
         print(f"❌ 파일을 찾을 수 없습니다: {INPUT_FILE}")
@@ -93,8 +88,8 @@ def load_pdr_to_atlas():
     with open(INPUT_FILE, "r", encoding="utf-8") as f:
         raw_qnas = json.load(f)
 
-    client = MongoClient(MONGO_URI)
-    db = client[DB_NAME]
+    client = MongoClient(settings.mongo_uri)
+    db = client[settings.mongo_db_name]
     
     parent_docs_to_insert = []
     child_docs_to_embed = []
@@ -121,27 +116,27 @@ def load_pdr_to_atlas():
     # ==========================================
     parent_coll = db[PARENT_COLLECTION]
     
-    print(f"🧹 1. 기존 Parent 컬렉션 데이터를 초기화합니다...")
+    print(f"1. 기존 Parent 컬렉션 데이터를 초기화합니다...")
     p_del_result = parent_coll.delete_many({})
-    print(f"   -> 기존 Parent 데이터 {p_del_result.deleted_count}개 삭제 완료.")
+    print(f"-> 기존 Parent 데이터 {p_del_result.deleted_count}개 삭제 완료.")
     
-    print(f"📦 2. 새로운 Parent QnA 원본 {len(parent_docs_to_insert)}개를 저장합니다...")
+    print(f"2. 새로운 Parent QnA 원본 {len(parent_docs_to_insert)}개를 저장합니다...")
     parent_coll.insert_many(parent_docs_to_insert)
-    print("   -> ✅ Parent 적재 완료!")
+    print("-> ✅ Parent 적재 완료!")
 
     # ==========================================
     # STEP 2. Child 컬렉션(벡터 DB) 처리 (본문 보호 + 중복 방지)
     # ==========================================
     child_coll = db[CHILD_COLLECTION]
 
-    print(f"\n🧹 3. 기존 Child 컬렉션에서 'QnA 데이터만 핀셋 삭제' 합니다 (본문 + 감리사례 보호)...")
+    print(f"\n3. 기존 Child 컬렉션에서 QnA 데이터만 삭제 합니다 (본문 + 감리사례 보호)...")
     # parent_id가 "QNA-" 접두어인 것만 삭제 → 본문(parent_id 없음)과 감리사례(FSS-/KICPA-) 보호
     c_del_result = child_coll.delete_many({"parent_id": {"$regex": "^QNA-"}})
-    print(f"   -> 기존 QnA Child 데이터 {c_del_result.deleted_count}개 삭제 완료.")
+    print(f" -> 기존 QnA Child 데이터 {c_del_result.deleted_count}개 삭제 완료.")
 
-    print(f"\n🚀 4. 총 {len(child_docs_to_embed)}개의 Child 청크(Q/A/S) 벡터 임베딩을 시작합니다...")
+    print(f"\n4. 총 {len(child_docs_to_embed)}개의 Child 청크(Q/A/S) 벡터 임베딩을 시작합니다...")
     
-    embeddings = UpstageEmbeddings(model="solar-embedding-1-large-passage")
+    embeddings = UpstageEmbeddings(model=settings.embed_passage_model)
     vector_search = MongoDBAtlasVectorSearch(
         collection=child_coll,
         embedding=embeddings,
@@ -165,7 +160,7 @@ def load_pdr_to_atlas():
             time.sleep(0.05)
             
         except Exception as e:
-            print(f"\n❌ [SKIP] {parent_id}의 {chunk_type} 파트 적재 실패! (토큰 초과)")
+            print(f"\n❌ [SKIP] {parent_id}의 {chunk_type} 파트 적재 실패 (토큰 초과)")
             skipped_docs.append({
                 "parent_id": parent_id,
                 "chunk_type": chunk_type,
@@ -177,13 +172,13 @@ def load_pdr_to_atlas():
     # STEP 3. 최종 결과 보고서
     # ==========================================
     print(f"\n{'='*65}")
-    print(f"🎉 PDR 아키텍처 질의회신 적재 최종 보고서")
+    print(f"PDR 아키텍처 질의회신 적재 최종 보고서")
     print(f"{'='*65}")
     print(f"✅ 성공: {success_count}개 청크 (Vector DB 안착)")
     print(f"⚠️ 스킵: {len(skipped_docs)}개 청크 (API 용량 초과)")
     
     if skipped_docs:
-        print("\n📋 [스킵된 문서 목록 상세 내역]")
+        print("\n[스킵된 문서 목록 상세 내역]")
         for skip in skipped_docs:
             print(f"  - ID: {skip['parent_id']} | 타입: {skip['chunk_type']} | 길이: {skip['length']:,.0f}자")
     print(f"{'='*65}")

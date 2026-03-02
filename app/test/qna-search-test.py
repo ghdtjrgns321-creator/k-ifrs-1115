@@ -1,17 +1,13 @@
 import sys
-import os
 from collections import Counter
-from dotenv import load_dotenv
 from pymongo import MongoClient
 from langchain_upstage import UpstageEmbeddings
+from app.config import settings
 
 sys.stdout.reconfigure(encoding="utf-8")
-load_dotenv()
 
 # ── 상수 ──────────────────────────────────────────────────────────────────────
-MONGO_URI = os.getenv("MONGO_URI")
-DB_NAME = os.getenv("MONGO_DB_NAME", "kifrs_db")
-CHILD_COLLECTION = os.getenv("MONGO_COLLECTION_NAME", "k-ifrs-1115-chatbot")
+CHILD_COLLECTION  = settings.mongo_collection_name
 PARENT_COLLECTION = "kifrs_1115_qna_parents"  # PDR 원본 저장소
 
 VECTOR_TOP_K = 10  # 각 전략별 후보 수
@@ -180,7 +176,7 @@ def analyze_and_print(
     k_top3 = fmt(k_results)
     h_top3 = [f"{i['doc'].get('chunk_id')}({i['doc'].get('category','?')[:6]})" for i in ranked_all[:3]]
 
-    print("\n📊 [전략 비교]")
+    print("\n[전략 비교]")
     print(f"  Vector Only Top3:  {', '.join(v_top3) if v_top3 else '결과 없음'}")
     print(f"  Keyword Only Top3: {', '.join(k_top3) if k_top3 else '결과 없음'}")
     print(f"  Hybrid Top3:       {', '.join(h_top3) if h_top3 else '결과 없음'}")
@@ -199,7 +195,7 @@ def analyze_and_print(
     k_ids = {d.get("chunk_id") for d in k_results}
     overlap = v_ids & k_ids
     overlap_ratio = len(overlap) / max(len(v_ids), 1) * 100
-    print(f"\n🔗 [RRF 융합]  Vector ∩ Keyword 겹침: {len(overlap)}/{len(v_ids)}개 ({overlap_ratio:.0f}%)")
+    print(f"\n[RRF 융합]  Vector ∩ Keyword 겹침: {len(overlap)}/{len(v_ids)}개 ({overlap_ratio:.0f}%)")
 
     # ── 가중치 보정 확인 ───────────────────────────────────────────
     rrf_sorted = sorted(fused_map.values(), key=lambda x: x["rrf_score"], reverse=True)
@@ -210,12 +206,12 @@ def analyze_and_print(
         if rrf_rank > final_rank and item["weight"] > 1.0:
             moved.append(f"  ↑ {cid}(w={item['weight']}) RRF {rrf_rank+1}위 → 최종 {final_rank+1}위")
     if moved:
-        print(f"⚖️  [가중치 보정]")
+        print(f"[가중치 보정]")
         for m in moved:
             print(m)
 
     # ── PDR Lookup: 원본 전체 텍스트 출력 ─────────────────────────
-    print(f"\n📄 [PDR Lookup — Hybrid Top {FINAL_TOP_K} 원본]")
+    print(f"\n[PDR Lookup — Hybrid Top {FINAL_TOP_K} 원본]")
     for rank, item in enumerate(deduped):
         doc = item["doc"]
         pid = doc.get("parent_id")
@@ -258,8 +254,8 @@ def analyze_and_print(
 # ── 메인 실행 ──────────────────────────────────────────────────────────────────
 
 def run_qna_tests():
-    client = MongoClient(MONGO_URI)
-    db = client[DB_NAME]
+    client = MongoClient(settings.mongo_uri)
+    db = client[settings.mongo_db_name]
     child_coll = db[CHILD_COLLECTION]
     parent_coll = db[PARENT_COLLECTION]
 
@@ -267,8 +263,8 @@ def run_qna_tests():
     total_children = child_coll.count_documents({"parent_id": {"$exists": True}})
     total_parents = parent_coll.count_documents({})
 
-    print("🔍 QNA 검색 테스트 (PDR 패턴 검증)\n")
-    print(f"  DB: {DB_NAME}")
+    print("QNA 검색 테스트 (PDR 패턴 검증)\n")
+    print(f"  DB: {settings.mongo_db_name}")
     print(f"  Child 컬렉션({CHILD_COLLECTION}): QNA 청크 {total_children}개")
     print(f"  Parent 컬렉션({PARENT_COLLECTION}): 원본 {total_parents}개")
 
@@ -296,7 +292,7 @@ def run_qna_tests():
         print(f"    {cat}: {cnt}개")
 
     print()
-    embeddings = UpstageEmbeddings(model="solar-embedding-1-large-query")
+    embeddings = UpstageEmbeddings(model=settings.embed_query_model)
 
     for idx, query in enumerate(TEST_QUERIES):
         # 3전략 검색

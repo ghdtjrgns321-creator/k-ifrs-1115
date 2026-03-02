@@ -1,0 +1,41 @@
+services:
+  # ── FastAPI 백엔드 ────────────────────────────────────────────────────────────
+  api:
+    build: .
+    container_name: kifrs-api
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8002
+    ports:
+      - "8002:8002"
+    env_file: .env
+    networks:
+      - ifrs-chatbot-net
+    # BM25 인덱스 빌드(lifespan)에 최대 40초 소요 → start_period로 대기
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8002/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+
+  # ── Streamlit 프론트엔드 ──────────────────────────────────────────────────────
+  frontend:
+    build: .
+    container_name: kifrs-frontend
+    command: streamlit run app/streamlit_app.py --server.port=8501 --server.address=0.0.0.0
+    ports:
+      - "8501:8501"
+    env_file: .env
+    environment:
+      # Docker 내부 네트워크에서는 서비스 이름(api)으로 통신
+      - API_BASE_URL=http://api:8002
+    networks:
+      - ifrs-chatbot-net
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+networks:
+  ifrs-chatbot-net:
+    driver: bridge

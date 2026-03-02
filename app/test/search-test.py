@@ -1,16 +1,9 @@
 import sys
-import os
-from dotenv import load_dotenv
 from pymongo import MongoClient
 from langchain_upstage import UpstageEmbeddings
+from app.config import settings
 
 sys.stdout.reconfigure(encoding="utf-8")
-load_dotenv()
-
-# ── 환경변수 ──────────────────────────────────────────────────────────────────
-MONGO_URI = os.getenv("MONGO_URI")
-DB_NAME = os.getenv("MONGO_DB_NAME", "kifrs_db")
-COLLECTION_NAME = os.getenv("MONGO_COLLECTION_NAME", "k-ifrs-1115-chatbot")
 
 # ── 검색 파라미터 상수 ─────────────────────────────────────────────────────────
 VECTOR_TOP_K = 10   # 각 전략별 후보 수
@@ -159,7 +152,7 @@ def analyze_comparison(
         for d in h_results[:3]
     ]
 
-    print("\n📊 [전략 비교]")
+    print("\n[전략 비교]")
     print(f"  Vector Only Top3:  {', '.join(v_top3)}")
     print(f"  Keyword Only Top3: {', '.join(k_top3)}")
     print(f"  Hybrid Top3:       {', '.join(h_top3)}")
@@ -170,7 +163,7 @@ def analyze_comparison(
     overlap = v_ids & k_ids
     overlap_ratio = len(overlap) / VECTOR_TOP_K * 100
 
-    print(f"\n🔗 [RRF 융합 효과]")
+    print(f"\n[RRF 융합 효과]")
     print(
         f"  - Vector ∩ Keyword 겹침: {len(overlap)}/{VECTOR_TOP_K}개 ({overlap_ratio:.0f}%)"
     )
@@ -182,7 +175,7 @@ def analyze_comparison(
         print("  ⚠️  겹침이 많아 두 전략 차별화 검토 필요")
 
     # 가중치 보정 효과: RRF 순위 vs 최종 순위 비교
-    print(f"\n⚖️  [가중치 보정 효과]")
+    print(f"\n[가중치 보정 효과]")
     # fused_map에서 rrf_score 기준 순위 재계산
     rrf_sorted = sorted(fused_map.values(), key=lambda x: x["rrf_score"], reverse=True)
 
@@ -209,13 +202,13 @@ def analyze_comparison(
 # ── 메인 실행 ──────────────────────────────────────────────────────────────────
 
 def run_tests():
-    print("🔍 본문 전용 하이브리드 검색 테스트 (3전략 비교)\n")
-    print(f"  DB: {DB_NAME} / 컬렉션: {COLLECTION_NAME}")
+    print("본문 전용 하이브리드 검색 테스트 (3전략 비교)\n")
+    print(f"  DB: {settings.mongo_db_name} / 컬렉션: {settings.mongo_collection_name}")
     print(f"  각 전략 Top-{VECTOR_TOP_K} → 최종 Top-{FINAL_TOP_K} 출력\n")
 
-    embeddings = UpstageEmbeddings(model="solar-embedding-1-large-query")
-    client = MongoClient(MONGO_URI)
-    collection = client[DB_NAME][COLLECTION_NAME]
+    embeddings = UpstageEmbeddings(model=settings.embed_query_model)
+    client = MongoClient(settings.mongo_uri)
+    collection = client[settings.mongo_db_name][settings.mongo_collection_name]
 
     total = collection.count_documents({})
     body_only = collection.count_documents({"parent_id": {"$exists": False}})
