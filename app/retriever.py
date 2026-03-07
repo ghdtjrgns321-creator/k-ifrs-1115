@@ -9,8 +9,10 @@ from app.config import settings
 QNA_PARENT_COLL      = "k-ifrs-1115-qna-parents"
 FINDINGS_PARENT_COLL = "k-ifrs-1115-findings-parents"
 
-VECTOR_TOP_K = 20  # 각 전략별 후보 수 (RRF 융합 전 풀)
-RRF_K        = 60  # RRF 논문 권장값
+VECTOR_TOP_K        = 100  # 후보 풀 확장: QNA/감리사례가 RRF 상위에 못 오를 때 보조 풀 확보
+RRF_K               = 60   # RRF 논문 권장값
+QNA_SUPPLEMENT      = 15   # QNA 보조 최대 추가 수 (Reranker가 관련 없으면 자동 제외)
+FINDINGS_SUPPLEMENT = 15   # 감리사례 보조 최대 추가 수
 
 # HyDE 폴백 전용 프롬프트
 # grade 통과 문서가 부족할 때만 사용 — 항상 실행하면 기존 검색을 방해함
@@ -143,13 +145,75 @@ def _search_keyword(query: str, limit: int) -> list[dict]:
 
 # ── RRF 융합 ─────────────────────────────────────────────────────────────────────
 
+def _parse_chunk_num(chunk_id: str) -> tuple[str, int] | None:
+    """청크 ID에서 섹션 prefix와 번호를 분리합니다.
+
+    [A-Z]{0,2}로 0~2자리 대문자를 허용하여 모든 섹션을 올바르게 파싱합니다:
+      '1115-31'   → ('1115-', 31)    # 본문
+      '1115-B44'  → ('1115-B', 44)   # 적용지침B
+      '1115-A2'   → ('1115-A', 2)    # 용어정의
+      '1115-IE65' → ('1115-IE', 65)  # 적용사례
+      '1115-BC44' → ('1115-BC', 44)  # 결론도출근거
+
+    prefix가 다르면 절대 같은 클러스터로 묶이지 않으므로
+    본문(1115-)과 적용지침(1115-B), 적용사례(1115-IE), 결론도출근거(1115-BC)가
+    같은 번호를 가져도 독립적으로 처리됩니다.
+    """
+    m = re.match(r'^([\w]+-[A-Z]{0,2})(\d+)$', chunk_id)
+    return (m.group(1), int(m.group(2))) if m else None
+
+
+def _apply_window_boost(fused: dict, window: int = 3, boost: float = 0.15) -> None:
+    """같은 섹션(prefix)의 ±window 이내 청크가 1개 이상 동반되면 rrf_score를 부스팅합니다.
+
+    왜 하는가:
+      BM25/벡터 점수는 청크 단독 품질만 반영하지만, 인접 문단이 함께 검색되면
+      해당 섹션이 질문과 구조적으로 관련됨을 의미합니다.
+      클러스터 부스팅으로 논리적으로 연속된 조항 그룹을 Core Docs 상단에 노출합니다.
+
+    대상: VECTOR_TOP_K=100 풀 내 이미 올라온 청크만 — 추가 DB 쿼리 없음.
+    """
+    # prefix → [(번호, chunk_id)] 매핑 수집
+    prefix_map: dict[str, list[tuple[int, str]]] = {}
+    for cid in fused:
+        parsed = _parse_chunk_num(cid)
+        if parsed:
+            prefix, num = parsed
+            prefix_map.setdefault(prefix, []).append((num, cid))
+
+    # 각 청크의 ±window 이내 동반 청크 수를 계산하여 부스팅
+    for prefix, items in prefix_map.items():
+        if len(items) < 2:
+            continue
+        for num_i, cid_i in items:
+            cluster_count = sum(
+                1 for num_j, _ in items
+                if num_j != num_i and abs(num_j - num_i) <= window
+            )
+            if cluster_count >= 1:
+                # 동반 청크 수에 비례하여 점수 상승 (최대 3개 동반 시 +0.45)
+                fused[cid_i]["rrf_score"] += boost * cluster_count
+
+
 def _fuse_rrf(v_results: list[dict], k_results: list[dict], final_k: int) -> list[dict]:
-    """RRF로 벡터 + 키워드 결과를 융합하고 도메인 가중치를 적용합니다."""
+    """RRF로 벡터 + 키워드 결과를 융합하고 도메인 가중치를 적용합니다.
+
+    섹션 내 벡터 정렬을 위해 각 doc에 vector_score를 첨부합니다.
+    BM25 전용 문서(벡터 결과에 없는)는 vector_score=0.0으로 처리합니다.
+    """
+    # 벡터 점수 조회 테이블 — 섹션 내 정렬 기준으로 활용
+    v_score_map = {doc.get("chunk_id", f"v_{i}"): doc.get("score", 0.0)
+                   for i, doc in enumerate(v_results)}
+
     fused: dict[str, dict] = {}
 
     for rank, doc in enumerate(v_results):
         chunk_id = doc.get("chunk_id", f"v_{rank}")
-        fused[chunk_id] = {"doc": doc, "rrf_score": 1.0 / (rank + 1 + RRF_K)}
+        fused[chunk_id] = {
+            "doc": doc,
+            "rrf_score": 1.0 / (rank + 1 + RRF_K),
+            "vector_score": doc.get("score", 0.0),  # Atlas vectorSearchScore 보존
+        }
 
     for rank, doc in enumerate(k_results):
         chunk_id = doc.get("chunk_id", f"k_{rank}")
@@ -157,7 +221,14 @@ def _fuse_rrf(v_results: list[dict], k_results: list[dict], final_k: int) -> lis
         if chunk_id in fused:
             fused[chunk_id]["rrf_score"] += rrf
         else:
-            fused[chunk_id] = {"doc": doc, "rrf_score": rrf}
+            fused[chunk_id] = {
+                "doc": doc,
+                "rrf_score": rrf,
+                "vector_score": v_score_map.get(chunk_id, 0.0),  # BM25 전용 = 0.0
+            }
+
+    # 인접 문단 클러스터 부스팅 — final_score 계산 전에 적용해야 효과가 반영됩니다.
+    _apply_window_boost(fused)
 
     ranked = []
     for data in fused.values():
@@ -165,20 +236,30 @@ def _fuse_rrf(v_results: list[dict], k_results: list[dict], final_k: int) -> lis
         ranked.append({**data, "final_score": data["rrf_score"] * weight})
 
     ranked.sort(key=lambda x: x["final_score"], reverse=True)
+
+    # 섹션 내 벡터 정렬에 쓸 vector_score를 각 doc에 첨부
+    for item in ranked[:final_k]:
+        item["doc"]["vector_score"] = item["vector_score"]
+
     return [item["doc"] for item in ranked[:final_k]]
 
 
 # ── PDR Lookup ───────────────────────────────────────────────────────────────────
 
-def _classify_source(parent_id: str | None) -> str:
-    """parent_id 접두어로 문서 출처를 결정합니다."""
-    if not parent_id:
-        return "본문"
-    if str(parent_id).startswith("QNA-"):
-        return "QNA"
-    if str(parent_id).startswith(("FSS-", "KICPA-")):
-        return "감리사례"
-    return "본문"
+def _classify_source(parent_id: str | None, category: str = "") -> str:
+    """parent_id 접두어와 category로 문서 출처를 결정합니다.
+
+    QNA/감리사례는 parent_id 패턴으로 식별.
+    기준서 문서는 category를 그대로 사용하여 올바른 아코디언 그룹에 배치합니다.
+    (category 없이 "본문"으로 뭉뚱그리면 결론도출근거·적용사례IE 등이 잘못된 그룹에 배치됨)
+    """
+    if parent_id:
+        if str(parent_id).startswith("QNA-"):
+            return "QNA"
+        if str(parent_id).startswith(("FSS-", "KICPA-")):
+            return "감리사례"
+    # 기준서 문서: category로 세밀 분류 (본문/적용지침B/결론도출근거/적용사례IE/용어정의/시행일)
+    return category if category else "본문"
 
 
 def _get_parent_content(parent_id: str, source: str) -> str:
@@ -198,7 +279,7 @@ def _docs_from_fused(fused_docs: list[dict]) -> list[dict]:
     results = []
     for doc in fused_docs:
         parent_id = doc.get("parent_id")
-        source    = _classify_source(parent_id)
+        source    = _classify_source(parent_id, doc.get("category", ""))
         results.append({
             "source":             source,
             "chunk_id":           doc.get("chunk_id", ""),
@@ -207,7 +288,10 @@ def _docs_from_fused(fused_docs: list[dict]) -> list[dict]:
             "chunk_type":         doc.get("chunk_type", ""),
             "content":            doc.get("text", ""),
             "full_content":       _get_parent_content(parent_id, source) if source != "본문" else "",
+            "title":              doc.get("title", ""),       # 08-generate-titles.py 마이그레이션으로 추가된 필드
+            "case_group_title":   doc.get("case_group_title", ""),  # IE 사례 그룹핑용
             "score":              doc.get("score", 0.0),
+            "vector_score":       doc.get("vector_score", 0.0),  # 섹션 내 정렬 기준
             "related_paragraphs": doc.get("related_paragraphs", []),
             "hierarchy":          doc.get("hierarchy", ""),
         })
@@ -218,14 +302,35 @@ def _docs_from_fused(fused_docs: list[dict]) -> list[dict]:
 
 def search_all(query: str, limit: int = 5) -> list[dict]:
     """
-    기본 하이브리드 검색 (Vector + BM25 + RRF).
-    항상 원본 standalone_query를 그대로 사용합니다.
+    기본 하이브리드 검색 (Vector + BM25 + RRF) + QNA/감리사례 보조 추출.
+
+    기준서 본문이 많아 QNA/감리사례가 RRF top N에서 밀려나는 문제를 해결합니다.
+    벡터 풀(100개)에서 Python 필터로 각각 최대 15개를 추가하고,
+    Cohere Reranker가 최종 정렬 시 관련 없는 문서는 자동으로 제외합니다.
     """
     query_vector = _get_embeddings().embed_query(query)
-    v_results = _search_vector(query_vector, VECTOR_TOP_K)
-    k_results = _search_keyword(query, VECTOR_TOP_K)
-    fused_docs = _fuse_rrf(v_results, k_results, final_k=limit)
-    return _docs_from_fused(fused_docs)
+    v_results    = _search_vector(query_vector, VECTOR_TOP_K)         # 100개
+    k_results    = _search_keyword(query, VECTOR_TOP_K // 2)          # BM25는 50개 유지
+    fused_docs   = _fuse_rrf(v_results, k_results, final_k=limit)
+    base_docs    = _docs_from_fused(fused_docs)
+
+    # RRF 결과에 없는 QNA/감리사례를 벡터 풀에서 보조 추출
+    existing_ids = {d["chunk_id"] for d in base_docs}
+
+    qna_raw = [
+        d for d in v_results
+        if str(d.get("parent_id", "")).startswith("QNA-")
+        and d.get("chunk_id") not in existing_ids
+    ][:QNA_SUPPLEMENT]
+
+    findings_raw = [
+        d for d in v_results
+        if str(d.get("parent_id", "")).startswith(("FSS-", "KICPA-"))
+        and d.get("chunk_id") not in existing_ids
+    ][:FINDINGS_SUPPLEMENT]
+
+    supplement = _docs_from_fused(qna_raw + findings_raw)
+    return base_docs + supplement
 
 
 def search_all_hyde(query: str, limit: int = 5) -> list[dict]:

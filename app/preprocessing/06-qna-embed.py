@@ -1,8 +1,11 @@
+import io
 import sys
+# Windows cp949 환경에서 이모지 출력 시 UnicodeEncodeError 방지
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 import json
 import time
 import re
-import unicodedata
 import os
 from pymongo import MongoClient
 from langchain_upstage import UpstageEmbeddings
@@ -15,50 +18,44 @@ sys.stdout.reconfigure(encoding="utf-8")
 CHILD_COLLECTION  = settings.mongo_collection_name
 PARENT_COLLECTION = "k-ifrs-1115-qna-parents"
 
-import re
 
 def split_qna_to_children(qna_id, full_text, metadata):
-    
-    # 1. 보이지 않는 유니코드 노이즈 제거
-    full_text = re.sub(r'[\u200b\u200c\u200d\ufeff\u00a0]', ' ', full_text)
-    
+    """
+    QNA content를 Q/A/S 3단 분할.
+    05-qna-crawl.py에서 ## 헤더로 정규화됐으므로 분할 패턴이 단순해짐.
+    정규화 실패 케이스를 위한 fallback 패턴도 유지.
+    """
     hierarchy = metadata.get("hierarchy", "")
     children = []
 
-    # 2. 강제 분리 전처리 (줄바꿈이 없어도 문맥상 경계를 찾아 \n 주입)
-    # [패턴 A] 질문 끝(?)과 회신 시작 사이
-    full_text = re.sub(r'(\?|있음|함)\s*(회\s*신\s*[□ㅇ▶#\[])', r'\1\n\2', full_text)
-    # [패턴 B] 답변 끝과 관련기준 시작 사이 (가장 안 잘리던 부분)
-    full_text = re.sub(r'(\)|함|임|음)\s*(관련\s*회계\s*기준)', r'\1\n\2', full_text)
-    # [패턴 C] 본문과 질의 시작 사이
-    full_text = re.sub(r'(본문)\s*(질의)', r'\1\n\2', full_text)
+    # Q / A 분리: 05에서 "## 회신"으로 정규화됨 (1차 시도)
+    qa_parts = re.split(r'\n## 회신', full_text, maxsplit=1)
 
-    # 3. 분할 실행
-    
-    # Q와 A 분리
-    # Q/A 분리 패턴 설명:
-    # \n[ \t]* : 줄바꿈 후 선행 공백/탭 허용 (NBSP→공백 변환으로 생기는 " 회신" 케이스 대응)
-    # 1) "2. 결론" / "2. 조사 결과와 결론" 등 숫자 목차로 시작하는 답변 섹션
-    # 2) "□ 회신" / "ㅇ 회신" 처럼 기호가 회신 앞에 오는 경우
-    # 3) "회신:" / "회신\n" / "회신□" 처럼 회신 뒤에 구두점·기호·줄바꿈이 오는 경우
-    split_pattern_qa = r'\n[ \t]*(?=2\.\s*(?:검토|결론|결정|조사)|(?:##|#|□|ㅇ|▶|-|\[)\s*회\s*신|회\s*신\s*[:\n□ㅇ▶#])'
-    qa_parts = re.split(split_pattern_qa, full_text, maxsplit=1)
+    # Fallback: 정규화가 커버하지 못한 다양한 포맷
+    # - "□ 회신", "ㅇ 회신", "▶ 회신", "회신:", 숫자 목차 결론 등
+    if len(qa_parts) == 1:
+        split_pattern_qa_fallback = r'\n[ \t]*(?=2\.\s*(?:검토|결론|결정|조사)|(?:##|#|□|ㅇ|▶|-|\[)\s*회\s*신|회\s*신\s*[:\n□ㅇ▶#])'
+        qa_parts = re.split(split_pattern_qa_fallback, full_text, maxsplit=1)
 
-    # 질의(Q) 파트 저장
+    # 질의(Q) 파트
     q_text = qa_parts[0].strip()
     children.append(Document(
         page_content=f"[문맥: {hierarchy} > 질의]\n{q_text}",
-        metadata={**metadata, "parent_id": qna_id, "chunk_type": "question","chunk_id": f"{qna_id}_Q"}
-        
+        metadata={**metadata, "parent_id": qna_id, "chunk_type": "question", "chunk_id": f"{qna_id}_Q"}
     ))
 
     # 회신(A) 및 부록(S) 처리
     if len(qa_parts) > 1:
         a_full_text = qa_parts[1].strip()
-        
-        # 부록(관련기준 등) 분리
-        split_pattern_supp = r'\n(?=#*\s*참고\s*자료|#*\s*검토과정|#*\s*질의에서\s*제시된|관련\s*회계\s*기준)'
+
+        # A / S 분리: 05에서 "## 관련 회계기준" / "## 참고자료"로 정규화됨
+        split_pattern_supp = r'\n## (?:관련\s*회계\s*기준|참고\s*자료)'
         supp_parts = re.split(split_pattern_supp, a_full_text, maxsplit=1)
+
+        # Fallback: 정규화 미커버 케이스
+        if len(supp_parts) == 1:
+            split_pattern_supp_fallback = r'\n(?=#*\s*참고\s*자료|#*\s*검토과정|#*\s*질의에서\s*제시된|관련\s*회계\s*기준)'
+            supp_parts = re.split(split_pattern_supp_fallback, a_full_text, maxsplit=1)
 
         # 회신/판단근거 (Answer)
         a_core = supp_parts[0].strip()

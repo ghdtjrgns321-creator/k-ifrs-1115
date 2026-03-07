@@ -1,3 +1,8 @@
+import io
+import sys
+# Windows cp949 환경에서 이모지 출력 시 UnicodeEncodeError 방지
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 import requests
 from bs4 import BeautifulSoup
 

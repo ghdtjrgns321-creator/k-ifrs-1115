@@ -18,10 +18,13 @@ from app.api.routes import router
 async def lifespan(app: FastAPI):
     """서버 시작/종료 시 실행되는 수명 주기 핸들러."""
     # 서버 시작: BM25 인덱스 사전 빌드
-    # _build_bm25_index()는 내부적으로 이미 호출 여부를 체크하므로 중복 빌드 없음.
+    # _build_bm25_index()는 MongoDB 전체를 읽는 무거운 동기 작업입니다.
+    # run_in_executor로 스레드 풀에서 실행해 async lifespan의 event loop 블로킹을 방지합니다.
+    import asyncio
     from app.retriever import _build_bm25_index
     print("[startup] BM25 인덱스를 사전 로드합니다...")
-    _build_bm25_index()
+    loop = asyncio.get_running_loop()
+    await loop.run_in_executor(None, _build_bm25_index)
     print("[startup] BM25 인덱스 로드 완료. 서버 준비 완료!")
     yield
     # 서버 종료: 인메모리 자원은 프로세스 종료 시 자동 해제됩니다.

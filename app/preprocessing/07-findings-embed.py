@@ -1,4 +1,8 @@
+import io
 import sys
+# Windows cp949 환경에서 이모지 출력 시 UnicodeEncodeError 방지
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 import json
 import time
 import re
@@ -25,15 +29,29 @@ def split_finding_to_children(finding_id: str, full_text: str, metadata: dict) -
       A (감리지적내용) → 감독기관의 판단/회신
       S (참고기준)     → 관련 기준서 문단 (관련기준 섹션)
 
-    findings-final.json content 구조:
+    findings-final.json content 구조 (변환 전):
       레퍼런스 [...] 제목
+      관련 회계기준 기업회계기준서 제1115호
+      본문
       ## 배경 및 질의
-      [질문 내용]
-      ## 회신
-      [감리지적 내용]
-      ## 참고자료
-      [관련 기준서]
+      ...
+
+    변환 후 (볼드 prefix):
+      **[ID]** 제목
+      관련 회계기준 기업회계기준서 제1115호
+
+      ## 배경 및 질의
+      ...
     """
+    # 서두 3~4줄을 볼드 prefix 형식으로 변환
+    # "레퍼런스 [ID] 제목\n관련 회계기준 ...\n(출처: ...)\n본문\n" → "**[ID]** 제목\n관련 회계기준 ...\n\n"
+    # "출처:" 줄은 일부 케이스에만 존재하므로 선택적으로 허용
+    full_text = re.sub(
+        r'^레퍼런스\s*\[([^\]]+)\]\s*([^\n]+)\n(관련\s*회계\s*기준[^\n]*)(?:\n출처:[^\n]*)?\n본문\n?',
+        r'**[\1]** \2\n\3\n\n',
+        full_text
+    )
+
     hierarchy = metadata.get("hierarchy", "")
     children = []
 

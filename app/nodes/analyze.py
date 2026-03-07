@@ -8,6 +8,8 @@ from app.prompts import ANALYZE_PROMPT
 class AnalyzeResult(BaseModel):
     routing: str = Field(description="회계 관련이면 'IN', 무관하면 'OUT'")
     standalone_query: str = Field(description="재작성된 독립형 질문 (OUT이면 빈 문자열)")
+    is_situation: bool = Field(default=False, description="구체적 거래 상황 설명이면 True")
+    search_keywords: list[str] = Field(default_factory=list, description="벡터 DB 검색용 K-IFRS 핵심 키워드 2~3개")
 
 
 def analyze_query(state: RAGState):
@@ -34,4 +36,6 @@ def analyze_query(state: RAGState):
     return {
         "routing": result.routing,
         "standalone_query": result.standalone_query,
+        "is_situation": result.is_situation,
+        "search_keywords": result.search_keywords,
     }

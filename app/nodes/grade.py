@@ -28,7 +28,12 @@ def grade_docs(state: RAGState):
 
     context_str = "\n\n".join([f"[문서 ID: {doc['chunk_id']}]\n{doc['content']}" for doc in reranked_docs])
 
-    eval_result = chain.invoke({"question": state["standalone_query"], "context": context_str})
+    question = state.get("standalone_query") or ""
+    if not question:
+        # 질문이 없으면 LLM 평가가 무의미하므로 전체 문서를 통과시킵니다.
+        return {"relevant_docs": reranked_docs}
+
+    eval_result = chain.invoke({"question": question, "context": context_str})
 
     # structured_output이 None을 반환하는 경우 전체 문서를 통과시킴 (폴백)
     if eval_result is None:

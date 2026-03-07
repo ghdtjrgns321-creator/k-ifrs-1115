@@ -2,8 +2,8 @@ import cohere
 from app.config import settings
 
 # Reranker 점수가 이 값 미만이면 쿼리와 무관한 문서로 간주하고 제거합니다.
-# 가중치 보정으로 저품질 문서가 살아나는 것을 방지하는 안전망입니다.
-RERANK_THRESHOLD = 0.1
+# 0.1 → 0.05: 조금이라도 관련 있으면 전부 통과시켜 전수 반환을 지원합니다.
+RERANK_THRESHOLD = 0.05
 
 # 한국어 문서에 최적화된 Cohere 다국어 Reranker 모델
 COHERE_RERANK_MODEL = "rerank-multilingual-v3.0"
