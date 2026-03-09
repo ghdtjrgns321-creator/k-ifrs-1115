@@ -26,7 +26,8 @@ from app.ui.text import (
 
 
 def _render_para_chips(
-    text: str, context_key: str, doc_index: int = 0, self_ids: set[str] | None = None
+    text: str, context_key: str, doc_index: int = 0,
+    self_ids: set[str] | None = None,
 ) -> None:
     """본문에서 탐지된 문단 참조를 inline 필 태그로 렌더링합니다.
 

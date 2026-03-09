@@ -38,6 +38,13 @@ _PARA_REF_RE = re.compile(
     r"|(?<![A-Za-z0-9])(?:IE|BC|B)\d+[A-Za-z]*(?:[~～](?:IE|BC|B)?\d+[A-Za-z]*)?(?![A-Za-z0-9])"
 )
 
+# "문단 47 및 52", "문단 B2, B3 및 B4" 같은 접속사 연결 패턴
+_PARA_CONJ_RE = re.compile(
+    r"문단\s*((?:IE|BC|B)?\d+[A-Za-z]*)"       # 첫 번호: "47" or "B2"
+    r"((?:\s*(?:[,，]|및|과|또는|그리고)\s*"     # 접속사: ",", "및", "과" 등
+    r"(?:문단\s*)?(?:(?:IE|BC|B)?\d+[A-Za-z]*))+)"  # 후속 번호: "52", "B3" 등
+)
+
 
 # ── 공개 함수 ────────────────────────────────────────────────────────────────────
 
@@ -66,9 +73,28 @@ def _extract_para_refs(text: str) -> list[str]:
     """텍스트에서 문단 참조 패턴을 모두 추출합니다.
 
     '문단 B23', '문단 55~59', 'BC408' 등의 패턴을 찾아 리스트로 반환합니다.
+    '문단 47 및 52', '문단 B2, B3 및 B4' 같은 접속사 패턴도 처리합니다.
     doc_renderers.py에서 문단 참조 칩 렌더링에 사용됩니다.
     """
-    return _PARA_REF_RE.findall(text)
+    refs = _PARA_REF_RE.findall(text)
+
+    # 접속사로 연결된 문단 참조 추출: "문단 47 및 52", "문단 B2, B3 및 B4"
+    # _PARA_REF_RE는 "문단 47"만 잡고 "및 52"의 52는 놓침
+    # → 접속사 뒤의 번호를 앞 문단의 접두사(IE/BC/B 등)를 상속하여 추출
+    for m in _PARA_CONJ_RE.finditer(text):
+        first_num = m.group(1)                      # "47" or "B2"
+        conj_part = m.group(2)                      # " 및 52" or ", B3 및 B4"
+        # 첫 번호에서 접두사(IE/BC/B) 추출
+        prefix_m = re.match(r"^(IE|BC|B)?", first_num)
+        prefix = prefix_m.group(1) or "" if prefix_m else ""
+        # 접속사 부분에서 개별 번호 추출
+        for num in re.findall(r"(?:IE|BC|B)?\d+[A-Za-z]*", conj_part):
+            has_prefix = bool(re.match(r"^(?:IE|BC|B)", num))
+            full_ref = f"문단 {num}" if has_prefix else f"문단 {prefix}{num}"
+            if full_ref not in refs:
+                refs.append(full_ref)
+
+    return refs
 
 
 def _para_ref_to_num(ref: str) -> str:
@@ -95,6 +121,17 @@ def clean_text(text: str) -> str:
     text = re.sub(r"^%\s*\d+\s*", "", text, flags=re.MULTILINE)
     text = re.sub(r"%%\s*\d+\s*", "", text)  # %%4 같은 패턴
 
+    # 0.1) 각주 슈퍼스크립트 정리 — 크롤링 시 <sup>(주1)</sup> → "^(주1)" 변환 잔재
+    # "1백만원^\n(주1)\n에" → "1백만원(주1)에" (인라인 복원)
+    text = re.sub(r"\^\s*\n*\s*(\(주\d+\))\s*\n*\s*", r"\1", text)
+
+    # 0.2) 크롤링 구두점 아티팩트 정리 — HTML→text 변환 시 중복 구두점 발생
+    # "있습니다,,," → "있습니다," / "막습니다,." → "막습니다."
+    text = re.sub(r",{2,}", ",", text)          # 연속 쉼표 → 1개
+    text = re.sub(r"\.{2,}", ".", text)          # 연속 마침표 → 1개
+    text = re.sub(r",\.", ".", text)             # ,. → .
+    text = re.sub(r"\.,", ".", text)             # ., → .
+
     # 0.5) **[문단 XXX]** → <strong>[문단 XXX]</strong> 변환
     # 이유: step 2/3에서 내부에 <span>이 삽입되면 **[...]** 마크다운 볼드가 깨짐
     # 예: **[문단 B59A]** → step2가 "문단 B59" 만 span으로 감싸 **[<span>...</span>A]** 형태가 됨
@@ -119,6 +156,16 @@ def clean_text(text: str) -> str:
         r'<span style="color:#1f77b4;font-weight:600;">\1</span>',
         text,
     )
+    # 2.5) 접속사 뒤 bare 숫자도 강조 — "문단 47</span> 및 52" → "및 <span>52</span>"
+    # 체이닝 처리: "문단 47, 52 및 53" → 각 숫자에 순차적으로 span 적용
+    for _ in range(3):
+        text, n = re.subn(
+            r'(</span>\s*(?:[,，]|및|과|또는|그리고)\s*)(\d+[A-Za-z]*)',
+            r'\1<span style="color:#1f77b4;font-weight:600;">\2</span>',
+            text,
+        )
+        if n == 0:
+            break
     # 3) 단독 BC/B/IE 번호 → 파란색 볼드 HTML 강조 (이미 span으로 감싼 부분 제외)
     # [A-Za-z]* 추가: "B59A", "BC414V" 같은 suffix 포함 번호 완전 매칭
     text = re.sub(
@@ -138,6 +185,20 @@ def clean_text(text: str) -> str:
     text = re.sub(r"다\. (?=[가-힣])", "다.\n\n", text)
     # 7) 3개 이상 연속 줄바꿈 압축
     text = re.sub(r"\n{3,}", "\n\n", text)
+    # 8a) 각주 정의 — 마침표 뒤 "(주N)설명..." 전체를 줄바꿈 + 회색 작은 글씨로 분리
+    # "없다. (주1)이 사례에서 화폐금액은..." → 본문과 시각적으로 분리된 각주 블록
+    text = re.sub(
+        r'(?<=\.)\s*(\(주\d+\)[^\n]+)',
+        r'<br><span style="color:#94a3b8;font-size:0.85em;"> \1</span>',
+        text,
+    )
+    # 8b) 인라인 각주 마커 — 8a에서 처리 안 된 나머지 "(주N)"만 작은 글씨로 표시
+    # sup 대신 span 사용 — sup은 줄 높이를 깨뜨려 비정상적 간격 유발
+    text = re.sub(
+        r'(?<!">)\(주(\d+)\)',
+        r'<span style="color:#94a3b8;font-size:0.75em;">(주\1)</span>',
+        text,
+    )
     return text
 
 

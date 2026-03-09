@@ -89,9 +89,12 @@ def _expand_para_range(raw_num: str) -> list[str]:
     20개 초과 범위는 성능 보호를 위해 시작 번호만 반환합니다.
     """
     try:
-        m = re.match(r"^([A-Za-z]*?)(\d+)[~～\-]([A-Za-z]*?)(\d+)$", raw_num.strip())
+        # 하위 문단 접미사 제거: "B19(1)" → "B19"
+        # DB는 하위 문단을 별도 문서로 저장하지 않으므로 기본 문단으로 조회
+        cleaned = re.sub(r"\([0-9가-힣]+\)$", "", raw_num.strip())
+        m = re.match(r"^([A-Za-z]*?)(\d+)[~～\-]([A-Za-z]*?)(\d+)$", cleaned)
         if not m:
-            return [raw_num]
+            return [cleaned]
         prefix1, start_n, prefix2, end_n = (
             m.group(1),
             int(m.group(2)),
