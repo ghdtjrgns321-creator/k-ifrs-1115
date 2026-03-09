@@ -50,3 +50,9 @@ _STEP_PROGRESS: dict[str, int] = {
     "generate": 85,
     "format": 95,
 }
+
+# 교차 링크 정규화 — 토픽 표시명의 미세 변형을 통일된 키로 매핑
+# cross_links.py에서 사용
+CROSS_LINK_NORMALIZE: dict[str, str | None] = {
+    # 값이 None이면 링크 비활성, 문자열이면 해당 토픽으로 연결
+}

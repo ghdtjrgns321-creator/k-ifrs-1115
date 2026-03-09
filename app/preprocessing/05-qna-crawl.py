@@ -1,36 +1,52 @@
-import requests
+# app/preprocessing/05-qna-crawl.py
+# kifrs.com API에서 K-IFRS 1115호 관련 질의회신을 크롤링하여 JSON으로 저장.
+#
+# v2 개선사항 (2026-03-08):
+#   1. <br> 처리: 단독 <br>은 공백, 연속 <br><br>만 줄바꿈 (문장 중간 끊김 방지)
+#   2. wall-of-text 섹션 분리: 인라인 "회신□", "관련회계기준" 등을 줄바꿈으로 분리
+#   3. 문단번호 분리: "1회사는" → "1. 회사는", "9   다음" → "**문단 9** 다음"
+#   4. 섹션 헤더 패턴 확장: 회답, 질의요지, 본문, 검토과정 등 추가
+#
+# 사용법: PYTHONPATH=. uv run --env-file .env python app/preprocessing/05-qna-crawl.py
+
 import json
 import os
 import re
 import time
+
+import requests
 from bs4 import BeautifulSoup
 
 
+# ── HTML → 마크다운 변환 ─────────────────────────────────────────────────
+
+
 def clean_qna_html_to_md(html_text: str) -> str:
-    """
-    QNA fullContent HTML을 마크다운으로 구조적 변환.
-    기존 단순 태그 제거(re.sub)를 BeautifulSoup 기반으로 교체.
-    → <br> 줄바꿈, <li> 목록, <table> 마크다운 테이블 보존
+    """QNA fullContent HTML을 마크다운으로 구조적 변환.
+
+    <br> 처리 전략:
+      - 연속 <br><br> → 단락 구분 줄바꿈 (\n\n)
+      - 단독 <br> → 공백 (문장 중간 줄바꿈 방지)
+    SSI 신속처리질의는 HTML 태그 없이 plain text로 오므로 그대로 통과됩니다.
     """
     if not html_text:
         return ""
 
-    # 유니코드 노이즈 제거 (기존 06-qna-embed.py에 있던 것을 여기서 처리)
-    # → 임베딩 시점이 아닌 크롤링 시점에 정제해야 일관성 유지
-    html_text = re.sub(r'[\u200b\u200c\u200d\ufeff\u00a0]', ' ', html_text)
-    html_text = html_text.replace('&nbsp;', ' ')
+    # 유니코드 노이즈 제거
+    html_text = re.sub(r"[\u200b\u200c\u200d\ufeff\u00a0]", " ", html_text)
+    html_text = html_text.replace("&nbsp;", " ")
 
     soup = BeautifulSoup(html_text, "html.parser")
 
-    # <sup>/<sub>를 unwrap 전에 텍스트로 변환 (위/아래 첨자 보존)
+    # sup: 순수 숫자는 각주 → 제거, 수식용(x^2)은 보존
     for tag in soup.find_all("sup"):
-        tag.string = f"^{tag.get_text()}"
+        inner = tag.get_text().strip()
+        if inner.isdigit():
+            tag.decompose()
+        else:
+            tag.string = f"^{inner}"
     for tag in soup.find_all("sub"):
         tag.string = f"_{tag.get_text()}"
-
-    # <br> → \n (기존에는 완전히 삭제되던 줄바꿈을 보존)
-    for tag in soup.find_all("br"):
-        tag.replace_with("\n")
 
     # <table> → 마크다운 테이블
     for tbl in soup.find_all("table"):
@@ -38,7 +54,10 @@ def clean_qna_html_to_md(html_text: str) -> str:
         rows = tbl.find_all("tr")
         for i, tr in enumerate(rows):
             cols = tr.find_all(["td", "th"])
-            row_data = [col.get_text(separator=" ", strip=True).replace("\n", " ") for col in cols]
+            row_data = [
+                col.get_text(separator=" ", strip=True).replace("\n", " ")
+                for col in cols
+            ]
             if not row_data:
                 continue
             md_table.append("| " + " | ".join(row_data) + " |")
@@ -48,46 +67,124 @@ def clean_qna_html_to_md(html_text: str) -> str:
         new_tag.string = "\n\n" + "\n".join(md_table) + "\n\n"
         tbl.replace_with(new_tag)
 
-    # <ul>/<ol> > <li> → "- " 불릿 (목록 구조 보존)
+    # <ul>/<ol> > <li> → 불릿
     for tag in soup.find_all("li"):
         tag.insert_before("\n- ")
         tag.unwrap()
     for tag in soup.find_all(["ul", "ol"]):
         tag.unwrap()
 
-    # <p>, <div> → 단락 구분 \n\n
+    # <br> 처리: 연속 <br><br>은 줄바꿈, 단독 <br>은 공백
+    for tag in soup.find_all("br"):
+        nxt = tag.next_sibling
+        if nxt and getattr(nxt, "name", None) == "br":
+            tag.replace_with("\n\n")
+        else:
+            prev = tag.previous_sibling
+            if prev and isinstance(prev, str) and prev.endswith("\n\n"):
+                tag.replace_with("")
+            else:
+                tag.replace_with(" ")
+
+    # <p>, <div> → 단락 구분
     for tag in soup.find_all(["p", "div"]):
         tag.insert_before("\n\n")
         tag.unwrap()
 
-    # 나머지 인라인 태그 제거 (의미 태그는 이미 텍스트로 변환됨)
+    # 인라인 태그 제거
     for tag in soup.find_all(["a", "span", "strong", "em", "b", "i", "u"]):
         tag.unwrap()
 
     text = soup.get_text(separator="")
-    text = re.sub(r'\r\n', '\n', text)
-    text = re.sub(r'\n{3,}', '\n\n', text)
+    text = re.sub(r"\r\n", "\n", text)
+    # 연속 공백 정리 (줄바꿈 제외)
+    text = re.sub(r"[^\S\n]+", " ", text)
+    text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip()
 
 
+# ── 섹션 헤더 정규화 ─────────────────────────────────────────────────────
+
+# wall-of-text 분리용 섹션 키워드
+_SECTION_KEYWORDS = (
+    r"회\s*신|관련\s*회계\s*기준|관련회계기준|"
+    r"질의\s*내용|질의\s*사항|질의요지|"
+    r"참고\s*자료|참고자료|검토\s*과정|본문|판단\s*근거"
+)
+
+
 def normalize_qna_sections(text: str) -> str:
+    """다양한 포맷의 QNA 섹션 헤더를 ## 마크다운으로 통일.
+
+    Phase 1: wall-of-text에서 인라인 섹션 마커를 줄바꿈으로 분리
+    Phase 2: 줄 시작 섹션 키워드를 ## 마크다운으로 변환
     """
-    다양한 포맷의 QNA 섹션 헤더를 ## 마크다운으로 통일.
-    → 06-qna-embed.py의 Q/A 분할 regex가 단순한 ## 기반으로 동작하게 됨
-    """
+    # ── Phase 1: 인라인 섹션 마커 분리 ──
+    # "...적용하는지?회신□" → "...적용하는지?\n\n회신\n\n□"
+    text = re.sub(
+        rf"(?<=[.?!)\]됨함음다])\s*(?=(?:{_SECTION_KEYWORDS})(?:\s|[□ㅇo▶#\[:]|$))",
+        "\n\n",
+        text,
+    )
+    text = re.sub(
+        rf"(?<=[.?!)\]됨함음다])\s*(?=(?:{_SECTION_KEYWORDS})(?=[A-Z가-힣]))",
+        "\n\n",
+        text,
+    )
+
+    # "회신□" → "회신\n\n□" (섹션 키워드와 불릿 마커 분리)
+    text = re.sub(r"(회\s*신)\s*([□ㅇo▶])", r"\1\n\n\2", text)
+    # "관련회계기준K-IFRS" → "관련회계기준\n\nK-IFRS"
+    text = re.sub(
+        r"(관련\s*회계\s*기준)\s*(K-IFRS|기업회계기준)",
+        r"\1\n\n\2",
+        text,
+    )
+
+    # ── Phase 2: 줄 시작 키워드 → ## 마크다운 ──
     patterns = [
-        # 질의 섹션: "1. 질의 내용", "질의사항", "배경 및 질의" 등
-        (r'(?m)^[ \t]*(?:\d+\.\s*)?(?:배경\s*및\s*)?질의\s*(?:내용|사항)?\s*$', '## 질의 내용'),
-        # 회신 섹션: "2. 결론", "조사 결과와 결론", "회신" 등
-        (r'(?m)^[ \t]*(?:\d+\.\s*)?(?:조사\s*결과[와과]?\s*)?(?:결론|결정|판단|회신|검토)\s*$', '## 회신'),
-        # 관련 회계기준 섹션
-        (r'(?m)^[ \t]*관련\s*회계\s*기준\s*$', '## 관련 회계기준'),
-        # 참고자료 섹션
-        (r'(?m)^[ \t]*참고\s*자료\s*$', '## 참고자료'),
+        (r"(?m)^[ \t]*(?:\d+\.\s*)?(?:배경\s*및\s*)?질의\s*(?:내용|사항|요지)?\s*$", "## 질의 내용"),
+        (
+            r"(?m)^[ \t]*(?:\d+\.\s*)?(?:조사\s*결과[와과]?\s*)?(?:결론|결정|판단|회신|회답|검토)\s*$",
+            "## 회신",
+        ),
+        (r"(?m)^[ \t]*관련\s*회계\s*기준\s*$", "## 관련 회계기준"),
+        (r"(?m)^[ \t]*관련회계기준\s*$", "## 관련 회계기준"),
+        (r"(?m)^[ \t]*참고\s*자료\s*$", "## 참고자료"),
+        (r"(?m)^[ \t]*참고자료\s*$", "## 참고자료"),
+        (r"(?m)^[ \t]*본문\s*$", "## 본문"),
+        (r"(?m)^[ \t]*검토\s*과정(?:에서\s*논의된\s*내용)?\s*$", "## 검토과정에서 논의된 내용"),
     ]
     for pattern, replacement in patterns:
         text = re.sub(pattern, replacement, text)
+
     return text
+
+
+# ── 최종 텍스트 정리 ─────────────────────────────────────────────────────
+
+
+def post_clean(text: str) -> str:
+    """문단번호 분리, 불릿 정리, 줄바꿈 압축."""
+    # "9     다음 기준을" → "**문단 9** 다음 기준을"
+    text = re.sub(
+        r"(?:^|\n)(\d{1,3})\s{2,}([가-힣])",
+        r"\n\n**문단 \1** \2",
+        text,
+    )
+    # "1회사는" → "1. 회사는" (줄 시작 숫자+한글 붙은 것 분리)
+    text = re.sub(r"^(\d{1,2})([가-힣])", r"\1. \2", text, flags=re.MULTILINE)
+    # ⑴⑵⑶ 원문자 번호 앞 줄바꿈
+    text = re.sub(r"(?<=[.다음함됨])\s*([⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽])", r"\n\n\1", text)
+    # □ ㅇ ▶ 불릿 마커 앞 줄바꿈
+    text = re.sub(r"(?<!\n)\s*([□ㅇ▶])\s+", r"\n\n\1 ", text)
+    # 줄바꿈 압축 + 줄 앞 공백 제거
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    text = re.sub(r"^[ \t]+", "", text, flags=re.MULTILINE)
+    return text.strip()
+
+
+# ── 크롤링 메인 ──────────────────────────────────────────────────────────
 
 
 def fetch_targeted_qnas():
@@ -97,12 +194,11 @@ def fetch_targeted_qnas():
     qna_chunks = []
     total_found = 0
 
-    # API 타겟과 실무적 가중치 매핑
     TARGET_CONFIGS = [
-        {"type": 13, "name": "IFRS 해석위원회",   "weight": 1.18},  # 1순위 상단 (1.18)
-        {"type": 25, "name": "금융감독원",          "weight": 1.18},  # 1순위 상단 (1.18)
-        {"type": 11, "name": "회계기준원 정규질의", "weight": 1.15},  # 1순위 표준 (1.15)
-        {"type": 15, "name": "신속처리질의",        "weight": 1.05},  # 3순위 강등 (1.05)
+        {"type": 13, "name": "IFRS 해석위원회", "weight": 1.18},
+        {"type": 25, "name": "금융감독원", "weight": 1.18},
+        {"type": 11, "name": "회계기준원 정규질의", "weight": 1.15},
+        {"type": 15, "name": "신속처리질의", "weight": 1.05},
     ]
 
     print("가중치가 적용된 K-IFRS 타겟 크롤링을 시작합니다\n")
@@ -121,12 +217,13 @@ def fetch_targeted_qnas():
             url = f"https://www.kifrs.com/api/qnas/v2?types={category_type}&page={page}&rows=50"
 
             try:
-                res = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
+                res = requests.get(
+                    url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10
+                )
                 if res.status_code != 200:
                     break
 
                 data = res.json()
-                # v2 API는 리스트가 'facilityQnas'에 주로 담김
                 qna_list = data.get("facilityQnas") or data.get("qnas") or []
 
                 if not qna_list:
@@ -141,26 +238,27 @@ def fetch_targeted_qnas():
                     date_str = str(qna.get("date", "202X"))[:4]
                     qna_id = f"QNA-{doc_id}"
 
-                    # 정밀 타겟팅: '1115' 문자열 포함 여부 확인
                     if "1115" in rel_stds:
                         total_found += 1
 
-                        # HTML → 마크다운 구조적 변환 (기존 단순 태그 제거 대체)
+                        # 3단계 파이프라인: HTML변환 → 섹션정규화 → 텍스트정리
                         clean_content = clean_qna_html_to_md(full_content)
-
-                        # 섹션 헤더를 ## 마크다운으로 통일 (06-embed 분할 로직 단순화)
                         clean_content = normalize_qna_sections(clean_content)
+                        clean_content = post_clean(clean_content)
 
-                        # 서두 노이즈 제거: "관련 회계기준 K-IFRS ...\n본문\n" 2줄
-                        # → hierarchy에 이미 포함되므로 content에서는 불필요한 반복
+                        # 서두 노이즈 제거: "관련 회계기준...\n본문\n"
+                        # → 일부 SSI 문서에서 "## 관련 회계기준\n...\n## 본문"으로 변환됨
                         clean_content = re.sub(
-                            r'^관련\s*회계\s*기준[^\n]*\n본문\n?', '', clean_content
+                            r"^(?:## )?관련\s*회계\s*기준[^\n]*\n(?:## )?본문\n?",
+                            "",
+                            clean_content,
                         ).strip()
 
-                        # 제목 prefix: 검색 결과에서 출처가 즉시 식별되도록
-                        clean_content = f"**[{qna_id}]** {title} ({date_str})\n\n{clean_content}"
+                        # 제목 prefix
+                        clean_content = (
+                            f"**[{qna_id}]** {title} ({date_str})\n\n{clean_content}"
+                        )
 
-                        # 출처가 명확히 보이는 계층 구조
                         hierarchy_path = f"질의회신 > {category_name} > K-IFRS 제1115호 > {title} ({date_str})"
 
                         chunk = {
@@ -169,12 +267,12 @@ def fetch_targeted_qnas():
                             "metadata": {
                                 "stdNum": "1115",
                                 "paraNum": doc_id,
-                                "title": title,          # 제목 필드 추가 (검색 결과 표시용)
+                                "title": title,
                                 "category": f"질의회신({category_name})",
                                 "weight_score": weight,
                                 "hierarchy": hierarchy_path,
                                 "sectionLevel": 1,
-                            }
+                            },
                         }
                         qna_chunks.append(chunk)
                         print(f"  [HIT!] {doc_id} ({title})")

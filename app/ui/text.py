@@ -62,6 +62,15 @@ def _extract_para_ids_from_docs(docs: list[dict]) -> set[str]:
     return ids
 
 
+def _extract_para_refs(text: str) -> list[str]:
+    """텍스트에서 문단 참조 패턴을 모두 추출합니다.
+
+    '문단 B23', '문단 55~59', 'BC408' 등의 패턴을 찾아 리스트로 반환합니다.
+    doc_renderers.py에서 문단 참조 칩 렌더링에 사용됩니다.
+    """
+    return _PARA_REF_RE.findall(text)
+
+
 def _para_ref_to_num(ref: str) -> str:
     """'문단 B23' → 'B23' 형태의 순수 번호 문자열로 변환합니다."""
     raw = ref.replace(" ", "").replace("\u00a0", "")

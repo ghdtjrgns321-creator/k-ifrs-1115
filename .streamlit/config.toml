@@ -1,0 +1,49 @@
+[theme]
+base = "light"
+
+# ── shadcn zinc 팔레트 ──────────────────────────────────────────────────────
+# primaryColor는 버튼·링크 등 주 액션 요소에 적용됩니다.
+# zinc-950(#09090B) 텍스트 + zinc-200(#E4E4E7) 테두리로 모노크로매틱 시스템 구성.
+primaryColor            = "#18181B"          # zinc-900
+backgroundColor         = "#FFFFFF"
+secondaryBackgroundColor = "#F9FAFB"         # zinc-50
+textColor               = "#09090B"          # zinc-950
+borderColor             = "#E4E4E7"          # zinc-200
+linkColor               = "#18181B"
+
+showWidgetBorder  = false
+showSidebarBorder = true
+baseRadius   = "small"   # 4px — shadcn 기본값과 동일
+buttonRadius = "small"
+linkUnderline = false
+
+# ── 타이포그래피 — Plus Jakarta Sans ────────────────────────────────────────
+# Inter/Roboto 대신 Plus Jakarta Sans 선택 이유:
+#   humanist 계열 특유의 따뜻함 + 가변 폰트 지원 + 한국어 가독성 우수
+font = "'Plus Jakarta Sans':https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,opsz,wght@0,6..18,300..800;1,6..18,300..800&display=swap"
+codeFont = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+
+baseFontSize   = 14
+baseFontWeight = 400
+codeFontSize   = "13px"
+codeFontWeight = 400
+
+headingFontSizes   = ["26px", "20px", "17px", "15px", "13px", "12px"]
+headingFontWeights = [700,    600,    600,    600,    500,    400   ]
+
+# ── 시맨틱 색상 (뱃지·알림용) ───────────────────────────────────────────────
+redColor    = "#DC2626"
+orangeColor = "#D97706"
+yellowColor = "#CA8A04"
+greenColor  = "#16A34A"
+blueColor   = "#2563EB"
+violetColor = "#7C3AED"
+grayColor   = "#71717A"
+
+# ── 사이드바 ─────────────────────────────────────────────────────────────────
+[theme.sidebar]
+backgroundColor          = "#FAFAFA"
+secondaryBackgroundColor = "#F4F4F5"
+textColor                = "#09090B"
+borderColor              = "#E4E4E7"
+primaryColor             = "#18181B"

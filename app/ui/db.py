@@ -108,6 +108,79 @@ def _expand_para_range(raw_num: str) -> list[str]:
         return [raw_num]
 
 
+def fetch_parent_doc(parent_id: str) -> dict | None:
+    """parent_id(chunk_id)로 MongoDB에서 부모 문서를 조회합니다.
+
+    QNA/감리사례의 자식 청크가 부모 원문을 참조할 때 사용합니다.
+    """
+    if not parent_id:
+        return None
+    try:
+        coll = _get_mongo_collection()
+        doc = coll.find_one({"chunk_id": parent_id}, {"embedding": 0})
+        return dict(doc) if doc else None
+    except Exception:
+        return None
+
+
+def fetch_docs_by_topic(topic_title: str, allowed_sources: tuple[str, ...] = ()) -> list[dict]:
+    """소제목(hierarchy 내 토픽명)으로 MongoDB에서 해당 문서를 조회합니다.
+
+    grouping.py에서 소소제목 펼침 시 전체 문단을 가져오는 데 사용됩니다.
+    """
+    if not topic_title:
+        return []
+    try:
+        coll = _get_mongo_collection()
+        query: dict = {"hierarchy": {"$regex": re.escape(topic_title), "$options": "i"}}
+        if allowed_sources:
+            query["source"] = {"$in": list(allowed_sources)}
+        docs = list(coll.find(query, {"embedding": 0}).limit(50))
+        return [dict(d) for d in docs]
+    except Exception:
+        return []
+
+
+def fetch_docs_by_para_ids(para_ids: tuple) -> list[dict]:
+    """문단 번호 목록으로 MongoDB에서 문서를 일괄 조회합니다.
+
+    pinpoint_panel.py에서 AI 답변에 인용된 문단을 근거 패널에 표시하는 데 사용됩니다.
+    """
+    if not para_ids:
+        return []
+    try:
+        coll = _get_mongo_collection()
+        or_clauses = []
+        for pid in para_ids:
+            or_clauses.extend([
+                {"paraNum": pid},
+                {"chunk_id": pid},
+                {"chunk_id": f"1115-{pid}"},
+            ])
+        docs = list(coll.find({"$or": or_clauses}, {"embedding": 0}))
+        return [dict(d) for d in docs]
+    except Exception:
+        return []
+
+
+@st.cache_data(ttl=300, show_spinner=False)
+def fetch_ie_case_docs(case_titles: tuple) -> list[dict]:
+    """case_group_title 목록으로 IE 적용사례 문서를 일괄 조회합니다.
+
+    evidence.py에서 사례별 그룹 렌더링에 사용됩니다.
+    한 번의 DB 쿼리로 모든 사례 문서를 가져와 네트워크 왕복을 최소화합니다.
+    """
+    if not case_titles:
+        return []
+    try:
+        coll = _get_mongo_collection()
+        query = {"case_group_title": {"$in": list(case_titles)}}
+        docs = list(coll.find(query, {"embedding": 0}))
+        return [dict(d) for d in docs]
+    except Exception:
+        return []
+
+
 @st.cache_data(ttl=300, show_spinner=False)
 def _validate_refs_against_db(refs_tuple: tuple) -> tuple:
     """참조 후보 목록을 DB에 조회해 실제 존재하는 것만 반환합니다.

@@ -1,19 +1,21 @@
-from app.state import RAGState
+# app/nodes/rerank.py
+# Cohere Reranker + 비즈니스 룰 재정렬
+import asyncio
+
 from app.reranker import rerank_results
 
 
-def rerank_docs(state: RAGState):
-    """1차 검색된 문서들을 Cohere Reranker와 비즈니스 룰로 재정렬"""
+async def rerank_docs(state: dict) -> dict:
+    """1차 검색된 문서들을 Cohere Reranker와 비즈니스 룰로 재정렬."""
 
     query = state["standalone_query"]
     retrieved_docs = state.get("retrieved_docs", [])
 
     try:
-        # Reranker를 통과하며 5개로 압축되고 비즈니스 룰(임계값, 페널티)이 적용.
-        reranked = rerank_results(query, retrieved_docs, top_n=5)
+        # rerank_results는 동기 함수 (Cohere API) → 스레드에서 실행
+        reranked = await asyncio.to_thread(rerank_results, query, retrieved_docs, 5)
     except Exception as e:
-        # Reranker API 장애(404, 타임아웃 등) 시 파이프라인이 중단되지 않도록 폴백
-        # 검색 score 기준 상위 5개를 그대로 사용.
+        # Reranker API 장애 시 검색 score 순위로 대체
         print(f"  ⚠️  Reranker 실패 ({type(e).__name__}), 검색 score 순위로 대체", flush=True)
         reranked = sorted(retrieved_docs, key=lambda d: d.get("score", 0), reverse=True)[:5]
 

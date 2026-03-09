@@ -1,45 +1,30 @@
-from pydantic import BaseModel, Field
-from langchain_core.prompts import ChatPromptTemplate
-from app.llm import get_front_llm
-from app.state import RAGState
+# app/nodes/grade.py
+# 리랭크된 문서가 질문에 답변할 수 있는지 LLM으로 평가 (CRAG)
+from app.agents import grade_agent
 from app.prompts import GRADE_PROMPT
 
 
-class DocGrade(BaseModel):
-    chunk_id: str = Field(description="평가한 문서의 chunk_id")
-    is_relevant: bool = Field(description="질문에 대한 답변으로 유효한지 여부 (True/False)")
-
-
-class GradeResult(BaseModel):
-    results: list[DocGrade]
-
-
-def grade_docs(state: RAGState):
-    """리랭크된 문서들이 질문에 대답할 수 있는지 평가하여 relevant_docs를 걸러냄"""
+async def grade_docs(state: dict) -> dict:
+    """리랭크된 문서들이 질문에 대답할 수 있는지 평가하여 relevant_docs를 걸러냅니다."""
 
     reranked_docs = state.get("reranked_docs", [])
     if not reranked_docs:
         return {"relevant_docs": []}
 
-    structured_llm = get_front_llm().with_structured_output(GradeResult)
-
-    prompt = ChatPromptTemplate.from_template(GRADE_PROMPT)
-    chain = prompt | structured_llm
-
-    context_str = "\n\n".join([f"[문서 ID: {doc['chunk_id']}]\n{doc['content']}" for doc in reranked_docs])
-
     question = state.get("standalone_query") or ""
     if not question:
-        # 질문이 없으면 LLM 평가가 무의미하므로 전체 문서를 통과시킵니다.
+        # 질문이 없으면 LLM 평가가 무의미 → 전체 통과
         return {"relevant_docs": reranked_docs}
 
-    eval_result = chain.invoke({"question": question, "context": context_str})
+    context_str = "\n\n".join(
+        f"[문서 ID: {doc['chunk_id']}]\n{doc['content']}" for doc in reranked_docs
+    )
 
-    # structured_output이 None을 반환하는 경우 전체 문서를 통과시킴 (폴백)
-    if eval_result is None:
-        return {"relevant_docs": reranked_docs}
+    result = await grade_agent.run(
+        GRADE_PROMPT.format(question=question, context=context_str)
+    )
 
-    relevant_chunk_ids = {res.chunk_id for res in eval_result.results if res.is_relevant}
-    relevant_docs = [doc for doc in reranked_docs if doc["chunk_id"] in relevant_chunk_ids]
+    relevant_ids = {r.chunk_id for r in result.data.results if r.is_relevant}
+    relevant_docs = [doc for doc in reranked_docs if doc["chunk_id"] in relevant_ids]
 
     return {"relevant_docs": relevant_docs}

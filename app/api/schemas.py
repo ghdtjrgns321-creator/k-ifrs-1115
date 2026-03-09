@@ -47,7 +47,6 @@ class DocResult(BaseModel):
     related_paragraphs: list[str]  # 관련 문단 번호 리스트
     chunk_id: str  # 고유 청크 ID (AI 단계에서 문서 식별용)
     score: float = 0.0  # Reranker 점수 (UI 동적 렌더링 용도)
-    case_group_title: str = ""  # IE 적용사례 그룹 제목 (예: "사례 4: 계약 식별 기준의 재검토")
 
 
 class SearchResponse(BaseModel):
@@ -80,8 +79,3 @@ class SSEEvent(BaseModel):
     # AI 답변 후 실무 담당자가 추가로 확인하면 좋을 꼬리 질문 3개
     # 버튼 텍스트로 바로 사용할 수 있는 20자 이내 질문입니다.
     follow_up_questions: list[str] | None = None
-    # True면 follow_up_questions가 선택지(답변 유도), False면 개념 확인 꼬리질문
-    is_situation: bool | None = None
-    # /chat RAG 파이프라인이 찾은 근거 문서 (DocResult 직렬화 dict 목록)
-    # 좌측 근거 패널(evidence_docs)을 채우는 데 사용됩니다.
-    retrieved_docs: list[dict] | None = None

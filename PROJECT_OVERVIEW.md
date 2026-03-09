@@ -1,7 +1,9 @@
 # K-IFRS 1115 Chatbot — 프로젝트 개요
 
-> **이 문서는 LLM에게 프로젝트 컨텍스트를 전달하기 위해 작성되었습니다.**  
+> **이 문서는 LLM에게 프로젝트 컨텍스트를 전달하기 위해 작성되었습니다.**
 > 새로운 대화를 시작할 때 이 문서를 먼저 읽혀주세요.
+>
+> **최종 업데이트**: 2026-03-08 (UX 2차 고도화 — 토픽 큐레이션 + 네비게이션 스타일링)
 
 ---
 
@@ -9,7 +11,7 @@
 
 회계법인 입사를 위한 **포트폴리오 프로젝트 #1**.
 
-**K-IFRS 제1115호(고객과의 계약에서 생기는 수익)** 에 관하여, **회계감사인(감사인)**들이 객관적인 팩트를 손쉽게 찾고, AI의 추론을 통해 인사이트를 얻을 수 있도록 하는 **전문 챗봇**입니다.
+**K-IFRS 제1115호(고객과의 계약에서 생기는 수익)** 에 관하여, **회계감사인(감사인)**들이 객관적인 팩트를 손쉽게 찾고, AI의 추론을 통해 인사이트를 얻을 수 있도록 하는 **전문 도구**입니다.
 
 ### 핵심 가치
 
@@ -19,23 +21,43 @@
 
 ---
 
-## 2. 핵심 UX 흐름 (3단계 State Machine)
+## 2. 핵심 UX 흐름 (4단계 State Machine)
 
 ```
-[1단계: 검색 (Search)]
-    사용자가 자연어 대화 대신 빈출 QNA 키워드 칩을 클릭
-    → 쿼링(검색)을 통해 관련 본문, QNA, 지적사례 등 팩트를 찾아 카드로 제시
-    → 추론이 아닌 검색이므로 환각 위험 없음
+[홈 (home)]
+  좌우 2단 레이아웃: 왼쪽(5단계 수익인식 모형) / 오른쪽(후속 처리·특수 거래)
+    ├─ 토픽 클릭 → [토픽 브라우즈 (topic_browse)]
+    └─ 자유 검색 입력 → [근거 열람 (evidence)]
 
-[2단계: AI 질문 (Chat)]
-    검색 결과를 확인한 후, 궁금하거나 애매한 상황을 AI에게 자연어로 질문
-    → AI가 답변을 생성하되, 답변 자체가 핵심이 아님
+[토픽 브라우즈 (topic_browse)]  ← NEW (2026-03-08)
+  큐레이션된 4개 탭: 본문·BC | 적용사례 | 질의회신 | 감리지적사례
+  → 사용자가 원문을 직접 열람한 뒤 하단 AI 질문 입력
+    └─ AI 질문 → [AI 답변 (ai_answer)]
 
-[3단계: 꼬리질문 (Follow-up)]
-    AI가 사용자의 상황을 분석하여 해석 여지가 있는 부분을 포착
-    → 꼬리질문을 던져 사용자의 허접한 자연어 질문을 점점 완성된 질문으로 업그레이드
-    → EX) "현재 재고위험을 누가 부담하고 있나요?", "가격 결정권을 누가 보유하고 있나요?"
-    → 반복적인 꼬리질문으로 상황을 구체화한 뒤 최종 회계처리를 제시
+[근거 열람 (evidence)]
+  RAG 검색 결과를 카테고리별 아코디언으로 제시
+  → 하단 AI 질문 입력
+    └─ AI 질문 → [AI 답변 (ai_answer)]
+
+[AI 답변 (ai_answer)]
+  Split View: 좌(근거 문서) + 우(AI 답변 + 꼬리질문)
+  → 꼬리질문 버튼 클릭 또는 추가 질문 입력 → [AI 답변] 반복
+```
+
+### 홈화면 8섹션 매트릭스
+
+```
+┌──────────────────────────────┬──────────────────────────────┐
+│ 5단계 수익인식 모형          │ 후속 처리 · 특수 거래        │
+├──────────────────────────────┼──────────────────────────────┤
+│ Step 1. 계약의 식별          │ Step 6. 거래가격의 변동      │
+│ Step 2. 수행의무의 식별      │ Step 7. 계약원가             │
+│ Step 3. 거래가격의 산정      │ Step 8. 특수한 형태의 거래   │
+│ Step 4. 거래가격의 배분      │   ├ 보증                     │
+│ Step 5. 수익의 인식          │   ├ 본인과 대리인            │
+│                              │   ├ 통제 이전의 특수 형태    │
+│                              │   └ 고객의 권리 관련         │
+└──────────────────────────────┴──────────────────────────────┘
 ```
 
 ---
@@ -46,16 +68,19 @@
 |--------|------|------|
 | **패키지 관리** | uv | Python ≥ 3.11 |
 | **백엔드** | FastAPI + uvicorn | REST API (`/search`, `/chat`, `/health`) |
-| **프론트엔드** | Streamlit | 3단계 State Machine UI |
-| **RAG 프레임워크** | LangChain + LangGraph | 노드 기반 RAG 파이프라인 |
-| **벡터 DB** | MongoDB Atlas Vector Search | `langchain-mongodb` 활용 |
-| **임베딩** | Upstage `solar-embedding-1-large` | passage(저장) / query(검색) 구분 필수 |
-| **LLM (경량)** | OpenAI `gpt-5-mini` | analyze, rewrite, grade 노드 |
-| **LLM (추론)** | OpenAI `o4-mini` | generate 노드 (복합 회계 답변 생성) |
-| **Reranker** | Cohere `rerank-multilingual-v3.0` | Cross-encoder 기반 재랭킹 |
-| **모니터링** | LangSmith | 개발 환경 트레이싱 |
+| **프론트엔드** | Streamlit | 4단계 State Machine UI |
+| **AI 프레임워크** | PydanticAI | Agent 정의 + structured output + 자동 재시도 |
+| **벡터 DB** | MongoDB Atlas Vector Search | 임베딩 + 메타데이터 통합 저장 |
+| **임베딩** | Upstage `solar-embedding-1-large` | passage(저장) / query(검색) 구분 **필수** |
+| **LLM (경량)** | OpenAI `gpt-5-mini` | analyze, rewrite, grade, hyde 노드 |
+| **LLM (추론)** | OpenAI `o4-mini` | generate, clarify 노드 (복합 회계 답변) |
+| **Reranker** | Cohere `rerank-multilingual-v3.0` | 한국어 최적화 Cross-encoder |
+| **설정 관리** | pydantic-settings | `.env` 타입 안전 관리 |
 | **컨테이너** | Docker + docker-compose | 멀티스테이지 빌드 |
 | **배포** | Oracle Cloud | Docker로 배포 예정 |
+
+> **LangChain / LangGraph / LangSmith 전체 제거 완료** (2026-03-07)
+> PydanticAI + 순수 Python async pipeline으로 완전 대체됨.
 
 ---
 
@@ -67,7 +92,14 @@ k-ifrs-1115-chatbot/
 │   ├── api/
 │   │   ├── routes.py              # FastAPI 라우터 (/chat, /search, /health)
 │   │   └── schemas.py             # Pydantic 요청/응답 스키마
-│   ├── nodes/                     # LangGraph 노드 (각 노드 1파일)
+│   ├── domain/                    # 도메인 데이터 + 큐레이션
+│   │   ├── __init__.py
+│   │   ├── decision_trees.py      # 거래 상황별 판단 트리 정의
+│   │   ├── qna_match_trees.py     # QNA 매칭용 트리
+│   │   ├── red_flags.py           # 감리 레드플래그 패턴
+│   │   ├── topic_content_map.py   # [NEW] 토픽 큐레이션 데이터 (topics.json 로드)
+│   │   └── tree_matcher.py        # 체크리스트 매칭 로직
+│   ├── nodes/                     # 파이프라인 노드 (async 함수, 1파일 1노드)
 │   │   ├── analyze.py             # 질문 분석 + 라우팅 (IN/OUT)
 │   │   ├── retrieve.py            # Vector + BM25 + RRF 하이브리드 검색
 │   │   ├── rerank.py              # Cohere Reranker 재랭킹
@@ -77,82 +109,162 @@ k-ifrs-1115-chatbot/
 │   │   ├── generate.py            # o4-mini 기반 최종 답변 + 꼬리질문 생성
 │   │   └── format.py              # 응답 포맷팅 + 감리사례 섀도우 매칭
 │   ├── services/                  # 비즈니스 로직 서비스
-│   ├── preprocessing/             # 데이터 전처리 파이프라인
-│   │   ├── 01-inspect.py          # kifrs.com HTML 구조 분석
-│   │   ├── 02-crawl.py            # API 크롤링 → raw JSON
-│   │   ├── 03-chunk-with-weight.py # 가중치 청킹
-│   │   ├── 04-embed.py            # MongoDB 벡터 적재
+│   │   ├── chat_service.py        # 파이프라인 실행 + SSE + 체크리스트 관리
+│   │   ├── search_service.py      # 열람용 검색 (결정론적, LLM 최소화)
+│   │   └── session_store.py       # 세션 + 체크리스트 + cached_docs 관리
+│   ├── preprocessing/             # 데이터 전처리 파이프라인 (순서대로 실행)
+│   │   ├── 03-chunk-with-weight.py
+│   │   ├── 04-embed.py            # 본문 → MongoDB 벡터 적재
 │   │   ├── 05-qna-crawl.py        # 질의회신 크롤링
-│   │   └── 06-qna-embed.py        # 질의회신 임베딩
+│   │   ├── 06-qna-embed.py        # 질의회신 임베딩
+│   │   ├── 07-findings-embed.py   # 감리사례 임베딩
+│   │   ├── 10-parse-curation.py   # [NEW] topic-curation.txt → topics.json 변환
+│   │   └── 11-fix-external-tables.py  # [NEW] 외부 테이블 깨진 분개 데이터 복구
 │   ├── test/                      # 연결·검색 테스트
+│   ├── ui/                        # Streamlit UI 컴포넌트
+│   │   ├── layout.py              # CSS 주입 + 헤더 + 사이드바 (shadcn/ui 스타일)
+│   │   ├── pages.py               # 홈/근거열람/AI답변 페이지 렌더러
+│   │   ├── topic_browse.py        # [NEW] 토픽 브라우즈 — 4탭 큐레이션 뷰
+│   │   ├── grouping.py            # [NEW] 검색 결과 소제목별 2단계 그룹화
+│   │   ├── components.py          # 아코디언/expander 공통 컴포넌트
+│   │   ├── constants.py           # 8섹션 키워드 + 토픽 매핑 + 부제
+│   │   ├── db.py                  # MongoDB 조회 (배치 + @st.cache_resource)
+│   │   ├── client.py              # FastAPI 호출 래퍼
+│   │   ├── session.py             # 세션 초기화 + _go_home
+│   │   ├── modal.py               # 문단 원문 모달
+│   │   └── text.py                # 텍스트 정규화 + HTML 변환
 │   ├── main.py                    # FastAPI 진입점 (lifespan + CORS + BM25 인덱스 빌드)
-│   ├── streamlit_app.py           # Streamlit UI (1182줄, 3단계 State Machine)
+│   ├── streamlit_app.py           # Streamlit UI 진입점
 │   ├── config.py                  # pydantic-settings 중앙 설정
-│   ├── graph.py                   # LangGraph 워크플로우 조립
-│   ├── state.py                   # RAGState TypedDict (파이프라인 상태 정의)
+│   ├── agents.py                  # PydanticAI Agent 정의 (구 llm.py 대체)
+│   ├── pipeline.py                # async generator 오케스트레이션 (구 graph.py 대체)
+│   ├── embeddings.py              # Upstage REST API 직접 호출 (async + sync)
 │   ├── retriever.py               # 검색 엔진 (Vector + BM25 + RRF 융합)
-│   ├── reranker.py                # Reranker 래퍼
-│   ├── prompts.py                 # 프롬프트 템플릿 모음
-│   └── llm.py                     # LLM 인스턴스 팩토리
+│   ├── reranker.py                # Cohere Reranker 래퍼
+│   ├── prompts.py                 # 프롬프트 템플릿 (CLARIFY/GENERATE system+user 분리)
+│   └── state.py                   # RAGState TypedDict (순수, LangGraph 의존성 없음)
 ├── data/
 │   ├── raw/                       # 크롤링 원본 (gitignore)
-│   ├── web/                       # 처리된 청크 JSON
-│   └── findings/                  # 감리사례 데이터
-├── Dockerfile                     # 멀티스테이지 빌드 (uv builder → slim runtime)
-├── docker-compose.yml             # api + frontend 오케스트레이션
+│   ├── web/                       # 처리된 청크 JSON + query-mapping-generated.json
+│   ├── findings/                  # 감리사례 데이터
+│   └── topic-curation/            # [NEW] 큐레이션 데이터
+│       ├── topics.json            # 8개 토픽 구조화 JSON (10-parse-curation.py 출력)
+│       ├── topic-curation.txt     # 원본 큐레이션 텍스트
+│       └── 분류체계.txt            # 분류 체계 설명
+├── .claude/
+│   └── debugging.md               # 디버깅 실패/성공 기록
+├── Dockerfile
+├── docker-compose.yml
 ├── pyproject.toml                 # uv 의존성
-├── .env / .env.example            # 환경 변수
+├── .env / .env.example
+├── CLAUDE.md                      # 프로젝트 지침 (Claude Code 자동 로드)
 └── PROJECT_OVERVIEW.md            # ← 이 파일
 ```
 
 ---
 
-## 5. RAG 파이프라인 (LangGraph)
+## 5. RAG 파이프라인 (PydanticAI + 순수 Python)
 
-```mermaid
-graph TD
-    START --> analyze_query
-    analyze_query -->|OUT| reject[범위 밖 거부]
-    analyze_query -->|IN + pre_docs| inject_pre[검색 결과 주입]
-    analyze_query -->|IN| retrieve[Vector + BM25 + RRF 검색]
-
-    inject_pre --> grade_docs
-    retrieve --> rerank[Cohere Reranker]
-    rerank --> grade_docs[CRAG 품질 평가]
-
-    grade_docs -->|relevant ≥ 3| generate[o4-mini 답변 생성]
-    grade_docs -->|relevant < 3, retry=0| hyde_retrieve[HyDE 폴백]
-    grade_docs -->|relevant < 3, retry=1| rewrite_query[질문 재작성]
-    grade_docs -->|relevant < 3, retry≥2| generate
-
-    hyde_retrieve --> rerank
-    rewrite_query --> retrieve
-
-    generate --> format_response[포맷팅 + 감리사례 매칭]
-    format_response --> END
-    reject --> END
 ```
+async def pipeline(state) → yield SSEEvent
+
+  analyze_agent  →  retrieve  →  rerank  →  grade_agent
+                                                 ↓
+                              relevant ≥ 3 → is_situation?
+                                                 ├─ True  → clarify_agent (꼬리질문)
+                                                 └─ False → generate_agent (개념 답변)
+                              relevant < 3 → retry=0: hyde_retrieve → rerank → grade
+                                          → retry=1: rewrite → retrieve → rerank → grade
+                                          → retry≥2: generate (있는 근거로 최선)
+                                                           ↓
+                                                        format (감리사례 섀도우 매칭)
+```
+
+| 노드 | 역할 | Agent |
+|------|------|-------|
+| analyze | 질문 분석/라우팅/키워드 추출 | `analyze_agent` (gpt-5-mini) |
+| retrieve | Vector + BM25 하이브리드 검색 | — |
+| rerank | Cohere Reranker + 비즈니스 룰 | — |
+| grade | 문서 품질 평가 (CRAG) | `grade_agent` (gpt-5-mini) |
+| generate | 개념 답변 생성 | `generate_agent` (o4-mini) |
+| clarify | 거래 상황 꼬리질문 (멀티턴 체크리스트) | `clarify_agent` (o4-mini, 동적 system prompt) |
+| rewrite | 질문 재작성 폴백 | `rewrite_agent` (gpt-5-mini) |
+| hyde | HyDE 가상 문서 생성 폴백 | `hyde_agent` (gpt-5-mini) |
+| format | 감리사례 넛지 추가 | — |
 
 ### 핵심 메커니즘
 
-- **Hybrid Search**: MongoDB Vector Search + BM25 키워드 검색 → RRF(Reciprocal Rank Fusion)로 결합
-- **Cross-encoder Reranking**: Cohere `rerank-multilingual-v3.0`으로 의미 기반 재랭킹
-- **CRAG (Corrective RAG)**: LLM이 검색 문서의 관련성을 Yes/No로 평가, 부족 시 폴백
-- **3단계 폴백**: 1차 HyDE(가상 문서) → 2차 질문 재작성(rewrite) → 3차 있는 근거로 최선
-- **꼬리질문 생성**: `generate` 노드에서 답변과 함께 3개의 follow-up 질문을 자동 생성
+- **Hybrid Search**: MongoDB Vector Search + BM25 → RRF(Reciprocal Rank Fusion)로 결합
+- **Cross-encoder Reranking**: Cohere `rerank-multilingual-v3.0` — `TOP_N = 5`
+- **CRAG (Corrective RAG)**: LLM이 각 문서의 관련성을 Yes/No로 평가, 부족 시 폴백
+- **멀티턴 체크리스트**: `clarify_agent`가 거래 유형별 Dynamic 체크리스트를 system prompt에 주입하여 꼬리질문을 구조화
 - **감리사례 섀도우 매칭**: `format` 노드에서 질문과 유사한 감리 지적사례를 자동 매칭
 
 ---
 
-## 6. 데이터 소스 및 스키마
+## 6. 토픽 큐레이션 시스템 (NEW — 2026-03-08)
+
+### 개요
+
+8개 토픽에 대해 **사전 큐레이션된 문서 매핑**을 제공합니다. RAG 검색 없이 `topics.json`의 정적 데이터로 관련 문단을 즉시 조회합니다.
+
+### 토픽별 데이터 구조
+
+```python
+TopicData = {
+    "display_name": str,              # 표시명 (예: "계약의 식별")
+    "cross_links": list[str],         # 관련 토픽 추천
+    "main_and_bc": {                  # 본문 + 결론도출근거(BC)
+        "summary": str,
+        "sections": [
+            {"title": str, "desc": str,
+             "paras": ["9", "10"],     # 본문 문단
+             "bc_paras": ["BC34"]}     # BC 문단
+        ]
+    },
+    "ie": {                           # 적용사례
+        "summary": str,
+        "cases": [
+            {"title": str, "desc": str,
+             "para_range": "IE19~IE24",
+             "case_group_title": "수행의무 - 일회성 용역"}
+        ]
+    },
+    "qna": {                          # 질의회신
+        "summary": str,
+        "qna_ids": ["QNA-SSI-38612"]
+    },
+    "findings": {                     # 감리지적사례
+        "summary": str,
+        "finding_ids": ["FSS-xxx"]
+    }
+}
+```
+
+### 토픽 브라우즈 4탭 뷰
+
+| 탭 | 데이터 소스 | 조회 방식 |
+|----|------------|----------|
+| 본문·BC | `main_and_bc.sections` | `fetch_docs_by_para_ids()` — 문단 ID 배치 조회 |
+| 적용사례 | `ie.cases` | `fetch_ie_case_docs()` — case_group_title 매칭 |
+| 질의회신 | `qna.qna_ids` | `fetch_parent_doc()` — 부모 ID 조회 |
+| 감리사례 | `findings.finding_ids` | `fetch_parent_doc()` — 부모 ID 조회 |
+
+---
+
+## 7. 데이터 소스 및 스키마
 
 ### 데이터 소스
 
 | 소스 | 설명 | 상태 |
 |------|------|------|
-| K-IFRS 1115호 본문 | 기준서 본문 + 적용지침 + 결론도출근거 + 용어정의 | ✅ 완료 |
-| 질의회신 (QNA) | kifrs.com 질의회신 데이터 | ✅ 완료 |
-| 감리사례 (Findings) | 금감원 감리 지적사례 | ✅ 완료 |
+| K-IFRS 1115호 본문 | 기준서 본문 + 적용지침 + 결론도출근거 + 용어정의 + 적용사례(IE) | ✅ 완료 |
+| 질의회신 (QNA) | kifrs.com 질의회신 101건 | ✅ 완료 |
+| 감리사례 (Findings) | 금감원 감리 지적사례 18건 | ✅ 완료 |
+| 토픽 큐레이션 | 8개 토픽별 문단·사례·QNA·감리사례 매핑 | ✅ 완료 (2026-03-08) |
+| BIG4 가이드 | 딜로이트·삼일·EY한영·KPMG 실무 가이드 | 미완료 |
+
+**총 청크**: 약 1,298개 (2026-03-07 기준)
 
 ### 청크 스키마 (MongoDB)
 
@@ -160,17 +272,17 @@ graph TD
 {
     "chunk_id": str,          # 고유 식별자
     "content": str,           # 청크 본문
-    "source": str,            # "본문", "qna", "findings" 등
+    "source": str,            # "본문", "QNA", "감리사례" 등
     "category": str,          # "본문", "적용지침B", "결론도출근거" 등
     "weight_score": float,    # 카테고리별 검색 가중치
     "hierarchy": str,         # Breadcrumb 경로 (문맥 보강)
-    "embedding": list[float], # Upstage solar-embedding 벡터
+    "embedding": list[float], # Upstage solar-embedding 벡터 (passage 모드)
 }
 ```
 
 ---
 
-## 7. 환경 변수
+## 8. 환경 변수
 
 ```bash
 # MongoDB
@@ -180,18 +292,19 @@ MONGO_COLLECTION_NAME=k-ifrs-1115-chatbot
 
 # API Keys (필수)
 UPSTAGE_API_KEY=up_xxx      # 임베딩 전용
-OPENAI_API_KEY=sk-xxx        # LLM 전용 (gpt-5-mini, o4-mini)
-COHERE_API_KEY=xxx           # Reranker 전용
+OPENAI_API_KEY=sk-xxx       # LLM 전용 (gpt-5-mini, o4-mini)
+COHERE_API_KEY=xxx          # Reranker 전용
 
-# LangSmith (선택, 개발용)
-LANGCHAIN_API_KEY=lsv2_xxx
-LANGCHAIN_TRACING_V2=true
-LANGCHAIN_PROJECT=k-ifrs-1115-chatbot
+# LLM 설정 (선택, 기본값 있음)
+LLM_FRONT_MODEL=gpt-5-mini
+LLM_GENERATE_MODEL=o4-mini
+LLM_TEMPERATURE=0.0         # agents.py에서 settings.llm_temperature로 참조
+LLM_TIMEOUT=90
 ```
 
 ---
 
-## 8. 실행 방법
+## 9. 실행 방법
 
 ```bash
 # ── 로컬 개발 ────────────────────────────────────────────────────
@@ -199,42 +312,78 @@ uv sync                                          # 의존성 설치
 uv run uvicorn app.main:app --port 8002           # FastAPI 서버
 uv run streamlit run app/streamlit_app.py         # Streamlit UI
 
+# ── 전처리 파이프라인 (순서대로) ─────────────────────────────────
+PYTHONPATH=. uv run --env-file .env app/preprocessing/04-embed.py
+PYTHONPATH=. uv run --env-file .env app/preprocessing/06-qna-embed.py
+PYTHONPATH=. uv run --env-file .env app/preprocessing/07-findings-embed.py
+PYTHONPATH=. uv run --env-file .env app/preprocessing/10-parse-curation.py
+PYTHONPATH=. uv run --env-file .env app/preprocessing/11-fix-external-tables.py
+
 # ── Docker 배포 ──────────────────────────────────────────────────
-docker compose build
-docker compose up -d
-# → FastAPI: http://localhost:8002
-# → Streamlit: http://localhost:8501
+docker compose build && docker compose up -d
+docker compose logs -f
+
+# ── 코드 품질 ────────────────────────────────────────────────────
+uv run ruff check .
+uv run ruff format .
 ```
 
 ---
 
-## 9. 코딩 컨벤션
+## 10. UI/UX 스타일링
+
+### 디자인 시스템
+
+- **shadcn/ui + Linear 스타일**: Tailwind Slate 색상 토큰 기반
+- **CSS 주입**: `layout.py`의 `_inject_css()`에서 `st.markdown(unsafe_allow_html=True)`로 메인 DOM에 직접 주입
+- **Streamlit 테마**: `.streamlit/config.toml`로 전역 색상/폰트 설정
+
+### 특정 버튼 스타일링 패턴
+
+```python
+# key에 nav_ 접두사 부여 → Streamlit이 .st-key-nav_xxx 클래스 자동 생성
+st.button("← 새 검색", key="nav_search_top")
+```
+
+```css
+/* 접두사 매칭으로 네비게이션 버튼만 연한 회색 강조 */
+div[class*="st-key-nav_"] button {
+    background-color: #f1f5f9 !important;
+}
+```
+
+> `.st-key-<key>` 셀렉터는 Streamlit 1.38+에서 지원. JS/iframe 접근은 불안정하므로 CSS-only 사용.
+
+---
+
+## 11. 코딩 컨벤션
 
 - 파일 하나 **100줄 내외** 유지 (길어지면 즉시 분리)
 - 경로·설정값은 파일 상단 상수 또는 `config.py`에 선언 (하드코딩 금지)
 - 주석은 **Why** 중심 (What은 코드가 말함)
-- LangGraph 노드는 `app/nodes/` 하위에 1파일 1노드 원칙
+- 노드는 `app/nodes/` 하위에 1파일 1노드 원칙
 - 임베딩 모델 **passage / query 혼용 금지** (검색 품질 급락)
+- PydanticAI Agent 결과 접근: `result.output` (`.data` 아님)
+- 동기 Agent 호출: `agent.run_sync(prompt)` — 이벤트 루프 내에서는 사용 금지
 
 ---
 
-## 10. 향후 개발 방향
+## 12. 향후 개발 방향
 
-- [ ] Redis 시맨틱 캐시 (반복 질문 API 비용 절감)
+- [ ] BIG4 가이드 크롤링 및 임베딩 (Phase 1 나머지)
 - [ ] RAGAS 기반 RAG 품질 평가 자동화 (Faithfulness, Context Precision)
-- [ ] LangSmith 골든셋 구축 (100개 이상 K-IFRS 질문)
-- [ ] Multi-turn 대화 고도화 (대화 히스토리 컨텍스트 강화)
+- [ ] 골든셋 구축 (100개 이상 K-IFRS 질문)
+- [ ] Redis 시맨틱 캐시 (반복 질문 API 비용 절감)
 - [ ] Oracle Cloud 배포
 
 ---
 
-## 11. 작업 요청 시 유의사항
-
-이 프로젝트에 대해 작업을 요청할 때 다음을 기억해주세요:
+## 13. 작업 요청 시 유의사항
 
 1. **회계 도메인** — K-IFRS 1115호(수익 인식)가 핵심 도메인입니다. 회계 용어와 맥락을 존중해주세요.
 2. **환각 방지 설계** — "AI가 먼저 답하고 근거는 나중에" 방식이 아닌, "근거 먼저, AI 나중에" 설계입니다.
 3. **꼬리질문이 핵심** — AI의 답변보다 꼬리질문을 통한 질문 고도화가 이 챗봇의 차별화 포인트입니다.
 4. **uv로 패키지 관리** — pip이 아닌 uv를 사용합니다 (`uv sync`, `uv run`, `uv add`).
-5. **Docker 배포** — 최종 배포는 Docker → Oracle Cloud 서버입니다.
+5. **LangChain/LangGraph 없음** — PydanticAI + 순수 Python으로 완전 교체됨. `graph.py`, `llm.py` 존재하지 않습니다.
 6. **포트폴리오 목적** — 회계법인 입사용 포트폴리오이므로, 코드 품질과 설계 의도의 명확성이 중요합니다.
+7. **Streamlit CSS** — 특정 버튼 스타일링은 `key="nav_xxx"` + `div[class*="st-key-nav_"]` 패턴 사용. JS/iframe 접근 금지.

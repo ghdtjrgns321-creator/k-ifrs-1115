@@ -120,6 +120,7 @@ def _render_home() -> None:
         "키워드로 찾기 어려운 구체적인 사실관계를 자유롭게 설명해 주세요. AI가 상황을 분석하고 정확한 판단을 위한 꼬리질문을 던져드립니다."
     )
 
+    search_spinner_placeholder = None
     with st.form("search_form", clear_on_submit=False):
         query = st.text_area(
             "상황 입력",
@@ -131,16 +132,21 @@ def _render_home() -> None:
             "검색하기", use_container_width=True, type="primary"
         )
 
+    search_spinner_placeholder = st.empty()
+
     # ── 통신 실행 (모든 위젯 렌더링 완료 후) ────────────────────────────────
     # Streamlit은 위젯 렌더링 이후에 API 호출을 실행해야 합니다.
     if custom_query:
         with custom_spinner_placeholder:
             st.session_state.active_chip = None
             _call_search(custom_query)
-    elif submitted and query:
-        # spinner는 _call_chat 내부 answer_placeholder가 담당 (중복 제거)
-        st.session_state.active_chip = None
-        _call_chat(query, use_cache=False)
+    elif submitted and query and search_spinner_placeholder is not None:
+        with search_spinner_placeholder:
+            st.session_state.active_chip = None
+            with st.spinner(
+                "입력하신 상황을 분석하여 1115호 기준에 따라 꼬리질문을 생성하고 있습니다..."
+            ):
+                _call_chat(query, use_cache=False)
     elif target_chip and spinner_placeholder:
         with spinner_placeholder:
             st.session_state.active_chip = None
@@ -251,23 +257,18 @@ def _render_ai_answer() -> None:
                     st.caption(f"**[{source_type}]** {hierarchy}{p_str}")
 
         # 꼬리 질문 버튼 (최대 3개)
-        # is_situation=True  → 선택지 모드: 사용자가 상황 답변 선택 (use_cache=False, 새 검색)
-        # is_situation=False → 개념 확인 모드: 같은 컨텍스트 재사용 (use_cache=True)
+        # use_cache=True: 이미 검색된 근거를 재사용하므로 빠르게 응답합니다.
         followups = st.session_state.follow_up_questions
-        is_situation = st.session_state.get("is_situation", False)
         if followups:
             st.html("<br>")
-            if is_situation:
-                st.markdown("**아래 상황 중 해당하는 것을 선택해 주세요:**")
-            else:
-                st.markdown("**추가로 확인하면 좋을 질문:**")
+            st.markdown("**추가로 확인하면 좋을 질문:**")
 
             btn_cols = st.columns(len(followups))
             for i, fq in enumerate(followups):
                 with btn_cols[i]:
                     if st.button(fq, use_container_width=True, key=f"followup_{i}"):
-                        # 상황 선택지: 새 검색 필요 / 개념 꼬리질문: 캐시 재사용
-                        _call_chat(fq, use_cache=not is_situation)
+                        # 꼬리질문은 같은 컨텍스트(search_id) 재사용 → retrieve 스킵
+                        _call_chat(fq, use_cache=True)
 
         st.divider()
 
