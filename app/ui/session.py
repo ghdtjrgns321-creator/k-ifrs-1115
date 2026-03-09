@@ -10,8 +10,10 @@ import streamlit as st
 def _init_session() -> None:
     """세션 상태 초기값을 설정합니다. 앱 최초 실행 시에만 실행됩니다."""
     defaults = {
-        # 페이지 상태 머신: "home" | "evidence" | "ai_answer"
+        # 페이지 상태 머신: "home" | "topic_browse" | "evidence" | "ai_answer"
         "page_state": "home",
+        # 홈에서 선택한 토픽 키 (topic_browse에서 사용)
+        "selected_topic": None,
         # 현재 검색어 (홈 화면에서 입력한 값)
         "search_query": "",
         # /search 응답의 캐시 키 (이후 /chat에 전달하여 retrieve 스킵)
@@ -50,6 +52,7 @@ def _go_home() -> None:
     """
     reset_keys = [
         "page_state",
+        "selected_topic",
         "search_query",
         "search_id",
         "standalone_query",

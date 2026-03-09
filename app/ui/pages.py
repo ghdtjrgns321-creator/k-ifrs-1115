@@ -11,146 +11,89 @@ import streamlit as st
 
 from app.ui.client import _call_chat, _call_search
 from app.ui.components import _render_evidence_panel
-from app.ui.constants import KEYWORD_CHIPS
+from app.ui.constants import HOME_TOPICS_LEFT, HOME_TOPICS_RIGHT
 from app.ui.session import _go_home
 
 
-def _render_home() -> None:
-    """[홈] 키워드 칩 + 자유 검색창을 렌더링합니다.
+def _navigate_to_topic(topic: str) -> None:
+    """토픽 버튼 클릭 → topic_browse 페이지로 전환합니다."""
+    st.session_state.selected_topic = topic
+    st.session_state.page_state = "topic_browse"
+    st.rerun()
 
-    KEYWORD_CHIPS(12개) 마지막에 '직접 입력' 칩을 추가하여 총 13개 버튼을 4열로 배치합니다.
-    커스텀 칩 클릭 시 인라인 단어 입력창이 펼쳐지며, 단어/용어 입력을 유도합니다.
+
+def _render_topic_column(sections: list[tuple[str, list[str]]], key_prefix: str) -> None:
+    """Step 헤더 + 토픽 버튼 목록을 렌더링합니다."""
+    for section_title, topics in sections:
+        st.markdown(f"**{section_title}**")
+        for topic in topics:
+            safe_key = f"{key_prefix}_{topic.replace(' ', '_')}"
+            if st.button(topic, key=safe_key, use_container_width=True):
+                _navigate_to_topic(topic)
+
+
+def _render_home() -> None:
+    """[홈] 8섹션 토픽 매트릭스 + 자유 질문 입력을 렌더링합니다.
+
+    좌우 2단 레이아웃: 좌측(5단계 수익인식 모형) / 우측(후속 처리·특수 거래)
+    하단에 자유 텍스트 입력 → /search → evidence 페이지로 이동
     """
-    _CUSTOM_CHIP_LABEL = "🔍 다른 용어 검색"
+    # ── 구분선 — #7AAACE 포인트, 헤더에 바짝 붙임 ──────────────────────────
+    st.markdown("<hr style='margin-top: -2.5rem; margin-bottom: 0; border: none; border-top: 1px solid #E2E8F0;'>", unsafe_allow_html=True)
 
     st.html(
         """
-        <div style='text-align: center; padding: 2rem 0 1rem;'>
-            <h2 style='font-size: 1.6em; font-weight: 700; margin-bottom: 0.4rem;'>
+        <div style='text-align: center; padding: 0 0 0.5rem;'>
+            <h2 style='font-size: 1.5em; font-weight: 700; margin-bottom: 0.3rem; color: #334155;'>
                 무엇을 검토하고 싶으신가요?
             </h2>
-            <p style='color: #6B7280; font-size: 1.0em;'>
-                아래 키워드를 클릭하면 관련 기준서 조항을 바로 열람할 수 있습니다.
+            <p style='color: #64748B; font-size: 0.9em; margin-bottom: 0;'>
+                아래 주제를 클릭하면 관련 기준서 조항을 바로 열람할 수 있습니다.
             </p>
         </div>
     """
     )
 
-    # ── 키워드 칩 버튼 렌더링 (12개 + 커스텀 1개, 4열 배치) ────────────
-    target_chip = None
-    spinner_placeholder = None
-    active_chip = st.session_state.get("active_chip")
+    # ── 2단 레이아웃: 좌(5단계 모형) / 우(후속·특수 거래) ────────────────
+    left_col, right_col = st.columns(2, gap="small")
 
-    cols = st.columns(4)
-    # 일반 키워드 칩 12개 렌더링
-    for i, chip in enumerate(KEYWORD_CHIPS):
-        with cols[i % 4]:
-            is_active = active_chip == chip
-            is_disabled = (active_chip is not None) and (not is_active)
-            btn_type = "primary" if is_active else "secondary"
+    with left_col:
+        st.markdown("**📋 5단계 수익인식 모형**")
+        st.markdown("<hr style='border: none; border-top: 1.5px dashed #E2E8F0; margin: 5px 0 20px 0;'>", unsafe_allow_html=True)
+        with st.container(border=True):
+            _render_topic_column(HOME_TOPICS_LEFT, "L")
 
-            if st.button(
-                chip,
-                use_container_width=True,
-                key=f"chip_{i}",
-                type=btn_type,
-                disabled=is_disabled,
-            ):
-                st.session_state.active_chip = chip
-                st.rerun()
+    with right_col:
+        st.markdown("**📋 후속 처리 · 특수 거래**")
+        st.markdown("<hr style='border: none; border-top: 1.5px dashed #E2E8F0; margin: 5px 0 20px 0;'>", unsafe_allow_html=True)
+        with st.container(border=True):
+            _render_topic_column(HOME_TOPICS_RIGHT, "R")
 
-            if is_active:
-                target_chip = chip
-                spinner_placeholder = st.empty()
-
-    # ── 커스텀 단어 검색 버튼 (마지막 칩) ──────────────────────
-    custom_query = None
-
-    # 4열 맞춰서 빈 공간에 자연스럽게 배치
-    with cols[len(KEYWORD_CHIPS) % 4]:
-        chip = _CUSTOM_CHIP_LABEL
-        is_active = active_chip == chip
-        is_disabled = (active_chip is not None) and (not is_active)
-        btn_type = "primary" if is_active else "secondary"
-
-        if st.button(
-            chip,
-            use_container_width=True,
-            key="chip_custom",
-            type=btn_type,
-            disabled=is_disabled,
-        ):
-            st.session_state.active_chip = chip
-            st.rerun()
-
-    # 버튼이 눌려 활성화된 경우에만 새로운 줄(전체 너비)에 검색 양식을 표시합니다.
-    if active_chip == _CUSTOM_CHIP_LABEL:
-        st.markdown("<div style='margin-top: 0.5rem;'></div>", unsafe_allow_html=True)
-        # 밑에 있는 메인 검색창과 대비되도록, 박스 외곽선을 없애고(border=False) 컴팩트하게 구성
-        with st.form("custom_chip_form", clear_on_submit=False, border=False):
-            col_in, col_sub, col_can = st.columns([6, 2, 2])
-            with col_in:
-                custom_input = st.text_input(
-                    "용어 직접 입력",
-                    placeholder="찾고자 하는 회계 용어 입력 (예: 변동대가 / 수행의무)",
-                    label_visibility="collapsed",
-                )
-            with col_sub:
-                # 메인 검색의 빨간색 버튼(primary)과 다르게 기본(secondary) 스타일의 작고 깔끔한 형태
-                custom_submitted = st.form_submit_button(
-                    "🔍 검색", use_container_width=True
-                )
-            with col_can:
-                cancel = st.form_submit_button("취소", use_container_width=True)
-
-        if custom_submitted and custom_input:
-            custom_query = custom_input.strip()
-        if cancel:
-            st.session_state.active_chip = None
-            st.rerun()
-
-        custom_spinner_placeholder = st.empty()
-
-    # 넓은 수직 여백 추가 (구분감 확보)
-    st.markdown("<br><br><br>", unsafe_allow_html=True)
-
-    # ── 자유 검색 폼 ──────────────────────────────────────────────────────────
-    st.markdown("##### 💬 복잡한 거래 구조나 애매한 상황인가요?")
+    # ── 하단: 자유 질문 입력 ──────────────────────────────────────────────
+    st.divider()
+    st.markdown("#### :material/chat: 직접 질문하기")
     st.caption(
-        "키워드로 찾기 어려운 구체적인 사실관계를 자유롭게 설명해 주세요. AI가 상황을 분석하고 정확한 판단을 위한 꼬리질문을 던져드립니다."
+        "구체적인 사실관계를 자유롭게 설명해 주세요. "
+        "AI가 상황을 분석하고 사실에 기반한 답변을 드립니다."
     )
 
-    search_spinner_placeholder = None
     with st.form("search_form", clear_on_submit=False):
         query = st.text_area(
             "상황 입력",
-            placeholder="상세한 거래 구조나 애매한 회계 상황을 자유롭게 입력해 주세요...\n(예: 반품 가능성이 높을 때 매출 인식 시기는?)",
+            placeholder="상세한 거래 구조나 애매한 회계 상황을 자유롭게 입력해 주세요...\n"
+            "(예: 반품 가능성이 높을 때 매출 인식 시기는?)",
             label_visibility="collapsed",
-            height=150,
+            height=100,
         )
         submitted = st.form_submit_button(
             "검색하기", use_container_width=True, type="primary"
         )
 
-    search_spinner_placeholder = st.empty()
-
-    # ── 통신 실행 (모든 위젯 렌더링 완료 후) ────────────────────────────────
-    # Streamlit은 위젯 렌더링 이후에 API 호출을 실행해야 합니다.
-    if custom_query:
-        with custom_spinner_placeholder:
-            st.session_state.active_chip = None
-            _call_search(custom_query)
-    elif submitted and query and search_spinner_placeholder is not None:
-        with search_spinner_placeholder:
-            st.session_state.active_chip = None
-            with st.spinner(
-                "입력하신 상황을 분석하여 1115호 기준에 따라 꼬리질문을 생성하고 있습니다..."
-            ):
-                _call_chat(query, use_cache=False)
-    elif target_chip and spinner_placeholder:
-        with spinner_placeholder:
-            st.session_state.active_chip = None
-            _call_search(target_chip)
+    # 위젯 렌더링 완료 후 API 호출 (Streamlit 원칙)
+    search_placeholder = st.empty()
+    if submitted and query:
+        with search_placeholder:
+            _call_search(query.strip())
 
 
 def _render_evidence() -> None:
@@ -165,10 +108,10 @@ def _render_evidence() -> None:
     title_col, btn_col = st.columns([8, 2], vertical_alignment="bottom")
 
     with title_col:
-        st.markdown(f"### 🔍 검색 결과: **{current_query}**")
+        st.markdown(f"### :material/search: 검색 결과: **{current_query}**")
 
     with btn_col:
-        if st.button("← 새 검색", use_container_width=True):
+        if st.button("새 검색", icon=":material/arrow_back:", use_container_width=True):
             _go_home()
 
     st.divider()
@@ -182,7 +125,7 @@ def _render_evidence() -> None:
     st.divider()
 
     # AI 질문 입력창
-    st.markdown("#### 💡 AI에게 해석을 물어보세요")
+    st.markdown("#### :material/lightbulb: AI에게 해석을 물어보세요")
     st.caption("위 조항들을 바탕으로 AI가 실무 관점의 답변을 드립니다.")
 
     with st.form("ai_question_form", clear_on_submit=True):
@@ -208,13 +151,13 @@ def _render_ai_answer() -> None:
         st.html(
             f"""
             <div style='padding: 0.5rem 0;'>
-                <span style='color: #6B7280; font-size: 0.9em;'>질문</span><br>
+                <span style='color: #64748B; font-size: 0.9em;'>질문</span><br>
                 <strong>{html.escape(st.session_state.ai_question)}</strong>
             </div>
         """
         )
     with col2:
-        if st.button("🏠 새 검색", use_container_width=True):
+        if st.button("새 검색", icon=":material/home:", use_container_width=True):
             _go_home()
 
     st.divider()
@@ -223,11 +166,11 @@ def _render_ai_answer() -> None:
     left, right = st.columns([1, 1])
 
     with left:
-        st.subheader("📄 근거 문서")
+        st.subheader(":material/description: 근거 문서")
         _render_evidence_panel()
 
     with right:
-        st.subheader("🤖 AI 답변")
+        st.subheader(":material/smart_toy: AI 답변")
 
         answer = st.session_state.ai_answer
         if answer:
@@ -239,14 +182,14 @@ def _render_ai_answer() -> None:
         if st.session_state.findings_case:
             fc = st.session_state.findings_case
             case_title = fc.get("title", "감리지적사례")
-            with st.expander(f"📋 금융감독원 지적사례: {case_title}", expanded=False):
+            with st.expander(f":material/gavel: 금융감독원 지적사례: {case_title}", expanded=False):
                 raw_content = fc.get("content", "내용을 불러올 수 없습니다.")
                 adjusted = raw_content.replace("# ", "### ").replace("## ", "#### ")
                 st.markdown(adjusted)
 
         # 출처 expander
         if st.session_state.cited_sources:
-            with st.expander("📌 참고 근거 보기", expanded=False):
+            with st.expander(":material/bookmark: 참고 근거 보기", expanded=False):
                 for src in st.session_state.cited_sources:
                     source_type = src.get("source", "알 수 없음")
                     hierarchy = src.get("hierarchy", "출처 정보 없음")
@@ -273,7 +216,7 @@ def _render_ai_answer() -> None:
         st.divider()
 
         # 자유 입력창 — 새로운 주제 가능성이 있으므로 full pipeline 수행
-        st.markdown("#### 💬 추가 질문")
+        st.markdown("#### :material/forum: 추가 질문")
         with st.form("followup_form", clear_on_submit=True):
             new_q = st.text_input(
                 "추가 질문",

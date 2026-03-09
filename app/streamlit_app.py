@@ -31,6 +31,7 @@ from app.ui.layout import _inject_css, _render_header, _render_sidebar
 from app.ui.modal import _show_reference_modal
 from app.ui.pages import _render_ai_answer, _render_evidence, _render_home
 from app.ui.session import _init_session
+from app.ui.topic_browse import _render_topic_browse
 
 
 def main() -> None:
@@ -50,6 +51,8 @@ def main() -> None:
 
     if page == "home":
         _render_home()
+    elif page == "topic_browse":
+        _render_topic_browse()
     elif page == "evidence":
         _render_evidence()
     elif page == "ai_answer":
