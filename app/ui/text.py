@@ -41,7 +41,7 @@ _PARA_REF_RE = re.compile(
 # "문단 47 및 52", "문단 B2, B3 및 B4" 같은 접속사 연결 패턴
 _PARA_CONJ_RE = re.compile(
     r"문단\s*((?:IE|BC|B)?\d+[A-Za-z]*)"       # 첫 번호: "47" or "B2"
-    r"((?:\s*(?:[,，]|및|과|또는|그리고)\s*"     # 접속사: ",", "및", "과" 등
+    r"((?:\s*(?:[,，]|및|과|와|또는|그리고)\s*"   # 접속사: ",", "및", "과", "와" 등
     r"(?:문단\s*)?(?:(?:IE|BC|B)?\d+[A-Za-z]*))+)"  # 후속 번호: "52", "B3" 등
 )
 
@@ -158,9 +158,12 @@ def clean_text(text: str) -> str:
     )
     # 2.5) 접속사 뒤 bare 숫자도 강조 — "문단 47</span> 및 52" → "및 <span>52</span>"
     # 체이닝 처리: "문단 47, 52 및 53" → 각 숫자에 순차적으로 span 적용
-    for _ in range(3):
+    # 괄호 suffix 허용: "문단 35</span>(3), 37" → (3) 건너뛰고 37도 처리
+    _CONJ = r'(?:[,，]|및|과|와|또는|그리고)'
+    _NUM_RANGE = r'(?:IE|BC|B)?\d+[A-Za-z]*(?:[~～\-](?:IE|BC|B)?\d+[A-Za-z]*)?'
+    for _ in range(15):  # 실데이터에 13개 나열 존재
         text, n = re.subn(
-            r'(</span>\s*(?:[,，]|및|과|또는|그리고)\s*)(\d+[A-Za-z]*)',
+            rf'(</span>(?:\([0-9가-힣]+\))?\s*{_CONJ}\s*)({_NUM_RANGE})',
             r'\1<span style="color:#1f77b4;font-weight:600;">\2</span>',
             text,
         )

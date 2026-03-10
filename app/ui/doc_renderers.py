@@ -35,7 +35,13 @@ def _render_para_chips(
     """
     self_ids = self_ids or set()
     all_refs = _extract_para_refs(text)
-    refs = [r for r in all_refs if r not in self_ids]
+    # 중복 제거 (순서 유지)
+    seen: set[str] = set()
+    refs = []
+    for r in all_refs:
+        if r not in self_ids and r not in seen:
+            seen.add(r)
+            refs.append(r)
     if not refs:
         return
 

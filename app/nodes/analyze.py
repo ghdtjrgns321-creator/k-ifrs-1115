@@ -30,4 +30,6 @@ async def analyze_query(state: dict) -> dict:
         "is_situation": data.is_situation,
         "search_keywords": data.search_keywords,
         "matched_topics": matched,
+        "confusion_point": data.confusion_point,
+        "complexity": data.complexity,
     }

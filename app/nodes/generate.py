@@ -6,7 +6,7 @@
 #   False → generate_agent (개념 답변 + 꼬리질문)
 import re
 
-from app.agents import generate_agent, clarify_agent, ClarifyDeps, GenerateOutput, _generate_model
+from app.agents import generate_agent, clarify_agent, ClarifyDeps, GenerateOutput, _generate_model, _front_model
 from app.prompts import CLARIFY_USER, GENERATE_USER
 from app.services.search_service import INVERTED_MAPPING
 
@@ -133,7 +133,16 @@ async def generate_answer(state: dict) -> dict:
                 confusion_point=confusion_point,
                 question=state["standalone_query"],
             )
-            result = await generate_agent.run(user_msg)
+            # complexity 기반 모델 스위칭: simple → gpt-5-mini(빠름), complex → o4-mini(정확)
+            complexity = state.get("complexity", "complex")
+            if complexity == "simple":
+                result = await generate_agent.run(
+                    user_msg,
+                    model=_front_model(),
+                    model_settings={"openai_reasoning_effort": "low", "max_tokens": 4096},
+                )
+            else:
+                result = await generate_agent.run(user_msg)
             output = result.output
 
         answer = output.answer

@@ -21,6 +21,30 @@ _MAX_PREVIEW = 3
 # ── 공통 헬퍼 ───────────────────────────────────────────────────────────────
 
 
+def _md_to_html(text: str) -> str:
+    """큐레이션 텍스트의 마크다운을 HTML로 변환합니다.
+
+    topics.json의 summary/desc 필드용. HTML div 안에서 렌더되므로 직접 변환합니다.
+    """
+    # 1) HTML 위험 문자 이스케이프 (XSS 방지)
+    t = _html.escape(text)
+    # 2) **볼드** → <strong>볼드</strong>
+    t = _re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+    # 3) 한국어 문장 종결 뒤 줄바꿈 (벽돌 텍스트 방지)
+    #    JSON 데이터가 "합니다 ." 형태(다와 . 사이 공백)로 저장된 경우도 처리
+    #    먼저 "다 ." → "다." 정규화, 그 후 줄바꿈 삽입
+    t = _re.sub(r"(?<=[가-힣])다\s+\.", "다.", t)
+    t = _re.sub(
+        r"(?<=[가-힣])다\.\s+",
+        "다.<br>",
+        t,
+    )
+    # 4) 기존 줄바꿈 처리 (JSON에 \n이 있는 경우)
+    t = t.replace("\n\n", "<br>")
+    t = t.replace("\n", "<br>")
+    return t
+
+
 @st.cache_data(ttl=300, show_spinner=False)
 def _batch_fetch_paras(para_ids: tuple) -> dict[str, dict]:
     """문단 번호 목록을 일괄 조회하고 paraNum 키로 인덱싱합니다."""
@@ -40,12 +64,11 @@ def _summary_box(text: str) -> None:
     """요약 텍스트를 연한 하늘색 박스로 렌더링합니다."""
     if not text:
         return
-    escaped = _html.escape(text).replace("\n", "<br>")
     st.markdown(
         f'<div style="line-height:1.75; color:#1e3a5f; font-size:0.9em; '
         f'padding:0.6rem 0.85rem; background:#eef6ff; '
         f'border-left:3px solid #93c5fd; border-radius:4px; '
-        f'margin-bottom:0.5rem;">{escaped}</div>',
+        f'margin-bottom:0.5rem;">{_md_to_html(text)}</div>',
         unsafe_allow_html=True,
     )
 
@@ -54,12 +77,11 @@ def _desc_blockquote(desc: str) -> None:
     """설명 텍스트를 연한 회색 블록 + 하단 구분선으로 렌더링합니다."""
     if not desc:
         return
-    escaped = _html.escape(desc).replace("\n", "<br>")
     st.markdown(
         f'<div style="line-height:1.75; color:#475569; font-size:0.88em; '
         f'padding:0.5rem 0.75rem; background:#f8fafc; '
         f'border-left:2px solid #cbd5e1; border-radius:2px;">'
-        f'{escaped}</div>'
+        f'{_md_to_html(desc)}</div>'
         f'<hr style="border:none; border-top:1px solid #e2e8f0; margin:0.4rem 0 0.2rem;">',
         unsafe_allow_html=True,
     )
@@ -208,11 +230,12 @@ def _render_main_bc_tab(data: dict) -> None:
 
             if paras:
                 st.markdown("**기준서 원문**")
-                for p in paras:
-                    for ep in _expand_para_range(p):
-                        doc = para_index.get(ep)
-                        if doc:
-                            _render_para_expander(doc, idx=i)
+                with st.container(gap="xsmall"):
+                    for p in paras:
+                        for ep in _expand_para_range(p):
+                            doc = para_index.get(ep)
+                            if doc:
+                                _render_para_expander(doc, idx=i)
 
             if bc_paras:
                 if paras:
@@ -231,11 +254,12 @@ def _render_main_bc_tab(data: dict) -> None:
                 else:
                     bc_range = "(BC)"
                 st.markdown(f"**결론도출근거{bc_range}**")
-                for p in bc_paras:
-                    for ep in _expand_para_range(p):
-                        doc = para_index.get(ep)
-                        if doc:
-                            _render_para_expander(doc, idx=i)
+                with st.container(gap="xsmall"):
+                    for p in bc_paras:
+                        for ep in _expand_para_range(p):
+                            doc = para_index.get(ep)
+                            if doc:
+                                _render_para_expander(doc, idx=i)
 
         # 미리보기 캡션 (최대 3개 + "...")
         all_p: list[str] = []
@@ -254,7 +278,8 @@ def _render_ie_tab(data: dict) -> None:
 
     _summary_box(summary)
     if not cases:
-        st.caption("등록된 적용사례가 없습니다.")
+        if not summary:
+            st.caption("등록된 적용사례가 없습니다.")
         return
 
     all_ie_ids: list[str] = []
@@ -273,11 +298,35 @@ def _render_ie_tab(data: dict) -> None:
             _desc_blockquote(case_desc)
 
             if para_range:
-                para_ids = _expand_para_range(para_range)
-                for pid in para_ids:
-                    doc = ie_index.get(pid)
-                    if doc:
-                        _render_para_expander(doc, idx=100 + i)
+                with st.container(gap="xsmall"):
+                    para_ids = _expand_para_range(para_range)
+                    for pid in para_ids:
+                        doc = ie_index.get(pid)
+                        if doc:
+                            _render_para_expander(doc, idx=100 + i)
+
+
+def _get_parent_field(parent: dict, field: str, default: str = "") -> str:
+    """parent 문서에서 필드를 조회합니다 (top-level → metadata 중첩 순서).
+
+    QNA/감리사례 parent 컬렉션은 title, hierarchy 등이 metadata 안에 중첩되어 있으므로
+    top-level에 없으면 metadata에서 찾습니다.
+    """
+    val = parent.get(field)
+    if val:
+        return val
+    meta = parent.get("metadata") or {}
+    return meta.get(field, default)
+
+
+def _hierarchy_path(hierarchy: str) -> str:
+    """hierarchy에서 마지막 세그먼트(제목)를 제거하고 경로만 반환합니다.
+
+    '질의회신 > 신속처리질의 > K-IFRS 제1115호 > 매출 시 지급한 지체상금의 회계처리'
+    → '질의회신 > 신속처리질의 > K-IFRS 제1115호'
+    """
+    parts = [p.strip() for p in hierarchy.split(">") if p.strip()]
+    return " > ".join(parts[:-1]) if len(parts) > 1 else hierarchy
 
 
 # ── 탭 3: 질의회신(QNA) ────────────────────────────────────────────────────
@@ -291,7 +340,8 @@ def _render_qna_tab(data: dict) -> None:
 
     _summary_box(summary)
     if not qna_ids:
-        st.caption("등록된 질의회신이 없습니다.")
+        if not summary:
+            st.caption("등록된 질의회신이 없습니다.")
         return
 
     for i, qna_id in enumerate(qna_ids):
@@ -299,30 +349,27 @@ def _render_qna_tab(data: dict) -> None:
         desc = qna_descs.get(qna_id, "")
 
         if parent:
-            title = parent.get("title", qna_id)
-            hierarchy = parent.get("hierarchy", "")
+            raw_title = _get_parent_field(parent, "title", qna_id)
+            hierarchy = _get_parent_field(parent, "hierarchy")
             content = parent.get("content", "")
+            label = _build_pdr_label(qna_id, raw_title, content)
 
-            with st.expander(f":material/description: {title}", expanded=(i == 0)):
-                if hierarchy:
+            with st.expander(f":material/description: {label}", expanded=False):
+                hier_path = _hierarchy_path(hierarchy) if hierarchy else ""
+                if hier_path:
                     st.markdown(
                         f'<div style="font-size:0.78em; color:#6b7280; background:#f1f5f9; '
                         f'display:inline-block; padding:2px 10px; border-radius:12px; '
-                        f'margin-bottom:0.5rem;">💬 {_html.escape(hierarchy)}</div>',
+                        f'margin-bottom:0.5rem;">🏷️ {_html.escape(hier_path)}</div>',
                         unsafe_allow_html=True,
                     )
                 _desc_blockquote(desc)
 
-                st.markdown(
-                    f'<span style="display:inline-block; background:#e0e7ff; color:#3730a3; '
-                    f'font-size:0.8em; font-weight:600; padding:2px 8px; border-radius:4px; '
-                    f'margin-bottom:0.5rem;">[{_html.escape(qna_id)}]</span>',
-                    unsafe_allow_html=True,
-                )
-
                 if content:
                     adjusted = _format_pdr_content(content)
                     st.markdown(clean_text(adjusted), unsafe_allow_html=True)
+                    # 본문 내 참조 문단을 클릭 가능한 칩으로 표시
+                    _render_para_chips(content, qna_id, doc_index=200 + i)
 
                 st.html(
                     f'<div class="source-footer">📍 출처 경로: '
@@ -337,13 +384,42 @@ def _render_qna_tab(data: dict) -> None:
 # ── 탭 4: 감리지적사례 ─────────────────────────────────────────────────────
 
 
+def _build_pdr_label(doc_id: str, title: str, content: str) -> str:
+    """QNA/감리지적사례 expander 제목을 [ID] 설명 형태로 생성합니다.
+
+    DB title 상태에 따라 3가지 케이스:
+      A) title이 이미 [ID]를 포함 → "레퍼런스" 제거 후 그대로
+      B) title이 설명만 있음 (ID 미포함) → [doc_id] 접두어 추가
+      C) title이 doc_id와 동일하거나 빈값 → content 첫 줄에서 설명 추출
+    """
+    clean = _re.sub(r"^레퍼런스\s*", "", title).strip()
+
+    # A) 이미 [ID] 포함 → 그대로
+    if f"[{doc_id}]" in clean:
+        return clean
+
+    # C) title 없거나 doc_id와 동일 → content 첫 줄에서 추출
+    if not clean or clean == doc_id:
+        if content:
+            first_line = content.split("\n")[0].strip()
+            # "레퍼런스 [ID] 제목" 또는 "[ID] 제목" 또는 "ID 제목" 패턴
+            m = _re.match(
+                r"^(?:레퍼런스\s*)?\[?" + _re.escape(doc_id) + r"\]?\s*(.+)",
+                first_line,
+            )
+            if m:
+                return f"[{doc_id}] {m.group(1).strip()}"
+        return doc_id
+
+    # B) 설명은 있지만 [ID] 없음 → prepend
+    return f"[{doc_id}] {clean}"
+
+
 def _render_findings_tab(data: dict) -> None:
     """감리지적사례 탭을 렌더링합니다."""
-    summary = data.get("summary", "")
     finding_ids = data.get("finding_ids", [])
     finding_descs: dict = data.get("finding_descs", {})
 
-    _summary_box(summary)
     if not finding_ids:
         st.caption("등록된 감리지적사례가 없습니다.")
         return
@@ -353,16 +429,18 @@ def _render_findings_tab(data: dict) -> None:
         desc = finding_descs.get(fid, "")
 
         if parent:
-            title = parent.get("title", fid)
-            hierarchy = parent.get("hierarchy", "")
+            raw_title = _get_parent_field(parent, "title", fid)
+            hierarchy = _get_parent_field(parent, "hierarchy")
             content = parent.get("content", "")
+            label = _build_pdr_label(fid, raw_title, content)
 
-            with st.expander(f":material/description: {title}", expanded=(i == 0)):
-                if hierarchy:
+            with st.expander(f":material/description: {label}", expanded=False):
+                hier_path = _hierarchy_path(hierarchy) if hierarchy else ""
+                if hier_path:
                     st.markdown(
                         f'<div style="font-size:0.78em; color:#6b7280; background:#f1f5f9; '
                         f'display:inline-block; padding:2px 10px; border-radius:12px; '
-                        f'margin-bottom:0.5rem;">🚨 {_html.escape(hierarchy)}</div>',
+                        f'margin-bottom:0.5rem;">🏷️ {_html.escape(hier_path)}</div>',
                         unsafe_allow_html=True,
                     )
                 _desc_blockquote(desc)
@@ -370,6 +448,8 @@ def _render_findings_tab(data: dict) -> None:
                 if content:
                     adjusted = _format_pdr_content(content)
                     st.markdown(clean_text(adjusted), unsafe_allow_html=True)
+                    # 본문 내 참조 문단을 클릭 가능한 칩으로 표시
+                    _render_para_chips(content, fid, doc_index=300 + i)
 
                 st.html(
                     f'<div class="source-footer">📍 출처 경로: '

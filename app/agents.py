@@ -47,6 +47,10 @@ class AnalyzeResult(BaseModel):
         default="",
         description="사용자 혼동 원인 (예: '세금계산서 발행 주체'). 없으면 빈 문자열",
     )
+    complexity: str = Field(
+        default="complex",
+        description="simple: 단일 쟁점/조항 직접 인용 가능, complex: 다중 쟁점/Case 분기 필요",
+    )
 
 
 class DocGrade(BaseModel):

@@ -11,9 +11,14 @@ import traceback
 import streamlit as st
 
 
+# QNA/감리사례 부모 문서가 저장된 별도 컬렉션명
+_QNA_PARENT_COLL = "k-ifrs-1115-qna-parents"
+_FINDINGS_PARENT_COLL = "k-ifrs-1115-findings-parents"
+
+
 @st.cache_resource
-def _get_mongo_collection():
-    """MongoDB 커넥션을 앱 전역에서 단 한 번만 생성합니다.
+def _get_mongo_db():
+    """MongoDB 데이터베이스 객체를 앱 전역에서 단 한 번만 생성합니다.
 
     매 클릭마다 새 연결을 맺으면 Timeout 에러가 자주 발생하므로
     @st.cache_resource로 프로세스 수명 동안 재사용합니다.
@@ -30,8 +35,13 @@ def _get_mongo_collection():
     from app.config import settings
 
     client = MongoClient(settings.mongo_uri, serverSelectionTimeoutMS=5000)
-    db = client[settings.mongo_db_name]
-    return db[settings.mongo_collection_name]
+    return client[settings.mongo_db_name]
+
+
+def _get_mongo_collection():
+    """메인 컬렉션(본문 + child 청크)을 반환합니다."""
+    from app.config import settings
+    return _get_mongo_db()[settings.mongo_collection_name]
 
 
 def _fetch_para_from_db(para_num: str) -> dict | None:
@@ -85,6 +95,7 @@ def _fetch_para_from_db(para_num: str) -> dict | None:
 def _expand_para_range(raw_num: str) -> list[str]:
     """'56~59' → ['56','57','58','59'],  'B20~B27' → ['B20',...,'B27'].
 
+    알파벳 접미사 범위도 지원: 'IE238A~IE238G' → ['IE238A',...,'IE238G'].
     범위가 아니면 [raw_num]을 그대로 반환합니다.
     20개 초과 범위는 성능 보호를 위해 시작 번호만 반환합니다.
     """
@@ -92,6 +103,23 @@ def _expand_para_range(raw_num: str) -> list[str]:
         # 하위 문단 접미사 제거: "B19(1)" → "B19"
         # DB는 하위 문단을 별도 문서로 저장하지 않으므로 기본 문단으로 조회
         cleaned = re.sub(r"\([0-9가-힣]+\)$", "", raw_num.strip())
+
+        # 알파벳 접미사 범위: IE238A~IE238G → prefix=IE, num=238, A~G
+        m_alpha = re.match(
+            r"^([A-Za-z]*?)(\d+)([A-Za-z])[~～\-]\1\2([A-Za-z])$", cleaned
+        )
+        if m_alpha:
+            prefix = m_alpha.group(1)
+            num = m_alpha.group(2)
+            start_ch = m_alpha.group(3).upper()
+            end_ch = m_alpha.group(4).upper()
+            if start_ch <= end_ch and (ord(end_ch) - ord(start_ch)) <= 20:
+                return [
+                    f"{prefix}{num}{chr(c)}"
+                    for c in range(ord(start_ch), ord(end_ch) + 1)
+                ]
+
+        # 숫자 범위: 56~59, B20~B27
         m = re.match(r"^([A-Za-z]*?)(\d+)[~～\-]([A-Za-z]*?)(\d+)$", cleaned)
         if not m:
             return [cleaned]
@@ -112,15 +140,24 @@ def _expand_para_range(raw_num: str) -> list[str]:
 
 
 def fetch_parent_doc(parent_id: str) -> dict | None:
-    """parent_id(chunk_id)로 MongoDB에서 부모 문서를 조회합니다.
+    """parent_id로 MongoDB에서 부모 문서를 조회합니다.
 
-    QNA/감리사례의 자식 청크가 부모 원문을 참조할 때 사용합니다.
+    QNA/감리사례는 별도 parent 컬렉션에 _id로 저장되어 있으므로
+    ID 접두사로 올바른 컬렉션을 라우팅합니다.
     """
     if not parent_id:
         return None
     try:
-        coll = _get_mongo_collection()
-        doc = coll.find_one({"chunk_id": parent_id}, {"embedding": 0})
+        db = _get_mongo_db()
+        # QNA/감리사례 → 별도 parent 컬렉션에서 _id로 조회
+        if parent_id.startswith("QNA-"):
+            doc = db[_QNA_PARENT_COLL].find_one({"_id": parent_id}, {"embedding": 0})
+        elif parent_id.startswith(("FSS-", "KICPA-")):
+            doc = db[_FINDINGS_PARENT_COLL].find_one({"_id": parent_id}, {"embedding": 0})
+        else:
+            # 본문 등 기존 방식 — 메인 컬렉션에서 chunk_id로 조회
+            coll = _get_mongo_collection()
+            doc = coll.find_one({"chunk_id": parent_id}, {"embedding": 0})
         return dict(doc) if doc else None
     except Exception:
         return None

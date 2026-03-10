@@ -9,6 +9,7 @@ import re
 
 import streamlit as st
 
+from app.ui.client import _call_search
 from app.ui.session import _go_home
 
 # 버튼 표시명과 JSON 키가 다른 경우의 명시적 매핑
@@ -68,7 +69,10 @@ def _render_topic_browse() -> None:
     # ── 헤더: 토픽명 + 새 검색 버튼 ─────────────────────────────────────────
     title_col, btn_col = st.columns([8, 2], vertical_alignment="bottom")
     with title_col:
-        st.markdown(f"### :material/menu_book: {topic}")
+        st.markdown(
+            f"<h3 style='margin:0.2rem 0 0.6rem; padding:0;'>📖 {topic}</h3>",
+            unsafe_allow_html=True,
+        )
     with btn_col:
         if st.button("새 검색", icon=":material/arrow_back:", use_container_width=True):
             _go_home()
@@ -88,18 +92,26 @@ def _render_topic_browse() -> None:
     cross_links = topic_data.get("cross_links", [])
     if cross_links:
         st.caption("🔗 관련 토픽")
-        selected_link = st.pills(
+
+        def _on_xlink_change():
+            """pills 위젯의 on_change 콜백 — 위젯 인스턴스 전에 실행되므로 키 수정 가능."""
+            picked = st.session_state.get("xlink_pills")
+            if picked:
+                st.session_state.selected_topic = picked
+                st.session_state["xlink_pills"] = None
+
+        st.pills(
             "관련 토픽",
             options=cross_links,
             label_visibility="collapsed",
             key="xlink_pills",
+            on_change=_on_xlink_change,
         )
-        if selected_link:
-            st.session_state.selected_topic = selected_link
-            st.session_state["xlink_pills"] = None
-            st.rerun()
 
-    st.divider()
+    st.markdown(
+        "<hr style='border:none; border-top:1px solid #E2E8F0; margin:0.3rem 0 0.2rem;'>",
+        unsafe_allow_html=True,
+    )
 
     # ── 4탭 렌더링 ─────────────────────────────────────────────────────────
     from app.ui.topic_tabs import (
@@ -113,10 +125,39 @@ def _render_topic_browse() -> None:
     tabs = st.tabs(tab_labels)
 
     with tabs[0]:
-        _render_main_bc_tab(topic_data.get("main_and_bc", {}))
+        with st.container(gap="xsmall"):
+            _render_main_bc_tab(topic_data.get("main_and_bc", {}))
     with tabs[1]:
-        _render_ie_tab(topic_data.get("ie", {}))
+        with st.container(gap="xsmall"):
+            _render_ie_tab(topic_data.get("ie", {}))
     with tabs[2]:
-        _render_qna_tab(topic_data.get("qna", {}))
+        with st.container(gap="xsmall"):
+            _render_qna_tab(topic_data.get("qna", {}))
     with tabs[3]:
-        _render_findings_tab(topic_data.get("findings", {}))
+        with st.container(gap="xsmall"):
+            _render_findings_tab(topic_data.get("findings", {}))
+
+    # ── 하단: 자유 질문 입력 (토픽 맥락) ─────────────────────────────────────
+    st.divider()
+    st.markdown("#### :material/chat: 이 주제에 대해 더 궁금한 점이 있으신가요?")
+    st.caption(
+        f"'{topic}'에 관한 기준서 해석이나 비슷한 실무 상황이 있다면 자유롭게 질문해 주세요. "
+        "AI가 관련 조항을 근거로 답변을 드립니다."
+    )
+
+    with st.form("topic_search_form", clear_on_submit=False):
+        query = st.text_area(
+            "상황 입력",
+            placeholder=f"'{topic}'과 관련된 구체적인 거래 상황이나 궁금한 점을 입력해 주세요...\n"
+            f"(예: 이 경우에 수익을 어떤 시점에 인식해야 하나요?)",
+            label_visibility="collapsed",
+            height=100,
+        )
+        submitted = st.form_submit_button(
+            "검색하기", use_container_width=True, type="primary"
+        )
+
+    search_placeholder = st.empty()
+    if submitted and query:
+        with search_placeholder:
+            _call_search(query.strip())

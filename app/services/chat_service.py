@@ -121,10 +121,18 @@ async def run_graph_stream(
             if relevant_docs:
                 store.set_cached_docs(session_id, relevant_docs)
         else:
-            # 후속 턴: turn_count 증가 + 사용자 답변을 checked_items에 추가
+            # 후속 턴: turn_count 증가 + 사용자 답변을 Q&A 쌍으로 기록
             checklist_state["turn_count"] = checklist_state.get("turn_count", 0) + 1
-            # 사용자의 답변(message)을 checked_items에 기록
-            checklist_state.setdefault("checked_items", []).append(message)
+            # 직전 AI 질문을 추출하여 Q&A 쌍으로 저장 → clarify_agent가 중복 질문 방지
+            last_ai_question = ""
+            for role, content in reversed(prev_messages):
+                if role == "ai":
+                    last_ai_question = content[:300]
+                    break
+            checklist_state.setdefault("checked_items", []).append({
+                "question": last_ai_question,
+                "answer": message,
+            })
             store.set_checklist_state(session_id, checklist_state)
     elif not is_situation and checklist_state is not None:
         # 최종 답변 전환: 체크리스트 상태 클리어

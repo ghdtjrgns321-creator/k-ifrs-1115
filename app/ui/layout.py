@@ -26,11 +26,6 @@ _CUSTOM_CSS = """
         margin-top: -1rem !important;
     }
 
-    /* 홈: 토픽 버튼 세로 간격 축소 — border container 내부의 gap을 절반으로 */
-    div[data-testid="stVerticalBlockBorderWrapper"] div[data-testid="stVerticalBlock"] {
-        gap: 0.5rem !important;
-    }
-
     /* expander 카드 */
     div[data-testid="stExpander"] {
         border: 1px solid #E2E8F0 !important;

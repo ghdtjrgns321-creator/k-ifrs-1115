@@ -69,6 +69,27 @@ def clean_html_to_md(item):
         new_tag.string = "\n\n" + "\n".join(md_table) + "\n\n"
         tbl.replace_with(new_tag)
 
+    # 번호 목록 처리 (para-inner-number 구조)
+    # kifrs.com HTML: (1),(2) = para-inner-number-item, (가),(나) = hanguel-item
+    # 부모 div 단위로 모든 자식 항목을 텍스트 조립 후 교체
+    _NUM_ITEM_CLASSES = {"para-inner-number-item", "para-inner-number-hanguel-item"}
+    for number_div in soup.find_all("div", class_="para-inner-number"):
+        lines = []
+        for child in number_div.find_all("div", recursive=False):
+            child_classes = set(child.get("class", []))
+            if not child_classes & _NUM_ITEM_CLASSES:
+                continue
+            num_div = child.find("div", class_="para-number-para-num")
+            con_div = child.find("div", class_="para-num-item-para-con")
+            if num_div and con_div:
+                num_text = num_div.get_text(strip=True)
+                con_text = con_div.get_text(separator=" ", strip=True)
+                lines.append(f"{num_text} {con_text}")
+        if lines:
+            new_tag = soup.new_tag("p")
+            new_tag.string = "\n\n" + "\n\n".join(lines) + "\n\n"
+            number_div.replace_with(new_tag)
+
     # 들여쓰기 리스트 처리
     for div in soup.find_all("div"):
         classes = div.get("class", [])
@@ -192,6 +213,27 @@ def clean_html_to_md(item):
     )
 
     final_md = re.sub(r"\n{3,}", "\n\n", text)
+
+    # 번호 항목 (1)/(가) 등이 줄 시작에 올 때 앞에 빈 줄 보장 (마크다운 단락 분리)
+    # "(N) 한글" 또는 "(가) 한글" 패턴만 매칭 → 교차참조 "(1)과" 등은 공백 없으므로 미매칭
+    final_md = re.sub(
+        r"(?<!\n)\n(\((?:\d+|[가-힣])\) [가-힣])", r"\n\n\1", final_md
+    )
+
+    # fullContent에 있지만 HTML 파싱 결과에 없는 텍스트 보충
+    # kifrs.com API에서 하위 항목을 paraContent에 넣지 않는 케이스 대응
+    if full_content:
+        fc_norm = re.sub(r"\s+", "", full_content)
+        md_norm = re.sub(r"\s+", "", final_md)
+        # fullContent 키워드 중 청크에 없는 것이 20% 이상이면 fullContent로 대체
+        fc_words = set(re.findall(r"[가-힣]{3,}", fc_norm))
+        md_words = set(re.findall(r"[가-힣]{3,}", md_norm))
+        if fc_words and len(fc_words - md_words) / len(fc_words) > 0.3:
+            clean_fc = full_content.replace("\xa0", " ")
+            clean_fc = "\n".join(
+                line.strip() for line in clean_fc.split("\n") if line.strip()
+            )
+            final_md = clean_fc
 
     # [수정 1] 텍스트 앞에 이미 있는 문단 번호 흔적 제거 후 볼드 prefix 결합
     # 기존 startswith 방식은 텍스트가 숫자로 시작하면 prefix를 아예 안 붙이는 버그가 있었음

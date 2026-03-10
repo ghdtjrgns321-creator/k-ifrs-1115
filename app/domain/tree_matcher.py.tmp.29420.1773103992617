@@ -20,7 +20,6 @@ def match_topics(standalone_query: str, search_keywords: list[str]) -> list[dict
     candidates: list[dict] = []
 
     # 각 데이터 소스를 순회하며 매칭 점수를 계산
-    # checklist: agents.py _inject_clarify_system에서 total_checklist_items 카운트용
     for topic_name, data in DECISION_TREES.items():
         score = _calc_score(standalone_query, search_keywords, data["trigger_keywords"])
         if score > 0:
@@ -28,7 +27,6 @@ def match_topics(standalone_query: str, search_keywords: list[str]) -> list[dict
                 "tree_type": "decision_tree",
                 "topic_name": topic_name,
                 "checklist_text": _format_decision_tree(topic_name, data),
-                "checklist": data["checklist"],
                 "score": score,
             })
 
@@ -39,7 +37,6 @@ def match_topics(standalone_query: str, search_keywords: list[str]) -> list[dict
                 "tree_type": "qna_match",
                 "topic_name": topic_name,
                 "checklist_text": _format_qna_match(topic_name, data),
-                "checklist": data["qna_premise_checklist"],
                 "score": score,
             })
 
@@ -50,7 +47,6 @@ def match_topics(standalone_query: str, search_keywords: list[str]) -> list[dict
                 "tree_type": "red_flag",
                 "topic_name": topic_name,
                 "checklist_text": _format_red_flag(topic_name, data),
-                "checklist": data["red_flag_questions"],
                 "score": score,
             })
 

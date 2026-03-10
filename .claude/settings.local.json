@@ -13,7 +13,13 @@
       "WebFetch(domain:platform.openai.com)",
       "WebFetch(domain:developers.upstage.ai)",
       "WebFetch(domain:console.upstage.ai)",
-      "WebFetch(domain:openrouter.ai)"
+      "WebFetch(domain:openrouter.ai)",
+      "WebFetch(domain:ai.pydantic.dev)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:www.zenml.io)",
+      "WebFetch(domain:mikulskibartosz.name)",
+      "WebFetch(domain:python.plainenglish.io)"
     ]
   }
 }
