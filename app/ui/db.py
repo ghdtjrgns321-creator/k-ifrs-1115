@@ -6,7 +6,6 @@
 # 커넥션은 @st.cache_resource로 캐싱하여 세션당 1회만 연결합니다.
 
 import re
-import traceback
 
 import streamlit as st
 
@@ -85,10 +84,10 @@ def _fetch_para_from_db(para_num: str) -> dict | None:
         return dict(doc) if doc else None
 
     except Exception as e:
-        st.error(
-            f"DB 조회 중 오류 발생 (단순히 문단이 없는 게 아니라 시스템 오류일 수 있습니다):"
-            f"\n\n{e}\n\n{traceback.format_exc()}"
-        )
+        # st.error()를 쓰면 @st.cache_data 안에서 에러 메시지가 캐시에 "녹음"되어
+        # TTL(300초) 동안 매번 재생됩니다. logging만 남기고 조용히 None 반환.
+        import logging
+        logging.warning("_fetch_para_from_db(%s) 오류: %s", para_num, e)
         return None
 
 
@@ -96,17 +95,53 @@ def _expand_para_range(raw_num: str) -> list[str]:
     """'56~59' → ['56','57','58','59'],  'B20~B27' → ['B20',...,'B27'].
 
     알파벳 접미사 범위도 지원: 'IE238A~IE238G' → ['IE238A',...,'IE238G'].
+    한글 접두사 + 소수점 하위번호 범위도 지원: '한129.1~5' → ['한129.1',...,'한129.5'].
     범위가 아니면 [raw_num]을 그대로 반환합니다.
     20개 초과 범위는 성능 보호를 위해 시작 번호만 반환합니다.
     """
+    # 한글+영문 모두 커버하는 접두사 패턴
+    _PFX = r"[A-Za-z가-힣]*?"
+
     try:
+        # en-dash(–), em-dash(—), minus(−)를 표준 하이픈(-)으로 정규화
+        normalized = re.sub(r"[–—−]", "-", raw_num.strip())
         # 하위 문단 접미사 제거: "B19(1)" → "B19"
         # DB는 하위 문단을 별도 문서로 저장하지 않으므로 기본 문단으로 조회
-        cleaned = re.sub(r"\([0-9가-힣]+\)$", "", raw_num.strip())
+        cleaned = re.sub(r"\([0-9가-힣]+\)$", "", normalized)
 
-        # 알파벳 접미사 범위: IE238A~IE238G → prefix=IE, num=238, A~G
+        # 소수점 하위번호 범위: 한129.1~5 → ["한129.1", ..., "한129.5"]
+        # prefix+base.start ~ end (끝에 base 없이 하위번호만)
+        m_dot = re.match(
+            rf"^({_PFX})(\d+)\.(\d+)[~～∼\-](\d+)$", cleaned
+        )
+        if m_dot:
+            prefix = m_dot.group(1)
+            base = m_dot.group(2)
+            start_sub = int(m_dot.group(3))
+            end_sub = int(m_dot.group(4))
+            if start_sub <= end_sub and (end_sub - start_sub) <= 20:
+                return [f"{prefix}{base}.{n}" for n in range(start_sub, end_sub + 1)]
+
+        # 접미사 없음→접미사 있음 범위: B63~B63B → ["B63", "B63A", "B63B"]
+        # 시작은 숫자로 끝나고, 끝은 같은 접두사+숫자+알파벳 접미사
+        m_no_to_alpha = re.match(
+            rf"^({_PFX})(\d+)[~～∼\-]\1\2([A-Za-z])$", cleaned
+        )
+        if m_no_to_alpha:
+            prefix = m_no_to_alpha.group(1)
+            num = m_no_to_alpha.group(2)
+            end_ch = m_no_to_alpha.group(3).upper()
+            # 원본(접미사 없음) + A부터 end_ch까지
+            result = [f"{prefix}{num}"]
+            result.extend(
+                f"{prefix}{num}{chr(c)}"
+                for c in range(ord("A"), ord(end_ch) + 1)
+            )
+            return result
+
+        # 양쪽 알파벳 접미사 범위: IE238A~IE238G → prefix=IE, num=238, A~G
         m_alpha = re.match(
-            r"^([A-Za-z]*?)(\d+)([A-Za-z])[~～\-]\1\2([A-Za-z])$", cleaned
+            rf"^({_PFX})(\d+)([A-Za-z])[~～∼\-]\1\2([A-Za-z])$", cleaned
         )
         if m_alpha:
             prefix = m_alpha.group(1)
@@ -120,7 +155,7 @@ def _expand_para_range(raw_num: str) -> list[str]:
                 ]
 
         # 숫자 범위: 56~59, B20~B27
-        m = re.match(r"^([A-Za-z]*?)(\d+)[~～\-]([A-Za-z]*?)(\d+)$", cleaned)
+        m = re.match(rf"^({_PFX})(\d+)[~～∼\-]({_PFX})(\d+)$", cleaned)
         if not m:
             return [cleaned]
         prefix1, start_n, prefix2, end_n = (
@@ -233,8 +268,8 @@ def _validate_refs_against_db(refs_tuple: tuple) -> tuple:
     for ref in refs_tuple:
         try:
             num = re.sub(r"^문단\s*", "", ref).strip()
-            # 범위인 경우 시작 번호만 확인 (예: 56~59 → 56)
-            check_num = re.split(r"[~～]", num)[0].strip()
+            # 범위인 경우 시작 번호만 확인 (예: 56~59 → 56, 50-51 → 50)
+            check_num = re.split(r"[~～∼\-–—]", num)[0].strip()
             if check_num and _fetch_para_from_db(check_num) is not None:
                 valid.append(ref)
         except Exception:

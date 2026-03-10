@@ -19,7 +19,9 @@
       "WebFetch(domain:medium.com)",
       "WebFetch(domain:www.zenml.io)",
       "WebFetch(domain:mikulskibartosz.name)",
-      "WebFetch(domain:python.plainenglish.io)"
+      "WebFetch(domain:python.plainenglish.io)",
+      "WebFetch(domain:cookbook.openai.com)",
+      "WebFetch(domain:developers.openai.com)"
     ]
   }
 }

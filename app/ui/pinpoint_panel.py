@@ -28,10 +28,10 @@ _DOC_IDX = {"counter": 4000}
 # ── 문단 번호 추출 정규식 ─────────────────────────────────────────────────────
 _PARA_BLOCK_RE = re.compile(
     r"문단\s*"
-    r"([A-Z]*\d+(?:\s*[~～\-]\s*[A-Z]*\d+)?)"
-    r"((?:\s*[,、]\s*[A-Z]*\d+(?:\s*[~～\-]\s*[A-Z]*\d+)?)*)"
+    r"([A-Z]*\d+(?:\s*[~～∼\-]\s*[A-Z]*\d+)?)"
+    r"((?:\s*[,、]\s*[A-Z]*\d+(?:\s*[~～∼\-]\s*[A-Z]*\d+)?)*)"
 )
-_SINGLE_RE = re.compile(r"([A-Z]*\d+)(?:\s*[~～\-]\s*([A-Z]*\d+))?")
+_SINGLE_RE = re.compile(r"([A-Z]*\d+)(?:\s*[~～∼\-]\s*([A-Z]*\d+))?")
 
 # ── 문단 → 섹션 역색인 (lazy) ────────────────────────────────────────────────
 _para_to_section: dict[str, dict] | None = None
@@ -242,7 +242,7 @@ def _render_matched_findings(query_vector: list[float]) -> None:
 
 def _fetch_ie_docs_by_range(para_range: str) -> list[dict]:
     """para_range(예: 'IE19~IE24')에 해당하는 IE 문서를 조회합니다."""
-    m = re.match(r"^([A-Za-z]*)(\d+)[~～\-]([A-Za-z]*)(\d+)$", para_range)
+    m = re.match(r"^([A-Za-z]*)(\d+)[~～∼\-]([A-Za-z]*)(\d+)$", para_range)
     if m:
         prefix = m.group(1) or m.group(3)
         start_n, end_n = int(m.group(2)), int(m.group(4))

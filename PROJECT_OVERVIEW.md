@@ -3,7 +3,7 @@
 > **이 문서는 LLM에게 프로젝트 컨텍스트를 전달하기 위해 작성되었습니다.**
 > 새로운 대화를 시작할 때 이 문서를 먼저 읽혀주세요.
 >
-> **최종 업데이트**: 2026-03-10 (문단 참조 볼드 강조 에지 케이스 수정 — 범위 표기, 루프 제한, 접속사 "와", 괄호 suffix)
+> **최종 업데이트**: 2026-03-10 (토픽 브라우즈 하단 "직접 질문하기" 추가, LLM 모델 통일 gpt-5-mini + o4-mini, 노드 목록 보완)
 
 ---
 
@@ -32,8 +32,9 @@
 [토픽 브라우즈 (topic_browse)]
   큐레이션된 4개 탭: 본문·BC | 적용사례 | 질의회신 | 감리지적사례
   관련 토픽 칩(pills)으로 토픽 간 이동
-  → 사용자가 원문을 직접 열람한 뒤 하단 AI 질문 입력
-    └─ AI 질문 → [AI 답변 (ai_answer)]
+  하단 "직접 질문하기" — 토픽 맥락의 자유 질문 입력
+    ├─ 자유 검색 입력 → [근거 열람 (evidence)]
+    └─ (evidence에서) AI 질문 → [AI 답변 (ai_answer)]
 
 [근거 열람 (evidence)]
   RAG 검색 결과를 카테고리별 아코디언으로 제시
@@ -73,8 +74,7 @@
 | **AI 프레임워크** | PydanticAI | 네이티브 structured output + 자동 재시도 |
 | **벡터 DB** | MongoDB Atlas Vector Search | 임베딩 + 메타데이터 통합 저장 |
 | **임베딩** | Upstage `solar-embedding-1-large` | passage(저장) / query(검색) 구분 **필수** |
-| **LLM (경량)** | OpenAI `gpt-4.1-mini` | analyze, rewrite, grade, hyde (non-reasoning) |
-| **LLM (추론·경량)** | OpenAI `gpt-5-mini` | simple 개념 질문 generate (reasoning_effort=low) |
+| **LLM (경량/추론)** | OpenAI `gpt-5-mini` | analyze, rewrite, grade, hyde + simple generate (reasoning_effort=low) |
 | **LLM (추론·고급)** | OpenAI `o4-mini` | complex generate, clarify 첫 턴 (reasoning_effort=medium) |
 | **Reranker** | Cohere `rerank-multilingual-v3.0` | 한국어 최적화 Cross-encoder |
 | **설정 관리** | pydantic-settings | `.env` 타입 안전 관리 |
@@ -105,7 +105,10 @@ k-ifrs-1115-chatbot/
 │   │   ├── analyze.py             # 질문 분석 + 라우팅 + complexity 판단
 │   │   ├── retrieve.py            # Vector + BM25 + RRF 하이브리드 검색
 │   │   ├── rerank.py              # Cohere Reranker 재랭킹
+│   │   ├── grade.py               # 문서 품질 평가 (CRAG)
 │   │   ├── generate.py            # complexity 기반 모델 스위칭 + 답변 생성
+│   │   ├── hyde_retrieve.py       # HyDE 가상 문서 생성 → 재검색 폴백
+│   │   ├── rewrite.py             # 질문 재작성 폴백
 │   │   └── format.py              # 응답 포맷팅 + 감리사례 섀도우 매칭
 │   ├── services/                  # 비즈니스 로직 서비스
 │   │   ├── chat_service.py        # 파이프라인 실행 + SSE + 체크리스트 Q&A 쌍 관리
@@ -116,7 +119,7 @@ k-ifrs-1115-chatbot/
 │   ├── ui/                        # Streamlit UI 컴포넌트 (18파일)
 │   │   ├── layout.py              # CSS 주입 + 헤더 + 사이드바 (shadcn/ui 스타일)
 │   │   ├── pages.py               # 홈/근거열람/AI답변 페이지 렌더러
-│   │   ├── topic_browse.py        # 토픽 브라우즈 — 토픽 해석 + 4탭 오케스트레이터
+│   │   ├── topic_browse.py        # 토픽 브라우즈 — 토픽 해석 + 4탭 오케스트레이터 + 하단 직접 질문
 │   │   ├── topic_tabs.py          # 4탭 실제 렌더링 (본문·BC, 적용사례, 질의회신, 감리)
 │   │   ├── evidence.py            # 근거 열람 — 검색 결과 카테고리별 아코디언
 │   │   ├── pinpoint_panel.py      # AI 답변 좌측 근거 패널
@@ -124,7 +127,7 @@ k-ifrs-1115-chatbot/
 │   │   ├── components.py          # 아코디언/expander 공통 컴포넌트
 │   │   ├── constants.py           # 8섹션 키워드 + 토픽 매핑 + 부제
 │   │   ├── cross_links.py         # 관련 조항 칩 렌더링
-│   │   ├── db.py                  # MongoDB 조회 (배치 + @st.cache_resource)
+│   │   ├── db.py                  # MongoDB 조회 (PDR 컬렉션 라우팅 + 알파벳 접미사 범위 + @st.cache_resource)
 │   │   ├── doc_helpers.py         # 문서 메타 추출 헬퍼 (paraNum, self_ids 등)
 │   │   ├── doc_renderers.py       # 문단 칩 + expander 렌더링
 │   │   ├── client.py              # FastAPI 호출 래퍼
@@ -181,11 +184,14 @@ pipeline.py — async generator로 SSE 이벤트를 yield
 
 | 노드 | 역할 | Agent / LLM |
 |------|------|-------------|
-| analyze | 질문 분석/라우팅/complexity 판단 | `analyze_agent` (gpt-4.1-mini) |
+| analyze | 질문 분석/라우팅/complexity 판단 | `analyze_agent` (gpt-5-mini) |
 | retrieve | Vector + BM25 하이브리드 검색 | — |
 | rerank | Cohere Reranker + 비즈니스 룰 | — |
+| grade | 문서 품질 평가 (CRAG) | `grade_agent` (gpt-5-mini) |
 | generate | 개념 답변 생성 | `generate_agent` (simple→gpt-5-mini / complex→o4-mini) |
-| clarify | 거래 상황 꼬리질문 (멀티턴 체크리스트) | `clarify_agent` (첫 턴: o4-mini, 후속: gpt-4.1-mini) |
+| clarify | 거래 상황 꼬리질문 (멀티턴 체크리스트) | `clarify_agent` (첫 턴: o4-mini, 후속: gpt-5-mini) |
+| hyde_retrieve | HyDE 가상 문서 → 재검색 (폴백) | `hyde_agent` (gpt-5-mini) |
+| rewrite | 질문 재작성 (폴백) | `rewrite_agent` (gpt-5-mini) |
 | format | 감리사례 넛지 추가 | — |
 
 ### 핵심 메커니즘
@@ -193,7 +199,7 @@ pipeline.py — async generator로 SSE 이벤트를 yield
 - **Hybrid Search**: MongoDB Vector Search + BM25(한국어 2-gram) → RRF(Reciprocal Rank Fusion) + 인접 문단 클러스터 부스팅
 - **Cross-encoder Reranking**: Cohere `rerank-multilingual-v3.0` — rerank_threshold 0.05 미만 제거
 - **PDR (Parent Document Retrieval)**: QNA/감리사례 Child 청크 검색 → parent_id로 부모 원문 전체 조회
-- **Complexity 기반 모델 스위칭**: analyze가 simple/complex 판단 → simple은 gpt-5-mini(low)로 빠르게, complex는 o4-mini(medium)로 정확하게
+- **Complexity 기반 모델 스위칭**: analyze가 simple/complex 판단 → simple은 gpt-5-mini(reasoning_effort=low)로 빠르게, complex는 o4-mini(reasoning_effort=medium)로 정확하게
 - **Reasoning 모델 프롬프트 최적화**: o4-mini/gpt-5-mini에 CoT 지시 제거, 목표만 명시 (OpenAI 공식 권장)
 - **멀티턴 체크리스트**: clarify 노드가 거래 유형별 Dynamic 체크리스트를 system prompt에 주입, Q&A 쌍으로 진행 추적
 - **감리사례 섀도우 매칭**: format 노드에서 질문과 유사한 감리 지적사례를 자동 매칭
@@ -202,20 +208,19 @@ pipeline.py — async generator로 SSE 이벤트를 yield
 
 | Agent | 모델 | 용도 | 출력 |
 |-------|------|------|------|
-| `analyze_agent` | gpt-4.1-mini | 질문 분석/라우팅/complexity | `AnalyzeResult` |
-| `grade_agent` | gpt-4.1-mini | 문서 품질 평가 (CRAG) | `GradeResult` |
+| `analyze_agent` | gpt-5-mini | 질문 분석/라우팅/complexity | `AnalyzeResult` |
+| `grade_agent` | gpt-5-mini | 문서 품질 평가 (CRAG) | `GradeResult` |
 | `generate_agent` | o4-mini (기본) | 최종 답변 생성 | `GenerateOutput` |
-| `clarify_agent` | gpt-4.1-mini (기본) | 꼬리질문 생성 | `GenerateOutput` |
-| `rewrite_agent` | gpt-4.1-mini | 질문 재작성 폴백 | `str` |
-| `hyde_agent` | gpt-4.1-mini | HyDE 가상 문서 생성 | `str` |
-| `text_agent` | gpt-4.1-mini | 범용 텍스트 호출 | `str` |
+| `clarify_agent` | gpt-5-mini (기본), 첫 턴 o4-mini 오버라이드 | 꼬리질문 생성 | `GenerateOutput` |
+| `rewrite_agent` | gpt-5-mini | 질문 재작성 폴백 | `str` |
+| `hyde_agent` | gpt-5-mini | HyDE 가상 문서 생성 | `str` |
+| `text_agent` | gpt-5-mini | 범용 텍스트 호출 | `str` |
 
 ### 프롬프트 설계 원칙 (`prompts.py`)
 
 | 대상 모델 | 전략 | 근거 |
 |-----------|------|------|
-| gpt-4.1-mini (non-reasoning) | 명시적 CoT, 규칙 열거, 예시 제공 | gpt-4.1 공식 가이드 |
-| o4-mini / gpt-5-mini (reasoning) | CoT 제거, 목표만 명시, 프롬프트 축소 | reasoning 모델에 step-by-step 지시는 역효과 (OpenAI 공식 권장) |
+| gpt-5-mini / o4-mini (reasoning) | CoT 제거, 목표만 명시, 프롬프트 축소 | reasoning 모델에 step-by-step 지시는 역효과 (OpenAI 공식 권장) |
 
 ---
 
@@ -286,9 +291,16 @@ TopicData = {
 | 탭 | 데이터 소스 | 조회 방식 |
 |----|------------|----------|
 | 본문·BC | `main_and_bc.sections` | `fetch_docs_by_para_ids()` — 문단 ID 배치 조회 |
-| 적용사례 | `ie.cases` | `fetch_ie_case_docs()` — case_group_title 매칭 |
-| 질의회신 | `qna.qna_ids` | `fetch_parent_doc()` — 부모 ID 조회 |
-| 감리사례 | `findings.finding_ids` | `fetch_parent_doc()` — 부모 ID 조회 |
+| 적용사례 | `ie.cases` | `_expand_para_range()` → `_batch_fetch_paras()` — 문단 범위 확장 후 배치 조회 |
+| 질의회신 | `qna.qna_ids` | `fetch_parent_doc()` — ID 접두사로 별도 컬렉션 라우팅 (`k-ifrs-1115-qna-parents`) |
+| 감리사례 | `findings.finding_ids` | `fetch_parent_doc()` — ID 접두사로 별도 컬렉션 라우팅 (`k-ifrs-1115-findings-parents`) |
+
+#### QNA/감리사례 제목 빌드 (`_build_pdr_label`)
+
+parent 문서의 title 상태에 따라 3가지 케이스 처리:
+- **A)** title에 `[ID]` 포함 → "레퍼런스" 접두어 제거 후 그대로
+- **B)** title이 설명만 (ID 미포함) → `[doc_id]` 접두어 추가
+- **C)** title이 빈값/ID와 동일 → content 첫 줄에서 설명 추출
 
 ---
 
@@ -332,7 +344,7 @@ MONGO_COLLECTION_NAME=k-ifrs-1115-chatbot
 
 # API Keys (필수)
 UPSTAGE_API_KEY=up_xxx      # 임베딩 전용
-OPENAI_API_KEY=sk-xxx       # LLM 전용 (gpt-4.1-mini, gpt-5-mini, o4-mini)
+OPENAI_API_KEY=sk-xxx       # LLM 전용 (gpt-5-mini, o4-mini)
 COHERE_API_KEY=xxx          # Reranker 전용
 
 # LLM 설정 (선택, 기본값 있음)
@@ -358,6 +370,7 @@ PYTHONPATH=. uv run --env-file .env app/preprocessing/06-qna-embed.py
 PYTHONPATH=. uv run --env-file .env app/preprocessing/07-findings-embed.py
 PYTHONPATH=. uv run --env-file .env app/preprocessing/10-parse-curation.py
 PYTHONPATH=. uv run --env-file .env app/preprocessing/11-fix-external-tables.py
+PYTHONPATH=. uv run --env-file .env app/preprocessing/12-summary-embed.py
 
 # ── 청크 품질 검증 (재청킹 후 필수) ──────────────────────────
 PYTHONPATH=. uv run python app/preprocessing/99-verify-chunks.py
@@ -407,17 +420,18 @@ div[class*="st-key-nav_"] button {
 - 노드는 `app/nodes/` 하위에 1파일 1노드 원칙
 - 임베딩 모델 **passage / query 혼용 금지** (검색 품질 급락)
 - LLM 호출: `agents.py`의 PydanticAI Agent (structured output + 자동 재시도)
-- reasoning 모델(o4-mini, gpt-5-mini): CoT 프롬프트 금지, temperature 미지원, reasoning_effort로 조절
-- non-reasoning 모델(gpt-4.1-mini): 명시적 CoT + 규칙 열거 + 예시 제공
+- reasoning 모델(gpt-5-mini, o4-mini): CoT 프롬프트 금지, temperature 미지원, reasoning_effort로 조절
 
 ---
 
 ## 13. 향후 개발 방향
 
 ### 최근 완료
-- [x] 문단 참조 볼드 강조 에지 케이스 4건 수정 (`app/ui/text.py`) — 범위 표기 `100~102`, 루프 3→15회, "와" 접속사, 괄호 suffix 체이닝
-- [x] 청킹 품질 고도화 — `para-inner-number-item`/`hanguel-item` HTML 파싱, `\n\n` 마크다운 단락 분리, `fullContent` 폴백
-- [x] 청크 전수 검증 스크립트 (`99-verify-chunks.py`) — 번호 누락, 공백 누락, 문장 유실 3단 검증
+- [x] 토픽 브라우즈 하단 "직접 질문하기" 추가 — 토픽 맥락 안내 문구 + 자유 질문 → `/search` → evidence 페이지 전환
+- [x] 토픽 브라우즈 QNA/감리 탭 전면 수정 — PDR 컬렉션 라우팅, `_build_pdr_label` 제목 빌드, 알파벳 접미사 범위(`IE238A~IE238G`), 중복 para_chips 제거
+- [x] LLM 모델 통일: gpt-4.1-mini → gpt-5-mini (front model 포함 전체 reasoning 모델로 전환)
+- [x] 문단 참조 볼드 강조 에지 케이스 4건 수정 (`app/ui/text.py`)
+- [x] 청킹 품질 고도화 + 청크 전수 검증 스크립트 (`99-verify-chunks.py`)
 
 ### 진행 중
 - [ ] 답변 형식 재설계 — 조건부 결론 + Case 분기 + 확인 필요사항 섹션
@@ -442,4 +456,4 @@ div[class*="st-key-nav_"] button {
 5. **PydanticAI 기반** — `app/agents.py`(Agent 정의) + `app/pipeline.py`(오케스트레이션) + `app/state.py`(RAGState).
 6. **포트폴리오 목적** — 회계법인 입사용 포트폴리오이므로, 코드 품질과 설계 의도의 명확성이 중요합니다.
 7. **Streamlit CSS** — 특정 버튼 스타일링은 `key="nav_xxx"` + `div[class*="st-key-nav_"]` 패턴 사용. JS/iframe 접근 금지.
-8. **reasoning 모델 프롬프트** — o4-mini/gpt-5-mini에 "단계별로 분석하세요" 등 CoT 지시 금지. 목표만 명시.
+8. **reasoning 모델 프롬프트** — gpt-5-mini/o4-mini에 "단계별로 분석하세요" 등 CoT 지시 금지. 목표만 명시.

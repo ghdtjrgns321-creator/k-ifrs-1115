@@ -391,4 +391,6 @@ def _to_doc_result(doc: dict) -> DocResult:
         related_paragraphs=doc.get("related_paragraphs", []),
         chunk_id=doc.get("chunk_id", ""),
         score=doc.get("rerank_score", 0.0),
+        parent_id=doc.get("parent_id") or "",
+        case_group_title=doc.get("case_group_title") or "",
     )

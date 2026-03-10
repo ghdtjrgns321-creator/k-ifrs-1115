@@ -26,6 +26,8 @@ async def run_rag_pipeline(state: dict) -> AsyncGenerator[SSEEvent, None]:
     각 노드 함수가 반환하는 부분 dict로 state를 병합하는 단순한 구조입니다.
     """
 
+    pipeline_start = time.perf_counter()
+
     # ── Fast-path: clarify 후속 턴 ──────────────────────────────────────────────
     # analyze/retrieve/rerank 전체 스킵 → clarify LLM 1회만 실행
     if state.get("is_clarify_followup"):
@@ -33,6 +35,7 @@ async def run_rag_pipeline(state: dict) -> AsyncGenerator[SSEEvent, None]:
         t0 = time.perf_counter()
         state.update(await generate_answer(state))
         print(f"[timing] generate(fast-path): {time.perf_counter() - t0:.1f}s")
+        print(f"[timing] ── total: {time.perf_counter() - pipeline_start:.1f}s ──")
         yield _done_event(state)
         return
 
@@ -81,6 +84,7 @@ async def run_rag_pipeline(state: dict) -> AsyncGenerator[SSEEvent, None]:
         state.update(await format_response(state))
         print(f"[timing] format: {time.perf_counter() - t0:.1f}s")
 
+    print(f"[timing] ── total: {time.perf_counter() - pipeline_start:.1f}s ──")
     yield _done_event(state)
 
 
@@ -93,10 +97,10 @@ def _done_event(state: dict) -> SSEEvent:
 
     follow_up = state.get("follow_up_questions") or []
 
-    # 매칭된 토픽 키 추출 (핀포인트 패널용)
+    # 매칭된 토픽 이름 추출 (핀포인트 패널용)
     matched = state.get("matched_topics", [])
     topic_keys = list(dict.fromkeys(
-        t["topic_key"] for t in matched if t.get("topic_key")
+        t["topic_name"] for t in matched if t.get("topic_name")
     ))
 
     return SSEEvent(

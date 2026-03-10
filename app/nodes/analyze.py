@@ -9,13 +9,13 @@ async def analyze_query(state: dict) -> dict:
 
     # 최근 3턴만 전달하여 토큰 절약
     formatted_messages = "\n".join(
-        f"{role}: {content}" for role, content in state["messages"][-3:]
+        f"{role}: {content}" for role, content in state.get("messages", [])[-3:]
     )
 
     result = await analyze_agent.run(
         f"최신 대화 기록 및 질문: {formatted_messages}"
     )
-    data = result.data
+    data = result.output
 
     # is_situation=True일 때만 체크리스트 매칭 (개념 질문에는 미적용)
     matched = (

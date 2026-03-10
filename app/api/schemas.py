@@ -47,6 +47,9 @@ class DocResult(BaseModel):
     related_paragraphs: list[str]  # 관련 문단 번호 리스트
     chunk_id: str  # 고유 청크 ID (AI 단계에서 문서 식별용)
     score: float = 0.0  # Reranker 점수 (UI 동적 렌더링 용도)
+    # QNA/감리사례 PDR 렌더링용 — 부모 문서 ID와 IE 사례 그룹 제목
+    parent_id: str = ""
+    case_group_title: str = ""
 
 
 class SearchResponse(BaseModel):
@@ -79,3 +82,13 @@ class SSEEvent(BaseModel):
     # AI 답변 후 실무 담당자가 추가로 확인하면 좋을 꼬리 질문 3개
     # 버튼 텍스트로 바로 사용할 수 있는 20자 이내 질문입니다.
     follow_up_questions: list[str] | None = None
+    # done 이벤트 — Split View 좌측 근거 패널에 표시할 문서 목록
+    retrieved_docs: list[dict] | None = None
+    # 거래 상황(True) vs 개념 질문(False) 플래그 — UI에서 꼬리질문 UX 분기용
+    is_situation: bool = False
+    # 매칭된 체크리스트 토픽 키 목록 — 핀포인트 패널용
+    matched_topic_keys: list[str] | None = None
+    # analyze가 추출한 검색 키워드 목록
+    search_keywords: list[str] | None = None
+    # clarify가 결론을 내렸는지 여부 — UI에서 추가 질문 표시 분기용
+    is_conclusion: bool = False

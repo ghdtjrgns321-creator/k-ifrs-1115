@@ -19,9 +19,9 @@ class Settings(BaseSettings):
 
     # 4. LLM 모델 설정
     # Front Nodes (analyze, rewrite, grade): 빠른 분류·평가용 경량 모델
-    llm_front_model: str = "gpt-5-mini"
+    llm_front_model: str = "gpt-4.1-mini"
     # Generate Node: 복잡한 회계 답변 생성용 추론 모델
-    llm_generate_model: str = "o4-mini"
+    llm_generate_model: str = "gpt-5-mini"
     llm_temperature: float = 0.0
     # API 응답 대기 최대 시간(초) — o4-mini 추론 모델은 복잡한 케이스에서 70-80초 소요 가능
     llm_timeout: int = 90

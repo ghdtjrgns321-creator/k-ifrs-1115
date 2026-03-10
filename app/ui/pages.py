@@ -6,6 +6,7 @@
 # - _render_ai_answer:  AI 답변 — Split View (근거 + 답변 + 꼬리 질문)
 
 import html
+import re
 
 import streamlit as st
 
@@ -15,11 +16,26 @@ from app.ui.constants import HOME_TOPICS_LEFT, HOME_TOPICS_RIGHT
 from app.ui.session import _go_home
 
 
+def _format_question(text: str) -> str:
+    """사용자 질문을 읽기 좋게 정리합니다.
+
+    연속 빈 줄 → <br> 1개, 단일 줄바꿈 → <br> 1개로 압축하여
+    원문의 과도한 공백 없이 깔끔하게 표시합니다.
+    """
+    escaped = html.escape(text.strip())
+    # 연속 줄바꿈(빈 줄 포함)을 <br> 하나로 압축
+    return re.sub(r'\n+', '<br>', escaped)
+
+
 def _navigate_to_topic(topic: str) -> None:
-    """토픽 버튼 클릭 → topic_browse 페이지로 전환합니다."""
+    """토픽 버튼 on_click 콜백 — state만 변경, Streamlit이 자동 rerun.
+
+    on_click 콜백은 script rerun 전에 실행되므로
+    st.rerun()을 호출할 필요가 없고 1회 rerun만 발생합니다.
+    (기존: if st.button → 2회 rerun → 깜빡임/에러)
+    """
     st.session_state.selected_topic = topic
     st.session_state.page_state = "topic_browse"
-    st.rerun()
 
 
 def _render_topic_column(sections: list[tuple[str, list[str]]], key_prefix: str) -> None:
@@ -28,19 +44,22 @@ def _render_topic_column(sections: list[tuple[str, list[str]]], key_prefix: str)
         st.markdown(f"**{section_title}**")
         for topic in topics:
             safe_key = f"{key_prefix}_{topic.replace(' ', '_')}"
-            if st.button(topic, key=safe_key, use_container_width=True):
-                _navigate_to_topic(topic)
+            # on_click 콜백: state 변경 → Streamlit 자동 1회 rerun
+            st.button(
+                topic,
+                key=safe_key,
+                use_container_width=True,
+                on_click=_navigate_to_topic,
+                args=(topic,),
+            )
 
 
 def _render_home() -> None:
     """[홈] 8섹션 토픽 매트릭스 + 자유 질문 입력을 렌더링합니다.
 
     좌우 2단 레이아웃: 좌측(5단계 수익인식 모형) / 우측(후속 처리·특수 거래)
-    하단에 자유 텍스트 입력 → /search → evidence 페이지로 이동
+    하단에 자유 텍스트 입력 → /chat SSE → ai_answer 페이지로 직행
     """
-    # ── 구분선 — #7AAACE 포인트, 헤더에 바짝 붙임 ──────────────────────────
-    st.markdown("<hr style='margin-top: -2.5rem; margin-bottom: 0; border: none; border-top: 1px solid #E2E8F0;'>", unsafe_allow_html=True)
-
     st.html(
         """
         <div style='text-align: center; padding: 0 0 0.5rem;'>
@@ -89,30 +108,40 @@ def _render_home() -> None:
             "검색하기", use_container_width=True, type="primary"
         )
 
-    # 위젯 렌더링 완료 후 API 호출 (Streamlit 원칙)
-    search_placeholder = st.empty()
+    # 홈에서 검색 → /chat SSE 직행 (단계별 진행 표시 + split view 결과)
     if submitted and query:
-        with search_placeholder:
-            _call_search(query.strip())
+        st.session_state.search_query = query.strip()
+        _call_chat(query.strip(), use_cache=False)
 
 
 def _render_evidence() -> None:
     """[근거 열람] 카테고리별 아코디언 + AI 질문 입력창을 렌더링합니다."""
-    # ── 상단 헤더: 검색어 타이틀 + 새 검색 버튼 (8:2 비율) ───────────────────
+    # ── 상단 헤더: 질문 카드 + 새 검색 버튼 ──────────────────────────────────
     current_query = (
         st.session_state.get("search_query")
         or st.session_state.get("standalone_query")
         or ""
     )
 
-    title_col, btn_col = st.columns([8, 2], vertical_alignment="bottom")
+    col1, col2 = st.columns([5, 1], vertical_alignment="bottom")
 
-    with title_col:
-        st.markdown(f"### :material/search: 검색 결과: **{current_query}**")
+    with col1:
+        st.html(
+            f"""
+            <div style='padding: 0.5rem 0 0;'>
+                <span style='color: #64748B; font-size: 0.9em;'>질문</span><br>
+                <span style='line-height: 1.7;'>{_format_question(current_query)}</span>
+            </div>
+        """
+        )
 
-    with btn_col:
-        if st.button("새 검색", icon=":material/arrow_back:", use_container_width=True):
-            _go_home()
+    with col2:
+        st.button(
+            "새 검색",
+            icon=":material/home:",
+            use_container_width=True,
+            on_click=_go_home,
+        )
 
     st.divider()
 
@@ -150,15 +179,19 @@ def _render_ai_answer() -> None:
     with col1:
         st.html(
             f"""
-            <div style='padding: 0.5rem 0;'>
+            <div style='padding: 0.5rem 0 0;'>
                 <span style='color: #64748B; font-size: 0.9em;'>질문</span><br>
-                <strong>{html.escape(st.session_state.ai_question)}</strong>
+                <span style='line-height: 1.7;'>{_format_question(st.session_state.ai_question)}</span>
             </div>
         """
         )
     with col2:
-        if st.button("새 검색", icon=":material/home:", use_container_width=True):
-            _go_home()
+        st.button(
+            "새 검색",
+            icon=":material/home:",
+            use_container_width=True,
+            on_click=_go_home,
+        )
 
     st.divider()
 
@@ -186,32 +219,6 @@ def _render_ai_answer() -> None:
                 raw_content = fc.get("content", "내용을 불러올 수 없습니다.")
                 adjusted = raw_content.replace("# ", "### ").replace("## ", "#### ")
                 st.markdown(adjusted)
-
-        # 출처 expander
-        if st.session_state.cited_sources:
-            with st.expander(":material/bookmark: 참고 근거 보기", expanded=False):
-                for src in st.session_state.cited_sources:
-                    source_type = src.get("source", "알 수 없음")
-                    hierarchy = src.get("hierarchy", "출처 정보 없음")
-                    paragraphs = src.get("related_paragraphs", [])
-                    p_str = (
-                        f" | 관련 문단: {', '.join(paragraphs)}" if paragraphs else ""
-                    )
-                    st.caption(f"**[{source_type}]** {hierarchy}{p_str}")
-
-        # 꼬리 질문 버튼 (최대 3개)
-        # use_cache=True: 이미 검색된 근거를 재사용하므로 빠르게 응답합니다.
-        followups = st.session_state.follow_up_questions
-        if followups:
-            st.html("<br>")
-            st.markdown("**추가로 확인하면 좋을 질문:**")
-
-            btn_cols = st.columns(len(followups))
-            for i, fq in enumerate(followups):
-                with btn_cols[i]:
-                    if st.button(fq, use_container_width=True, key=f"followup_{i}"):
-                        # 꼬리질문은 같은 컨텍스트(search_id) 재사용 → retrieve 스킵
-                        _call_chat(fq, use_cache=True)
 
         st.divider()
 

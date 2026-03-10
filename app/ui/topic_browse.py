@@ -74,8 +74,12 @@ def _render_topic_browse() -> None:
             unsafe_allow_html=True,
         )
     with btn_col:
-        if st.button("새 검색", icon=":material/arrow_back:", use_container_width=True):
-            _go_home()
+        st.button(
+            "새 검색",
+            icon=":material/arrow_back:",
+            use_container_width=True,
+            on_click=_go_home,
+        )
 
     # ── 토픽 데이터 로드 ────────────────────────────────────────────────────
     from app.domain.topic_content_map import TOPIC_CONTENT_MAP

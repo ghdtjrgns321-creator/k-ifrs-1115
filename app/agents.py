@@ -4,8 +4,8 @@
 # 7개 LLM 호출 포인트를 PydanticAI Agent로 통일합니다:
 #   analyze_agent  — 질문 분석/라우팅 (gpt-4.1-mini, structured output)
 #   grade_agent    — 문서 품질 평가 (gpt-4.1-mini, structured output)
-#   generate_agent — 최종 답변 생성 (gpt-5-mini, structured output)
-#   clarify_agent  — 꼬리질문 생성 (gpt-5-mini, 동적 system prompt + structured output)
+#   generate_agent — 최종 답변 생성 (gpt-5-mini, reasoning_effort=medium, structured output)
+#   clarify_agent  — 거래 상황 분석 + 결론 (gpt-5-mini, reasoning_effort=medium, 동적 system prompt)
 #   rewrite_agent  — 질문 재작성 (gpt-4.1-mini, plain text)
 #   hyde_agent     — HyDE 가상 문서 (gpt-4.1-mini, plain text)
 #   text_agent     — search_service LLM 키워드 추출용 (gpt-4.1-mini, plain text)
@@ -32,7 +32,7 @@ def _front_model() -> OpenAIModel:
 
 
 def _generate_model() -> OpenAIModel:
-    """generate/clarify 전용 reasoning 모델 (gpt-5-mini)."""
+    """generate/clarify 전용 reasoning 모델 (gpt-5-mini, reasoning_effort=medium)."""
     return OpenAIModel(settings.llm_generate_model, provider=_provider)
 
 
@@ -42,7 +42,7 @@ class AnalyzeResult(BaseModel):
     routing: str = Field(description="회계 관련이면 'IN', 무관하면 'OUT'")
     standalone_query: str = Field(description="재작성된 독립형 질문 (OUT이면 빈 문자열)")
     is_situation: bool = Field(default=False, description="구체적 거래 상황 설명이면 True")
-    search_keywords: list[str] = Field(default_factory=list, description="벡터 DB 검색용 K-IFRS 핵심 키워드 2~3개")
+    search_keywords: list[str] = Field(default_factory=list, description="벡터 DB 검색용 K-IFRS 핵심 키워드 3~5개")
     confusion_point: str = Field(
         default="",
         description="사용자 혼동 원인 (예: '세금계산서 발행 주체'). 없으면 빈 문자열",
@@ -110,14 +110,12 @@ generate_agent = Agent(
 )
 
 clarify_agent = Agent(
-    _front_model(),  # 꼬리질문은 사실관계 확인용 → reasoning 불필요, 경량 모델로 속도 확보
+    _generate_model(),  # o4-mini: 거래 상황 분석은 reasoning 필수
     output_type=GenerateOutput,
     retries=2,
     deps_type=ClarifyDeps,
-    # 기본 모델(gpt-4.1-mini)은 non-reasoning → temperature 정상 작동
-    # 첫 턴 오버라이드(gpt-5-mini) 시 → reasoning_effort=medium 적용, temperature 자동 무시
-    # max_tokens=4096: reasoning 상한 제한 (generate_agent와 동일 이유)
-    model_settings={"openai_reasoning_effort": "medium", "max_tokens": 4096, "temperature": settings.llm_temperature},
+    # reasoning 모델 → temperature 자동 무시, reasoning_effort로 속도/품질 조절
+    model_settings={"openai_reasoning_effort": "medium", "max_tokens": 4096},
 )
 
 rewrite_agent = Agent(

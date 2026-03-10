@@ -64,7 +64,8 @@ def rerank_results(query: str, unified_results: list[dict], top_n: int = 5) -> l
 
         doc["final_score"] = base_score * multiplier
 
-    # 3. 최종 점수 기준으로 내림차순 정렬 후 Top N 반환
-    unified_results.sort(key=lambda x: x["final_score"], reverse=True)
+    # 3. threshold 미달 문서 제거 후 최종 점수 기준으로 내림차순 정렬
+    above_threshold = [d for d in unified_results if d.get("final_score", 0) > 0]
+    above_threshold.sort(key=lambda x: x["final_score"], reverse=True)
 
-    return unified_results[:top_n]
+    return above_threshold[:top_n]

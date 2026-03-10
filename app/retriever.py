@@ -38,7 +38,7 @@ def _generate_hypothetical_doc(query: str) -> str:
     from app.prompts import HYDE_PROMPT
     try:
         result = hyde_agent.run_sync(HYDE_PROMPT.format(query=query))
-        return result.data.strip() if result.data else query
+        return result.output.strip() if result.output else query
     except Exception:
         return query
 

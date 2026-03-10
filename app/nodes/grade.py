@@ -24,7 +24,7 @@ async def grade_docs(state: dict) -> dict:
         GRADE_PROMPT.format(question=question, context=context_str)
     )
 
-    relevant_ids = {r.chunk_id for r in result.data.results if r.is_relevant}
+    relevant_ids = {r.chunk_id for r in result.output.results if r.is_relevant}
     relevant_docs = [doc for doc in reranked_docs if doc["chunk_id"] in relevant_ids]
 
     return {"relevant_docs": relevant_docs}

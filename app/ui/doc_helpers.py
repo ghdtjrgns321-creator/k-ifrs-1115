@@ -237,9 +237,9 @@ def _format_pdr_content(content: str) -> str:
             text, flags=re.MULTILINE,
         )
 
-    # ~ 취소선 방지
-    text = re.sub(r"(\d)~(\d)", r"\1～\2", text)
-    text = re.sub(r"([A-Z])~([A-Z])", r"\1～\2", text)
+    # ~ 취소선 방지 — U+223C(∼ TILDE OPERATOR)도 동일 처리
+    text = re.sub(r"(\d)[~∼](\d)", r"\1～\2", text)
+    text = re.sub(r"([A-Z])[~∼]([A-Z])", r"\1～\2", text)
 
     # 번호 항목 앞 줄바꿈
     text = re.sub(r"(?<=[.다])\s*(\d{1,2}[가-힣])", r"\n\n\1", text)

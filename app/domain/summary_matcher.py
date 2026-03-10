@@ -7,7 +7,13 @@
 import json
 import math
 from pathlib import Path
-from app.config import settings
+# ── 서머리 매칭 기본 임계값 ────────────────────────────────────────────────────
+# 코사인 유사도 기반 — 0.5 이상이면 같은 주제로 판단
+_DEFAULT_QNA_THRESHOLD = 0.5
+_DEFAULT_QNA_MAX = 5
+_DEFAULT_FINDINGS_THRESHOLD = 0.5
+_DEFAULT_IE_THRESHOLD = 0.5
+_DEFAULT_IE_MAX = 5
 
 # ── 임베딩 데이터 Lazy 로드 ──────────────────────────────────────────────────
 _EMBEDDINGS_PATH = Path(__file__).parent.parent.parent / "data" / "topic-curation" / "summary-embeddings.json"
@@ -64,8 +70,8 @@ def match_qna_by_summary(
 ) -> list[str]:
     """쿼리 벡터와 QNA 서머리 유사도 비교 → threshold 이상인 parent_id 반환."""
     _ensure_loaded()
-    threshold = threshold or settings.qna_summary_threshold
-    max_count = max_count or settings.qna_summary_max
+    threshold = threshold or _DEFAULT_QNA_THRESHOLD
+    max_count = max_count or _DEFAULT_QNA_MAX
 
     scored = []
     for qid, entry in _qna_entries.items():
@@ -83,7 +89,7 @@ def match_findings_by_summary(
 ) -> dict | None:
     """쿼리 벡터와 감리사례 서머리 유사도 비교 → 최고 유사도 사례 반환."""
     _ensure_loaded()
-    threshold = threshold or settings.findings_summary_threshold
+    threshold = threshold or _DEFAULT_FINDINGS_THRESHOLD
 
     best_id = None
     best_score = 0.0
@@ -113,8 +119,8 @@ def match_ie_by_summary(
         [{"title": ..., "para_range": ..., "topic": ..., "score": ...}, ...]
     """
     _ensure_loaded()
-    threshold = threshold or settings.ie_summary_threshold
-    max_count = max_count or settings.ie_summary_max
+    threshold = threshold or _DEFAULT_IE_THRESHOLD
+    max_count = max_count or _DEFAULT_IE_MAX
 
     scored = []
     for ie_id, entry in _ie_entries.items():

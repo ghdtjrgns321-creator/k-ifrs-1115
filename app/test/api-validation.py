@@ -12,4 +12,4 @@ from app.agents import analyze_agent
 
 print("⏳ PydanticAI Agent(analyze) 테스트 중...")
 result = analyze_agent.run_sync("K-IFRS 1115호에서 수행의무 식별 기준을 설명해주세요.")
-print(f"✅ Analyze 결과: routing={result.data.routing}, query={result.data.standalone_query[:60]}...")
+print(f"✅ Analyze 결과: routing={result.output.routing}, query={result.output.standalone_query[:60]}...")

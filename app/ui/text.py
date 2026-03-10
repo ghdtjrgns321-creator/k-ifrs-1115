@@ -33,16 +33,19 @@ _QNA_NUMBERED_SECTION_RE = re.compile(
 # 문단 번호 참조 정규식
 # 패턴 1: "문단 23", "문단 B2", "문단 IE5", "문단 B2~B89", "문단 BC63B" 등
 # 패턴 2: 단독 접두사 번호 "BC408", "B59A" — 문단 없이 단독으로 나올 때
+# 범위 구분자: ~ ～ ∼ (물결표 3종) + - – — (하이픈, en-dash, em-dash)
+_RANGE_SEP = r"[~～∼\-–—]"
 _PARA_REF_RE = re.compile(
-    r"(?:문단\s*(?:IE|BC|B)?\d+[A-Za-z]*(?:[~～](?:IE|BC|B)?\d+[A-Za-z]*)?)"
-    r"|(?<![A-Za-z0-9])(?:IE|BC|B)\d+[A-Za-z]*(?:[~～](?:IE|BC|B)?\d+[A-Za-z]*)?(?![A-Za-z0-9])"
+    rf"(?:문단\s*(?:IE|BC|B)?\d+[A-Za-z]*(?:{_RANGE_SEP}(?:IE|BC|B)?\d+[A-Za-z]*)?)"
+    rf"|(?<![A-Za-z0-9])(?:IE|BC|B)\d+[A-Za-z]*(?:{_RANGE_SEP}(?:IE|BC|B)?\d+[A-Za-z]*)?(?![A-Za-z0-9])"
 )
 
 # "문단 47 및 52", "문단 B2, B3 및 B4" 같은 접속사 연결 패턴
+# 첫 번호에 범위(50-51)가 붙을 수 있으므로 _RANGE_SEP 포함
 _PARA_CONJ_RE = re.compile(
-    r"문단\s*((?:IE|BC|B)?\d+[A-Za-z]*)"       # 첫 번호: "47" or "B2"
+    rf"문단\s*((?:IE|BC|B)?\d+[A-Za-z]*(?:{_RANGE_SEP}(?:IE|BC|B)?\d+[A-Za-z]*)?)"  # 첫 번호(범위 포함)
     r"((?:\s*(?:[,，]|및|과|와|또는|그리고)\s*"   # 접속사: ",", "및", "과", "와" 등
-    r"(?:문단\s*)?(?:(?:IE|BC|B)?\d+[A-Za-z]*))+)"  # 후속 번호: "52", "B3" 등
+    rf"(?:문단\s*)?(?:(?:IE|BC|B)?\d+[A-Za-z]*(?:{_RANGE_SEP}(?:IE|BC|B)?\d+[A-Za-z]*)?))+)"  # 후속 번호
 )
 
 
@@ -151,8 +154,9 @@ def clean_text(text: str) -> str:
     # 2) 문단 참조 패턴 → 파란색 볼드 HTML 강조
     # [A-Za-z]* 추가: "문단 B59A", "문단 BC414V" 처럼 숫자 뒤 알파벳 suffix도 완전히 매칭
     # (?<!>) 추가: <strong> 태그 내부에 이미 삽입된 참조는 재처리 방지
+    _RS = r'[~～∼\-–—]'  # 범위 구분자 (물결표 3종 + 하이픈/en-dash/em-dash)
     text = re.sub(
-        r"(?<!>)(문단\s*(?:IE|BC|B)?\d+[A-Za-z]*(?:[~～\-](?:IE|BC|B)?\d+[A-Za-z]*)?)",
+        rf"(?<!>)(문단\s*(?:IE|BC|B)?\d+[A-Za-z]*(?:{_RS}(?:IE|BC|B)?\d+[A-Za-z]*)?)",
         r'<span style="color:#1f77b4;font-weight:600;">\1</span>',
         text,
     )
@@ -160,7 +164,7 @@ def clean_text(text: str) -> str:
     # 체이닝 처리: "문단 47, 52 및 53" → 각 숫자에 순차적으로 span 적용
     # 괄호 suffix 허용: "문단 35</span>(3), 37" → (3) 건너뛰고 37도 처리
     _CONJ = r'(?:[,，]|및|과|와|또는|그리고)'
-    _NUM_RANGE = r'(?:IE|BC|B)?\d+[A-Za-z]*(?:[~～\-](?:IE|BC|B)?\d+[A-Za-z]*)?'
+    _NUM_RANGE = rf'(?:IE|BC|B)?\d+[A-Za-z]*(?:{_RS}(?:IE|BC|B)?\d+[A-Za-z]*)?'
     for _ in range(15):  # 실데이터에 13개 나열 존재
         text, n = re.subn(
             rf'(</span>(?:\([0-9가-힣]+\))?\s*{_CONJ}\s*)({_NUM_RANGE})',
@@ -172,7 +176,7 @@ def clean_text(text: str) -> str:
     # 3) 단독 BC/B/IE 번호 → 파란색 볼드 HTML 강조 (이미 span으로 감싼 부분 제외)
     # [A-Za-z]* 추가: "B59A", "BC414V" 같은 suffix 포함 번호 완전 매칭
     text = re.sub(
-        r"(?<![\w>])((?:IE|BC|B)\d+[A-Za-z]*(?:[~～](?:IE|BC|B)?\d+[A-Za-z]*)?)(?![\w가-힣])",
+        rf"(?<![\w>])((?:IE|BC|B)\d+[A-Za-z]*(?:{_RS}(?:IE|BC|B)?\d+[A-Za-z]*)?)(?![\w가-힣])",
         r'<span style="color:#1f77b4;font-weight:600;">\1</span>',
         text,
     )

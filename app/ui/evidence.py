@@ -1,6 +1,9 @@
 # app/ui/evidence.py
 # 카테고리별 아코디언 문서 패널 — evidence 화면과 ai_answer Split View에서 재사용.
 #
+# ai_answer 페이지에서는 본문/적용지침/결론도출근거를
+# 벡터검색이 아닌 AI 답변에서 직접 인용된 문단만 DB에서 조회하여 표시합니다.
+#
 # components.py에서 분리. _render_evidence_panel이 유일한 public 함수.
 
 import re
@@ -8,7 +11,7 @@ import re
 import streamlit as st
 
 from app.ui.constants import ACCORDION_GROUPS
-from app.ui.db import fetch_ie_case_docs
+from app.ui.db import _expand_para_range, fetch_docs_by_para_ids, fetch_ie_case_docs
 from app.ui.doc_helpers import (
     _apply_cluster_first_bonus,
     _get_doc_para_num,
@@ -19,7 +22,76 @@ from app.ui.doc_renderers import (
     _render_document_expander,
     _render_pdr_expander,
 )
-from app.ui.text import _esc
+from app.ui.text import _esc, _extract_para_refs, _para_ref_to_num
+
+# AI 답변 페이지에서 벡터검색 대신 인용 문단만 표시할 소스 유형
+_STANDARD_SOURCES = frozenset({"본문", "적용지침B", "결론도출근거", "용어정의", "시행일"})
+
+
+def _get_cited_standard_docs() -> list[dict]:
+    """AI 답변 텍스트에서 직접 인용된 문단만 DB에서 조회합니다.
+
+    '문단 46', '문단 B20~B21' 등의 참조를 파싱하여 해당 기준서 문서를 반환합니다.
+    본문/적용지침/결론도출근거 소스만 필터링하여 반환합니다.
+    """
+    answer = st.session_state.get("ai_answer", "")
+    if not answer:
+        return []
+
+    # 같은 답변에 대한 중복 DB 쿼리 방지 (Streamlit rerun 대응)
+    cache_key = hash(answer)
+    if st.session_state.get("_cited_docs_cache_key") == cache_key:
+        return st.session_state.get("_cited_docs_cache", [])
+
+    refs = _extract_para_refs(answer)
+    if not refs:
+        return []
+
+    # "문단 B23" → "B23", 범위 확장 "56~59" → ["56","57","58","59"]
+    para_nums: set[str] = set()
+    for ref in refs:
+        num = _para_ref_to_num(ref)
+        para_nums.update(_expand_para_range(num))
+
+    if not para_nums:
+        return []
+
+    raw_docs = fetch_docs_by_para_ids(tuple(sorted(para_nums)))
+
+    result: list[dict] = []
+    seen_ids: set[str] = set()
+    for doc in raw_docs:
+        # DB 문서는 metadata를 root 레벨로 펼쳐서 저장 (04-embed.py)
+        # category, hierarchy, paraNum 등이 root에 위치
+        source = (
+            doc.get("category", "")
+            or doc.get("source", "")
+            or (doc.get("metadata") or {}).get("category", "")
+        )
+        if source not in _STANDARD_SOURCES:
+            continue
+
+        cid = doc.get("chunk_id", "") or str(doc.get("_id", ""))
+        if cid in seen_ids:
+            continue
+        seen_ids.add(cid)
+
+        result.append({
+            "source": source,
+            "hierarchy": doc.get("hierarchy", ""),
+            "title": doc.get("title", ""),
+            "content": doc.get("content", "") or doc.get("text", ""),
+            "full_content": doc.get("content", "") or doc.get("text", ""),
+            "chunk_id": doc.get("chunk_id", ""),
+            "paraNum": doc.get("paraNum", ""),
+            "metadata": doc.get("metadata") or {},
+            "score": 0.0,
+        })
+
+    # 캐시에 저장
+    st.session_state["_cited_docs_cache_key"] = cache_key
+    st.session_state["_cited_docs_cache"] = result
+    return result
 
 
 def _render_evidence_panel() -> None:
@@ -45,6 +117,14 @@ def _render_evidence_panel() -> None:
             seen_ids.add(uid)
         deduped.append(doc)
     docs = deduped
+
+    # AI 답변 페이지: 기준서 문서(본문/적용지침/BC)는 벡터검색 대신
+    # AI가 직접 인용한 문단만 DB에서 조회하여 표시
+    if st.session_state.get("page_state") == "ai_answer":
+        cited_docs = _get_cited_standard_docs()
+        # 벡터검색 결과에서 기준서 문서 제거 → 인용 문단으로 교체
+        docs = [d for d in docs if d.get("source", "") not in _STANDARD_SOURCES]
+        docs.extend(cited_docs)
 
     # suffix 포함 자연 정렬: B59 → B59A → B59B
     def _extract_num(doc: dict) -> tuple[str, int, str]:

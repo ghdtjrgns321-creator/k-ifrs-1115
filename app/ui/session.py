@@ -47,7 +47,8 @@ def _init_session() -> None:
 def _go_home() -> None:
     """세션 상태를 초기화하고 홈 화면으로 돌아갑니다.
 
-    검색/답변 관련 키를 모두 삭제하고 _init_session()으로 기본값을 재설정합니다.
+    on_click 콜백으로 사용하면 st.rerun()이 필요 없음 —
+    Streamlit이 콜백 실행 후 자동 1회 rerun합니다.
     session_id(멀티턴)는 유지하여 대화 맥락이 이어집니다.
     """
     reset_keys = [
@@ -70,4 +71,3 @@ def _go_home() -> None:
             del st.session_state[key]
     # 삭제된 키를 기본값으로 복원합니다.
     _init_session()
-    st.rerun()

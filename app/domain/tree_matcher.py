@@ -14,8 +14,8 @@ def match_topics(standalone_query: str, search_keywords: list[str]) -> list[dict
     """3개 dict에서 키워드 매칭 → 타입별 최고 score 1개 → 상위 2개 반환.
 
     Returns:
-        [{tree_type, topic_name, checklist_text, score}, ...]
-        매칭 없으면 빈 리스트 → 기존 동작 100% 호환
+        [{tree_type, topic_name, checklist_text, checklist, score, judgment_goal?}, ...]
+        judgment_goal은 decision_tree 타입에만 존재. 매칭 없으면 빈 리스트.
     """
     candidates: list[dict] = []
 
@@ -29,6 +29,7 @@ def match_topics(standalone_query: str, search_keywords: list[str]) -> list[dict
                 "topic_name": topic_name,
                 "checklist_text": _format_decision_tree(topic_name, data),
                 "checklist": data["checklist"],
+                "judgment_goal": data["judgment_goal"],
                 "score": score,
             })
 

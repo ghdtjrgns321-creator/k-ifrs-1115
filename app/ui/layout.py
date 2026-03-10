@@ -18,7 +18,7 @@ _CUSTOM_CSS = """
     header[data-testid="stHeader"] { background: transparent !important; }
     .block-container {
         padding-top: 2rem; padding-bottom: 2rem;
-        max-width: 1296px !important;
+        max-width: 1220px !important;
     }
 
     /* 홈: 제목↔박스 간격 최소화 */
@@ -26,16 +26,18 @@ _CUSTOM_CSS = """
         margin-top: -1rem !important;
     }
 
-    /* expander 카드 */
+    /* expander 카드 — shadcn 스타일 */
     div[data-testid="stExpander"] {
         border: 1px solid #E2E8F0 !important;
-        border-radius: 6px !important;
-        margin-bottom: 0.5rem !important;
+        border-radius: 8px !important;
+        margin-bottom: 0.4rem !important;
         overflow: hidden;
-        transition: border-color 0.15s;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+        transition: border-color 0.15s, box-shadow 0.15s;
     }
     div[data-testid="stExpander"]:hover {
-        border-color: #94A3B8 !important;
+        border-color: #CBD5E1 !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
 
     /* 문단 본문 */
@@ -97,6 +99,17 @@ _CUSTOM_CSS = """
         border-radius: 6px; padding: 0.45rem 0.8rem;
         font-size: 0.82em; color: #64748B; margin-top: 0.5rem;
     }
+
+    /* 추가 질문 폼 — 질문하기 버튼 네이비 배경 */
+    [data-testid="stFormSubmitButton"] button {
+        background-color: #1E293B !important;
+        color: white !important;
+        border: none !important;
+    }
+    [data-testid="stFormSubmitButton"] button:hover {
+        background-color: #334155 !important;
+        color: white !important;
+    }
 </style>
 """
 
@@ -125,9 +138,10 @@ def _render_header() -> None:
             <h1 style='font-size: 1.85em; font-weight: 700; margin: 4px 0 0; color: #0F172A;'>
                 수익인식 기준서 분석 도구
             </h1>
-            <p style='font-size: 0.9em; color: #64748B; margin-top: 6px;'>
+            <p style='font-size: 0.9em; color: #64748B; margin-top: 6px; margin-bottom: 0;'>
                 기준서 본문 · 질의회신 · 감리사례를 직접 열람하고 AI에게 해석을 물어보세요
             </p>
+            <hr style='border: none; border-top: 1px solid #E2E8F0; margin-top: 12px; margin-bottom: 0;'>
         </div>
     """
     )
@@ -139,8 +153,12 @@ def _render_sidebar() -> None:
         st.title("K-IFRS Chatbot")
         st.caption("기업회계기준서 제1115호  \n고객과의 계약에서 생기는 수익")
 
-        if st.button("처음으로", icon=":material/home:", use_container_width=True):
-            _go_home()
+        st.button(
+            "처음으로",
+            icon=":material/home:",
+            use_container_width=True,
+            on_click=_go_home,
+        )
 
         st.divider()
         st.markdown(

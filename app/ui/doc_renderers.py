@@ -1,7 +1,11 @@
 # app/ui/doc_renderers.py
-# 개별 문서 Streamlit 렌더링 — Expander 카드, 문단 칩, PDR 전문 표시.
+# 개별 문서 Streamlit 렌더링 — 모던 카드 UI.
 #
-# components.py에서 분리. st.expander, st.pills 등 Streamlit 위젯 사용.
+# 디자인 원칙:
+#   - 라벨은 짧고 깔끔하게 (문단 번호 + 제목, 중복 없음)
+#   - 본문은 줄바꿈 유지 + line-height 1.85
+#   - 출처 경로는 하단 푸터에 1번만
+#   - 관련 조항 칩은 클릭 가능
 
 import html
 import re
@@ -25,17 +29,16 @@ from app.ui.text import (
 )
 
 
+# ── 관련 조항 칩 ──────────────────────────────────────────────────────────────
+
+
 def _render_para_chips(
     text: str, context_key: str, doc_index: int = 0,
     self_ids: set[str] | None = None,
 ) -> None:
-    """본문에서 탐지된 문단 참조를 inline 필 태그로 렌더링합니다.
-
-    클릭 시 show_modal=True + modal_history 설정으로 모달을 트리거합니다.
-    """
+    """본문에서 탐지된 문단 참조를 클릭 가능한 pill 태그로 렌더링합니다."""
     self_ids = self_ids or set()
     all_refs = _extract_para_refs(text)
-    # 중복 제거 (순서 유지)
     seen: set[str] = set()
     refs = []
     for r in all_refs:
@@ -45,7 +48,6 @@ def _render_para_chips(
     if not refs:
         return
 
-    # DB 검증: 실제 존재하는 문단만 표시
     refs = list(_validate_refs_against_db(tuple(refs)))
     if not refs:
         return
@@ -63,7 +65,6 @@ def _render_para_chips(
 
     st.pills(
         label="관련 조항",
-        # ~ → ～(전각 물결표): Streamlit markdown 취소선 방지
         options=[r.replace("~", "～") for r in refs],
         label_visibility="collapsed",
         key=safe_key,
@@ -71,41 +72,81 @@ def _render_para_chips(
     )
 
 
+# ── Expander 라벨 생성 ────────────────────────────────────────────────────────
+
+
+def _make_label(doc: dict) -> str:
+    """깔끔한 expander 라벨을 생성합니다.
+
+    결과: "문단 56 - 변동대가의 유의적 환원 가능성"
+    title에 이미 문단 번호가 포함되면 중복 안 붙임.
+    """
+    title = doc.get("title", "")
+    para = _get_doc_para_num(doc)
+    hierarchy = doc.get("hierarchy", "")
+
+    # title에 이미 문단 번호 포함 → title만 사용
+    if title and para and (f"문단 {para}" in title or f"문단{para}" in title):
+        return title
+    if para and title:
+        return f"문단 {para} - {title}"
+    if para:
+        return f"문단 {para}"
+    if title:
+        return title
+    parts = [p.strip() for p in hierarchy.split(" > ") if p.strip()]
+    return parts[-1] if parts else "문서"
+
+
+# ── 본문/적용지침/결론도출근거 문서 카드 ───────────────────────────────────────
+
+
 def _render_document_expander(
     doc: dict, doc_index: int = 0, is_key_doc: bool = False
 ) -> None:
-    """개별 문서를 카드 레이아웃의 Expander로 렌더링합니다."""
+    """개별 문서를 카드 expander로 렌더링합니다.
+
+    구조: 라벨 → 본문 → 관련 조항 → 출처 경로
+    """
     hierarchy = doc.get("hierarchy", "출처 없음")
-    title = doc.get("title", "")
     meta = doc.get("metadata") or {}
     source = doc.get("source", "") or meta.get("source", "")
+    para_num = _get_doc_para_num(doc)
 
     full_text = doc.get("text") or doc.get("full_content") or doc.get("content", "")
-    expander_label = title if title else hierarchy
+    full_content = doc.get("full_content", "")
 
-    with st.expander(f"📄 {_esc(expander_label)}", expanded=False):
-        normalized = _normalize_doc_content(full_text, source)
+    label = _make_label(doc)
+
+    with st.expander(_esc(label), expanded=False):
+        # 본문 — 줄바꿈을 <br>로 변환하여 문단 구분 유지
+        display_text = full_content if full_content else full_text
+        normalized = _normalize_doc_content(display_text, source)
         cleaned = clean_text(normalized)
-        st.markdown(cleaned, unsafe_allow_html=True)
-
-        self_ids = _build_self_ids(_get_doc_para_num(doc))
-        _render_para_chips(normalized, expander_label, doc_index, self_ids)
-
-        st.divider()
-        st.html(
-            f'<div class="source-footer">📍 출처 경로: {html.escape(_esc(hierarchy))}</div>'
+        st.markdown(
+            f'<div style="line-height:1.85; font-size:0.93em;">'
+            f'{cleaned.replace(chr(10), "<br>")}</div>',
+            unsafe_allow_html=True,
         )
+
+        # 관련 조항 칩
+        self_ids = _build_self_ids(para_num)
+        _render_para_chips(normalized, label, doc_index, self_ids)
+
+        # 출처 경로 푸터
+        st.html(
+            f'<div class="source-footer">'
+            f'📍 {html.escape(_esc(hierarchy))}</div>'
+        )
+
+
+# ── QNA/감리사례 PDR 문서 카드 ─────────────────────────────────────────────────
 
 
 def _render_pdr_expander(
     child_doc: dict, doc_index: int = 0, entry_desc: str = "",
 ) -> None:
-    """QNA/감리사례 Child 문서를 Parent 전문(full content)으로 렌더링합니다.
-
-    PDR(Parent-Document Retrieval) 아키텍처:
-      - 벡터 검색 대상: Child 청크 → 검색 정밀도 향상
-      - 화면 표시 대상: Parent 전문 → 완전한 맥락 제공
-    """
+    """QNA/감리사례 — Parent 전문을 카드로 렌더링합니다."""
     parent_id = child_doc.get("parent_id", "")
     hierarchy = child_doc.get("hierarchy", "") or ""
     title = child_doc.get("title", "")
@@ -114,31 +155,22 @@ def _render_pdr_expander(
     if not parent_id and chunk_id:
         parent_id = re.sub(r"_[QAS]$", "", chunk_id)
 
-    expander_label = title if title else (hierarchy or chunk_id or "출처 없음")
+    label = title if title else (hierarchy or chunk_id or "출처 없음")
 
-    _hier_parts = [p.strip() for p in hierarchy.split(">") if p.strip()]
-    _hier_path = " > ".join(_hier_parts[:-1]) if len(_hier_parts) > 1 else hierarchy
-
-    with st.expander(f"📄 {_esc(expander_label)}", expanded=False):
-        if _hier_path:
-            st.markdown(
-                f'<div style="font-size: 0.78em; color: #6b7280; background: #f1f5f9; '
-                f'display: inline-block; padding: 2px 10px; border-radius: 12px; '
-                f'margin-bottom: 0.5rem;">🏷️ {html.escape(_hier_path)}</div>',
-                unsafe_allow_html=True,
-            )
-
+    with st.expander(_esc(label), expanded=False):
+        # 요약 설명 (topic curation desc)
         if entry_desc:
             _desc = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", entry_desc)
             _desc = re.sub(r"\. (?=[가-힣A-Z\[*])", ".<br>", _desc)
             st.markdown(
-                f'<div style="line-height: 1.75; color: #475569; font-size: 0.85em; '
-                f'padding: 0.5rem 0.75rem; margin-bottom: 0.5rem; '
-                f'background: #f8fafc; border-left: 3px solid #60a5fa; '
-                f'border-radius: 4px;">{_desc}</div>',
+                f'<div style="line-height:1.75; color:#475569; font-size:0.85em; '
+                f'padding:0.5rem 0.75rem; margin-bottom:0.5rem; '
+                f'border-left:3px solid #94A3B8; border-radius:4px; '
+                f'background:#F8FAFC;">{_desc}</div>',
                 unsafe_allow_html=True,
             )
 
+        # Parent 전문
         parent = fetch_parent_doc(parent_id) if parent_id else None
         raw_content = ""
 
@@ -148,7 +180,11 @@ def _render_pdr_expander(
                 raw_content = content
                 adjusted = _format_pdr_content(content)
                 cleaned = clean_text(adjusted)
-                st.markdown(cleaned, unsafe_allow_html=True)
+                st.markdown(
+                    f'<div style="line-height:1.85; font-size:0.93em;">'
+                    f'{cleaned.replace(chr(10), "<br>")}</div>',
+                    unsafe_allow_html=True,
+                )
             else:
                 st.info("내용을 불러올 수 없습니다.")
         else:
@@ -156,28 +192,30 @@ def _render_pdr_expander(
             if fallback:
                 raw_content = fallback
                 normalized = _normalize_doc_content(fallback, child_doc.get("source", ""))
-                st.markdown(clean_text(normalized), unsafe_allow_html=True)
+                cleaned = clean_text(normalized)
+                st.markdown(
+                    f'<div style="line-height:1.85; font-size:0.93em;">'
+                    f'{cleaned.replace(chr(10), "<br>")}</div>',
+                    unsafe_allow_html=True,
+                )
             else:
                 st.info("내용을 불러올 수 없습니다.")
 
         if raw_content:
-            _render_para_chips(raw_content, expander_label, doc_index)
+            _render_para_chips(raw_content, label, doc_index)
 
-        st.divider()
+        # 출처 경로 — 유일한 1개
         st.html(
-            f'<div class="source-footer">📍 출처 경로: {html.escape(_esc(hierarchy))}</div>'
+            f'<div class="source-footer">'
+            f'📍 {html.escape(_esc(hierarchy))}</div>'
         )
 
-    if _hier_path:
-        st.html(
-            f'<div style="font-size:0.8rem; color:#9ca3af; '
-            f'margin:-0.75rem 0 -0.25rem 0.25rem; line-height:1.4;">'
-            f'└ {html.escape(_hier_path)}</div>'
-        )
+
+# ── IE 적용사례 그룹핑 렌더링 ──────────────────────────────────────────────────
 
 
 def _render_docs_with_ie_grouping(docs: list[dict], idx_offset: int = 0) -> None:
-    """문서 목록을 렌더링합니다. IE 적용사례는 case_group_title로 서브 그룹화합니다."""
+    """문서 목록을 렌더링합니다. IE 적용사례는 case_group_title로 서브 그룹화."""
     ie_groups: dict[str, list[tuple[int, dict]]] = {}
     non_ie_docs: list[tuple[int, dict]] = []
 
@@ -200,24 +238,18 @@ def _render_docs_with_ie_grouping(docs: list[dict], idx_offset: int = 0) -> None
     rendered_parent_cases: set[str] = set()
 
     for case_group_title, group_items in ie_groups.items():
-        # 파생 사례 감지 → 부모 사례를 먼저 표시
-        m_sub = re.match(r"^사례\s+\d+[A-Za-z]", case_group_title)
+        # "사례 1A" 같은 서브 사례 → 부모 "사례 1"의 문서를 먼저 표시
+        m_sub = re.match(r"^(사례\s+\d+)[A-Za-z]", case_group_title)
         if m_sub and case_group_title not in rendered_parent_cases:
-            from app.ui.db import fetch_ie_case_docs, find_sub_case_parent_titles
-            parent_map = find_sub_case_parent_titles((case_group_title,))
-            parent_cgt = parent_map.get(case_group_title)
+            from app.ui.db import fetch_ie_case_docs
+
+            parent_cgt = m_sub.group(1)  # "사례 1A" → "사례 1"
             if parent_cgt and parent_cgt not in rendered_parent_cases:
                 parent_docs = sorted(
                     fetch_ie_case_docs((parent_cgt,)), key=_ie_para_sort_key
                 )
                 if parent_docs:
-                    st.markdown(
-                        f'<div style="margin-top:0.75rem; padding:0.3rem 0.6rem; '
-                        f'background:#f5f5f5; border-left:3px solid #999; '
-                        f'border-radius:4px; font-size:0.85em; color:#555; font-weight:600;">'
-                        f'📋 [기본 사례] {_esc(parent_cgt)}</div>',
-                        unsafe_allow_html=True,
-                    )
+                    st.caption(f"📋 기본 사례: {_esc(parent_cgt)}")
                     for pd in parent_docs:
                         _render_document_expander(
                             pd, doc_index=parent_idx_base + parent_idx_counter
@@ -225,12 +257,6 @@ def _render_docs_with_ie_grouping(docs: list[dict], idx_offset: int = 0) -> None
                         parent_idx_counter += 1
                     rendered_parent_cases.add(parent_cgt)
 
-        st.markdown(
-            f'<div style="margin-top:0.75rem; padding: 0.3rem 0.6rem; '
-            f'background:#f0f4ff; border-left:3px solid #4c7ef3; '
-            f'border-radius:4px; font-size:0.85em; color:#2d4a8a; font-weight:600;">'
-            f'📎 {_esc(case_group_title)}</div>',
-            unsafe_allow_html=True,
-        )
+        st.caption(f"📎 {_esc(case_group_title)}")
         for idx, doc in group_items:
             _render_document_expander(doc, doc_index=idx)

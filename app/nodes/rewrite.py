@@ -12,6 +12,6 @@ async def rewrite_query(state: dict) -> dict:
     )
 
     return {
-        "standalone_query": result.data.strip(),
+        "standalone_query": result.output.strip(),
         "retry_count": state.get("retry_count", 0) + 1,
     }
