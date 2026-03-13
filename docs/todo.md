@@ -1,0 +1,2 @@
+- quality report 보고 수정
+- 나머지 테스트도 진행
