@@ -6,6 +6,7 @@ __pycache__/
 # 데이터 (런타임에 불필요 — 외부 DB 사용)
 data/
 # 예외: topics.json은 런타임에 필요 (topic_content_map.py가 로드)
+!data/topic-curation/
 !data/topic-curation/topics.json
 
 # 전처리/테스트 (런타임에 불필요)
