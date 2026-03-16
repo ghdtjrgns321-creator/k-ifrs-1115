@@ -114,7 +114,15 @@ async def generate_answer(state: dict) -> dict:
     # fast-path 후속 턴: analyze 스킵으로 standalone_query가 비어있음
     # → 마지막 human 메시지를 question으로 사용
     if state.get("is_clarify_followup") and not state.get("standalone_query"):
-        state["standalone_query"] = _get_last_human_message(messages) or "질문"
+        # checklist_state에 저장된 원래 질문 + 현재 답변 결합
+        # Why: fast-path에서 analyze 스킵 시 standalone_query가 비어있는데,
+        # 현재 답변("A한테 있다")만으로는 LLM이 맥락을 알 수 없음
+        original_query = (state.get("checklist_state") or {}).get("original_query", "")
+        current_answer = _get_last_human_message(messages) or ""
+        if original_query:
+            state["standalone_query"] = f"{original_query} (사용자 추가 정보: {current_answer})"
+        else:
+            state["standalone_query"] = current_answer or "질문"
 
     # 문서 컨텍스트 + 출처 메타데이터 구성
     context_parts = []
@@ -219,11 +227,11 @@ async def _run_clarify(
     # 대화 히스토리 구성 — AI가 이미 물어본 내용을 반복하지 않도록
     # Why: 최근 2턴만 사용 — checklist_state.checked_items에 이미 구조화된 Q&A가 있으므로
     # 전체 히스토리 순회는 토큰 낭비 (3턴째 context 비대화 → 5~10초 절감)
-    recent = messages[-5:-1] if len(messages) > 5 else messages[:-1]
+    recent = messages[-5:] if len(messages) > 5 else messages
     history_lines = []
     for role, content in recent:
         prefix = "사용자" if role == "human" else "AI"
-        history_lines.append(f"{prefix}: {content[:150]}")
+        history_lines.append(f"{prefix}: {content[:500]}")
     conversation_history = "\n".join(history_lines) if history_lines else "(첫 질문)"
 
     # 사용자 원문 추출 — 혼동점 해소에서 사용자가 쓴 단어를 인용하기 위해
