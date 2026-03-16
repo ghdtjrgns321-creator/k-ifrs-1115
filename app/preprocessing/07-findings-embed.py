@@ -17,7 +17,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 INPUT_FILE        = "data/findings/findings-final.json"
 CHILD_COLLECTION  = settings.mongo_collection_name
 PARENT_COLLECTION = "k-ifrs-1115-findings-parents"
-FINDINGS_WEIGHT   = 1.0
+FINDINGS_WEIGHT   = 1.2
 
 
 def split_finding_to_children(finding_id: str, full_text: str, metadata: dict) -> list[dict]:

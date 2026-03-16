@@ -195,9 +195,9 @@ def fetch_targeted_qnas():
     total_found = 0
 
     TARGET_CONFIGS = [
-        {"type": 13, "name": "IFRS 해석위원회", "weight": 1.18},
-        {"type": 25, "name": "금융감독원", "weight": 1.18},
-        {"type": 11, "name": "회계기준원 정규질의", "weight": 1.15},
+        {"type": 13, "name": "IFRS 해석위원회", "weight": 1.15},
+        {"type": 25, "name": "금융감독원", "weight": 1.15},
+        {"type": 11, "name": "회계기준원 정규질의", "weight": 1.10},
         {"type": 15, "name": "신속처리질의", "weight": 1.05},
     ]
 
