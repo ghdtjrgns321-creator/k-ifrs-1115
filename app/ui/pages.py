@@ -276,17 +276,25 @@ def _render_ai_answer() -> None:
         unsafe_allow_html=True,
     )
 
-    # 헤더: 질문 + 새 검색 버튼
+    # 헤더: 질문 이력 + 새 검색 버튼
+    history = st.session_state.get("ai_questions_history", [])
+    # 이력이 비어있으면 현재 질문만 표시
+    if not history:
+        history = [st.session_state.ai_question] if st.session_state.ai_question else []
+
     col1, col2 = st.columns([5, 1])
     with col1:
-        st.html(
-            f"""
-            <div style='padding: 0.5rem 0 0;'>
-                <span style='color: #64748B; font-size: 0.9em;'>질문</span><br>
-                <span style='line-height: 1.7;'>{_format_question(st.session_state.ai_question)}</span>
-            </div>
-        """
-        )
+        # 모든 턴의 질문을 순서대로 표시
+        for idx, q in enumerate(history):
+            label = "질문" if idx == 0 else f"추가 질문 {idx}"
+            st.html(
+                f"""
+                <div style='padding: 0.3rem 0 0;'>
+                    <span style='color: #64748B; font-size: 0.9em;'>{label}</span><br>
+                    <span style='line-height: 1.7;'>{_format_question(q)}</span>
+                </div>
+            """
+            )
     with col2:
         st.button(
             "새 검색",
@@ -336,18 +344,31 @@ def _render_ai_answer() -> None:
             st.markdown("#### :material/forum: 추가 질문")
             new_q = st.text_area(
                 "추가 질문",
-                placeholder="추가로 궁금한 점을 입력하세요...",
+                placeholder="추가질문이나 확인 질문에 대한 답변을 입력해주세요...",
                 label_visibility="collapsed",
                 height=100,
                 key="followup_input",
             )
-            if st.button(
+
+            def _submit_followup():
+                """on_click 콜백 — rerun 전에 실행되므로 위젯 키 삭제 가능."""
+                q = st.session_state.get("followup_input", "").strip()
+                if q:
+                    # 다음 rerun에서 사용할 질문을 별도 키에 저장
+                    st.session_state["_pending_followup_text"] = q
+                    # 위젯 키 삭제 → 다음 렌더에서 빈 상태로 생성
+                    del st.session_state["followup_input"]
+
+            st.button(
                 "질문하기",
                 use_container_width=True,
                 type="primary",
                 key="followup_btn",
-            ):
-                if new_q and new_q.strip():
-                    _call_chat(new_q.strip(), use_cache=False)
+                on_click=_submit_followup,
+            )
+            # on_click에서 저장한 질문이 있으면 API 호출
+            pending = st.session_state.pop("_pending_followup_text", None)
+            if pending:
+                _call_chat(pending, use_cache=False)
 
         _followup_fragment()
