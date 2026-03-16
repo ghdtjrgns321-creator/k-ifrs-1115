@@ -7,44 +7,6 @@
 
 ---
 
-## 실행 방법
-
-### 환경 변수 설정
-
-```bash
-cp .env.example .env
-# .env 파일에 API 키 입력
-OPENAI_API_KEY=sk-proj-xxxxx
-UPSTAGE_API_KEY=up_xxxxx
-COHERE_API_KEY=xxxxx
-GOOGLE_API_KEY=xxxxx
-MONGO_URI=mongodb+srv://...
-MONGO_DB_NAME=kifrs_db
-MONGO_COLLECTION_NAME=k-ifrs-1115-chatbot
-```
-
-### Docker 배포 (권장)
-
-```bash
-git clone https://github.com/ghdtjrgns321-creator/k-ifrs-1115-chatbot.git
-cd k-ifrs-1115-chatbot
-cp .env.example .env   # API 키 입력
-docker compose up -d --build
-```
-
-- Streamlit UI: http://localhost:8501
-- FastAPI Swagger: http://localhost:8002/docs
-
-### 로컬 개발
-
-```bash
-uv sync
-uv run uvicorn app.main:app --port 8002          # 백엔드
-uv run streamlit run app/streamlit_app.py         # 프론트엔드 (별도 터미널)
-```
-
----
-
 ## 왜 이 프로젝트가 필요한가
 
 범용 AI(ChatGPT, Gemini)에게 회계 질문을 하면 **환각(Hallucination)** — 근거 없이 그럴듯한 답변을 생성하는 현상 — 이 발생합니다.
@@ -301,3 +263,31 @@ AI 2턴: "[결론] B사는 대리인에 해당할 가능성이 높습니다.
 | [`FINAL-REPORT/4_SEARCH-AND-AI.md`](FINAL-REPORT/4_SEARCH-AND-AI.md) | 검색 엔진 + AI 파이프라인 |
 | [`FINAL-REPORT/5_TEST-AND-DECISIONS.md`](FINAL-REPORT/5_TEST-AND-DECISIONS.md) | 테스트 결과 + 의사결정 기록 |
 | [`FINAL-REPORT/6_LESSONS-LEARNED.md`](FINAL-REPORT/6_LESSONS-LEARNED.md) | 교훈과 한계 |
+
+---
+
+## 로컬 실행 방법
+
+### 환경 변수 설정
+
+```bash
+cp .env.example .env
+# .env 파일에 API 키 입력
+```
+
+### Docker 배포
+
+```bash
+docker compose up -d --build
+```
+
+- Streamlit UI: http://localhost:8501
+- FastAPI Swagger: http://localhost:8002/docs
+
+### 로컬 개발
+
+```bash
+uv sync
+uv run uvicorn app.main:app --port 8002          # 백엔드
+uv run streamlit run app/streamlit_app.py         # 프론트엔드 (별도 터미널)
+```
