@@ -162,6 +162,8 @@ async def run_graph_stream(
                 "concluded": False,
                 # needs_calculation 영속화 — 후속 턴에서 calc 라우팅 유지
                 "needs_calculation": final_state.get("needs_calculation", False),
+                # 원래 질문 저장 — 후속 턴 fast-path에서 standalone_query 복원용
+                "original_query": final_state.get("standalone_query", ""),
             }
             # 첫 턴에서 바로 결론이 나온 경우 (정보 충분 시)
             if final_state.get("is_conclusion", False):
