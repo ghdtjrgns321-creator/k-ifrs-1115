@@ -29,6 +29,7 @@ from app.ui.text import (
     _extract_para_refs,
     _normalize_doc_content,
     clean_text,
+    md_tables_to_html,
 )
 
 
@@ -96,10 +97,16 @@ def _make_label(doc: dict, cited_ids: set[str] | None = None) -> str:
     is_cited = bool(cited_ids and para and para in cited_ids)
     para_tag = f":blue[**문단 {para}**]" if is_cited else f"문단 {para}"
 
-    # IE 사례 내 개별 문서: "[사례 N: 제목] 문단 IEXXX - 개별 제목" 형태
+    # IE 사례 내 개별 문서: 사례 그룹 expander 안에서 보이므로 cgt 생략
+    # "문단 IE49 - 소프트웨어 라이선스와 서비스 구별" 형태로 짧게
     if cgt and para:
-        suffix = f" - {title}" if title and cgt not in title else ""
-        return f"[{cgt}] {para_tag}{suffix}"
+        # title에서 "[hierarchy] 문단 IEXXX - " 접두사 제거 → 순수 제목만 추출
+        clean = re.sub(r"^\[.*?\]\s*문단\s*\S+\s*-\s*", "", title) if title else ""
+        suffix = f" - {clean}" if clean and clean != title else ""
+        # clean이 안 되었으면 원본 title에서 문단 번호 중복 제거 시도
+        if not suffix and title and f"문단 {para}" not in title and cgt not in title:
+            suffix = f" - {title}"
+        return f"{para_tag}{suffix}"
 
     # title에 이미 문단 번호 포함 → title만 사용 (인용 시 강조 교체)
     if title and para and (f"문단 {para}" in title or f"문단{para}" in title):
@@ -149,13 +156,17 @@ def _render_document_expander(
                 f'margin-bottom:0.5rem;">[문단 {html.escape(para_num)}]</span>',
                 unsafe_allow_html=True,
             )
-        # 본문 — 줄바꿈을 <br>로 변환하여 문단 구분 유지
+        # 본문 — 마크다운 테이블을 HTML로 먼저 변환 후 \n→<br>
+        # Why: \n→<br> 변환이 테이블 행 구분자를 파괴하므로 미리 HTML로 변환
         display_text = full_content if full_content else full_text
         normalized = _normalize_doc_content(display_text, source)
         cleaned = clean_text(normalized)
+        cleaned = md_tables_to_html(cleaned)
+        # \n+ → 단일 <br>로 통합 (이중 줄띄움 방지)
+        cleaned = re.sub(r"\n+", "<br>", cleaned)
         st.markdown(
             f'<div style="line-height:1.85; font-size:0.93em;">'
-            f"{cleaned.replace(chr(10), '<br>')}</div>",
+            f"{cleaned}</div>",
             unsafe_allow_html=True,
         )
 
@@ -240,9 +251,11 @@ def _render_pdr_expander(
         if content:
             adjusted = _format_pdr_content(content)
             cleaned = clean_text(adjusted)
+            cleaned = md_tables_to_html(cleaned)
+            cleaned = re.sub(r"\n+", "<br>", cleaned)
             st.markdown(
                 f'<div style="line-height:1.85; font-size:0.93em;">'
-                f"{cleaned.replace(chr(10), '<br>')}</div>",
+                f"{cleaned}</div>",
                 unsafe_allow_html=True,
             )
             # 🔗 관련 조항 칩

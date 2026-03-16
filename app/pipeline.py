@@ -38,19 +38,30 @@ async def _retry_node(
     state: dict,
     *,
     max_retries: int = 2,
+    deadline: float | None = None,
 ) -> dict:
     """LLM API 호출 노드에 지수 백오프 재시도를 적용합니다.
 
     Why: PydanticAI의 retries=2는 output validation 전용이라
     네트워크 timeout/HTTP 오류는 별도 래퍼가 필요함.
+
+    deadline: time.perf_counter() 기준 절대 시각. 초과 시 TimeoutError 발생.
     """
     for attempt in range(max_retries + 1):
+        # 파이프라인 전체 deadline 체크
+        if deadline and time.perf_counter() > deadline:
+            raise TimeoutError("Pipeline deadline exceeded")
         try:
             return await coro_fn(state)
         except _RETRYABLE_EXCEPTIONS as exc:
             if attempt == max_retries:
                 raise
             wait = 2**attempt
+            # deadline까지 남은 시간이 대기 시간보다 짧으면 재시도 포기
+            if deadline:
+                remaining = deadline - time.perf_counter()
+                if remaining < wait:
+                    raise
             logger.warning(
                 "retry %d/%d after %s (wait %.0fs)",
                 attempt + 1,
@@ -67,7 +78,11 @@ async def run_rag_pipeline(state: dict) -> AsyncGenerator[SSEEvent, None]:
     각 노드 함수가 반환하는 부분 dict로 state를 병합하는 단순한 구조입니다.
     """
 
+    from app.config import settings
+
     pipeline_start = time.perf_counter()
+    # Why: 전체 파이프라인 무한 대기 방지 (SECTION-4 미인도청구약정 46초+ 케이스)
+    deadline = pipeline_start + settings.pipeline_timeout
 
     # ── Fast-path: clarify 후속 턴 ──────────────────────────────────────────────
     # analyze/retrieve/rerank 전체 스킵 → clarify LLM 1회만 실행
@@ -75,10 +90,10 @@ async def run_rag_pipeline(state: dict) -> AsyncGenerator[SSEEvent, None]:
         yield SSEEvent(
             type="status",
             step="generate",
-            message="답변을 생성하고 있어요... (시간이 조금 소요될 수 있습니다)",
+            message="답변을 생성하고 있어요...",
         )
         t0 = time.perf_counter()
-        state.update(await _retry_node(generate_answer, state))
+        state.update(await _retry_node(generate_answer, state, deadline=deadline))
         logger.info("generate(fast-path): %.1fs", time.perf_counter() - t0)
         logger.info("total: %.1fs", time.perf_counter() - pipeline_start)
         yield _done_event(state)
@@ -104,14 +119,18 @@ async def run_rag_pipeline(state: dict) -> AsyncGenerator[SSEEvent, None]:
             type="status", step="retrieve", message="관련 조항을 검색하고 있어요..."
         )
         t0 = time.perf_counter()
-        state.update(await retrieve_docs(state))
+        state.update(
+            await _retry_node(retrieve_docs, state, max_retries=1, deadline=deadline)
+        )
         logger.info("retrieve: %.1fs", time.perf_counter() - t0)
 
         yield SSEEvent(
             type="status", step="rerank", message="관련성을 재평가하고 있어요..."
         )
         t0 = time.perf_counter()
-        state.update(await rerank_docs(state))
+        state.update(
+            await _retry_node(rerank_docs, state, max_retries=1, deadline=deadline)
+        )
         logger.info("rerank: %.1fs", time.perf_counter() - t0)
 
     # ── 3. Reranker 결과를 그대로 사용 ──────────────────────────────────────────
@@ -124,10 +143,10 @@ async def run_rag_pipeline(state: dict) -> AsyncGenerator[SSEEvent, None]:
     yield SSEEvent(
         type="status",
         step="generate",
-        message="답변을 생성하고 있어요... (시간이 조금 소요될 수 있습니다)",
+        message="답변을 생성하고 있어요...",
     )
     t0 = time.perf_counter()
-    state.update(await _retry_node(generate_answer, state))
+    state.update(await _retry_node(generate_answer, state, deadline=deadline))
     logger.info("generate: %.1fs", time.perf_counter() - t0)
 
     # ── 5. Format — clarify 경로에서는 스킵 (감리사례 넛지 불필요) ──────────────
@@ -136,7 +155,9 @@ async def run_rag_pipeline(state: dict) -> AsyncGenerator[SSEEvent, None]:
             type="status", step="format", message="답변을 정리하고 있어요..."
         )
         t0 = time.perf_counter()
-        state.update(await format_response(state))
+        state.update(
+            await _retry_node(format_response, state, max_retries=1, deadline=deadline)
+        )
         logger.info("format: %.1fs", time.perf_counter() - t0)
 
     logger.info("total: %.1fs", time.perf_counter() - pipeline_start)
@@ -168,6 +189,7 @@ def _done_event(state: dict) -> SSEEvent:
         findings_case=state.get("findings_case"),
         follow_up_questions=follow_up if follow_up else None,
         is_situation=state.get("is_situation", False),
+        needs_calculation=state.get("needs_calculation", False),
         retrieved_docs=retrieved_docs,
         matched_topic_keys=topic_keys if topic_keys else None,
         search_keywords=state.get("search_keywords") or None,

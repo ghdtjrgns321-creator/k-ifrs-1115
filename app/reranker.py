@@ -51,6 +51,8 @@ def rerank_results(
         documents=documents,
         # 비즈니스 룰 적용을 위해 전체 결과를 받고, 이후 top_n으로 자릅니다.
         top_n=len(unified_results),
+        # Why: Cohere API 간헐 지연 시 무한 대기 방지 → 타임아웃 후 score 기반 폴백
+        request_options={"timeout_in_seconds": settings.reranker_timeout},
     )
 
     # API 결과를 기존 딕셔너리에 매핑

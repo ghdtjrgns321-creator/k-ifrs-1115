@@ -10,9 +10,11 @@ import re
 
 import streamlit as st
 
+import httpx
+
 from app.ui.client import _call_chat
 from app.ui.components import _render_evidence_panel
-from app.ui.constants import HOME_TOPICS_LEFT, HOME_TOPICS_RIGHT
+from app.ui.constants import FEEDBACK_URL, HOME_TOPICS_LEFT, HOME_TOPICS_RIGHT
 from app.ui.doc_helpers import _format_pdr_content
 from app.ui.session import _go_home
 from app.ui.text import clean_text
@@ -207,6 +209,64 @@ def _render_evidence() -> None:
     _ai_question_fragment()
 
 
+def _send_feedback(feedback: str, reason: str = "") -> None:
+    """피드백을 서버에 전송하고 session_state에 결과를 저장합니다."""
+    log_id = st.session_state.get("log_id")
+    if not log_id:
+        return
+    try:
+        payload = {"log_id": log_id, "feedback": feedback}
+        if reason:
+            payload["reason"] = reason
+        resp = httpx.post(FEEDBACK_URL, json=payload, timeout=5)
+        if resp.status_code == 200:
+            st.session_state.feedback_sent = feedback
+    except Exception:
+        pass
+
+
+def _render_feedback_buttons() -> None:
+    """답변 하단에 피드백 버튼을 렌더링합니다."""
+    # 피드백 완료 상태
+    if st.session_state.get("feedback_sent") in ("up", "down"):
+        st.caption("피드백 감사합니다 :D")
+        return
+
+    if not st.session_state.get("log_id"):
+        return
+
+    # 👎 클릭 후 사유 입력 단계
+    if st.session_state.get("feedback_sent") == "down_pending":
+        st.caption("어떤 점이 부족했나요?")
+        reason = st.text_input(
+            "개선 사유",
+            placeholder="예: 관련 없는 문단을 인용함, 결론이 너무 성급함...",
+            label_visibility="collapsed",
+            key="feedback_reason_input",
+        )
+        c1, c2, c3 = st.columns([2, 2, 8])
+        with c1:
+            if st.button("전송", key="feedback_reason_send", type="primary", use_container_width=True):
+                _send_feedback("down", reason=reason.strip() if reason else "")
+                st.rerun()
+        with c2:
+            if st.button("건너뛰기", key="feedback_reason_skip", use_container_width=True):
+                _send_feedback("down")
+                st.rerun()
+        return
+
+    # 초기 상태: 👍/👎 버튼 — 한 줄에 나란히 배치
+    col_up, col_down = st.columns(2)
+    with col_up:
+        if st.button("👍 도움이 됐어요", key="feedback_up", use_container_width=True):
+            _send_feedback("up")
+            st.rerun()
+    with col_down:
+        if st.button("👎 개선이 필요해요", key="feedback_down", use_container_width=True):
+            st.session_state.feedback_sent = "down_pending"
+            st.rerun()
+
+
 def _render_ai_answer() -> None:
     """[AI 답변] Split View — 좌(근거 문서) + 우(AI 답변 + 꼬리질문) 동시 표시."""
     # ── 구분선 — 헤더 바로 아래 ─────────────────────────────────────────────
@@ -263,6 +323,9 @@ def _render_ai_answer() -> None:
                 raw_content = fc.get("content", "내용을 불러올 수 없습니다.")
                 adjusted = _format_pdr_content(raw_content)
                 st.markdown(clean_text(adjusted), unsafe_allow_html=True)
+
+        # ── 피드백 버튼 (👍/👎) ────────────────────────────────────────
+        _render_feedback_buttons()
 
         st.divider()
 

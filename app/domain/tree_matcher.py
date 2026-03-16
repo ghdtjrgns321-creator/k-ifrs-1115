@@ -68,6 +68,7 @@ def match_topics(
     standalone_query: str,
     search_keywords: list[str],
     topic_hints: list[str] | None = None,
+    user_message: str = "",
 ) -> list[dict]:
     """3중 매칭: 키워드 + 임베딩 유사도 + topic_hints → 상위 3개 반환.
 
@@ -79,11 +80,16 @@ def match_topics(
     Why: keyword만으로는 일상 언어 질문에서 토픽 매칭 실패.
          임베딩 유사도로 "A→B→C 재판매" ↔ "본인 vs 대리인" 의미적 매칭 보완.
     """
-    # 쿼리 임베딩 (Upstage query 모델, ~100ms)
+    # 쿼리 임베딩 (Upstage query 모델, ~100ms × 2)
+    # Why: standalone_query(LLM 재작성)와 user_message(원본) 두 벡터를 모두 계산하여
+    #       토픽별 max 유사도를 취함. LLM 재작성에서 의미가 희석되는 문제를 원본으로 보완.
     from app.embeddings import embed_query_sync
 
     query_vector = embed_query_sync(standalone_query)
-    embed_scores = _calc_embedding_scores(query_vector)
+    user_vector = embed_query_sync(user_message) if user_message else []
+
+    query_embed_scores = _calc_embedding_scores(query_vector)
+    user_embed_scores = _calc_embedding_scores(user_vector)
 
     candidates: list[dict] = []
     hint_set = set(topic_hints) if topic_hints else set()
@@ -91,7 +97,8 @@ def match_topics(
     for topic_name, data in MASTER_DECISION_TREES.items():
         routing = data["1_routing"]
         score = _calc_score(
-            standalone_query, search_keywords, routing["trigger_keywords"]
+            standalone_query, search_keywords, routing["trigger_keywords"],
+            user_message=user_message,
         )
 
         # topic_hints 가산: 임베딩(~4.0)보다 낮게 설정
@@ -99,8 +106,11 @@ def match_topics(
         if topic_name in hint_set:
             score += 3.0
 
-        # 임베딩 유사도 가산 (임계값 이상만)
-        embed_sim = embed_scores.get(topic_name, 0.0)
+        # 임베딩 유사도 가산 — standalone_query와 user_message 중 max
+        embed_sim = max(
+            query_embed_scores.get(topic_name, 0.0),
+            user_embed_scores.get(topic_name, 0.0),
+        )
         if embed_sim >= _EMBED_THRESHOLD:
             score += embed_sim * _EMBED_WEIGHT
 
@@ -134,11 +144,14 @@ def match_topics(
 # ── 매칭 점수 계산 ──────────────────────────────────────────────
 
 
-def _calc_score(query: str, keywords: list[str], triggers: list[str]) -> float:
+def _calc_score(
+    query: str, keywords: list[str], triggers: list[str], user_message: str = "",
+) -> float:
     """양방향 부분 문자열 매칭으로 점수를 산출합니다.
 
     - search_keywords 매칭: 가중치 2.0 (LLM이 추출한 핵심 용어이므로 신뢰도 높음)
     - standalone_query 매칭: 가중치 1.0 (전체 문장에서 부분 매칭)
+    - user_message 매칭: 가중치 0.5 (원본 메시지에서 결정적 보완)
     - 완전 일치: 추가 보너스 1.0 (부분 매칭보다 정확도 높음)
     - 1자 키워드/트리거: false positive 방지를 위해 스킵
     """
@@ -162,6 +175,17 @@ def _calc_score(query: str, keywords: list[str], triggers: list[str]) -> float:
 
         if trigger_lower in query_lower:
             score += 1.0
+
+    # 원본 사용자 메시지에서 trigger 매칭 (가중치 0.5)
+    # Why: LLM 재작성에서 누락된 키워드를 원본에서 결정적으로 보완
+    if user_message:
+        user_lower = user_message.lower()
+        for trigger in triggers:
+            trigger_lower = trigger.lower()
+            if len(trigger_lower) < 2:
+                continue
+            if trigger_lower in user_lower:
+                score += 0.5
 
     return score
 

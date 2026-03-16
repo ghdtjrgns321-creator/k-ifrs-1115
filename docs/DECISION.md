@@ -1,7 +1,7 @@
 # 의사결정 기록 (Architecture Decision Records)
 
 > 과거 결정의 맥락과 근거를 빠르게 참조하기 위한 문서.
-> 최종 업데이트: 2026-03-14
+> 최종 업데이트: 2026-03-16
 
 ---
 
@@ -497,3 +497,63 @@
 - TEST-0: high에서 2/3 통제권 미확인 즉답 vs medium 5/5 꼬리질문 안정화
 
 **변경 파일**: `agents.py` (generate_agent, clarify_agent model_settings)
+
+---
+
+## ADR-32. 실사용 데이터 수집 + 자동 품질 채점 시스템
+
+**결정**: 매 채팅 응답마다 MongoDB `usage_logs`에 자동 로깅 + 규칙 기반 4개 메트릭 인라인 채점. 사용자 피드백(👍/👎 + 사유)과 LLM 심화 채점(3개 메트릭)을 선택적으로 추가.
+
+**맥락**: 골든 테스트 53건(ADR-30)은 개발자 설계 시나리오로 회귀 방지에 효과적이나, 실사용자의 질문 패턴·만족도·실패 케이스는 파악 불가
+
+**구현 구조**:
+
+```
+사용자 질문 → pipeline done → usage_logger.log_chat_response()
+                                ├─ MongoDB에 로그 저장 (질문, 답변, 토픽, 인용 등)
+                                └─ 규칙 기반 4개 메트릭 자동 채점 (~1ms, UX 무영향)
+                                        ↓
+                                log_id를 SSE로 클라이언트에 전달
+                                        ↓
+                                👍/👎 버튼 → POST /feedback (사유 포함)
+```
+
+**채점 메트릭 7개**:
+
+| 구분 | 메트릭 | 실행 시점 |
+|------|--------|-----------|
+| 규칙 기반 | 응답 속도, 인용 커버리지, 토픽 매칭, 결론 신중성 | 매 응답 자동 (인라인) |
+| LLM 기반 | 근거 충실도, 답변 적절성, 답변 완전성 | `--with-llm` 수동 실행 |
+
+**핵심 설계 판단**:
+- 규칙 기반 채점을 `usage_logger.py`에 인라인 → 별도 배치 스크립트 불필요, 미채점 건 원천 방지
+- LLM 채점은 건당 3회 API 호출(~$0.001) → 트래픽 규모에 맞춰 선택적 실행
+- `yield event` 전에 `log_id` 주입 (yield 후 수정은 SSE에 반영 안 됨 — 초기 버그)
+- 👎 클릭 시 사유 입력 단계 추가 → `feedback_reason` 필드로 저장 (최대 500자)
+
+**참조**: `app/services/usage_logger.py`, `app/api/routes.py:/feedback`, `app/ui/pages.py`, `usage-data-collecting/overview.md`
+
+---
+
+## ADR-33. clarify_agent 사용자 명시 정보 무시 + 비용 처리 오답 수정
+
+**결정**: 3건 동시 수정 — ① CLARIFY_SYSTEM 규칙 5 추가, ② provided_info→체크리스트 직접 반영, ③ 위탁약정·본인vs대리인 비용 처리 분기 추가
+
+**맥락**: "통제권은 내가 가지고 있는데 수익인식이 아니라 비용 어떻게 해야 하나?" 질문에서 3중 오답 발생
+- 이미 명시한 팩트(통제권 보유)를 재질문
+- 수익인식 관점으로만 답변 (비용 처리 무시)
+- 정답(통제권 有→재고자산 가산, 無→판관비)을 제시하지 않음
+
+**근본 원인**:
+- provided_info가 체크리스트와 분리되어 LLM이 체크리스트를 그대로 따라감
+- CLARIFY_SYSTEM에 사용자 단정 팩트 존중 규칙 없음
+- conclusion_guide에 비용 처리 분기 자체가 없음
+
+**수정 내용**:
+1. `app/prompts.py`: `<checklist_strategy>` 규칙 5 — 사용자 단정 팩트 재질문 금지, ✅ 항목 확인 완료 취급, 질문 범위(비용 처리) 집중
+2. `app/agents.py`: `_mark_provided_in_checklist()` — provided_info 키워드(3글자↑)를 체크리스트 번호 라인에 매칭하여 `✅ [사용자 확인 완료]` 표시 주입. `_inject_clarify_system()`에서 호출
+3. `app/domain/decision_trees.py`: 위탁약정 분기 3/4(통제→재고자산 가산, 미통제→판관비), 본인vs대리인 분기 4/5(본인→매출원가, 대리인→판관비) 추가
+
+**핵심 로직 흐름**: analyze_agent `provided_info` → `_mark_provided_in_checklist()`가 체크리스트에 ✅ 표시 → CLARIFY_SYSTEM 규칙 5가 재질문 금지 + 범위 집중 → conclusion_guide 비용 분기로 정답 제시
+
+**참조**: `app/prompts.py:177~182`, `app/agents.py:343~378`, `app/domain/decision_trees.py`

@@ -1,4 +1,5 @@
 import re
+from concurrent.futures import ThreadPoolExecutor
 from pymongo import MongoClient
 from rank_bm25 import BM25Okapi
 from app.config import settings
@@ -215,26 +216,54 @@ def _classify_source(parent_id: str | None, category: str = "") -> str:
     return category if category else SRC_BODY
 
 
-def _get_parent_content(parent_id: str, source: str) -> str:
-    """PDR 패턴: Child 청크의 parent_id로 부모 원문 전체를 조회합니다."""
+def _batch_get_parent_contents(
+    parent_ids_by_source: dict[str, list[str]],
+) -> dict[str, str]:
+    """source별 parent_id를 모아서 배치 조회합니다.
+
+    Why: 개별 find_one() N회 → $in 배치 조회 source당 1회로 왕복 횟수 감소.
+    """
     db = _get_db()
-    if source == SRC_QNA_SHORT:
-        doc = db[QNA_PARENT_COLL].find_one({"_id": parent_id})
-    elif source == SRC_FINDING:
-        doc = db[FINDINGS_PARENT_COLL].find_one({"_id": parent_id})
-    elif source == SRC_EDU:
-        doc = db[KAI_PARENT_COLL].find_one({"_id": parent_id})
-    else:
-        return ""
-    return doc.get("content", "") if doc else ""
+    result: dict[str, str] = {}
+
+    # source → (컬렉션 이름, parent_id 목록) 매핑
+    source_coll_map = {
+        SRC_QNA_SHORT: QNA_PARENT_COLL,
+        SRC_FINDING: FINDINGS_PARENT_COLL,
+        SRC_EDU: KAI_PARENT_COLL,
+    }
+
+    for source, pids in parent_ids_by_source.items():
+        coll_name = source_coll_map.get(source)
+        if not coll_name or not pids:
+            continue
+        # $in 배치 조회 — 컬렉션당 1회 왕복
+        for doc in db[coll_name].find({"_id": {"$in": pids}}):
+            result[doc["_id"]] = doc.get("content", "")
+
+    return result
 
 
 def _docs_from_fused(fused_docs: list[dict]) -> list[dict]:
     """RRF 융합 결과를 RAG 통합 스키마로 변환합니다 (PDR 포함)."""
-    results = []
+    # 1단계: source 분류 + parent_id 수집 (배치 조회 준비)
+    classified: list[tuple[dict, str]] = []
+    pids_by_source: dict[str, list[str]] = {}
+
     for doc in fused_docs:
         parent_id = doc.get("parent_id")
         source = _classify_source(parent_id, doc.get("category", ""))
+        classified.append((doc, source))
+        if source != SRC_BODY and parent_id:
+            pids_by_source.setdefault(source, []).append(parent_id)
+
+    # 2단계: 배치 조회 — source당 1회 MongoDB 왕복
+    parent_contents = _batch_get_parent_contents(pids_by_source)
+
+    # 3단계: 원래 순서대로 결과 조립
+    results = []
+    for doc, source in classified:
+        parent_id = doc.get("parent_id")
         results.append(
             {
                 "source": source,
@@ -243,7 +272,7 @@ def _docs_from_fused(fused_docs: list[dict]) -> list[dict]:
                 "category": doc.get("category", ""),
                 "chunk_type": doc.get("chunk_type", ""),
                 "content": doc.get("text", ""),
-                "full_content": _get_parent_content(parent_id, source)
+                "full_content": parent_contents.get(parent_id, "")
                 if source != SRC_BODY
                 else "",
                 "title": doc.get("title", ""),
@@ -658,8 +687,12 @@ def fetch_pinpoint_docs(matched_topics: list[dict]) -> list[dict]:
 def search_all(query: str, limit: int = 5) -> list[dict]:
     """기본 하이브리드 검색 (Vector + BM25 + RRF) + QNA/감리사례 보조 추출."""
     query_vector = embed_query_sync(query)
-    v_results = _search_vector(query_vector, VECTOR_TOP_K)
-    k_results = _search_keyword(query, VECTOR_TOP_K // 2)
+    # Why: vector(MongoDB Atlas)와 keyword(로컬 BM25)는 완전 독립 → 병렬 실행
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        v_future = pool.submit(_search_vector, query_vector, VECTOR_TOP_K)
+        k_future = pool.submit(_search_keyword, query, VECTOR_TOP_K // 2)
+        v_results = v_future.result()
+        k_results = k_future.result()
     fused_docs = _fuse_rrf(v_results, k_results, final_k=limit)
     base_docs = _docs_from_fused(fused_docs)
 
@@ -704,8 +737,11 @@ def search_all_hyde(query: str, limit: int = 5) -> list[dict]:
     hypothetical_doc = _generate_hypothetical_doc(query)
     hyde_vector = embed_query_sync(hypothetical_doc)
 
-    v_results = _search_vector(hyde_vector, VECTOR_TOP_K)
-    k_results = _search_keyword(query, VECTOR_TOP_K)
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        v_future = pool.submit(_search_vector, hyde_vector, VECTOR_TOP_K)
+        k_future = pool.submit(_search_keyword, query, VECTOR_TOP_K)
+        v_results = v_future.result()
+        k_results = k_future.result()
     fused_docs = _fuse_rrf(v_results, k_results, final_k=limit)
     return _docs_from_fused(fused_docs)
 

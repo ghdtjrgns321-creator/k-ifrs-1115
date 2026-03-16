@@ -35,7 +35,13 @@ class Settings(BaseSettings):
     embed_query_model: str = "solar-embedding-1-large-query"
     embed_batch_size: int = 100  # API 과부하 방지용 배치 단위
 
-    # 6. 인프라 설정
+    # 6. 외부 API 타임아웃
+    # Why: Cohere Reranker가 간헐적으로 응답 지연 → 무한 대기 방지
+    reranker_timeout: int = 30
+    # Why: 전체 파이프라인 무한 대기 방지 (SECTION-4 미인도청구약정 46초+ 케이스)
+    pipeline_timeout: int = 100
+
+    # 7. 인프라 설정
     # CORS: Streamlit(:8501) → FastAPI(:8002) 교차 요청 허용 목록
     cors_origins: list[str] = ["http://localhost:8501"]
     # Upstage 임베딩 API 엔드포인트

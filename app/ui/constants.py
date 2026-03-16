@@ -9,6 +9,7 @@ import os
 API_BASE = os.getenv("API_BASE_URL", "http://localhost:8002")
 SEARCH_URL = f"{API_BASE}/search"
 CHAT_URL = f"{API_BASE}/chat"
+FEEDBACK_URL = f"{API_BASE}/feedback"
 API_TIMEOUT = 120  # 초
 
 # ── 키워드 칩 ────────────────────────────────────────────────────────────────────
@@ -88,7 +89,7 @@ _STEP_LABELS: dict[str, str] = {
     "grade": "검색 결과 품질을 평가하고 있어요",
     "rewrite": "더 나은 검색을 위해 질문을 재구성하고 있어요",
     "hyde": "가상 문서를 생성하여 재검색하고 있어요",
-    "generate": "AI가 답변을 생성하고 있어요",
+    "generate": "AI가 답변을 생성하고 있어요 (약 15~20초 소요)",
     "format": "답변을 정리하고 있어요",
 }
 

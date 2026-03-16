@@ -32,9 +32,11 @@ async def analyze_query(state: dict) -> dict:
     result = await analyze_agent.run(f"최신 대화 기록 및 질문: {formatted_messages}")
     data = result.output
 
+    # 원본 사용자 메시지 — scope guard + tree_matcher 양쪽에서 사용
+    user_text = _get_last_human_message(state.get("messages", []))
+
     # 코드 레벨 scope guard — 프롬프트 못 잡는 타 기준서 전용 용어 방어
     if data.routing == "IN":
-        user_text = _get_last_human_message(state.get("messages", []))
         has_out = any(t in user_text for t in _HARD_OUT_TERMS)
         has_anchor = any(t in user_text for t in _IFRS1115_ANCHOR)
         if has_out and not has_anchor:
@@ -43,8 +45,12 @@ async def analyze_query(state: dict) -> dict:
 
     # is_situation=True일 때만 체크리스트 매칭 (개념 질문에는 미적용)
     # topic_hints: 키워드 없이도 거래 실질에서 토픽 매칭을 보완
+    # user_message: LLM 비결정성 보완 — 원본에서 결정적 trigger 매칭
     matched = (
-        match_topics(data.standalone_query, data.search_keywords, data.topic_hints)
+        match_topics(
+            data.standalone_query, data.search_keywords, data.topic_hints,
+            user_message=user_text,
+        )
         if data.is_situation
         else []
     )

@@ -268,7 +268,7 @@ def _get_case_group_title(doc_id: str, section_map: dict) -> str:
 def get_category_and_weight(uid, hierarchy):
     # 1순위: 확실한 식별자(UID) 및 대분류를 가장 먼저 잡아냄.
     if "BC" in uid or "결론도출근거" in hierarchy:
-        return "결론도출근거", 1.10
+        return "결론도출근거", 1.0
     if "IE" in uid or "적용사례" in hierarchy:
         return "적용사례IE", 1.10
 
@@ -276,9 +276,9 @@ def get_category_and_weight(uid, hierarchy):
     if "부록 B" in hierarchy or "적용지침" in hierarchy:
         return "적용지침B", 1.20
     if "부록 A" in hierarchy or "용어의 정의" in hierarchy:
-        return "용어정의", 1.05
+        return "용어정의", 1.0
     if "부록 C" in hierarchy or "시행일" in hierarchy or "경과 규정" in hierarchy:
-        return "시행일", 1.05
+        return "시행일", 1.0
 
     # 3순위: 위 조건에 모두 해당하지 않으면 일반 본문으로 분류함.
     return "본문", 1.15

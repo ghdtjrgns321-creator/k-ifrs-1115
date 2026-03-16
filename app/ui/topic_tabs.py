@@ -19,7 +19,7 @@ from app.ui.doc_helpers import (
     _hierarchy_path,
 )
 from app.ui.doc_renderers import _render_para_chips
-from app.ui.text import _CONTEXT_PREFIX_RE, clean_text
+from app.ui.text import _CONTEXT_PREFIX_RE, clean_text, md_tables_to_html
 
 # 접힌 expander 아래 미리보기 캡션 최대 개수
 _MAX_PREVIEW = 3
@@ -155,7 +155,8 @@ def _render_para_expander(doc: dict, idx: int = 0) -> None:
                 unsafe_allow_html=True,
             )
         if content:
-            st.markdown(clean_text(content), unsafe_allow_html=True)
+            _cleaned = md_tables_to_html(clean_text(content))
+            st.markdown(_cleaned, unsafe_allow_html=True)
 
         # 관련 조항 칩 — 자기 자신 제외, 클릭 시 모달 팝업
         if content:
@@ -381,7 +382,8 @@ def _render_qna_tab(data: dict, topic_name: str = "") -> None:
 
                 if content:
                     adjusted = _format_pdr_content(content)
-                    st.markdown(clean_text(adjusted), unsafe_allow_html=True)
+                    _cleaned = md_tables_to_html(clean_text(adjusted))
+                    st.markdown(_cleaned, unsafe_allow_html=True)
                     # 본문 내 참조 문단을 클릭 가능한 칩으로 표시
                     _render_para_chips(content, qna_id, doc_index=200 + i)
 
@@ -436,7 +438,8 @@ def _render_findings_tab(data: dict, topic_name: str = "") -> None:
 
                 if content:
                     adjusted = _format_pdr_content(content)
-                    st.markdown(clean_text(adjusted), unsafe_allow_html=True)
+                    _cleaned = md_tables_to_html(clean_text(adjusted))
+                    st.markdown(_cleaned, unsafe_allow_html=True)
                     # 본문 내 참조 문단을 클릭 가능한 칩으로 표시
                     _render_para_chips(content, fid, doc_index=300 + i)
 

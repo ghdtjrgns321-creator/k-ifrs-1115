@@ -337,6 +337,48 @@ def _factor_in_text(factor: str, text: str) -> bool:
     return matched >= max(1, len(keywords) // 2)
 
 
+# ── provided_info → 체크리스트 직접 반영 ──────────────────────────────────────
+# Why: provided_info가 체크리스트와 분리되면 LLM이 체크리스트를 그대로 따라가며
+# 사용자가 이미 명시한 팩트를 재질문하는 문제 발생
+
+
+def _mark_provided_in_checklist(checklist_text: str, provided_info: list[str]) -> str:
+    """provided_info와 매칭되는 체크리스트 번호 라인에 ✅ 표시를 추가합니다.
+
+    매칭 알고리즘 (보수적):
+    - provided_info의 ':'앞 키워드 추출 (예: "통제권: 사용자 보유" → "통제권")
+    - 3글자 이상 키워드만 매칭 대상 (오탐 방지)
+    - 체크리스트 번호 라인(숫자로 시작)만 매칭 대상 (제목/가이드 제외)
+    """
+    if not provided_info:
+        return checklist_text
+
+    # provided_info에서 키워드 추출: ":" 앞 부분, 3글자 이상
+    keywords: list[tuple[str, str]] = []  # (keyword, 원본 info)
+    for info in provided_info:
+        key_part = info.split(":")[0].strip() if ":" in info else info.strip()
+        # 공백으로 분리된 개별 단어도 매칭 대상
+        for word in key_part.split():
+            if len(word) >= 3:
+                keywords.append((word, info))
+
+    if not keywords:
+        return checklist_text
+
+    lines = checklist_text.split("\n")
+    result = []
+    for line in lines:
+        stripped = line.strip()
+        # 숫자로 시작하는 라인만 매칭 대상 (체크리스트 항목)
+        if stripped and stripped[0].isdigit():
+            for kw, info in keywords:
+                if kw in stripped and "✅" not in line:
+                    line = f"✅ [사용자 확인 완료] {stripped} → 사용자: '{info}'"
+                    break
+        result.append(line)
+    return "\n".join(result)
+
+
 # ── clarify_agent 동적 system prompt ───────────────────────────────────────────
 # 체크리스트를 system 메시지에 직접 주입 → user 메시지에 끼워넣기보다 LLM이 더 강하게 따름
 
@@ -355,7 +397,11 @@ async def _inject_clarify_system(ctx: RunContext[ClarifyDeps]) -> str:
             "체크리스트 외 질문은 금지합니다. 사용자가 설명한 거래와 무관한 업종/산업의 질문도 금지합니다."
         ]
         for topic in ctx.deps.matched_topics:
-            guide_lines.append(topic["checklist_text"])
+            # provided_info 매칭 항목에 ✅ 표시 → LLM이 재질문하지 않도록
+            marked_text = _mark_provided_in_checklist(
+                topic["checklist_text"], ctx.deps.provided_info
+            )
+            guide_lines.append(marked_text)
             total_checklist_items += len(topic.get("checklist", []))
         parts.append("\n\n".join(guide_lines))
 

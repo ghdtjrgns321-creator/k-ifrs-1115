@@ -265,9 +265,20 @@ def _render_supp_extra(sources: list[str], idx_base: int) -> None:
         extra.extend(supp_map.get(src, []))
     if not extra:
         return
-    with st.expander(f"📂 참고하면 좋은 추가 문서 ({len(extra)}건)", expanded=False):
+    # IE 문서를 case_group_title 기준으로 중복 제거 (같은 사례는 1번만 렌더)
+    ie_seen: set[str] = set()
+    deduped: list[dict] = []
+    for d in extra:
+        cgt = d.get("case_group_title", "")
+        if cgt:
+            if cgt in ie_seen:
+                continue
+            ie_seen.add(cgt)
+        deduped.append(d)
+
+    with st.expander(f"📂 참고하면 좋은 추가 문서 ({len(deduped)}건)", expanded=False):
         with st.container(border=True):
-            for i, d in enumerate(extra):
+            for i, d in enumerate(deduped):
                 pid = d.get("parent_id", "")
                 cgt = d.get("case_group_title", "")
                 if pid:
@@ -279,12 +290,11 @@ def _render_supp_extra(sources: list[str], idx_base: int) -> None:
                     # IE pinpoint: 메인 사례와 동일한 형태로 렌더링
                     ie_case_docs = fetch_ie_case_docs((cgt,))
                     ie_case_docs.sort(key=_extract_num)
-                    # DB의 case_group_title이 다른 문서도 같은 사례 라벨로 통일
                     for ie_d in ie_case_docs:
                         ie_d["case_group_title"] = cgt
                     desc = _get_ie_desc_clean(cgt)
                     with st.expander(
-                        f"📎 {cgt}  ({len(ie_case_docs)}건)", expanded=False
+                        f"📎 {cgt}", expanded=False
                     ):
                         _ie_desc_blockquote(desc)
                         for j, ie_doc in enumerate(ie_case_docs):
@@ -414,7 +424,7 @@ def _render_ie_group(
         case_num = m.group(1) if m else ""
         is_cited = case_num in cited_case_nums
         icon = "📌" if is_cited else "📎"
-        label = f"{icon} :blue[**{cgt}**]  ({len(case_docs)}건)" if is_cited else f"{icon} {cgt}  ({len(case_docs)}건)"
+        label = f"{icon} :blue[**{cgt}**]" if is_cited else f"{icon} {cgt}"
         with st.expander(label, expanded=is_cited):
             _ie_desc_blockquote(case_desc)
             for doc in case_docs:
@@ -435,7 +445,7 @@ def _render_ie_group(
                 for cgt in rest_cases:
                     case_docs = sorted(case_docs_map.get(cgt, []), key=_extract_num)
                     case_desc = _get_ie_desc_clean(cgt)
-                    with st.expander(f"📎 {cgt}  ({len(case_docs)}건)", expanded=False):
+                    with st.expander(f"📎 {cgt}", expanded=False):
                         _ie_desc_blockquote(case_desc)
                         for doc in case_docs:
                             _render_document_expander(doc, doc_index=doc_idx)

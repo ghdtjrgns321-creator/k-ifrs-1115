@@ -20,6 +20,21 @@ from app.ui.constants import (
 )
 
 
+def _progress_html(text: str) -> str:
+    """CSS 스피너 + 텍스트 HTML을 반환합니다.
+
+    Why: st.status는 <details> 기반이라 클릭 시 빈 칸이 펼쳐짐.
+         st.info()는 파란 배경이 과하게 눈에 띔.
+         순수 HTML 스피너는 클릭 불가능하고 배경 없이 깔끔.
+    """
+    return (
+        "<div class='progress-spinner'>"
+        "<div class='spinner-icon'></div>"
+        f"<span class='spinner-text'>{text}</span>"
+        "</div>"
+    )
+
+
 def _call_search(query: str) -> None:
     """/search API를 호출하고 evidence 화면으로 전환합니다."""
     if not query.strip():
@@ -75,10 +90,13 @@ def _call_chat(question: str, use_cache: bool = False) -> None:
     findings_case = None
     follow_up_questions = []
 
-    # Why: st.status는 <details> 기반이라 클릭 시 빈 칸이 펼쳐지는 UX 문제
-    #      st.empty() + st.info()는 클릭 불가능하고 동적 업데이트 가능
+    # Why: st.status(<details>기반)→클릭시빈칸, st.info()→파란배경 과함
+    #      st.empty() + HTML 스피너 → 클릭불가, 배경없음, 스피너 애니메이션
     progress = st.empty()
-    progress.info("AI가 분석을 시작합니다...")
+    progress.markdown(
+        _progress_html("AI가 분석을 시작합니다..."),
+        unsafe_allow_html=True,
+    )
 
     try:
         with httpx.Client(timeout=API_TIMEOUT) as client:
@@ -104,7 +122,10 @@ def _call_chat(question: str, use_cache: bool = False) -> None:
                             step, event.get("message", "처리 중...")
                         )
                         pct = _STEP_PROGRESS.get(step, 0)
-                        progress.info(f"{label} ({pct}%)")
+                        progress.markdown(
+                            _progress_html(f"{label} ({pct}%)"),
+                            unsafe_allow_html=True,
+                        )
 
                     elif event_type == "done":
                         answer_text = event.get("text", "")
@@ -117,6 +138,8 @@ def _call_chat(question: str, use_cache: bool = False) -> None:
                         st.session_state.is_situation = event.get(
                             "is_situation", False
                         )
+                        # 피드백 연결용 로그 ID 저장
+                        st.session_state.log_id = event.get("log_id")
                         # 자유 입력 시에도 좌측 근거 패널을 채웁니다
                         new_docs = event.get("retrieved_docs") or []
                         if new_docs:
@@ -155,6 +178,11 @@ def _call_chat(question: str, use_cache: bool = False) -> None:
         return
 
     # 스트리밍 성공 후에만 ai_answer 화면으로 전환합니다.
+    # 새 턴이므로 이전 상태 리셋
+    st.session_state.feedback_sent = None
+    # 추가 질문 입력칸 초기화
+    if "followup_input" in st.session_state:
+        del st.session_state["followup_input"]
     st.session_state.ai_answer = answer_text
     st.session_state.cited_sources = cited_sources
     st.session_state.findings_case = findings_case

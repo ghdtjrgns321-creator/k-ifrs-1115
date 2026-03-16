@@ -121,10 +121,7 @@ async def retrieve_docs(state: dict) -> dict:
     """
     matched_topics = state.get("matched_topics", [])
 
-    # ── 1순위: 핀포인트 fetch (큐레이션 문서 직접 조회) ──
-    pinpoint_docs = await asyncio.to_thread(fetch_pinpoint_docs, matched_topics)
-
-    # ── 2순위: 리트리버 (벡터 + BM25 하이브리드) ──
+    # ── 2순위 검색 쿼리를 먼저 구성 (핀포인트와 독립적이므로 gather 전에 완료) ──
     keywords = state.get("search_keywords", [])
     if keywords:
         search_query = " ".join(keywords)
@@ -147,7 +144,12 @@ async def retrieve_docs(state: dict) -> dict:
         if checklist_kw:
             search_query += " " + " ".join(checklist_kw)
 
-    retriever_docs = await asyncio.to_thread(search_all, search_query, RETRIEVAL_LIMIT)
+    # ── 핀포인트 + 리트리버 병렬 실행 ──
+    # Why: 두 작업이 완전 독립 → 순차 실행 대비 max(핀포인트, 리트리버) 시간으로 단축
+    pinpoint_docs, retriever_docs = await asyncio.gather(
+        asyncio.to_thread(fetch_pinpoint_docs, matched_topics),
+        asyncio.to_thread(search_all, search_query, RETRIEVAL_LIMIT),
+    )
 
     # ── 병합: 핀포인트 1순위 + 리트리버 2순위 (중복 제거) ──
     merged = _merge_pinpoint_and_retriever(pinpoint_docs, retriever_docs)

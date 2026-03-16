@@ -270,7 +270,6 @@ reranked = pinpoint_docs + cohere_rerank(retriever_docs, query)
 
 | 과제 | 현황 | 우선순위 |
 |------|------|---------|
-| IE hierarchy 정규화 | 전각/반각 콜론 + 공백 불일치. 현재 regex `[\s:：]`로 모두 커버 중이며 수정 시 리스크 없음 (사용처 1곳, 검증 스크립트 존재) | 낮 |
 | 새로운 사업모델 (메타버스, DeFi) | 26개 고정 토픽 범위 밖 → Gray Area | 향후 |
 | 타 기준서 교차 (1116호 등) | K-IFRS 1115호 단독 지원 | 향후 |
 

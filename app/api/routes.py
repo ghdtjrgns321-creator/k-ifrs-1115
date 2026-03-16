@@ -11,6 +11,8 @@ from uuid import uuid4
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import StreamingResponse
 
+from pydantic import BaseModel
+
 from app.api.schemas import ChatRequest, SearchRequest, SearchResponse, SSEEvent
 from app.services.chat_service import run_graph_stream
 from app.services.search_service import run_search
@@ -94,6 +96,23 @@ async def chat(
             "X-Accel-Buffering": "no",
         },
     )
+
+
+class FeedbackRequest(BaseModel):
+    log_id: str
+    feedback: str  # "up" | "down"
+    reason: str = ""  # 👎 사유 (선택)
+
+
+@router.post("/feedback")
+async def feedback(request: FeedbackRequest):
+    """사용자 피드백(👍/👎 + 사유)을 usage_logs에 저장합니다."""
+    from app.services.usage_logger import update_feedback
+
+    ok = update_feedback(request.log_id, request.feedback, request.reason)
+    if not ok:
+        raise HTTPException(status_code=400, detail="피드백 저장 실패")
+    return {"status": "ok"}
 
 
 @router.get("/health")

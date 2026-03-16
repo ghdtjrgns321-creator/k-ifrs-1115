@@ -217,10 +217,13 @@ async def _run_clarify(
         messages=messages,  # critical_factors 매칭 범위 확대 (C1)
     )
     # 대화 히스토리 구성 — AI가 이미 물어본 내용을 반복하지 않도록
+    # Why: 최근 2턴만 사용 — checklist_state.checked_items에 이미 구조화된 Q&A가 있으므로
+    # 전체 히스토리 순회는 토큰 낭비 (3턴째 context 비대화 → 5~10초 절감)
+    recent = messages[-5:-1] if len(messages) > 5 else messages[:-1]
     history_lines = []
-    for role, content in messages[:-1]:  # 마지막(현재 질문)은 제외
+    for role, content in recent:
         prefix = "사용자" if role == "human" else "AI"
-        history_lines.append(f"{prefix}: {content[:300]}")
+        history_lines.append(f"{prefix}: {content[:150]}")
     conversation_history = "\n".join(history_lines) if history_lines else "(첫 질문)"
 
     # 사용자 원문 추출 — 혼동점 해소에서 사용자가 쓴 단어를 인용하기 위해
@@ -256,11 +259,22 @@ async def _run_clarify(
     # Why: clarify_agent는 Gemini thinking용 — selected_branches 필수 + validator 재시도.
     # gpt-4.1-mini(non-reasoning)에서 포맷 FAIL + 산술 정확도 하락 발생.
     # calc_clarify_agent는 non-reasoning 전용 스키마/프롬프트로 이 문제 해결.
+    # 후속 턴(is_clarify_followup)은 thinking=low로 속도 최적화
+    # Why: 짧은 확인 답변에 깊은 추론 불필요 — 턴당 ~20초 절감
+    is_followup = state.get("is_clarify_followup", False)
+
     if use_calc:
         logger.info("clarify model=gpt-4.1-mini(calc) via calc_clarify_agent")
         result = await calc_clarify_agent.run(
             user_msg,
             model_settings={"temperature": 0.0},
+        )
+    elif is_followup:
+        logger.info("clarify model=gemini-flash(thinking=low) [fast-path]")
+        result = await clarify_agent.run(
+            user_msg,
+            deps=deps,
+            model_settings={"google_thinking_config": {"thinking_level": "low"}},
         )
     else:
         logger.info("clarify model=gemini-flash(thinking=medium)")
@@ -313,6 +327,7 @@ async def _run_force_conclusion(
     )
 
     # 듀얼트랙: 계산 질문이면 gpt-4.1-mini, 아니면 Gemini Flash (기본값)
+    # force_conclusion은 항상 thinking=low — 충분한 맥락이 이미 확보된 상태
     if use_calc:
         logger.info("force_conclusion model=gpt-4.1-mini(calc)")
         result = await generate_agent.run(
@@ -321,8 +336,11 @@ async def _run_force_conclusion(
             model_settings={"temperature": 0.0},
         )
     else:
-        logger.info("force_conclusion model=gemini-flash(thinking=medium)")
-        result = await generate_agent.run(user_msg)
+        logger.info("force_conclusion model=gemini-flash(thinking=low)")
+        result = await generate_agent.run(
+            user_msg,
+            model_settings={"google_thinking_config": {"thinking_level": "low"}},
+        )
     return result.output
 
 

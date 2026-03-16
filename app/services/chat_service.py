@@ -5,9 +5,12 @@
 # 멀티턴 체크리스트 상태를 로드/저장하여 꼬리질문 품질을 개선합니다.
 from typing import AsyncGenerator
 
+import time
+
 from app.api.schemas import SSEEvent
 from app.pipeline import run_rag_pipeline
 from app.services.session_store import SessionStore
+from app.services.usage_logger import log_chat_response
 
 
 def _build_initial_state(
@@ -32,28 +35,35 @@ def _build_initial_state(
     if effective_pre is None and cached_relevant_docs is not None:
         effective_pre = cached_relevant_docs
 
-    return {
+    # fast-path 진입 조건: 체크리스트 + 캐시 문서가 모두 있는 후속 턴
+    # Why: analyze(~2초) 스킵 — checklist_state에 matched_topics가 이미 있고,
+    # cached_relevant_docs로 retrieve/rerank도 불필요
+    is_followup = checklist_state is not None and cached_relevant_docs is not None
+
+    state = {
         "session_id": session_id,
         "messages": prev_messages + [("human", new_message)],
-        "routing": "",
+        "routing": "IN" if is_followup else "",  # fast-path는 라우팅 검증 스킵
         "standalone_query": "",
         "retry_count": 0,
         "retrieved_docs": [],
         "reranked_docs": [],
-        "relevant_docs": [],
+        "relevant_docs": cached_relevant_docs if is_followup else [],
         "answer": "",
         "cited_sources": [],
         "findings_case": None,
         "follow_up_questions": [],
         "pre_retrieved_docs": effective_pre,
-        "is_situation": False,
+        "is_situation": True if is_followup else False,
         "search_keywords": [],
-        "matched_topics": [],
+        "matched_topics": checklist_state.get("matched_topics", []) if is_followup else [],
         "checklist_state": checklist_state,
+        "is_clarify_followup": is_followup,
         # needs_calculation: 첫 턴에서 저장한 값 복원 (fast-path에서 리셋 방지)
         # Why: B1/B2 — fast-path 후속 턴에서 analyze 스킵 시 False로 리셋되는 문제 해결
         "needs_calculation": (checklist_state or {}).get("needs_calculation", False),
     }
+    return state
 
 
 async def run_graph_stream(
@@ -70,6 +80,9 @@ async def run_graph_stream(
       3. run_rag_pipeline() async generator에서 SSE 이벤트 수신
       4. 세션 히스토리 + 체크리스트 상태 업데이트
     """
+    # 응답 시간 측정 시작
+    _start_time = time.perf_counter()
+
     # 1. 이전 /search 결과 로드
     pre_retrieved_docs: list[dict] | None = None
     if search_id:
@@ -93,12 +106,40 @@ async def run_graph_stream(
 
     try:
         async for event in run_rag_pipeline(initial_state):
-            yield event
-
-            # done 이벤트에서 최종 상태 캡처
+            # done 이벤트: 로그 저장 후 log_id를 주입하여 yield
+            # Why: yield 이후에는 이벤트 수정이 클라이언트에 반영되지 않음
             if event.type == "done":
                 final_state = initial_state  # state가 in-place 업데이트됨
+                elapsed_ms = int((time.perf_counter() - _start_time) * 1000)
+                topics = [
+                    t["topic_name"]
+                    for t in final_state.get("matched_topics", [])
+                    if t.get("topic_name")
+                ]
+                log_id = log_chat_response(
+                    session_id=session_id,
+                    question=message,
+                    answer=final_state.get("answer", ""),
+                    matched_topics=topics,
+                    search_keywords=final_state.get("search_keywords"),
+                    cited_paragraphs=final_state.get("cited_paragraphs"),
+                    is_situation=final_state.get("is_situation", False),
+                    needs_calculation=final_state.get("needs_calculation", False),
+                    is_conclusion=final_state.get("is_conclusion", False),
+                    selected_branches=final_state.get("selected_branches"),
+                    response_time_ms=elapsed_ms,
+                )
+                if log_id:
+                    event.log_id = log_id
 
+            yield event
+
+    except TimeoutError:
+        yield SSEEvent(
+            type="error",
+            message="죄송합니다, 답변 생성에 시간이 너무 오래 걸렸어요. 다시 한번 시도해 주시겠어요?",
+        )
+        return
     except Exception as exc:
         yield SSEEvent(type="error", message=f"처리 중 오류가 발생했습니다: {exc}")
         return

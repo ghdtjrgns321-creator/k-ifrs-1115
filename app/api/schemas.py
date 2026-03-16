@@ -86,6 +86,8 @@ class SSEEvent(BaseModel):
     retrieved_docs: list[dict] | None = None
     # 거래 상황(True) vs 개념 질문(False) 플래그 — UI에서 꼬리질문 UX 분기용
     is_situation: bool = False
+    # 계산 경로(gpt-4.1-mini) 사용 여부 — 테스트 라우팅 진단용
+    needs_calculation: bool = False
     # 매칭된 체크리스트 토픽 키 목록 — 핀포인트 패널용
     matched_topic_keys: list[str] | None = None
     # analyze가 추출한 검색 키워드 목록
@@ -96,3 +98,5 @@ class SSEEvent(BaseModel):
     selected_branches: list[str] | None = None
     # LLM이 structured output으로 명시한 인용 문단 번호
     cited_paragraphs: list[str] | None = None
+    # 사용 로그 ID — 피드백(👍/👎) 연결용
+    log_id: str | None = None
