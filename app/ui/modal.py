@@ -12,6 +12,7 @@ from app.ui.components import _build_self_ids, _get_doc_para_num
 from app.ui.db import _expand_para_range, _fetch_para_from_db
 from app.ui.text import (
     _PARA_REF_RE,
+    _esc,
     _normalize_doc_content,
     _para_ref_to_num,
     clean_text,
@@ -50,7 +51,7 @@ def _render_single_para_in_modal(
         st.markdown(f"#### 📌 문단 {para_num}")
 
     if title:
-        st.markdown(f"{'###' if total == 1 else '####'} {title}")
+        st.markdown(f"{'###' if total == 1 else '####'} {_esc(title)}")
     if hierarchy:
         st.html(f'<div class="source-footer">📍 {html.escape(hierarchy)}</div>')
     st.markdown("")

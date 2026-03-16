@@ -19,7 +19,7 @@ from app.ui.doc_helpers import (
     _hierarchy_path,
 )
 from app.ui.doc_renderers import _render_para_chips
-from app.ui.text import _CONTEXT_PREFIX_RE, clean_text, md_tables_to_html
+from app.ui.text import _CONTEXT_PREFIX_RE, _esc, clean_text, md_tables_to_html
 
 # 접힌 expander 아래 미리보기 캡션 최대 개수
 _MAX_PREVIEW = 3
@@ -146,7 +146,7 @@ def _render_para_expander(doc: dict, idx: int = 0) -> None:
         label = f"[문단 {para_num}] {first_sent}" if first_sent else f"문단 {para_num}"
     else:
         label = f"문단 {para_num}"
-    with st.expander(f":material/description: {label}", expanded=False):
+    with st.expander(f":material/description: {_esc(label)}", expanded=False):
         if para_num:
             st.markdown(
                 f'<span style="display:inline-block; background:#e0e7ff; color:#3730a3; '
@@ -254,7 +254,7 @@ def _render_main_bc_tab(data: dict, topic_name: str = "") -> None:
             elif all_bc:
                 title += f" ({all_bc[0]})"
 
-        with st.expander(f":material/article: {title}", expanded=(i == 0)):
+        with st.expander(f":material/article: {_esc(title)}", expanded=(i == 0)):
             _desc_blockquote(desc)
 
             if paras:
@@ -329,7 +329,7 @@ def _render_ie_tab(data: dict, topic_name: str = "") -> None:
         case_desc = case.get("desc", "")
         para_range = case.get("para_range", "")
 
-        with st.expander(f":material/article: {case_title}", expanded=(i == 0)):
+        with st.expander(f":material/article: {_esc(case_title)}", expanded=(i == 0)):
             _desc_blockquote(case_desc)
 
             if para_range:
@@ -369,7 +369,7 @@ def _render_qna_tab(data: dict, topic_name: str = "") -> None:
             content = parent.get("content", "")
             label = _build_pdr_label(qna_id, raw_title, content)
 
-            with st.expander(f":material/description: {label}", expanded=False):
+            with st.expander(f":material/description: {_esc(label)}", expanded=False):
                 hier_path = _hierarchy_path(hierarchy) if hierarchy else ""
                 if hier_path:
                     st.markdown(
@@ -425,7 +425,7 @@ def _render_findings_tab(data: dict, topic_name: str = "") -> None:
             content = parent.get("content", "")
             label = _build_pdr_label(fid, raw_title, content)
 
-            with st.expander(f":material/description: {label}", expanded=False):
+            with st.expander(f":material/description: {_esc(label)}", expanded=False):
                 hier_path = _hierarchy_path(hierarchy) if hierarchy else ""
                 if hier_path:
                     st.markdown(

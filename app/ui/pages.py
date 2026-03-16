@@ -17,7 +17,7 @@ from app.ui.components import _render_evidence_panel
 from app.ui.constants import FEEDBACK_URL, HOME_TOPICS_LEFT, HOME_TOPICS_RIGHT
 from app.ui.doc_helpers import _format_pdr_content
 from app.ui.session import _go_home
-from app.ui.text import clean_text
+from app.ui.text import _esc, clean_text
 
 
 def _format_question(text: str) -> str:
@@ -326,7 +326,7 @@ def _render_ai_answer() -> None:
             fc = st.session_state.findings_case
             case_title = fc.get("title", "감리지적사례")
             with st.expander(
-                f":material/gavel: 금융감독원 지적사례: {case_title}", expanded=False
+                f":material/gavel: 금융감독원 지적사례: {_esc(case_title)}", expanded=False
             ):
                 raw_content = fc.get("content", "내용을 불러올 수 없습니다.")
                 adjusted = _format_pdr_content(raw_content)
