@@ -24,6 +24,8 @@ def _init_session() -> None:
         "evidence_docs": [],
         # AI에 보낸 질문 (ai_answer 화면 상단에 표시)
         "ai_question": "",
+        # 멀티턴 질문 이력 — 1턴 질문이 사라지지 않도록 누적
+        "ai_questions_history": [],
         # AI 답변 텍스트
         "ai_answer": "",
         # 인용 출처 메타데이터
@@ -59,6 +61,7 @@ def _go_home() -> None:
         "standalone_query",
         "evidence_docs",
         "ai_question",
+        "ai_questions_history",
         "ai_answer",
         "cited_sources",
         "findings_case",

@@ -84,6 +84,10 @@ def _call_chat(question: str, use_cache: bool = False) -> None:
 
     # 질문은 미리 저장합니다 (스트리밍 중 progress 메시지에 사용).
     st.session_state.ai_question = question
+    # 멀티턴 이력 누적 — 이전 턴 질문이 화면에서 사라지지 않도록
+    if "ai_questions_history" not in st.session_state:
+        st.session_state.ai_questions_history = []
+    st.session_state.ai_questions_history.append(question)
 
     answer_text = ""
     cited_sources = []

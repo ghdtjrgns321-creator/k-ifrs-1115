@@ -295,18 +295,17 @@ async def _validate_clarify(
         provided = getattr(ctx.deps, "provided_info", []) or []
         checked_text += " " + " ".join(provided)
 
-        for topic in ctx.deps.matched_topics:
-            factors = topic.get("critical_factors", [])
-            if not factors:
-                continue
-            # factor 키워드가 checked_text에 하나라도 포함되지 않으면 미확인
+        # 메인 토픽(1위)의 critical_factors만 검사
+        # Why: 부 토픽(낮은 점수)의 factors는 질문 주제와 무관 → 영원히 충족 불가 → 항상 실패
+        primary = ctx.deps.matched_topics[0] if ctx.deps.matched_topics else {}
+        factors = primary.get("critical_factors", [])
+        if factors:
             unconfirmed = [f for f in factors if not _factor_in_text(f, checked_text)]
             if unconfirmed:
                 errors.append(
                     f"TYPE 2(확정 결론)를 선택했지만 다음 핵심 판단 요소가 아직 확인되지 않았습니다: "
                     f"{'; '.join(unconfirmed)}. TYPE 1(조건부 결론)으로 변경하세요."
                 )
-                break
 
     # concluded 상태에서 follow_up 강제 클리어 (방어적 보강)
     # Why: C2 — validator 단계에서도 concluded 후 follow_up 누수 차단
@@ -330,10 +329,16 @@ def _factor_in_text(factor: str, text: str) -> bool:
     # Why: C1 — "재고위험 여부"의 "여부"가 text에 없어 매칭 실패
     _JUDGMENT_SUFFIXES = {"여부", "유무", "가능성", "해당"}
     keywords = [w for w in core.split() if len(w) >= 2 and w not in _JUDGMENT_SUFFIXES]
-    # 키워드 중 절반 이상이 text에 있으면 확인된 것으로 간주
     if not keywords:
         return True
-    matched = sum(1 for kw in keywords if kw in text)
+
+    # 공백 제거 텍스트로도 매칭 시도
+    # Why: "가격결정권" vs "가격 결정권" 등 한국어 복합어 띄어쓰기 차이 대응
+    text_nospace = text.replace(" ", "")
+    matched = sum(
+        1 for kw in keywords
+        if kw in text or kw in text_nospace
+    )
     return matched >= max(1, len(keywords) // 2)
 
 
