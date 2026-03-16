@@ -359,6 +359,8 @@ def _render_qna_tab(data: dict, topic_name: str = "") -> None:
         st.caption(fallback)
         return
 
+    _summary_box(summary)
+
     for i, qna_id in enumerate(qna_ids):
         parent = fetch_parent_doc(qna_id)
         desc = qna_descs.get(qna_id, "")
@@ -414,6 +416,8 @@ def _render_findings_tab(data: dict, topic_name: str = "") -> None:
         )
         st.caption(fallback)
         return
+
+    _summary_box(summary)
 
     for i, fid in enumerate(finding_ids):
         parent = fetch_parent_doc(fid)
