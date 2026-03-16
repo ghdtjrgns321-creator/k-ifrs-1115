@@ -40,7 +40,7 @@ from app.ui.doc_renderers import (
     _render_document_expander,
     _render_pdr_expander,
 )
-from app.ui.text import _extract_para_refs, _para_ref_to_num
+from app.ui.text import _esc, _extract_para_refs, _para_ref_to_num
 
 # AI 답변 페이지에서 벡터검색 대신 인용 문단만 표시할 소스 유형
 _STANDARD_SOURCES = frozenset(
@@ -445,7 +445,7 @@ def _render_ie_group(
                 for cgt in rest_cases:
                     case_docs = sorted(case_docs_map.get(cgt, []), key=_extract_num)
                     case_desc = _get_ie_desc_clean(cgt)
-                    with st.expander(f"📎 {cgt}", expanded=False):
+                    with st.expander(f"📎 {_esc(cgt)}", expanded=False):
                         _ie_desc_blockquote(case_desc)
                         for doc in case_docs:
                             _render_document_expander(doc, doc_index=doc_idx)

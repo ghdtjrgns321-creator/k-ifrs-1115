@@ -234,6 +234,10 @@ def clean_text(text: str) -> str:
         r'<span style="color:#94a3b8;font-size:0.75em;">(주\1)</span>',
         text,
     )
+    # 9) 물결표 → HTML 엔티티 — Streamlit markdown이 ~text~를 취소선(strikethrough)으로
+    #    파싱하여 "20~30"이 줄 그어지거나 "2030"으로 표시되는 문제 방지.
+    #    clean_text 출력은 항상 unsafe_allow_html=True로 렌더링되므로 엔티티가 안전함.
+    text = text.replace("~", "&#126;").replace("∼", "&#126;").replace("～", "&#126;")
     return text
 
 

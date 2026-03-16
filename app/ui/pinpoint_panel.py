@@ -148,7 +148,7 @@ def _render_answer_paragraphs(ai_answer: str) -> None:
         topic = info["topic"]
         desc = info["desc"]
 
-        with st.expander(f"📄 {title}  ({topic})", expanded=True):
+        with st.expander(f"📄 {_esc(title)}  ({_esc(topic)})", expanded=True):
             if desc:
                 formatted = _format_desc_html(desc)
                 st.markdown(
