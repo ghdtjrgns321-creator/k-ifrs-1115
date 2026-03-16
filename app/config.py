@@ -43,6 +43,8 @@ class Settings(BaseSettings):
 
     # 7. 인프라 설정
     # CORS: Streamlit(:8501) → FastAPI(:8002) 교차 요청 허용 목록
+    # Why: Docker 내부(http://frontend:8501)와 외부 접속(http://공인IP:8501) 모두 허용 필요
+    # .env에서 CORS_ORIGINS='["http://localhost:8501","http://공인IP:8501"]' 형태로 오버라이드
     cors_origins: list[str] = ["http://localhost:8501"]
     # Upstage 임베딩 API 엔드포인트
     upstage_embed_url: str = "https://api.upstage.ai/v1/solar/embeddings"

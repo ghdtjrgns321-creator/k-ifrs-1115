@@ -53,9 +53,9 @@ class TopicData(TypedDict, total=False):
 
 
 # ── JSON에서 토픽 데이터 로드 ─────────────────────────────────────────────────
-_JSON_PATH = (
-    Path(__file__).parent.parent.parent / "data" / "topic-curation" / "topics.json"
-)
+# Why: data/ 폴더는 .gitignore + .dockerignore로 제외 → git/Docker에 포함되지 않음
+# app/domain/ 안에 두면 git 추적 + Docker COPY app/ 에 자동 포함
+_JSON_PATH = Path(__file__).parent / "topics.json"
 
 TOPIC_CONTENT_MAP: dict[str, TopicData] = {}
 
