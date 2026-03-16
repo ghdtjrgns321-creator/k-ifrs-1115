@@ -88,4 +88,87 @@
 
 ---
 
+## 5. Git 관리 교훈 — 첫 프로젝트에서 배운 것
+
+이 프로젝트는 Git을 처음 실전에서 사용한 프로젝트입니다. `develop`/`main` 두 브랜치만 운영했고, 여러 실수를 통해 아래 교훈을 얻었습니다.
+
+### 겪었던 사고
+
+| 사고 | 원인 | 결과 |
+|------|------|------|
+| **작업 내용 전체 소실** | `git add` 없이 `git switch`로 브랜치 전환 | unstaged 변경사항이 모두 사라짐 — 복구 불가 |
+| **tmp 파일 29개 커밋** | `.gitignore` 미비 (`.env`와 `__pycache__/`만 2줄) | Claude Code 임시 파일이 repo에 포함 |
+| **32MB 바이너리(PDF/HWP) 커밋** | `data/` 폴더를 `.gitignore`에 미등록 | git clone 속도 저하, repo 비대화 |
+| **API 키 노출 위험** | `.env`만 제외하고 `.claude/settings.local.json` 등 미제외 | 로컬 설정 파일이 public repo에 노출 |
+
+### 배운 원칙
+
+#### 1. `.gitignore`는 프로젝트 시작 시 반드시 설정
+
+```gitignore
+# 최소한 이것들은 첫 커밋 전에 설정
+.env                  # 환경변수 / API 키
+.venv/                # 가상환경
+__pycache__/          # Python 캐시
+*.pyc
+data/                 # 대용량 데이터 (DB에 적재 완료)
+*.tmp.*               # 도구 임시 파일
+.vscode/ .idea/       # IDE 설정
+```
+
+#### 2. `git add` → `git status` → `git commit` 3단계 습관
+
+```bash
+# 위험한 패턴 (절대 하지 말 것)
+git switch other-branch    # ← unstaged 변경이 사라질 수 있음
+
+# 안전한 패턴
+git status                   # 1. 현재 상태 확인
+git add 파일1 파일2           # 2. 변경 파일 명시적으로 스테이징
+git status                   # 3. 스테이징 결과 재확인
+git commit -m "메시지"        # 4. 커밋
+```
+
+- `git add .` 또는 `git add -A`는 **의도하지 않은 파일**(`.env`, 바이너리 등)이 포함될 수 있어 위험
+- 파일명을 명시적으로 지정하는 것이 안전
+
+#### 3. 브랜치 전환 전 반드시 커밋 또는 stash
+
+```bash
+# 작업 중인데 브랜치를 바꿔야 할 때
+git stash                    # 임시 저장
+git switch other-branch      # 안전하게 전환
+# ... 작업 후 ...
+git switch original-branch
+git stash pop                # 임시 저장 복원
+```
+
+#### 4. 커밋은 자주, 작게
+
+```bash
+# 나쁜 예: 3일치 작업을 한 번에 커밋
+git commit -m "업데이트중"
+
+# 좋은 예: 기능 단위로 커밋
+git commit -m "feat: BM25 인덱스 사전 로드 추가"
+git commit -m "fix: Reranker 타임아웃 30초로 조정"
+git commit -m "docs: 디버깅 교훈 #8 추가"
+```
+
+#### 5. 이 프로젝트에서 실제로 정리한 것
+
+V1 완성 시점에서 아래 정리를 수행했습니다:
+
+| 정리 항목 | Before | After |
+|-----------|--------|-------|
+| 추적 파일 수 | 241개 | 156개 |
+| `.gitignore` 규칙 | 2줄 | 24줄 |
+| tmp 파일 | 29개 | 0개 |
+| 바이너리 데이터 | 32MB (PDF/HWP 34개) | 0개 (`git rm --cached`) |
+| 테스트 결과 JSON | 24개 | 0개 |
+
+> **교훈**: `.gitignore`를 프로젝트 초기에 제대로 설정했으면 이 정리 작업 자체가 불필요했습니다. 첫 `git init` 직후에 `.gitignore`부터 작성하세요.
+
+---
+
 > **상세 의사결정 기록**: `docs/DECISION.md` (33건) | **디버깅 교훈 전문**: `docs/debugging.md` (40건)
