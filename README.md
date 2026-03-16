@@ -3,6 +3,46 @@
 > **K-IFRS 제1115호(고객과의 계약에서 생기는 수익)** 전문 AI 도구
 > 회계감사인이 객관적 팩트를 먼저 확인하고, AI의 구조화된 가이드로 판단을 내릴 수 있도록 설계
 
+**배포 URL**: http://134.185.104.224:8501
+
+---
+
+## 실행 방법
+
+### 환경 변수 설정
+
+```bash
+cp .env.example .env
+# .env 파일에 API 키 입력
+OPENAI_API_KEY=sk-proj-xxxxx
+UPSTAGE_API_KEY=up_xxxxx
+COHERE_API_KEY=xxxxx
+GOOGLE_API_KEY=xxxxx
+MONGO_URI=mongodb+srv://...
+MONGO_DB_NAME=kifrs_db
+MONGO_COLLECTION_NAME=k-ifrs-1115-chatbot
+```
+
+### Docker 배포 (권장)
+
+```bash
+git clone https://github.com/ghdtjrgns321-creator/k-ifrs-1115-chatbot.git
+cd k-ifrs-1115-chatbot
+cp .env.example .env   # API 키 입력
+docker compose up -d --build
+```
+
+- Streamlit UI: http://localhost:8501
+- FastAPI Swagger: http://localhost:8002/docs
+
+### 로컬 개발
+
+```bash
+uv sync
+uv run uvicorn app.main:app --port 8002          # 백엔드
+uv run streamlit run app/streamlit_app.py         # 프론트엔드 (별도 터미널)
+```
+
 ---
 
 ## 왜 이 프로젝트가 필요한가
@@ -210,37 +250,6 @@ AI 2턴: "[결론] B사는 대리인에 해당할 가능성이 높습니다.
 | Reranker | Cohere rerank-multilingual-v3.0 | 한국어 Cross-encoder 최적화 |
 | 패키지 관리 | uv (Python 3.11) | 빠른 의존성 해결 |
 | 컨테이너 | Docker + docker-compose | 멀티스테이지 빌드 |
-
----
-
-## 실행 방법
-
-### 환경 변수 설정
-
-```bash
-# .env
-OPENAI_API_KEY=sk-proj-xxxxx
-UPSTAGE_API_KEY=up_xxxxx
-COHERE_API_KEY=xxxxx
-GOOGLE_API_KEY=xxxxx
-MONGO_URI=mongodb+srv://...
-MONGO_DB_NAME=kifrs_db
-MONGO_COLLECTION_NAME=k-ifrs-1115-chatbot
-```
-
-### 로컬 개발
-
-```bash
-uv sync
-uv run uvicorn app.main:app --port 8002
-uv run streamlit run app/streamlit_app.py
-```
-
-### Docker 배포
-
-```bash
-docker compose build && docker compose up -d
-```
 
 ---
 
