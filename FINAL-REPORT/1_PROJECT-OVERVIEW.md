@@ -172,7 +172,7 @@ AI 2턴: "[결론] B사는 대리인에 해당할 가능성이 높습니다.
 | 4 | **reasoning_guard** | 결론 가이드에 없는 분기를 AI가 임의 생성하는 것을 프롬프트 수준에서 차단 |
 | 5 | **선례 직접 주입** | 큐레이션된 적용사례·질의회신·감리사례 원문을 AI에 직접 전달 — 검색 엔진 의존도 축소 |
 
-> 각 토픽의 7개 섹션 구조, 대표 토픽 해설, 토픽 매칭 로직은 `3_DOMAIN-CURATION.md`에서 상세히 다룹니다.
+> 각 토픽의 7개 섹션 구조, 대표 토픽 해설, 토픽 매칭 로직은 [3_DOMAIN-CURATION.md](3_DOMAIN-CURATION.md)에서 상세히 다룹니다.
 
 **결과**: AI가 근거 없는 답변을 생성할 수 없는 구조 → **2종오류 방지**
 
@@ -237,9 +237,9 @@ Cohere Cross-encoder(`rerank-multilingual-v3.0`)로 1차 검색 결과를 재평
 
 ## 8. 품질 검증
 
-53건 골든 테스트: **정상률 88.7%**, 에러 0건. (상세: `5_TEST-AND-DECISIONS.md`)
+53건 골든 테스트: **정상률 88.7%**, 에러 0건. (상세: [5_TEST-AND-DECISIONS.md](5_TEST-AND-DECISIONS.md))
 
-실사용 데이터 수집 시스템을 구축하여 매 질문마다 자동 채점 + 👍/👎 피드백을 수집합니다. (상세: `5_TEST-AND-DECISIONS.md`)
+실사용 데이터 수집 시스템을 구축하여 매 질문마다 자동 채점 + 👍/👎 피드백을 수집합니다. (상세: [5_TEST-AND-DECISIONS.md](5_TEST-AND-DECISIONS.md))
 
 ### 모델 비교 A/B 테스트: 4라운드 핵심 성과
 
@@ -277,7 +277,7 @@ Cohere Cross-encoder(`rerank-multilingual-v3.0`)로 1차 검색 결과를 재평
 
 ## 11. 주요 의사결정 기록 (ADR 요약)
 
-프로젝트 진행 중 30개의 아키텍처 의사결정을 기록했습니다. 핵심 5개를 선별합니다. (상세: `5_TEST-AND-DECISIONS.md`)
+프로젝트 진행 중 30개의 아키텍처 의사결정을 기록했습니다. 핵심 5개를 선별합니다. (상세: [5_TEST-AND-DECISIONS.md](5_TEST-AND-DECISIONS.md))
 
 | ADR | 결정 | 결과 |
 |-----|------|------|
@@ -307,4 +307,4 @@ Cohere Cross-encoder(`rerank-multilingual-v3.0`)로 1차 검색 결과를 재평
 ---
 
 > **이 문서는 K-IFRS 1115 회계감사 AI 어시스턴트의 전체 설계를 요약합니다.**
-> 상세 기술 문서: `docs/PROJECT_OVERVIEW.md` | 의사결정 기록: `docs/DECISION.md` | 설계 한계: `docs/LIMITATION.md`
+> 상세 기술 문서: [docs/PROJECT_OVERVIEW.md](../docs/PROJECT_OVERVIEW.md) | 의사결정 기록: [docs/DECISION.md](../docs/DECISION.md) | 설계 한계: [docs/LIMITATION.md](../docs/LIMITATION.md)

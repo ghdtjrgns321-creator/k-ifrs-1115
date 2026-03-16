@@ -171,4 +171,4 @@ V1 완성 시점에서 아래 정리를 수행했습니다:
 
 ---
 
-> **상세 의사결정 기록**: `docs/DECISION.md` (33건) | **디버깅 교훈 전문**: `docs/debugging.md` (40건)
+> **상세 의사결정 기록**: [docs/DECISION.md](../docs/DECISION.md) (33건) | **디버깅 교훈 전문**: [docs/debugging.md](../docs/debugging.md) (40건)

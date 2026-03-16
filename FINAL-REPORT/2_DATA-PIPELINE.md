@@ -257,4 +257,4 @@ AI 답변 시점:
 ---
 
 > **이 파이프라인은 "올바른 데이터 없이는 올바른 AI 답변도 없다"는 원칙 위에 설계되었습니다.**
-> 다음 문서: 토픽 큐레이션 상세 → `3_DOMAIN-CURATION.md` | 검색·AI 아키텍처 → `4_SEARCH-AND-AI.md`
+> 다음 문서: 토픽 큐레이션 상세 → [3_DOMAIN-CURATION.md](3_DOMAIN-CURATION.md) | 검색·AI 아키텍처 → [4_SEARCH-AND-AI.md](4_SEARCH-AND-AI.md)
