@@ -10,9 +10,9 @@
 5. `graph.py` (LangGraph) 잔존 — production은 `pipeline.py` 사용하지만 dead code 남아있음
 
 **5가지 목표**:
-1. retriever 의존도 확 낮추기
-2. LangGraph 문법 없이 하기
-3. PydanticAI 적극 활용해서 LLM 답변 방식 강제
+1. retriever 의존도 대폭 축소
+2. LangGraph 의존 제거
+3. PydanticAI를 활용하여 LLM 답변 방식 강제
 4. LLM 추론 환각 방지
 5. 항상 문서에 근거한 대답
 
