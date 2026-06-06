@@ -1,6 +1,7 @@
 # K-IFRS 1115 회계감사 AI 어시스턴트
 
-> 검증된 기준서 원문만을 근거로, 도메인 지식으로 구축한 Decision Tree 안에서만 결론을 내리는 **도메인 특화 RAG 시스템**. 일반 AI 챗봇과 달리 자유 추론을 허용하지 않아 환각이 구조적으로 차단된다.
+> **환각을 차단하는 회계감사 도메인 특화 RAG 시스템**
+> 검증된 기준서 원문과 Decision Tree 안에서만 답변한다.
 
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
@@ -9,7 +10,7 @@
 ![MongoDB Atlas](https://img.shields.io/badge/MongoDB%20Atlas-47A248?logo=mongodb&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 
-**[🔗 라이브 데모](http://134.185.104.224:8501)**
+**[📄 프로젝트 상세 보기 →](https://ghdtjrgns321-creator.github.io/myprofile/project_kifrs.html)**
 
 ![Split View — 좌측 근거 문서 + 우측 AI 답변](images/split_view.png)
 
