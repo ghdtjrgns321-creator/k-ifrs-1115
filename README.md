@@ -24,7 +24,7 @@
 
 <table>
   <thead>
-    <tr><th width="32%">기능</th><th>설명</th></tr>
+    <tr><th width="28%">기능</th><th>설명</th></tr>
   </thead>
   <tbody>
     <tr><td><b>Decision Tree 강제</b></td><td>토픽별 의사결정 트리로 정해진 Case 분기 내에서만 결론 도출 — AI 자의적 추론 차단</td></tr>
