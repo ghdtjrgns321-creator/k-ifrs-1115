@@ -12,21 +12,27 @@
 
 **[📄 프로젝트 상세 보기 →](https://ghdtjrgns321-creator.github.io/myprofile/project_kifrs.html)**
 
-![Split View — 좌측 근거 문서 + 우측 AI 답변](images/split_view.png)
+> **예시 질문** — A가 B에게 재화를 100원에 공급하고 세금계산서를 발행, B가 고객 C에게 120원에 판매할 때 A의 매출액은 100원인가 120원인가?
+
+![질문에 대한 Split View 답변 — AI는 단정하지 않고 본인/대리인 조건에 따라 Case 1(120원)·Case 2(100원)로 분기하고 기준서 문단을 인용한다](images/split_view.png)
+
+<sub>좌측 = AI 호출 전 열람한 근거 문서 · 우측 = Case 분기 + 인용 문단(볼드)이 포함된 구조화 답변</sub>
 
 ---
 
 ## 핵심 특징
 
-- **Decision Tree 강제** — 토픽별 의사결정 트리로 정해진 Case 분기 내에서만 결론 도출, AI 자의적 추론 차단
-- **PydanticAI 구조화 출력** — '근거'와 '결론' 분리를 코드 수준에서 강제, AI 답변의 변동성 억제
-- **핀포인트 + Reranker 검색** — 사전 배정 문서 직접 조회 + 실무 약칭 자동 확장(예: "묶음 판매" → 복수의 수행의무·거래가격 배분) 하이브리드 보충
-- **근거 선행, AI 후행** — DB에 적재한 1,575건(본문·적용사례·질의회신·감리사례)을 AI 호출 **전에** SUMMARY와 함께 열람 가능
-- **Split View 근거 추적** — AI 답변과 인용 근거를 한 화면에서 동시 확인, AI가 참조한 문단은 볼드 처리
+| 기능 | 설명 |
+|------|------|
+| 🌳 **Decision Tree 강제** | 토픽별 의사결정 트리로 정해진 Case 분기 내에서만 결론 도출 — AI 자의적 추론 차단 |
+| 🔒 **PydanticAI 구조화 출력** | '근거'와 '결론' 분리를 코드 수준에서 강제 — AI 답변의 변동성 억제 |
+| 🎯 **핀포인트 + Reranker 검색** | 사전 배정 문서 직접 조회 + 실무 약칭 자동 확장("묶음 판매" → 복수의 수행의무·거래가격 배분) |
+| 📚 **근거 선행, AI 후행** | DB 1,575건(본문·적용사례·질의회신·감리사례)을 AI 호출 **전에** SUMMARY와 함께 열람 |
+| 🪟 **Split View 근거 추적** | AI 답변과 인용 근거를 한 화면에서 동시 확인 — 참조 문단은 볼드 처리 |
 
 ---
 
-## 왜 다른가 <sub>[상세: PROJECT-OVERVIEW](FINAL-REPORT/1_PROJECT-OVERVIEW.md)</sub>
+## 왜 다른가
 
 범용 LLM을 회계 기준서 해석에 그대로 쓰면 근거 없는 답변을 생성하는 **환각**에 노출되고, 이는 감사 실무에서 AI를 과대신뢰하는 2종 오류로 이어진다. 이 시스템은 유연성을 포기하고 **무결성**에 집중한다.
 
@@ -41,7 +47,7 @@
 
 ---
 
-## 환각 방지 5-Layer Pipeline <sub>[상세: SEARCH-AND-AI](FINAL-REPORT/4_SEARCH-AND-AI.md)</sub>
+## 환각 방지 5-Layer Pipeline
 
 데이터 적재부터 최종 답변까지 전 과정을 통제하는 **확정적(Deterministic) 아키텍처**:
 
@@ -87,7 +93,7 @@
 
 ---
 
-## 품질 검증 <sub>[상세: TEST-AND-DECISIONS](FINAL-REPORT/5_TEST-AND-DECISIONS.md)</sub>
+## 품질 검증
 
 모델 선정(218회) → 검색 테스트(101회) → 품질 테스트(301회), 3단계 총 **620회 호출**로 검증했다.
 
@@ -101,19 +107,6 @@
 | 응답시간 중위값         | **25.3초**        | Gemini thinking=medium 기준           |
 
 > 통과율 88.7%의 Issue 6건은 "토픽 매칭이 기대와 다름(답변은 정확)", "응답 시간이 긴 편" 수준의 **메타데이터·완성도 이슈**이며, 잘못된 정보 생성이나 근거 없는 단정은 **0건**이다.
-
----
-
-## 트러블슈팅 — 전략적 문제 해결 <sub>[상세: TROUBLESHOOT](FINAL-REPORT/TROUBLESHOOT.md)</sub>
-
-| 카테고리           | 트러블슈팅            | 핵심 전환                                       |
-|--------------------|-----------------------|-------------------------------------------------|
-| A. 제품 전략        | 범용 AI와의 차별화     | 챗봇 → UX 2단계(토픽 브라우즈 + AI)              |
-| B. 데이터           | PDF 파싱 한계         | case by case 패치 → kifrs.com REST API 크롤링    |
-| C. AI 파이프라인    | LLM 답변 분산         | 프롬프트 강화(역효과) → PydanticAI 구조화 출력    |
-| C. AI 파이프라인    | 답변 내용 비결정성     | PydanticAI만으로 부족 → Decision Tree 알고리즘 강제 |
-| D. 개발 프로세스    | Git 작업 소실         | 사고 발생 → 규칙 체계 수립                        |
-| D. 개발 프로세스    | 문서 부재 반복 디버깅  | 기록 없음 → docs 체계 수립                        |
 
 ---
 
@@ -142,17 +135,3 @@ uv sync
 uv run uvicorn app.main:app --port 8002       # 백엔드
 uv run streamlit run app/streamlit_app.py      # 프론트엔드 (별도 터미널)
 ```
-
----
-
-## 📚 상세 문서
-
-| 문서                                                        | 내용                      |
-|-------------------------------------------------------------|---------------------------|
-| [PROJECT-OVERVIEW](FINAL-REPORT/1_PROJECT-OVERVIEW.md)      | 프로젝트 배경과 UX 설계    |
-| [DATA-PIPELINE](FINAL-REPORT/2_DATA-PIPELINE.md)            | 6종 데이터 수집·가공 14단계 |
-| [DOMAIN-CURATION](FINAL-REPORT/3_DOMAIN-CURATION.md)        | 30개 토픽 큐레이션 과정    |
-| [SEARCH-AND-AI](FINAL-REPORT/4_SEARCH-AND-AI.md)            | 검색·AI 파이프라인 상세    |
-| [TEST-AND-DECISIONS](FINAL-REPORT/5_TEST-AND-DECISIONS.md)  | 620회 테스트 전체 결과     |
-| [LESSONS-LEARNED](FINAL-REPORT/6_LESSONS-LEARNED.md)        | 회고와 배운 점            |
-| [TROUBLESHOOT](FINAL-REPORT/TROUBLESHOOT.md)                | 6건 전략적 문제 해결       |
