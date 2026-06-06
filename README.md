@@ -1,4 +1,4 @@
-# K-IFRS 1115 회계감사 AI 어시스턴트
+# K-IFRS 1115 통합 문헌 감사 어시스턴트
 
 > **환각을 차단하는 회계감사 도메인 특화 RAG 시스템**
 > 검증된 기준서 원문과 Decision Tree 안에서만 답변한다.
@@ -10,13 +10,13 @@
 ![MongoDB Atlas](https://img.shields.io/badge/MongoDB%20Atlas-47A248?logo=mongodb&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 
-**[📄 프로젝트 상세 보기 →](https://ghdtjrgns321-creator.github.io/myprofile/project_kifrs.html)**
+**[프로젝트 상세 보기 →](https://ghdtjrgns321-creator.github.io/myprofile/project_kifrs.html)**
 
-> **예시 질문** — A가 B에게 재화를 100원에 공급하고 세금계산서를 발행, B가 고객 C에게 120원에 판매할 때 A의 매출액은 100원인가 120원인가?
+| 예시 질문 |
+| :-- |
+| A가 B에게 재화를 100원에 공급하고 세금계산서를 발행, B가 고객 C에게 120원에 판매할 때 — A의 매출액은 **100원**인가, **120원**인가? |
 
 ![질문에 대한 Split View 답변 — AI는 단정하지 않고 본인/대리인 조건에 따라 Case 1(120원)·Case 2(100원)로 분기하고 기준서 문단을 인용한다](images/split_view.png)
-
-<sub>좌측 = AI 호출 전 열람한 근거 문서 · 우측 = Case 분기 + 인용 문단(볼드)이 포함된 구조화 답변</sub>
 
 ---
 
@@ -24,11 +24,12 @@
 
 | 기능 | 설명 |
 |------|------|
-| 🌳 **Decision Tree 강제** | 토픽별 의사결정 트리로 정해진 Case 분기 내에서만 결론 도출 — AI 자의적 추론 차단 |
-| 🔒 **PydanticAI 구조화 출력** | '근거'와 '결론' 분리를 코드 수준에서 강제 — AI 답변의 변동성 억제 |
-| 🎯 **핀포인트 + Reranker 검색** | 사전 배정 문서 직접 조회 + 실무 약칭 자동 확장("묶음 판매" → 복수의 수행의무·거래가격 배분) |
-| 📚 **근거 선행, AI 후행** | DB 1,575건(본문·적용사례·질의회신·감리사례)을 AI 호출 **전에** SUMMARY와 함께 열람 |
-| 🪟 **Split View 근거 추적** | AI 답변과 인용 근거를 한 화면에서 동시 확인 — 참조 문단은 볼드 처리 |
+| **Decision Tree 강제** | 토픽별 의사결정 트리로 정해진 Case 분기 내에서만 결론 도출 — AI 자의적 추론 차단 |
+| **PydanticAI 구조화 출력** | '근거'와 '결론' 분리를 코드 수준에서 강제 — AI 답변의 변동성 억제 |
+| **핀포인트 + Reranker 검색** | 사전 배정 문서 직접 조회 + 실무 약칭 자동 확장("묶음 판매" → 복수의 수행의무·거래가격 배분) |
+| **6종 도메인 데이터 적재** | 기준서 원문·적용사례·질의응답·감리지적사항·교육자료 등 **1,575건**을 DB에 구축 |
+| **근거 선행, AI 후행** | 적재 문서를 AI 호출 **전에** SUMMARY와 함께 열람 — 근거 확인 후 답변 |
+| **Split View 근거 추적** | AI 답변과 인용 근거를 한 화면에서 동시 확인 — 참조 문단은 볼드 처리 |
 
 ---
 
