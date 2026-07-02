@@ -29,6 +29,19 @@ _workspace/
 # ── 완료된 작업 문서 ──────────────────────────────────────────────
 done/
 
+# ── 내부 작업 문서·스크래치 (공개 저장소 제외, 로컬 보존) ─────────
+FINAL-REPORT/
+docs/methodology/
+docs/DECISION.md
+docs/REFACTORING.md
+docs/IMPROVE.md
+docs/LIMITATION.md
+docs/debugging.md
+app/domain/context_findings.md
+app/domain/context_main_text.md
+app/domain/context_qna.md
+app/domain/trees_plan.md
+
 # ── IDE / 도구 캐시 ───────────────────────────────────────────────
 .vscode/
 .idea/
