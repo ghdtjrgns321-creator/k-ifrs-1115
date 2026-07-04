@@ -42,7 +42,6 @@ SRC_IE = "적용사례IE"
 SRC_QNA = "질의회신"
 SRC_QNA_SHORT = "QNA"  # retriever에서 classify_source가 반환하는 단축형
 SRC_FINDING = "감리사례"
-SRC_EDU = "교육자료"
 
 # ── Document ID 접두어 상수 ────────────────────────────────────────────────────
 # Why: retriever, db, evidence에서 parent_id 접두어 비교가 분산되어 있어 중앙화
@@ -51,7 +50,6 @@ DOC_PREFIX_FSS = "FSS-"
 DOC_PREFIX_KICPA = "KICPA-"
 DOC_PREFIX_FSS_CASE = "FSS-CASE-"
 DOC_PREFIX_KICPA_CASE = "KICPA-CASE-"
-DOC_PREFIX_EDU = "EDU-"
 # 감리사례 접두어 튜플 (startswith에서 사용)
 DOC_PREFIXES_FINDING = (DOC_PREFIX_FSS, DOC_PREFIX_KICPA)
 DOC_PREFIXES_FINDING_CASE = (DOC_PREFIX_FSS_CASE, DOC_PREFIX_KICPA_CASE)
@@ -59,12 +57,16 @@ DOC_PREFIXES_FINDING_CASE = (DOC_PREFIX_FSS_CASE, DOC_PREFIX_KICPA_CASE)
 # ── 문서 카테고리 → 아코디언 그룹 매핑 ──────────────────────────────────────────
 # source 값 하나가 여러 그룹에 속할 수 없도록 우선순위 순서로 정렬합니다.
 ACCORDION_GROUPS: dict[str, list[str]] = {
-    "📘 기준서 본문 및 적용지침": [SRC_BODY, SRC_APPENDIX_B, SRC_DEFINITION, SRC_EFFECTIVE],
+    "📘 기준서 본문 및 적용지침": [
+        SRC_BODY,
+        SRC_APPENDIX_B,
+        SRC_DEFINITION,
+        SRC_EFFECTIVE,
+    ],
     "🔍 결론도출근거(BC)": [SRC_BC],
     "📋 적용사례(IE)": [SRC_IE],
     "💬 질의회신(QNA)": [SRC_QNA, SRC_QNA_SHORT],
     "🚨 감리지적사례": [SRC_FINDING],
-    "📖 한국회계기준원 교육자료": [SRC_EDU],
 }
 
 # ── RAG 노드 → 진행률 매핑 ──────────────────────────────────────────────────────
@@ -92,55 +94,6 @@ _STEP_LABELS: dict[str, str] = {
     "generate": "AI가 답변을 생성하고 있어요 (약 15~20초 소요)",
     "format": "답변을 정리하고 있어요",
 }
-
-# ── 홈 화면 토픽 매트릭스 ─────────────────────────────────────────────────────
-# 좌측: K-IFRS 1115 5단계 수익인식 모형
-# 우측: 후속 처리·특수 거래
-# 토픽명은 TOPIC_CONTENT_MAP 키와 매칭 → 클릭 시 topic_browse로 이동
-HOME_TOPICS_LEFT: list[tuple[str, list[str]]] = [
-    ("Step 1. 계약 식별", ["계약의 식별", "계약의 결합", "계약변경"]),
-    ("Step 2. 수행의무 식별", ["수행의무 식별", "일련의 구별되는 재화나 용역"]),
-    (
-        "Step 3. 거래가격의 산정",
-        ["변동대가", "유의적인 금융요소", "비현금 대가", "고객에게 지급할 대가"],
-    ),
-    ("Step 4. 거래가격의 배분", ["거래가격 배분", "할인액의 배분", "변동대가의 배분"]),
-    ("Step 5. 수익의 인식", ["기간에 걸쳐 vs 한 시점 인식", "진행률 측정"]),
-]
-
-HOME_TOPICS_RIGHT: list[tuple[str, list[str]]] = [
-    (
-        "▸ 거래가격의 변동 및 표시",
-        ["거래가격의 후속 변동", "표시(계약자산, 계약부채, 수취채권)"],
-    ),
-    ("▸ 계약원가", ["계약체결 증분원가", "계약이행원가"]),
-    (
-        "▸ 특수한 형태의 거래",
-        [
-            "본인 vs 대리인",
-            "라이선싱",
-            "반품권이 있는 판매",
-            "보증(확신유형vs용역유형)",
-        ],
-    ),
-    (
-        "▸ 통제 이전의 특수 형태",
-        [
-            "재매입약정(콜옵션/풋옵션/금융약정)",
-            "위탁약정",
-            "미인도청구약정",
-            "고객의 인수",
-        ],
-    ),
-    (
-        "▸ 고객의 권리 관련",
-        [
-            "고객의 선택권(할인권/마일리지/포인트)",
-            "행사하지 않은 권리(낙전수익/상품권)",
-            "환불되지 않는 선수수수료(가입비/입회비)",
-        ],
-    ),
-]
 
 # 교차 링크 정규화 — 토픽 표시명의 미세 변형을 통일된 키로 매핑
 # cross_links.py에서 사용

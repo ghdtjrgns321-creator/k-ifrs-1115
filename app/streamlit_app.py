@@ -6,14 +6,13 @@
 #   새 UX는 "근거 문서 직접 열람 → AI 인사이트 요청" 순서로 역전시킵니다.
 #   사용자가 근거를 먼저 확인 후 AI를 보조 도구로 사용하는 전문가 도구입니다.
 #
-# 페이지 흐름:
-#   [home]     키워드 칩 + 자유 검색창
-#       ↓ 검색
-#   [evidence] 카테고리별 아코디언(원문) + AI 질문 입력창
-#       ↓ AI 질문 제출
-#   [ai_answer] 조건부 답변 + 꼬리 질문 버튼 3개 + 추가 입력창
+# 페이지 흐름 (챗봇 전용):
+#   [home]     제목 + 안내 + 자유 입력창 (미니멀)
+#       ↓ 질문 제출
+#   [ai_answer] Split View — 좌(근거 문서) + 우(AI 답변 + 꼬리질문)
 #       ↓ 꼬리 질문 클릭 또는 새 질문
 #   [ai_answer] (반복)
+# ([evidence]는 /search 경로용으로 남겨둠 — 현재 홈은 /chat 직행)
 #
 # 세부 구현은 app/ui/ 패키지로 분리되어 있습니다.
 
@@ -27,11 +26,10 @@ if str(root_path) not in sys.path:
 
 import streamlit as st  # noqa: E402
 
-from app.ui.layout import _inject_css, _render_header, _render_sidebar  # noqa: E402
+from app.ui.layout import _inject_css, _render_disclaimer, _render_header  # noqa: E402
 from app.ui.modal import _show_reference_modal  # noqa: E402
 from app.ui.pages import _render_ai_answer, _render_evidence, _render_home  # noqa: E402
 from app.ui.session import _init_session  # noqa: E402
-from app.ui.topic_browse import _render_topic_browse  # noqa: E402
 
 
 def main() -> None:
@@ -43,7 +41,6 @@ def main() -> None:
 
     _inject_css()
     _init_session()
-    _render_sidebar()
     _render_header()
 
     # page_state에 따라 화면을 분기합니다.
@@ -51,12 +48,13 @@ def main() -> None:
 
     if page == "home":
         _render_home()
-    elif page == "topic_browse":
-        _render_topic_browse()
     elif page == "evidence":
         _render_evidence()
     elif page == "ai_answer":
         _render_ai_answer()
+
+    # 사이드바 제거로 옮긴 '참고 목적' 면책 문구를 하단에 고정 렌더
+    _render_disclaimer()
 
     # ── 모달 전역 트리거 ─────────────────────────────────────────────────────
     # show_modal 플래그는 _render_para_chips에서 설정됩니다.

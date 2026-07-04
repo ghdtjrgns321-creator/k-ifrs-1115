@@ -10,10 +10,9 @@ import re
 import streamlit as st
 
 
-# QNA/감리사례/교육자료 부모 문서가 저장된 별도 컬렉션명
+# QNA/감리사례 부모 문서가 저장된 별도 컬렉션명
 _QNA_PARENT_COLL = "k-ifrs-1115-qna-parents"
 _FINDINGS_PARENT_COLL = "k-ifrs-1115-findings-parents"
-_KAI_PARENT_COLL = "k-ifrs-1115-kai-parents"
 
 
 @st.cache_resource
@@ -183,16 +182,18 @@ def fetch_parent_doc(parent_id: str) -> dict | None:
         return None
     try:
         db = _get_mongo_db()
-        # QNA/감리사례/교육자료 → 별도 parent 컬렉션에서 _id로 조회
-        from app.ui.constants import DOC_PREFIX_EDU, DOC_PREFIX_QNA, DOC_PREFIXES_FINDING
+        # QNA/감리사례 → 별도 parent 컬렉션에서 _id로 조회
+        from app.ui.constants import (
+            DOC_PREFIX_QNA,
+            DOC_PREFIXES_FINDING,
+        )
+
         if parent_id.startswith(DOC_PREFIX_QNA):
             doc = db[_QNA_PARENT_COLL].find_one({"_id": parent_id}, {"embedding": 0})
         elif parent_id.startswith(DOC_PREFIXES_FINDING):
             doc = db[_FINDINGS_PARENT_COLL].find_one(
                 {"_id": parent_id}, {"embedding": 0}
             )
-        elif parent_id.startswith(DOC_PREFIX_EDU):
-            doc = db[_KAI_PARENT_COLL].find_one({"_id": parent_id}, {"embedding": 0})
         else:
             # 본문 등 기존 방식 — 메인 컬렉션에서 chunk_id로 조회
             coll = _get_mongo_collection()
@@ -275,17 +276,23 @@ def fetch_ie_case_docs(case_titles: tuple) -> list[dict]:
         matched_titles = []
         for short in case_titles:
             for full in all_titles:
-                if full == short or full.startswith(f"{short}:") or full.startswith(f"{short}："):
+                if (
+                    full == short
+                    or full.startswith(f"{short}:")
+                    or full.startswith(f"{short}：")
+                ):
                     matched_titles.append(full)
         if not matched_titles:
             return []
         # 3) $or + 정확 매칭으로 조회
         # Why: MongoDB Atlas에서 한글 포함 $in이 동작하지 않는 경우가 있어 $or로 우회
         or_clauses = [{"case_group_title": t} for t in matched_titles]
-        docs = list(coll.find(
-            {"$or": or_clauses},
-            {"embedding": 0},
-        ))
+        docs = list(
+            coll.find(
+                {"$or": or_clauses},
+                {"embedding": 0},
+            )
+        )
         return [dict(d) for d in docs]
     except Exception:
         return []

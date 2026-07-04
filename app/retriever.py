@@ -5,11 +5,9 @@ from rank_bm25 import BM25Okapi
 from app.config import settings
 from app.embeddings import embed_query_sync
 from app.ui.constants import (
-    DOC_PREFIX_EDU,
     DOC_PREFIX_QNA,
     DOC_PREFIXES_FINDING,
     SRC_BODY,
-    SRC_EDU,
     SRC_FINDING,
     SRC_IE,
     SRC_QNA,
@@ -19,13 +17,11 @@ from app.ui.constants import (
 # ── 상수 ────────────────────────────────────────────────────────────────────────
 QNA_PARENT_COLL = "k-ifrs-1115-qna-parents"
 FINDINGS_PARENT_COLL = "k-ifrs-1115-findings-parents"
-KAI_PARENT_COLL = "k-ifrs-1115-kai-parents"
 
 VECTOR_TOP_K = 100  # 후보 풀 확장
 RRF_K = 60  # RRF 논문 권장값
 QNA_SUPPLEMENT = 15  # QNA 보조 최대 추가 수
 FINDINGS_SUPPLEMENT = 15  # 감리사례 보조 최대 추가 수
-KAI_SUPPLEMENT = 5  # 교육자료 보조 최대 추가 수
 IE_SUPPLEMENT = 10  # 적용사례IE 보조 최대 추가 수 (UI에서 상위 3개만 표시)
 
 
@@ -211,8 +207,6 @@ def _classify_source(parent_id: str | None, category: str = "") -> str:
             return SRC_QNA_SHORT
         if str(parent_id).startswith(DOC_PREFIXES_FINDING):
             return SRC_FINDING
-        if str(parent_id).startswith(DOC_PREFIX_EDU):
-            return SRC_EDU
     return category if category else SRC_BODY
 
 
@@ -230,7 +224,6 @@ def _batch_get_parent_contents(
     source_coll_map = {
         SRC_QNA_SHORT: QNA_PARENT_COLL,
         SRC_FINDING: FINDINGS_PARENT_COLL,
-        SRC_EDU: KAI_PARENT_COLL,
     }
 
     for source, pids in parent_ids_by_source.items():
@@ -319,7 +312,6 @@ def _parse_doc_ids_from_text(text: str) -> dict[str, list[str]]:
     ids: dict[str, list[str]] = {
         "qna": [],
         "findings": [],
-        "edu": [],
         "ie_cases": [],
         "paragraphs": [],
     }
@@ -367,7 +359,7 @@ def _parse_doc_ids_from_text(text: str) -> dict[str, list[str]]:
         if clean.startswith("IE 사례"):
             # QNA/FSS 등 명시적 ID를 먼저 추출하여 제거
             named_refs = re.findall(
-                r"(QNA-[\w-]+|FSS-CASE-[\w-]+|KICPA-CASE-[\w-]+|EDU-[\w-]+)",
+                r"(QNA-[\w-]+|FSS-CASE-[\w-]+|KICPA-CASE-[\w-]+)",
                 clean,
             )
             for sub in named_refs:
@@ -420,9 +412,6 @@ def _parse_doc_ids_from_text(text: str) -> dict[str, list[str]]:
             elif part.startswith("KICPA-CASE-"):
                 current_prefix = "KICPA-CASE-"
                 _add_ref(part, ids, seen)
-            elif part.startswith("EDU-"):
-                current_prefix = "EDU-"
-                _add_ref(part, ids, seen)
             # 콤마 뒤 접두어 없이 숫자/코드만 (예: "2025-2512-01")
             elif current_prefix and re.match(r"^[\d]", part):
                 if current_prefix in ("FSS-CASE-", "KICPA-CASE-"):
@@ -441,8 +430,6 @@ def _add_ref(ref_id: str, ids: dict, seen: set) -> None:
         ids["qna"].append(ref_id)
     elif ref_id.startswith(("FSS-CASE-", "KICPA-CASE-")):
         ids["findings"].append(ref_id)
-    elif ref_id.startswith("EDU-"):
-        ids["edu"].append(ref_id)
 
 
 def _fetch_ie_case_chunks(case_numbers: list[str]) -> list[dict]:
@@ -458,9 +445,7 @@ def _fetch_ie_case_chunks(case_numbers: list[str]) -> list[dict]:
     db = _get_db()
     coll = db[settings.mongo_collection_name]
 
-    patterns = {
-        n: re.compile(rf"사례\s*{re.escape(n)}[\s:：]") for n in case_numbers
-    }
+    patterns = {n: re.compile(rf"사례\s*{re.escape(n)}[\s:：]") for n in case_numbers}
 
     ie_chunks = list(
         coll.find(
@@ -490,12 +475,14 @@ def _fetch_ie_case_chunks(case_numbers: list[str]) -> list[dict]:
         first = chunks[0]
         merged_text = "\n\n".join(c.get("text", "") for c in chunks)
         chunk_ids = [c.get("chunk_id", "") for c in chunks]
-        results.append({
-            **first,
-            "text": merged_text,
-            "chunk_id": f"1115-IE-case-{case_num}",
-            "_merged_chunk_ids": chunk_ids,
-        })
+        results.append(
+            {
+                **first,
+                "text": merged_text,
+                "chunk_id": f"1115-IE-case-{case_num}",
+                "_merged_chunk_ids": chunk_ids,
+            }
+        )
 
     return results
 
@@ -588,33 +575,6 @@ def fetch_pinpoint_docs(matched_topics: list[dict]) -> list[dict]:
                         "vector_score": 0.0,
                         "related_paragraphs": [],
                         "hierarchy": f"감리사례 > {fid}",
-                    }
-                )
-
-    # 4) 교육자료 (EDU) 원문 fetch
-    if parsed["edu"]:
-        kai_coll = db[KAI_PARENT_COLL]
-        for eid in parsed["edu"]:
-            if eid in seen_parent_ids:
-                continue
-            doc = kai_coll.find_one({"_id": eid})
-            if doc:
-                seen_parent_ids.add(eid)
-                results.append(
-                    {
-                        "source": SRC_EDU,
-                        "chunk_id": f"{eid}_pinpoint",
-                        "parent_id": eid,
-                        "category": SRC_EDU,
-                        "chunk_type": "pinpoint",
-                        "content": doc.get("content", "")[:500],
-                        "full_content": doc.get("content", ""),
-                        "title": doc.get("metadata", {}).get("title", ""),
-                        "case_group_title": "",
-                        "score": 1.0,
-                        "vector_score": 0.0,
-                        "related_paragraphs": [],
-                        "hierarchy": f"교육자료 > {eid}",
                     }
                 )
 
@@ -712,23 +672,14 @@ def search_all(query: str, limit: int = 5) -> list[dict]:
         and d.get("chunk_id") not in existing_ids
     ][:FINDINGS_SUPPLEMENT]
 
-    # 교육자료 보조 추출 — AI 답변 컨텍스트용
-    kai_raw = [
-        d
-        for d in v_results
-        if str(d.get("parent_id", "")).startswith(DOC_PREFIX_EDU)
-        and d.get("chunk_id") not in existing_ids
-    ][:KAI_SUPPLEMENT]
-
     # 적용사례IE 보조 추출 — 핀포인트 외 관련 사례 보충
     ie_raw = [
         d
         for d in v_results
-        if d.get("category") == SRC_IE
-        and d.get("chunk_id") not in existing_ids
+        if d.get("category") == SRC_IE and d.get("chunk_id") not in existing_ids
     ][:IE_SUPPLEMENT]
 
-    supplement = _docs_from_fused(qna_raw + findings_raw + kai_raw + ie_raw)
+    supplement = _docs_from_fused(qna_raw + findings_raw + ie_raw)
     return base_docs + supplement
 
 

@@ -68,9 +68,11 @@ if _JSON_PATH.exists():
 #       문제를 인지하기 어려움 → 명시적 경고
 if not TOPIC_CONTENT_MAP:
     import logging as _logging
+
     _logging.warning(
         "TOPIC_CONTENT_MAP이 비어있습니다. topics.json 경로: %s (존재: %s)",
-        _JSON_PATH, _JSON_PATH.exists(),
+        _JSON_PATH,
+        _JSON_PATH.exists(),
     )
 
 
@@ -163,31 +165,9 @@ for _topic_data in TOPIC_CONTENT_MAP.values():
         if _fid and _fdesc and _fid not in PDR_DESC_INDEX:
             PDR_DESC_INDEX[_fid] = _fdesc
 
-# 교육자료(EDU): decision_trees.py의 4_precedents에서 자동 추출
-# Why: topics.json에 edu 섹션이 없어서, 큐레이션된 설명을 decision_trees에서 가져옴
-import re as _re
-
-from app.domain.decision_trees import MASTER_DECISION_TREES as _TREES
-
-for _tree in _TREES.values():
-    for _sec_val in _tree.values():
-        _texts: list[str] = []
-        if isinstance(_sec_val, dict):
-            for _sv in _sec_val.values():
-                if isinstance(_sv, list):
-                    _texts.extend(s for s in _sv if isinstance(s, str))
-        elif isinstance(_sec_val, list):
-            _texts.extend(s for s in _sec_val if isinstance(s, str))
-        for _t in _texts:
-            _m = _re.search(r"\[?(EDU-[\w-]+)\]?\s*(?:\(실무 팁\))?\s*(.+)", _t)
-            if _m:
-                _eid, _edesc = _m.group(1), _m.group(2).strip()
-                if _eid not in PDR_DESC_INDEX or len(_edesc) > len(PDR_DESC_INDEX[_eid]):
-                    PDR_DESC_INDEX[_eid] = _edesc
-
 
 def get_desc_for_pdr(parent_id: str) -> str:
-    """parent_id로 QNA/감리사례/교육자료 큐레이션 desc를 조회합니다."""
+    """parent_id로 QNA/감리사례 큐레이션 desc를 조회합니다."""
     return PDR_DESC_INDEX.get(parent_id, "")
 
 
@@ -269,5 +249,3 @@ def get_summary_for_ie_cases(case_group_titles: list[str]) -> str:
         if s:
             return s
     return ""
-
-

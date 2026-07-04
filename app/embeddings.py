@@ -30,7 +30,9 @@ def embed_texts_sync(
             json={"model": model, "input": texts},
         )
         resp.raise_for_status()
-        return [d["embedding"] for d in resp.json()["data"]]
+        # data 배열은 input 순서를 보장하지 않음 → index로 정렬해 호출부의 zip 정합성 보장
+        data = sorted(resp.json()["data"], key=lambda d: d.get("index", 0))
+        return [d["embedding"] for d in data]
 
 
 def embed_query_sync(text: str) -> list[float]:

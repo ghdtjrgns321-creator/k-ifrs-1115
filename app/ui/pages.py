@@ -1,7 +1,7 @@
 # app/ui/pages.py
 # 페이지 렌더러 함수 3개.
 #
-# - _render_home:       홈 — 키워드 칩 + 자유 검색창
+# - _render_home:       홈 — 자유 질문 입력창 (챗봇 전용, 미니멀)
 # - _render_evidence:   근거 열람 — 카테고리별 아코디언 + AI 질문 입력창
 # - _render_ai_answer:  AI 답변 — Split View (근거 + 답변 + 꼬리 질문)
 
@@ -14,7 +14,7 @@ import httpx
 
 from app.ui.client import _call_chat
 from app.ui.components import _render_evidence_panel
-from app.ui.constants import FEEDBACK_URL, HOME_TOPICS_LEFT, HOME_TOPICS_RIGHT
+from app.ui.constants import FEEDBACK_URL
 from app.ui.doc_helpers import _format_pdr_content
 from app.ui.session import _go_home
 from app.ui.text import _esc, clean_text
@@ -31,112 +31,45 @@ def _format_question(text: str) -> str:
     return re.sub(r"\n+", "<br>", escaped)
 
 
-def _navigate_to_topic(topic: str) -> None:
-    """토픽 버튼 on_click 콜백 — state만 변경, Streamlit이 자동 rerun.
-
-    on_click 콜백은 script rerun 전에 실행되므로
-    st.rerun()을 호출할 필요가 없고 1회 rerun만 발생합니다.
-    (기존: if st.button → 2회 rerun → 깜빡임/에러)
-    """
-    st.session_state.selected_topic = topic
-    st.session_state.page_state = "topic_browse"
-
-
-def _render_topic_column(
-    sections: list[tuple[str, list[str]]], key_prefix: str
-) -> None:
-    """Step 헤더 + 토픽 버튼 목록을 렌더링합니다."""
-    for section_title, topics in sections:
-        st.markdown(f"**{section_title}**")
-        for topic in topics:
-            safe_key = f"{key_prefix}_{topic.replace(' ', '_')}"
-            # on_click 콜백: state 변경 → Streamlit 자동 1회 rerun
-            st.button(
-                topic,
-                key=safe_key,
-                use_container_width=True,
-                on_click=_navigate_to_topic,
-                args=(topic,),
-            )
-
-
 def _render_home() -> None:
-    """[홈] 8섹션 토픽 매트릭스 + 자유 질문 입력을 렌더링합니다.
+    """[홈] 챗봇 전용 미니멀 진입 — 안내 문구 + 자유 질문 입력창.
 
-    좌우 2단 레이아웃: 좌측(5단계 수익인식 모형) / 우측(후속 처리·특수 거래)
-    하단에 자유 텍스트 입력 → /chat SSE → ai_answer 페이지로 직행
+    입력 제출 → /chat SSE → ai_answer 페이지로 직행합니다.
+    (토픽 브라우징·사이드바 제거로 진입점을 자유 질문 하나로 단순화)
     """
-    # ── 구분선 — 헤더 바로 아래 (topic_browse와 동일) ────────────────────────
-    st.markdown(
-        "<hr style='margin-top:-2.5rem; margin-bottom:0; "
-        "border:none; border-top:1px solid #E2E8F0;'>",
-        unsafe_allow_html=True,
-    )
-
-    st.html(
-        """
-        <div style='text-align: center; padding: 0 0 0.5rem;'>
-            <h2 style='font-size: 1.5em; font-weight: 700; margin-bottom: 0.3rem; color: #334155;'>
-                무엇을 검토하고 싶으신가요?
-            </h2>
-            <p style='color: #64748B; font-size: 0.9em; margin-bottom: 0;'>
-                아래 주제를 클릭하면 관련 기준서 조항을 바로 열람할 수 있습니다.
-            </p>
-        </div>
-    """
-    )
-
-    # ── 2단 레이아웃: 좌(5단계 모형) / 우(후속·특수 거래) ────────────────
-    left_col, right_col = st.columns(2, gap="small")
-
-    with left_col:
-        # Why: 상단 실선·하단 점선 사이에 헤더가 수직 중앙 배치되도록 대칭 마진
-        # Why: st.markdown bold는 <p> 기본 마진이 커서 점선과 간격 제어 불가 → st.html로 직접 제어
+    # ── 중앙 정렬: wide 레이아웃에서 입력 블록을 가운데로 모음 ──────────────
+    _, center, _ = st.columns([1, 2, 1])
+    with center:
         st.html(
-            "<hr style='border:none; border-top:1px solid #E2E8F0; margin:0.3rem 0 0;'>"
-            "<p style='font-weight:700; margin:0; padding:1.2rem 0 4px;'>📋 5단계 수익인식 모형</p>"
-            "<hr style='border:none; border-top:1.5px dashed #E2E8F0; margin:0;'>"
+            "<p style='text-align:center; color:#64748B; font-size:0.95em; "
+            "line-height:1.7; margin:1.8rem 0 1.2rem;'>"
+            "구체적인 거래 구조나 애매한 회계 상황을 자유롭게 설명해 주세요.<br>"
+            "AI가 기준서를 근거로 분석해 드립니다."
+            "</p>"
         )
-        with st.container(border=True, gap="xsmall"):
-            _render_topic_column(HOME_TOPICS_LEFT, "L")
 
-    with right_col:
-        st.html(
-            "<hr style='border:none; border-top:1px solid #E2E8F0; margin:0.3rem 0 0;'>"
-            "<p style='font-weight:700; margin:0; padding:1.2rem 0 4px;'>📋 후속 처리 · 특수 거래</p>"
-            "<hr style='border:none; border-top:1.5px dashed #E2E8F0; margin:0;'>"
-        )
-        with st.container(border=True, gap="xsmall"):
-            _render_topic_column(HOME_TOPICS_RIGHT, "R")
+        # Why: st.form 제출은 fragment 안에서도 전체 rerun을 유발하므로
+        #      일반 위젯 + st.button을 사용해야 fragment rerun만 발생 → 스크롤 유지
+        @st.fragment
+        def _home_search_fragment():
+            query = st.text_area(
+                "상황 입력",
+                placeholder="예: 반품 가능성이 높을 때 매출 인식 시기는 언제인가요?",
+                label_visibility="collapsed",
+                height=140,
+                key="home_search_input",
+            )
+            if st.button(
+                "질문하기",
+                use_container_width=True,
+                type="primary",
+                key="home_search_btn",
+            ):
+                if query and query.strip():
+                    st.session_state.search_query = query.strip()
+                    _call_chat(query.strip(), use_cache=False)
 
-    # ── 하단: 자유 질문 입력 ──────────────────────────────────────────────
-    st.divider()
-    st.markdown("#### :material/chat: 직접 질문하기")
-    st.caption(
-        "구체적인 사실관계를 자유롭게 설명해 주세요. "
-        "AI가 상황을 분석하고 사실에 기반한 답변을 드립니다."
-    )
-
-    # Why: st.form 제출은 fragment 안에서도 전체 rerun을 유발하므로
-    #      일반 위젯 + st.button을 사용해야 fragment rerun만 발생 → 스크롤 유지
-    @st.fragment
-    def _home_search_fragment():
-        query = st.text_area(
-            "상황 입력",
-            placeholder="상세한 거래 구조나 애매한 회계 상황을 자유롭게 입력해 주세요...\n"
-            "(예: 반품 가능성이 높을 때 매출 인식 시기는?)",
-            label_visibility="collapsed",
-            height=100,
-            key="home_search_input",
-        )
-        if st.button(
-            "검색하기", use_container_width=True, type="primary", key="home_search_btn"
-        ):
-            if query and query.strip():
-                st.session_state.search_query = query.strip()
-                _call_chat(query.strip(), use_cache=False)
-
-    _home_search_fragment()
+        _home_search_fragment()
 
 
 def _render_evidence() -> None:
@@ -246,11 +179,18 @@ def _render_feedback_buttons() -> None:
         )
         c1, c2, c3 = st.columns([2, 2, 8])
         with c1:
-            if st.button("전송", key="feedback_reason_send", type="primary", use_container_width=True):
+            if st.button(
+                "전송",
+                key="feedback_reason_send",
+                type="primary",
+                use_container_width=True,
+            ):
                 _send_feedback("down", reason=reason.strip() if reason else "")
                 st.rerun()
         with c2:
-            if st.button("건너뛰기", key="feedback_reason_skip", use_container_width=True):
+            if st.button(
+                "건너뛰기", key="feedback_reason_skip", use_container_width=True
+            ):
                 _send_feedback("down")
                 st.rerun()
         return
@@ -262,7 +202,9 @@ def _render_feedback_buttons() -> None:
             _send_feedback("up")
             st.rerun()
     with col_down:
-        if st.button("👎 개선이 필요해요", key="feedback_down", use_container_width=True):
+        if st.button(
+            "👎 개선이 필요해요", key="feedback_down", use_container_width=True
+        ):
             st.session_state.feedback_sent = "down_pending"
             st.rerun()
 
@@ -326,7 +268,8 @@ def _render_ai_answer() -> None:
             fc = st.session_state.findings_case
             case_title = fc.get("title", "감리지적사례")
             with st.expander(
-                f":material/gavel: 금융감독원 지적사례: {_esc(case_title)}", expanded=False
+                f":material/gavel: 금융감독원 지적사례: {_esc(case_title)}",
+                expanded=False,
             ):
                 raw_content = fc.get("content", "내용을 불러올 수 없습니다.")
                 adjusted = _format_pdr_content(raw_content)

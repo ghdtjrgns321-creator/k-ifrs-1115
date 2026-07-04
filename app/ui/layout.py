@@ -9,8 +9,6 @@
 
 import streamlit as st
 
-from app.ui.session import _go_home
-
 # ── CSS는 레이아웃 보정 용도로만 사용 (색상은 config.toml에서 관리) ──────
 _CUSTOM_CSS = """
 <style>
@@ -186,7 +184,7 @@ def _render_header() -> None:
                 수익인식 기준서 분석 도구
             </h1>
             <p style='font-size: 0.9em; color: #64748B; margin-top: 6px; margin-bottom: 0;'>
-                기준서 본문 · 질의회신 · 감리사례를 직접 열람하고 AI에게 해석을 물어보세요
+                기준서 본문 · 질의회신 · 감리사례를 근거로 AI에게 해석을 물어보세요
             </p>
             <hr style='border: none; border-top: 1px solid #E2E8F0; margin-top: 12px; margin-bottom: 0;'>
         </div>
@@ -194,37 +192,18 @@ def _render_header() -> None:
     )
 
 
-def _render_sidebar() -> None:
-    """사이드바 — 일러두기 + 주의사항 + 기술 스택 푸터."""
-    with st.sidebar:
-        st.title("K-IFRS Chatbot")
-        st.caption("기업회계기준서 제1115호  \n고객과의 계약에서 생기는 수익")
+def _render_disclaimer() -> None:
+    """화면 하단 면책 문구 — 사이드바 제거로 옮긴 '참고 목적' 고지.
 
-        st.button(
-            "처음으로",
-            icon=":material/home:",
-            use_container_width=True,
-            on_click=_go_home,
-        )
-
-        st.divider()
-        st.markdown(
-            "**일러두기**\n\n"
-            "본 도구는 다음을 바탕으로 사실(Fact) 기반의 원칙적 답변을 제공"
-            "합니다.\n\n"
-            "- K-IFRS 제1115호 기준서 본문 및 적용지침\n"
-            "- 회계기준원·금융감독원 공식 질의회신\n"
-            "- 한국회계기준원 교육자료\n"
-            "- 금융감독원 감리지적사례\n\n"
-            "**주의**\n\n"
-            "전문가적 판단이 개입되어야 하는 복잡한 사안에 대해서는 "
-            "확정적 **결론**을 내리지 못할 수 있습니다.\n\n"
-            "본 답변은 실무 검토를 위한 **참고 목적**으로만 활용해 주세요."
-        )
-
-        st.html(
-            "<div style='position: fixed; bottom: 16px; font-size: 0.75em; "
-            "color: #94A3B8; letter-spacing: 0.01em;'>"
-            "PydanticAI · o4-mini · Hybrid Search ·<br>Cohere Reranker"
-            "</div>"
-        )
+    사이드바를 없애면서 회계 도구 특성상 필요한 면책 고지를
+    모든 페이지 하단에 작은 회색 줄로 고정 노출합니다.
+    """
+    st.html(
+        "<div style='max-width: 720px; margin: 2.5rem auto 0; "
+        "padding-top: 0.8rem; border-top: 1px solid #E2E8F0; "
+        "text-align: center; font-size: 0.75em; color: #94A3B8; "
+        "line-height: 1.6;'>"
+        "본 답변은 실무 검토를 위한 <b>참고 목적</b>으로만 활용해 주세요. "
+        "전문가적 판단이 필요한 복잡한 사안은 확정적 결론을 제공하지 못할 수 있습니다."
+        "</div>"
+    )

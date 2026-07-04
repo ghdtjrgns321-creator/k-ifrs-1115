@@ -12,14 +12,12 @@ import streamlit as st
 
 from app.ui.constants import (
     ACCORDION_GROUPS,
-    DOC_PREFIX_EDU,
     DOC_PREFIX_QNA,
     DOC_PREFIXES_FINDING,
     SRC_APPENDIX_B,
     SRC_BC,
     SRC_BODY,
     SRC_DEFINITION,
-    SRC_EDU,
     SRC_EFFECTIVE,
     SRC_FINDING,
     SRC_IE,
@@ -54,9 +52,7 @@ _TOPIC_GROUPABLE: dict[str, tuple[str, ...]] = {
 }
 
 # QNA/감리사례 그룹
-_PDR_GROUPS = frozenset(
-    {"💬 질의회신(QNA)", "🚨 감리지적사례", "📖 한국회계기준원 교육자료"}
-)
+_PDR_GROUPS = frozenset({"💬 질의회신(QNA)", "🚨 감리지적사례"})
 
 
 def _ie_desc_blockquote(desc: str) -> None:
@@ -83,7 +79,7 @@ def _get_cited_ids() -> set[str]:
     3종류의 인용 ID를 통합 set으로 반환:
       - 문단: "문단 56", "문단 B20~B21" → {"56", "B20", "B21"}
       - QNA: "QNA-2019-001" → {"QNA-2019-001"}
-      - 감리/교육: "FSS-CASE-001", "EDU-001" → {"FSS-CASE-001", "EDU-001"}
+      - 감리: "FSS-CASE-001" → {"FSS-CASE-001"}
     """
     answer = st.session_state.get("ai_answer", "")
     if not answer:
@@ -96,10 +92,8 @@ def _get_cited_ids() -> set[str]:
         num = _para_ref_to_num(ref)
         cited_paras.update(_expand_para_range(num))
 
-    # QNA/감리사례/교육자료 ID 추출
-    pdr_ids = set(
-        re.findall(r"(QNA-[\w-]+|FSS-CASE-[\w-]+|KICPA-CASE-[\w-]+|EDU-[\w-]+)", answer)
-    )
+    # QNA/감리사례 ID 추출
+    pdr_ids = set(re.findall(r"(QNA-[\w-]+|FSS-CASE-[\w-]+|KICPA-CASE-[\w-]+)", answer))
 
     return cited_paras | pdr_ids
 
@@ -196,9 +190,7 @@ def _get_cited_pdr_docs() -> list[dict]:
     if st.session_state.get("_cited_pdr_cache_key") == cache_key:
         return st.session_state.get("_cited_pdr_cache", [])
 
-    cited_ids = re.findall(
-        r"(QNA-[\w-]+|FSS-CASE-[\w-]+|KICPA-CASE-[\w-]+|EDU-[\w-]+)", answer
-    )
+    cited_ids = re.findall(r"(QNA-[\w-]+|FSS-CASE-[\w-]+|KICPA-CASE-[\w-]+)", answer)
     if not cited_ids:
         return []
 
@@ -207,11 +199,7 @@ def _get_cited_pdr_docs() -> list[dict]:
         parent = fetch_parent_doc(pid)
         if not parent:
             continue
-        source = (
-            SRC_FINDING if pid.startswith(DOC_PREFIXES_FINDING)
-            else SRC_EDU if pid.startswith(DOC_PREFIX_EDU)
-            else SRC_QNA
-        )
+        source = SRC_FINDING if pid.startswith(DOC_PREFIXES_FINDING) else SRC_QNA
         result.append(
             {
                 "source": source,
@@ -283,7 +271,8 @@ def _render_supp_extra(sources: list[str], idx_base: int) -> None:
                 cgt = d.get("case_group_title", "")
                 if pid:
                     _render_pdr_expander(
-                        d, doc_index=idx_base + i,
+                        d,
+                        doc_index=idx_base + i,
                         entry_desc=get_desc_for_pdr(pid),
                     )
                 elif cgt:
@@ -293,9 +282,7 @@ def _render_supp_extra(sources: list[str], idx_base: int) -> None:
                     for ie_d in ie_case_docs:
                         ie_d["case_group_title"] = cgt
                     desc = _get_ie_desc_clean(cgt)
-                    with st.expander(
-                        f"📎 {cgt}", expanded=False
-                    ):
+                    with st.expander(f"📎 {cgt}", expanded=False):
                         _ie_desc_blockquote(desc)
                         for j, ie_doc in enumerate(ie_case_docs):
                             _render_document_expander(
@@ -316,7 +303,7 @@ def _prepare_ai_answer_docs(docs: list[dict]) -> list[dict]:
     Returns: 인용 기반으로 재구성된 docs 리스트.
     Side effect: st.session_state["_supp_by_group"] 설정.
     """
-    _SUPPLEMENTABLE = frozenset({SRC_QNA, "QNA", SRC_FINDING, SRC_IE, SRC_EDU})
+    _SUPPLEMENTABLE = frozenset({SRC_QNA, "QNA", SRC_FINDING, SRC_IE})
 
     # retriever가 가져온 QNA/감리/IE 원본 보존 (더보기용)
     retrieved_supplementary = [
@@ -413,7 +400,9 @@ def _render_ie_group(
 
     # AI 답변에서 인용된 사례 번호 추출 (cited_ids와 별도)
     answer = st.session_state.get("ai_answer", "")
-    cited_case_nums = set(re.findall(r"사례\s*(\d+[A-Z]?)", answer)) if answer else set()
+    cited_case_nums = (
+        set(re.findall(r"사례\s*(\d+[A-Z]?)", answer)) if answer else set()
+    )
 
     doc_idx = 0
     for cgt in main_cases:

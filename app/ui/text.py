@@ -183,18 +183,18 @@ def clean_text(text: str) -> str:
         r'<span style="color:#1f77b4;font-weight:600;">\1</span>',
         text,
     )
-    # 3.5) 문서 ID 강조 — QNA-xxx, FSS-CASE-xxx, KICPA-CASE-xxx, EDU-xxx 패턴
-    # AI 답변에서 사례·질의회신·교육자료 인용 시 사용자가 왼쪽 패널과 매칭할 수 있도록 강조
+    # 3.5) 문서 ID 강조 — QNA-xxx, FSS-CASE-xxx, KICPA-CASE-xxx 패턴
+    # AI 답변에서 사례·질의회신 인용 시 사용자가 왼쪽 패널과 매칭할 수 있도록 강조
     # 대괄호로 감싼 패턴: [QNA-xxx] → [<span>QNA-xxx</span>]
     text = re.sub(
-        r"\[((?:FSS-CASE|KICPA-CASE|QNA|EDU)-[\w-]+)\]",
+        r"\[((?:FSS-CASE|KICPA-CASE|QNA)-[\w-]+)\]",
         r'[<span style="color:#1f77b4;font-weight:600;">\1</span>]',
         text,
     )
-    # bare ID 패턴: 대괄호 없이 나오는 QNA-xxx, EDU-KASB-xxx 등도 강조
+    # bare ID 패턴: 대괄호 없이 나오는 QNA-xxx 등도 강조
     # (?<![\w>-]) : 이미 span 처리된 것(>) 또는 다른 단어 일부인 것 제외
     text = re.sub(
-        r"(?<![\w>])((?:FSS-CASE|KICPA-CASE|QNA|EDU)-[\w-]+)",
+        r"(?<![\w>])((?:FSS-CASE|KICPA-CASE|QNA)-[\w-]+)",
         r'<span style="color:#1f77b4;font-weight:600;">\1</span>',
         text,
     )
@@ -451,7 +451,9 @@ def _md_table_to_html(block: str) -> str:
         "font-size:0.88em; line-height:1.6;"
     )
     cell_style = "border:1px solid #d1d5db; padding:4px 8px;"
-    header_style = f"{cell_style} background:#f0f4ff; font-weight:600; text-align:center;"
+    header_style = (
+        f"{cell_style} background:#f0f4ff; font-weight:600; text-align:center;"
+    )
 
     # 파싱
     header_cells: list[str] | None = None
@@ -485,19 +487,14 @@ def _md_table_to_html(block: str) -> str:
     #       expander 전체 너비를 사용. 분개 행은 CSS grid로 렌더링.
     #       <table> 인라인 스타일은 Streamlit CSS가 덮어쓰고,
     #       마크다운 파이프 테이블은 \n→<br> 변환으로 깨지므로 <div> 사용.
-    has_sparse = any(
-        sum(1 for c in r if c.strip()) <= 2 for r in parsed_rows
-    )
+    has_sparse = any(sum(1 for c in r if c.strip()) <= 2 for r in parsed_rows)
     if has_sparse and num_cols >= 4 and not header_cells:
         parts: list[str] = []
         je_style = (
             "display:grid; grid-template-columns:1fr 1fr 1fr 1fr; "
             "gap:0; margin:0.2rem 0 0.8rem; font-size:0.88em; line-height:1.6;"
         )
-        je_cell = (
-            "padding:4px 10px; border:1px solid #e2e8f0; "
-            "white-space:nowrap;"
-        )
+        je_cell = "padding:4px 10px; border:1px solid #e2e8f0; white-space:nowrap;"
 
         for cells in parsed_rows:
             while len(cells) < num_cols:
