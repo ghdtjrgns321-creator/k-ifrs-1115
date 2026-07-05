@@ -1,15 +1,23 @@
 # app/nodes/analyze.py
-# 사용자 질문 분석 + 라우팅 + tree_matcher 체크리스트 매칭
+# 사용자 질문 분석 + 라우팅 + 온톨로지 개념 진입 (STEP 5-2)
+# tree_matcher(임베딩 유사도+키워드 라우팅) 제거 → graph.resolve_question
 import logging
 
 from app.agents import analyze_agent
-from app.domain.tree_matcher import match_topics
+from app.domain.graph import get_graph
 
 logger = logging.getLogger(__name__)
 
 # 기준서별 전용 용어 — 프롬프트에서 못 잡는 경우 방어적 안전장치
 # Why: C3 — "증분차입이자율"(1116호)을 "유의적 금융요소"(1115호)와 혼동하는 문제
-_HARD_OUT_TERMS = {"증분차입이자율", "사용권자산", "리스부채", "리스료", "기대신용손실", "SPPI"}
+_HARD_OUT_TERMS = {
+    "증분차입이자율",
+    "사용권자산",
+    "리스부채",
+    "리스료",
+    "기대신용손실",
+    "SPPI",
+}
 _IFRS1115_ANCHOR = {"수익 인식", "수행의무", "거래가격", "1115"}
 
 
@@ -43,16 +51,12 @@ async def analyze_query(state: dict) -> dict:
             logger.info("scope guard: OUT 강제 전환 (hard_out=%s)", user_text[:50])
             data.routing = "OUT"
 
-    # is_situation=True일 때만 체크리스트 매칭 (개념 질문에는 미적용)
-    # topic_hints: 키워드 없이도 거래 실질에서 토픽 매칭을 보완
-    # user_message: LLM 비결정성 보완 — 원본에서 결정적 trigger 매칭
-    matched = (
-        match_topics(
-            data.standalone_query, data.search_keywords, data.topic_hints,
-            user_message=user_text,
-        )
-        if data.is_situation
-        else []
+    # 온톨로지 개념 진입 — 용어사전(결정적) + LLM 지목 토픽→개념 매핑
+    # 임베딩 유사도 미사용. 개념 질문/상황 질문 모두 적용(그래프 탐색이 후보 축소).
+    entry = get_graph().resolve_question(
+        data.standalone_query or user_text,
+        data.search_keywords,
+        data.topic_hints,
     )
 
     return {
@@ -60,7 +64,10 @@ async def analyze_query(state: dict) -> dict:
         "standalone_query": data.standalone_query,
         "is_situation": data.is_situation,
         "search_keywords": data.search_keywords,
-        "matched_topics": matched,
+        "concept_ids": entry["concept_ids"],
+        "entry_cases": entry["cases"],
+        # matched_topics: 하위 노드 호환용 — 5-3/5-4에서 그래프 탐색으로 정리
+        "matched_topics": [],
         "confusion_point": data.confusion_point,
         "complexity": data.complexity,
         "provided_info": data.provided_info,

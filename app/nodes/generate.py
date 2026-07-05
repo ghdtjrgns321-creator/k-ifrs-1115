@@ -15,7 +15,7 @@ from app.agents import (
     ClarifyDeps,
     ClarifyOutput,
 )
-from app.domain.topic_content_map import get_topic_descs
+from app.domain.graph import get_graph
 from app.prompts import CLARIFY_USER, GENERATE_USER
 from app.services.query_mapping import INVERTED_MAPPING
 
@@ -48,44 +48,18 @@ def _get_related_practitioner_terms(docs: list[dict]) -> str:
     return "\n".join(lines[:5]) if lines else "(해당 없음)"
 
 
-def _format_precedents_context(matched_topics: list[dict]) -> str:
-    """matched_topics의 precedents + calculation_formula를 context 텍스트로 포맷.
+def _format_concept_hint(concept_path: list[str]) -> str:
+    """그래프 탐색 경로(traverse.path)에서 개념명을 뽑아 [관련 개념] 힌트로 포맷.
 
-    Why: retriever가 선례·공식을 못 찾을 수 있으므로, decision_tree에서 직접 주입하여
-    LLM이 실제 사례와 계산 근거를 참조할 수 있게 한다.
+    topics.json desc 주입을 대체 — 원문은 retrieved_docs가 담고, 여기서는
+    질문이 어느 K-IFRS 1115호 개념에 걸렸는지 결정적 경로만 힌트로 제공한다.
     """
-    parts: list[str] = []
-    for topic in matched_topics:
-        name = topic.get("topic_name", "")
-
-        precedents = topic.get("precedents", {})
-        if precedents:
-            for branch, cases in precedents.items():
-                parts.append(f"[선례: {name} — {branch}]")
-                parts.extend(cases)
-
-        formula = topic.get("calculation_formula")
-        if formula:
-            for branch, text in formula.items():
-                parts.append(f"[계산공식: {name} — {branch}]")
-                parts.append(text)
-
-    return "\n".join(parts)
-
-
-def _format_topic_knowledge(matched_topics: list[dict]) -> str:
-    """매칭된 토픽의 topics.json desc 요약을 [참고 지식]으로 포맷.
-
-    Why: 리트리버가 놓치는 핵심 문단도 desc 요약으로 100% 커버리지 확보.
-    원문 대신 요약이므로 토큰 절약 효과.
-    """
-    parts: list[str] = []
-    for topic in matched_topics:
-        name = topic.get("topic_name", "")
-        descs = get_topic_descs(name)
-        if descs:
-            parts.append(f"[{name} 핵심 요약]\n{descs}")
-    return "\n\n".join(parts)
+    names: list[str] = []
+    for p in concept_path:
+        m = re.search(r"개념\[(.+?)\]", p)
+        if m and m.group(1) not in names:
+            names.append(m.group(1))
+    return ", ".join(names)
 
 
 async def generate_answer(state: dict) -> dict:
@@ -100,7 +74,9 @@ async def generate_answer(state: dict) -> dict:
         docs = [
             d
             for d in all_docs
-            if not (d.get("chunk_type") == "pinpoint" and d.get("category") == "적용사례IE")
+            if not (
+                d.get("chunk_type") == "pinpoint" and d.get("category") == "적용사례IE"
+            )
         ]
         ie_skipped = len(all_docs) - len(docs)
         if ie_skipped:
@@ -120,7 +96,9 @@ async def generate_answer(state: dict) -> dict:
         original_query = (state.get("checklist_state") or {}).get("original_query", "")
         current_answer = _get_last_human_message(messages) or ""
         if original_query:
-            state["standalone_query"] = f"{original_query} (사용자 추가 정보: {current_answer})"
+            state["standalone_query"] = (
+                f"{original_query} (사용자 추가 정보: {current_answer})"
+            )
         else:
             state["standalone_query"] = current_answer or "질문"
 
@@ -242,18 +220,14 @@ async def _run_clarify(
     # B1/B2에서 1/3만 calc 진입하는 문제 발생 → LLM 판단으로 전환 (14/14 정확도)
     use_calc = state.get("needs_calculation", False)
 
-    # topics.json desc 주입 — calc 경로에서는 스킵
-    # Why: topic_knowledge(~2000자)가 gpt-4.1-mini의 산술 집중도를 분산시켜
-    # 진행률 계산 등의 정확도가 0.845→0.67로 급락하는 현상 확인됨
+    # 그래프 경로 힌트 + 본문 판단 트리 주입 — calc 경로에서는 스킵 (산술 집중도 유지)
     if not use_calc:
-        topic_knowledge = _format_topic_knowledge(state.get("matched_topics", []))
-        if topic_knowledge:
-            context_str = f"[참고 지식]\n{topic_knowledge}\n\n---\n\n{context_str}"
-
-    # precedents/formula를 context 앞에 추가 — retriever 의존도 축소
-    precedents_text = _format_precedents_context(state.get("matched_topics", []))
-    if precedents_text:
-        context_str = f"[큐레이션 선례·공식]\n{precedents_text}\n\n---\n\n{context_str}"
+        concept_hint = _format_concept_hint(state.get("concept_path", []))
+        if concept_hint:
+            context_str = f"[관련 개념] {concept_hint}\n\n---\n\n{context_str}"
+        tree = get_graph().match_judgment_tree(state.get("concept_ids", []))
+        if tree:
+            context_str = f"[판단 절차 — 기준서 본문]\n{tree}\n\n---\n\n{context_str}"
 
     user_msg = CLARIFY_USER.format(
         context=context_str,
@@ -311,20 +285,18 @@ async def _run_force_conclusion(
     # calc 라우팅: analyze_agent가 LLM으로 판단한 needs_calculation 사용
     use_calc = state.get("needs_calculation", False)
 
-    # topics.json desc 주입 — calc 경로에서는 스킵 (산술 집중도 유지)
+    # 그래프 경로 힌트 + 본문 판단 트리 주입 — calc 경로에서는 스킵 (산술 집중도 유지)
     if not use_calc:
-        topic_knowledge = _format_topic_knowledge(state.get("matched_topics", []))
-        if topic_knowledge:
+        concept_hint = _format_concept_hint(state.get("concept_path", []))
+        if concept_hint:
             context_with_checks = (
-                f"[참고 지식]\n{topic_knowledge}\n\n---\n\n{context_with_checks}"
+                f"[관련 개념] {concept_hint}\n\n---\n\n{context_with_checks}"
             )
-
-    # precedents/formula를 context 앞에 추가 — retriever 의존도 축소
-    precedents_text = _format_precedents_context(state.get("matched_topics", []))
-    if precedents_text:
-        context_with_checks = (
-            f"[큐레이션 선례·공식]\n{precedents_text}\n\n---\n\n{context_with_checks}"
-        )
+        tree = get_graph().match_judgment_tree(state.get("concept_ids", []))
+        if tree:
+            context_with_checks = (
+                f"[판단 절차 — 기준서 본문]\n{tree}\n\n---\n\n{context_with_checks}"
+            )
 
     user_msg = GENERATE_USER.format(
         complexity="complex",

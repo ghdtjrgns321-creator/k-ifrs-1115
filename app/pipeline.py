@@ -16,7 +16,6 @@ import httpx
 from app.api.schemas import SSEEvent
 from app.nodes.analyze import analyze_query
 from app.nodes.retrieve import retrieve_docs
-from app.nodes.rerank import rerank_docs
 from app.nodes.generate import generate_answer
 from app.nodes.format import format_response
 
@@ -110,10 +109,12 @@ async def run_rag_pipeline(state: dict) -> AsyncGenerator[SSEEvent, None]:
         yield _done_event(state)
         return
 
-    # ── 2. Retrieve + Rerank ────────────────────────────────────────────────────
-    # pre_retrieved_docs가 있으면 retrieve/rerank 스킵 (search_id 패턴)
+    # ── 2. Retrieve (그래프 탐색) ───────────────────────────────────────────────
+    # STEP 5-4: rerank 단계 제거. 그래프 탐색이 개념→문단·사례를 결정적으로 골라오므로
+    # Cohere reranker(가중치 재정렬)가 불필요. retrieved_docs를 그대로 근거로 사용.
+    # pre_retrieved_docs가 있으면 retrieve 스킵 (search_id 캐시 패턴).
     if state.get("pre_retrieved_docs") is not None:
-        state["reranked_docs"] = state["pre_retrieved_docs"]
+        state["relevant_docs"] = state["pre_retrieved_docs"]
     else:
         yield SSEEvent(
             type="status", step="retrieve", message="관련 조항을 검색하고 있어요..."
@@ -123,20 +124,8 @@ async def run_rag_pipeline(state: dict) -> AsyncGenerator[SSEEvent, None]:
             await _retry_node(retrieve_docs, state, max_retries=1, deadline=deadline)
         )
         logger.info("retrieve: %.1fs", time.perf_counter() - t0)
+        state["relevant_docs"] = state.get("retrieved_docs", [])
 
-        yield SSEEvent(
-            type="status", step="rerank", message="관련성을 재평가하고 있어요..."
-        )
-        t0 = time.perf_counter()
-        state.update(
-            await _retry_node(rerank_docs, state, max_retries=1, deadline=deadline)
-        )
-        logger.info("rerank: %.1fs", time.perf_counter() - t0)
-
-    # ── 3. Reranker 결과를 그대로 사용 ──────────────────────────────────────────
-    # Cohere rerank-multilingual-v3.0이 이미 문서 관련성을 평가하고
-    # rerank_threshold(0.05) 미만을 제거하므로 grade LLM 호출은 불필요
-    state["relevant_docs"] = state.get("reranked_docs", [])
     is_situation = state.get("is_situation", False)
 
     # ── 4. Generate ─────────────────────────────────────────────────────────────
