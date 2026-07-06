@@ -1,0 +1,524 @@
+[
+  {
+    "test_id": "TEST-0",
+    "run": 1,
+    "title": "본인 vs 대리인(위탁판매)",
+    "response_time": 35.9,
+    "answer_len": 1510,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "B사가 판매가를 임의로 변경 가능한가요?",
+      "미판매 재고의 반품권이 B사에게 있나요?",
+      "최종 고객 C에 대한 AS 책임은 누구에게 있나요?"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "본인 vs 대리인",
+      "기간에 걸쳐 vs 한 시점 인식",
+      "거래가격의 후속 변동"
+    ],
+    "cited_count": 5,
+    "error": null
+  },
+  {
+    "test_id": "TEST-0",
+    "run": 2,
+    "title": "본인 vs 대리인(위탁판매)",
+    "response_time": 40.0,
+    "answer_len": 1341,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "B사가 가격을 결정하나요?",
+      "반품권이 존재하나요?",
+      "재고 위험은 누가 지나요?"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "계약의 식별",
+      "거래가격의 후속 변동",
+      "표시"
+    ],
+    "cited_count": 3,
+    "error": null
+  },
+  {
+    "test_id": "TEST-0",
+    "run": 3,
+    "title": "본인 vs 대리인(위탁판매)",
+    "response_time": 34.8,
+    "answer_len": 1457,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "재고 반품 조건 여부",
+      "최종 판매가 결정 주체",
+      "B사의 재고위험 부담액"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "계약의 식별",
+      "변동대가",
+      "기간에 걸쳐 vs 한 시점 인식"
+    ],
+    "cited_count": 4,
+    "error": null
+  },
+  {
+    "test_id": "TEST-0",
+    "run": 4,
+    "title": "본인 vs 대리인(위탁판매)",
+    "response_time": 33.2,
+    "answer_len": 1493,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "B사의 재고 반품권 유무",
+      "C사 판매가 결정 주체",
+      "품질 하자 시 최종 책임자"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "본인 vs 대리인",
+      "기간에 걸쳐 vs 한 시점 인식",
+      "계약의 식별"
+    ],
+    "cited_count": 7,
+    "error": null
+  },
+  {
+    "test_id": "TEST-0",
+    "run": 5,
+    "title": "본인 vs 대리인(위탁판매)",
+    "response_time": 29.8,
+    "answer_len": 1261,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "B사가 반품권을 가지나요?",
+      "C사 결제 대금은 누구에게 가나요?",
+      "B사의 마진이 고정되어 있나요?"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "본인 vs 대리인",
+      "기간에 걸쳐 vs 한 시점 인식",
+      "거래가격의 후속 변동"
+    ],
+    "cited_count": 5,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-4",
+    "run": 1,
+    "title": "미인도청구약정 (Bill-and-Hold)",
+    "response_time": 56.3,
+    "answer_len": 1257,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "고객이 보관을 요청한 실질적인 이유가 무엇인가요?",
+      "보관 중인 제품을 다른 고객에게 판매할 수 있나요?",
+      "별도의 보관료를 청구하는 보관용역이 존재하나요?"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "고객의 인수",
+      "기간에 걸쳐 vs 한 시점 인식",
+      "본인 vs 대리인"
+    ],
+    "cited_count": 7,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-4",
+    "run": 2,
+    "title": "미인도청구약정 (Bill-and-Hold)",
+    "response_time": 26.3,
+    "answer_len": 1236,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "고객의 보관 요청서가 존재하나요?",
+      "제품에 고객 전용 표식이 있나요?",
+      "보관 중 타인 판매가 가능한가요?"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "기간에 걸쳐 vs 한 시점 인식",
+      "고객의 인수",
+      "본인 vs 대리인"
+    ],
+    "cited_count": 4,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-4",
+    "run": 3,
+    "title": "미인도청구약정 (Bill-and-Hold)",
+    "response_time": 0.0,
+    "answer_len": 0,
+    "follow_up_count": 0,
+    "follow_up_questions": [],
+    "is_conclusion": false,
+    "is_situation": false,
+    "matched_topic_keys": [],
+    "cited_count": 0,
+    "error": "timed out"
+  },
+  {
+    "test_id": "SECTION-4",
+    "run": 4,
+    "title": "미인도청구약정 (Bill-and-Hold)",
+    "response_time": 54.7,
+    "answer_len": 1381,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "제품이 D업체만을 위한 맞춤 제작형인가요?",
+      "계약상 기성고에 대한 지급청구권이 있나요?",
+      "고객이 보관을 요청한 실질적 사유가 있나요?"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "고객의 인수",
+      "계약의 식별",
+      "기간에 걸쳐 vs 한 시점 인식"
+    ],
+    "cited_count": 8,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-4",
+    "run": 5,
+    "title": "미인도청구약정 (Bill-and-Hold)",
+    "response_time": 48.9,
+    "answer_len": 1254,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "고객이 보관을 요청한 사유가 실질적인가요?",
+      "해당 재화가 고객별로 별도 구분되어 있나요?",
+      "보관 중인 재화를 타인에게 판매 가능한가요?"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "고객의 인수",
+      "기간에 걸쳐 vs 한 시점 인식",
+      "본인 vs 대리인"
+    ],
+    "cited_count": 5,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-5",
+    "run": 1,
+    "title": "재매입약정 (콜옵션)",
+    "response_time": 24.8,
+    "answer_len": 1409,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "재매입가격의 확정 여부",
+      "상대방이 SPC인지 여부",
+      "풋옵션 중복 부여 여부"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "재매입약정",
+      "계약의 식별",
+      "수행의무 식별"
+    ],
+    "cited_count": 5,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-5",
+    "run": 2,
+    "title": "재매입약정 (콜옵션)",
+    "response_time": 67.9,
+    "answer_len": 1392,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "재매입가격이 1억 원 이상인가요?",
+      "설비의 대체 용도가 있습니까?",
+      "중도 해지 시 지급청구권이 있나요?"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "재매입약정",
+      "수행의무 식별",
+      "기간에 걸쳐 vs 한 시점 인식"
+    ],
+    "cited_count": 7,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-5",
+    "run": 3,
+    "title": "재매입약정 (콜옵션)",
+    "response_time": 55.8,
+    "answer_len": 1563,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "재매입 약정 가격은?",
+      "설비의 대체용도 유무?",
+      "집행가능한 지급청구권은?"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "재매입약정",
+      "수행의무 식별",
+      "기간에 걸쳐 vs 한 시점 인식"
+    ],
+    "cited_count": 6,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-5",
+    "run": 4,
+    "title": "재매입약정 (콜옵션)",
+    "response_time": 28.7,
+    "answer_len": 1434,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "재매입 약정 가격은?",
+      "거래 상대방의 성격은?",
+      "담보 대출의 성격인가?"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "재매입약정",
+      "계약의 식별",
+      "수행의무 식별"
+    ],
+    "cited_count": 3,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-5",
+    "run": 5,
+    "title": "재매입약정 (콜옵션)",
+    "response_time": 33.3,
+    "answer_len": 1330,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "재매입 행사가격 설정 방식",
+      "중도 해지 시 비용 보전 권리",
+      "설비의 타처 재판매 가능성"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "재매입약정",
+      "계약의 식별",
+      "기간에 걸쳐 vs 한 시점 인식"
+    ],
+    "cited_count": 5,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-6",
+    "run": 1,
+    "title": "고객에게 지급할 대가",
+    "response_time": 27.6,
+    "answer_len": 1239,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "별도 홍보 계약 존재 여부",
+      "리워드 산정 기준의 공정성",
+      "과거 동일 사례 처리 방식"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "고객에게 지급할 대가",
+      "본인 vs 대리인",
+      "환불되지 않는 선수수수료"
+    ],
+    "cited_count": 3,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-6",
+    "run": 2,
+    "title": "고객에게 지급할 대가",
+    "response_time": 30.2,
+    "answer_len": 1541,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "용역의 공정가치 증빙 여부",
+      "크리에이터와 별도 용역계약 여부",
+      "과거 지급 관행 존재 여부"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "계약의 식별",
+      "고객에게 지급할 대가",
+      "본인 vs 대리인"
+    ],
+    "cited_count": 4,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-6",
+    "run": 3,
+    "title": "고객에게 지급할 대가",
+    "response_time": 28.1,
+    "answer_len": 1405,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "별도 용역 계약 존재 여부",
+      "지급액 산정 산식 확인",
+      "타 플랫폼 지급 관행 유무"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "고객에게 지급할 대가",
+      "기타",
+      "본인 vs 대리인"
+    ],
+    "cited_count": 4,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-6",
+    "run": 4,
+    "title": "고객에게 지급할 대가",
+    "response_time": 24.1,
+    "answer_len": 1334,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "용역의 구별 가능성 여부",
+      "지급액의 공정가치 근거",
+      "계약상 별도 수행의무 존재"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "고객에게 지급할 대가",
+      "본인 vs 대리인",
+      "변동대가"
+    ],
+    "cited_count": 3,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-6",
+    "run": 5,
+    "title": "고객에게 지급할 대가",
+    "response_time": 28.2,
+    "answer_len": 1351,
+    "follow_up_count": 3,
+    "follow_up_questions": [
+      "용역의 공정가치 증빙 유무",
+      "수익 차감 시점의 결정",
+      "변동대가 추정 포함 여부"
+    ],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "고객에게 지급할 대가",
+      "본인 vs 대리인",
+      "환불되지 않는 선수수수료"
+    ],
+    "cited_count": 3,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-19",
+    "run": 1,
+    "title": "계약이행원가 (교육훈련비)",
+    "response_time": 22.0,
+    "answer_len": 1087,
+    "follow_up_count": 0,
+    "follow_up_questions": [],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "계약이행원가",
+      "계약체결 증분원가",
+      "계약의 식별"
+    ],
+    "cited_count": 5,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-19",
+    "run": 2,
+    "title": "계약이행원가 (교육훈련비)",
+    "response_time": 23.6,
+    "answer_len": 850,
+    "follow_up_count": 0,
+    "follow_up_questions": [],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "계약이행원가",
+      "계약체결 증분원가",
+      "계약의 식별"
+    ],
+    "cited_count": 3,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-19",
+    "run": 3,
+    "title": "계약이행원가 (교육훈련비)",
+    "response_time": 23.5,
+    "answer_len": 977,
+    "follow_up_count": 0,
+    "follow_up_questions": [],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "계약이행원가",
+      "계약체결 증분원가",
+      "계약의 식별"
+    ],
+    "cited_count": 4,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-19",
+    "run": 4,
+    "title": "계약이행원가 (교육훈련비)",
+    "response_time": 28.1,
+    "answer_len": 951,
+    "follow_up_count": 0,
+    "follow_up_questions": [],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "계약이행원가",
+      "계약체결 증분원가",
+      "계약의 식별"
+    ],
+    "cited_count": 5,
+    "error": null
+  },
+  {
+    "test_id": "SECTION-19",
+    "run": 5,
+    "title": "계약이행원가 (교육훈련비)",
+    "response_time": 24.3,
+    "answer_len": 1164,
+    "follow_up_count": 0,
+    "follow_up_questions": [],
+    "is_conclusion": true,
+    "is_situation": true,
+    "matched_topic_keys": [
+      "계약이행원가",
+      "계약체결 증분원가",
+      "계약의 식별"
+    ],
+    "cited_count": 4,
+    "error": null
+  }
+]

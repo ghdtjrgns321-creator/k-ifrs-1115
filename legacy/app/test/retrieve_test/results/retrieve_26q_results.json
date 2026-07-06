@@ -1,0 +1,1897 @@
+[
+  {
+    "id": "TEST-0",
+    "title": "핵심사례 — 본인 vs 대리인(위탁판매)",
+    "group": "유연성/사각지대",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "본인 vs 대리인",
+      "거래가격 배분",
+      "계약의 식별"
+    ],
+    "expected_docs": [
+      "B77",
+      "B34~B38",
+      "B35",
+      "IE239~IE243",
+      "IE231~IE233"
+    ],
+    "pinpoint_count": 46,
+    "pinpoint_by_cat": {
+      "QNA": 9,
+      "감리사례": 10,
+      "교육자료": 1,
+      "IE사례": 12,
+      "본문/적용지침": 14
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-36941_pinpoint",
+        "QNA-SSI-38695_pinpoint",
+        "QNA-221109A_pinpoint",
+        "QNA-SSI-202312051_pinpoint",
+        "QNA-SSI-38671_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2024-2505-03_pinpoint",
+        "FSS-CASE-2024-2409-02_pinpoint",
+        "FSS-CASE-2022-2311-03_pinpoint",
+        "KICPA-CASE-2021-12_pinpoint",
+        "FSS-CASE-2024-2505-04_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-BC46_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-46",
+        "1115-IE-case-46A",
+        "1115-IE-case-47",
+        "1115-IE-case-45",
+        "1115-IE-case-48"
+      ],
+      "본문/적용지침": [
+        "1115-6",
+        "1115-9",
+        "1115-15",
+        "1115-16",
+        "1115-31"
+      ]
+    },
+    "retriever_count": 46,
+    "retriever_by_cat": {
+      "본문/적용지침": 30,
+      "QNA": 4,
+      "감리사례": 2,
+      "IE사례": 10
+    },
+    "merged_count": 87,
+    "llm_docs": 87,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "B34~B38",
+      "B35",
+      "IE231~IE233"
+    ],
+    "expected_misses": [
+      "B77",
+      "IE239~IE243"
+    ],
+    "hit_rate": "3/5"
+  },
+  {
+    "id": "TEST-1",
+    "title": "단순 이론 질의 — 불필요 꼬리질문 방어",
+    "group": "유연성/사각지대",
+    "routing": "IN",
+    "is_situation": false,
+    "needs_calculation": false,
+    "matched_topics": [],
+    "expected_docs": [
+      "50~52",
+      "53",
+      "56~58",
+      "55"
+    ],
+    "pinpoint_count": 0,
+    "pinpoint_by_cat": {},
+    "pinpoint_ids": {},
+    "retriever_count": 53,
+    "retriever_by_cat": {
+      "본문/적용지침": 30,
+      "QNA": 12,
+      "감리사례": 1,
+      "IE사례": 10
+    },
+    "merged_count": 51,
+    "llm_docs": 51,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "50~52",
+      "53",
+      "56~58",
+      "55"
+    ],
+    "expected_misses": [],
+    "hit_rate": "4/4"
+  },
+  {
+    "id": "TEST-2",
+    "title": "완결된 복합 사례 — 불필요 체크리스트 방어",
+    "group": "유연성/사각지대",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "변동대가",
+      "거래가격의 후속 변동",
+      "수행의무 식별"
+    ],
+    "expected_docs": [
+      "50~56",
+      "87~89"
+    ],
+    "pinpoint_count": 40,
+    "pinpoint_by_cat": {
+      "QNA": 12,
+      "감리사례": 2,
+      "IE사례": 9,
+      "본문/적용지침": 17
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-202312058_pinpoint",
+        "QNA-SSI-202312048_pinpoint",
+        "QNA-SSI-38465_pinpoint",
+        "QNA-SSI-38703_pinpoint",
+        "QNA-2022-I-KQA007_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2023-2405-01_pinpoint",
+        "FSS-CASE-2023-2405-06_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-20",
+        "1115-IE-case-21",
+        "1115-IE-case-23",
+        "1115-IE-case-25",
+        "1115-IE-case-24"
+      ],
+      "본문/적용지침": [
+        "1115-24",
+        "1115-25",
+        "1115-27",
+        "1115-29",
+        "1115-30"
+      ]
+    },
+    "retriever_count": 43,
+    "retriever_by_cat": {
+      "본문/적용지침": 30,
+      "QNA": 5,
+      "IE사례": 8
+    },
+    "merged_count": 82,
+    "llm_docs": 82,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "50~56",
+      "87~89"
+    ],
+    "expected_misses": [],
+    "hit_rate": "2/2"
+  },
+  {
+    "id": "TEST-3",
+    "title": "신종/하이브리드 사업 — Gray Area 경고",
+    "group": "유연성/사각지대",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "변동대가",
+      "신종 비즈니스 및 복합 쟁점 (Gray Area)",
+      "거래가격 배분"
+    ],
+    "expected_docs": [
+      "6",
+      "9"
+    ],
+    "pinpoint_count": 31,
+    "pinpoint_by_cat": {
+      "QNA": 7,
+      "감리사례": 2,
+      "IE사례": 6,
+      "본문/적용지침": 16
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-202312058_pinpoint",
+        "QNA-SSI-202312048_pinpoint",
+        "QNA-SSI-38465_pinpoint",
+        "QNA-SSI-38703_pinpoint",
+        "QNA-2022-I-KQA007_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2023-2405-01_pinpoint",
+        "FSS-CASE-2024-2505-04_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-20",
+        "1115-IE-case-21",
+        "1115-IE-case-23",
+        "1115-IE-case-25",
+        "1115-IE-case-33"
+      ],
+      "본문/적용지침": [
+        "1115-6",
+        "1115-47",
+        "1115-50",
+        "1115-51",
+        "1115-52"
+      ]
+    },
+    "retriever_count": 44,
+    "retriever_by_cat": {
+      "본문/적용지침": 30,
+      "QNA": 7,
+      "감리사례": 2,
+      "IE사례": 5
+    },
+    "merged_count": 71,
+    "llm_docs": 71,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "6",
+      "9"
+    ],
+    "expected_misses": [],
+    "hit_rate": "2/2"
+  },
+  {
+    "id": "TEST-4",
+    "title": "정보 부족 — 꼬리질문 필수 (라이선스)",
+    "group": "유연성/사각지대",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "거래가격 배분",
+      "기간에 걸쳐 vs 한 시점 인식",
+      "라이선싱"
+    ],
+    "expected_docs": [
+      "B54~B63",
+      "B56",
+      "B58",
+      "B61"
+    ],
+    "pinpoint_count": 42,
+    "pinpoint_by_cat": {
+      "QNA": 10,
+      "감리사례": 5,
+      "교육자료": 1,
+      "IE사례": 9,
+      "본문/적용지침": 17
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-38671_pinpoint",
+        "QNA-2017-I-KAQ015_pinpoint",
+        "QNA-2017-I-KQA014_pinpoint",
+        "QNA-2020-I-KQA003_pinpoint",
+        "QNA-201803B_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2024-2505-04_pinpoint",
+        "KICPA-CASE-2025-07_pinpoint",
+        "FSS-CASE-2023-2405-05_pinpoint",
+        "FSS-CASE-2023-2405-06_pinpoint",
+        "FSS-CASE-2025-2512-02_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-180426_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-33",
+        "1115-IE-case-34",
+        "1115-IE-case-13",
+        "1115-IE-case-14",
+        "1115-IE-case-16"
+      ],
+      "본문/적용지침": [
+        "1115-35",
+        "1115-37",
+        "1115-38",
+        "1115-76",
+        "1115-77"
+      ]
+    },
+    "retriever_count": 46,
+    "retriever_by_cat": {
+      "본문/적용지침": 20,
+      "IE사례": 20,
+      "QNA": 5,
+      "감리사례": 1
+    },
+    "merged_count": 81,
+    "llm_docs": 81,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "B54~B63",
+      "B56",
+      "B58",
+      "B61"
+    ],
+    "expected_misses": [],
+    "hit_rate": "4/4"
+  },
+  {
+    "id": "TEST-5",
+    "title": "오도된 질문 — 단호히 비용 처리",
+    "group": "유연성/사각지대",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "계약체결 증분원가",
+      "계약의 식별",
+      "계약이행원가"
+    ],
+    "expected_docs": [
+      "91~93",
+      "94"
+    ],
+    "pinpoint_count": 35,
+    "pinpoint_by_cat": {
+      "QNA": 10,
+      "감리사례": 5,
+      "교육자료": 1,
+      "IE사례": 6,
+      "본문/적용지침": 13
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-38676_pinpoint",
+        "QNA-SSI-202511018_pinpoint",
+        "QNA-SSI-35584_pinpoint",
+        "QNA-SSI-36917_pinpoint",
+        "QNA-SSI-36993_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2024-2505-02_pinpoint",
+        "FSS-CASE-2025-2512-01_pinpoint",
+        "FSS-CASE-2024-2409-01_pinpoint",
+        "FSS-CASE-2022-2311-02_pinpoint",
+        "KICPA-CASE-2024-04_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-BC46_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-36",
+        "1115-IE-case-37",
+        "1115-IE-case-2",
+        "1115-IE-case-3",
+        "1115-IE-case-1"
+      ],
+      "본문/적용지침": [
+        "1115-6",
+        "1115-9",
+        "1115-15",
+        "1115-16",
+        "1115-31"
+      ]
+    },
+    "retriever_count": 56,
+    "retriever_by_cat": {
+      "본문/적용지침": 25,
+      "IE사례": 8,
+      "QNA": 15,
+      "감리사례": 7,
+      "교육자료": 1
+    },
+    "merged_count": 70,
+    "llm_docs": 70,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "91~93",
+      "94"
+    ],
+    "expected_misses": [],
+    "hit_rate": "2/2"
+  },
+  {
+    "id": "SECTION-1",
+    "title": "라이선싱 (접근권 vs 사용권)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "기간에 걸쳐 vs 한 시점 인식",
+      "라이선싱",
+      "계약의 식별"
+    ],
+    "expected_docs": [
+      "B54~B63",
+      "B58",
+      "B61"
+    ],
+    "pinpoint_count": 52,
+    "pinpoint_by_cat": {
+      "QNA": 13,
+      "감리사례": 9,
+      "교육자료": 2,
+      "IE사례": 11,
+      "본문/적용지침": 17
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-2017-I-KAQ015_pinpoint",
+        "QNA-2017-I-KQA014_pinpoint",
+        "QNA-2020-I-KQA003_pinpoint",
+        "QNA-201803B_pinpoint",
+        "QNA-SSI-38679_pinpoint"
+      ],
+      "감리사례": [
+        "KICPA-CASE-2025-07_pinpoint",
+        "FSS-CASE-2023-2405-05_pinpoint",
+        "FSS-CASE-2023-2405-06_pinpoint",
+        "FSS-CASE-2025-2512-02_pinpoint",
+        "FSS-CASE-2024-2505-02_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-180426_pinpoint",
+        "EDU-KASB-BC46_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-13",
+        "1115-IE-case-14",
+        "1115-IE-case-16",
+        "1115-IE-case-55",
+        "1115-IE-case-57"
+      ],
+      "본문/적용지침": [
+        "1115-6",
+        "1115-9",
+        "1115-15",
+        "1115-16",
+        "1115-31"
+      ]
+    },
+    "retriever_count": 56,
+    "retriever_by_cat": {
+      "본문/적용지침": 22,
+      "IE사례": 18,
+      "QNA": 11,
+      "감리사례": 5
+    },
+    "merged_count": 97,
+    "llm_docs": 97,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "B54~B63",
+      "B58",
+      "B61"
+    ],
+    "expected_misses": [],
+    "hit_rate": "3/3"
+  },
+  {
+    "id": "SECTION-2",
+    "title": "계약변경 (별도 계약 vs 기존 계약 수정)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "거래가격 배분",
+      "수행의무 식별",
+      "계약의 식별"
+    ],
+    "expected_docs": [
+      "18~21",
+      "20",
+      "21⑴"
+    ],
+    "pinpoint_count": 42,
+    "pinpoint_by_cat": {
+      "QNA": 10,
+      "감리사례": 7,
+      "교육자료": 1,
+      "IE사례": 9,
+      "본문/적용지침": 15
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-38671_pinpoint",
+        "QNA-2018-I-KQA009_pinpoint",
+        "QNA-SSI-35609_pinpoint",
+        "QNA-SSI-36987_pinpoint",
+        "QNA-201901B_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2024-2505-04_pinpoint",
+        "FSS-CASE-2023-2405-06_pinpoint",
+        "FSS-CASE-2024-2505-02_pinpoint",
+        "FSS-CASE-2025-2512-01_pinpoint",
+        "FSS-CASE-2024-2409-01_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-BC46_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-33",
+        "1115-IE-case-34",
+        "1115-IE-case-11",
+        "1115-IE-case-10",
+        "1115-IE-case-12"
+      ],
+      "본문/적용지침": [
+        "1115-6",
+        "1115-9",
+        "1115-15",
+        "1115-16",
+        "1115-24"
+      ]
+    },
+    "retriever_count": 44,
+    "retriever_by_cat": {
+      "본문/적용지침": 30,
+      "QNA": 6,
+      "감리사례": 3,
+      "IE사례": 5
+    },
+    "merged_count": 79,
+    "llm_docs": 79,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "18~21",
+      "20",
+      "21⑴"
+    ],
+    "expected_misses": [],
+    "hit_rate": "3/3"
+  },
+  {
+    "id": "SECTION-3",
+    "title": "본인 대 대리인 (SW 유통)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "본인 vs 대리인",
+      "기간에 걸쳐 vs 한 시점 인식",
+      "계약의 식별"
+    ],
+    "expected_docs": [
+      "B34~B38",
+      "B35"
+    ],
+    "pinpoint_count": 55,
+    "pinpoint_by_cat": {
+      "QNA": 13,
+      "감리사례": 12,
+      "교육자료": 2,
+      "IE사례": 13,
+      "본문/적용지침": 15
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-36941_pinpoint",
+        "QNA-SSI-38695_pinpoint",
+        "QNA-221109A_pinpoint",
+        "QNA-SSI-202312051_pinpoint",
+        "QNA-2017-I-KAQ015_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2024-2505-03_pinpoint",
+        "FSS-CASE-2024-2409-02_pinpoint",
+        "FSS-CASE-2022-2311-03_pinpoint",
+        "KICPA-CASE-2021-12_pinpoint",
+        "KICPA-CASE-2025-07_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-180426_pinpoint",
+        "EDU-KASB-BC46_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-46",
+        "1115-IE-case-46A",
+        "1115-IE-case-47",
+        "1115-IE-case-45",
+        "1115-IE-case-48"
+      ],
+      "본문/적용지침": [
+        "1115-6",
+        "1115-9",
+        "1115-15",
+        "1115-16",
+        "1115-31"
+      ]
+    },
+    "retriever_count": 54,
+    "retriever_by_cat": {
+      "본문/적용지침": 27,
+      "IE사례": 13,
+      "QNA": 11,
+      "감리사례": 3
+    },
+    "merged_count": 98,
+    "llm_docs": 98,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "B34~B38",
+      "B35"
+    ],
+    "expected_misses": [],
+    "hit_rate": "2/2"
+  },
+  {
+    "id": "SECTION-4",
+    "title": "미인도청구약정 (Bill-and-Hold)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "미인도청구약정",
+      "고객의 인수",
+      "본인 vs 대리인"
+    ],
+    "expected_docs": [
+      "B79~B82",
+      "B81"
+    ],
+    "pinpoint_count": 31,
+    "pinpoint_by_cat": {
+      "QNA": 7,
+      "감리사례": 5,
+      "IE사례": 7,
+      "본문/적용지침": 12
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-36949_pinpoint",
+        "QNA-SSI-38679_pinpoint",
+        "QNA-SSI-38611_pinpoint",
+        "QNA-SSI-36941_pinpoint",
+        "QNA-SSI-38695_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2023-2405-05_pinpoint",
+        "FSS-CASE-2024-2505-03_pinpoint",
+        "FSS-CASE-2024-2409-02_pinpoint",
+        "FSS-CASE-2022-2311-03_pinpoint",
+        "KICPA-CASE-2021-12_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-63",
+        "1115-IE-case-46",
+        "1115-IE-case-46A",
+        "1115-IE-case-47",
+        "1115-IE-case-45"
+      ],
+      "본문/적용지침": [
+        "1115-38",
+        "1115-B35",
+        "1115-B36",
+        "1115-B37",
+        "1115-B66"
+      ]
+    },
+    "retriever_count": 64,
+    "retriever_by_cat": {
+      "본문/적용지침": 26,
+      "IE사례": 12,
+      "QNA": 17,
+      "감리사례": 8,
+      "교육자료": 1
+    },
+    "merged_count": 74,
+    "llm_docs": 74,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "B79~B82",
+      "B81"
+    ],
+    "expected_misses": [],
+    "hit_rate": "2/2"
+  },
+  {
+    "id": "SECTION-5",
+    "title": "재매입약정 (콜옵션)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "재매입약정",
+      "수행의무 식별",
+      "기간에 걸쳐 vs 한 시점 인식"
+    ],
+    "expected_docs": [
+      "B64~B76",
+      "B66",
+      "B68"
+    ],
+    "pinpoint_count": 40,
+    "pinpoint_by_cat": {
+      "QNA": 13,
+      "감리사례": 4,
+      "교육자료": 2,
+      "IE사례": 7,
+      "본문/적용지침": 14
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-202412042_pinpoint",
+        "QNA-SSI-36951_pinpoint",
+        "QNA-2020-I-KQA006_pinpoint",
+        "QNA-2018-I-KQA009_pinpoint",
+        "QNA-SSI-35609_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2022-2311-03_pinpoint",
+        "FSS-CASE-2023-2405-06_pinpoint",
+        "KICPA-CASE-2025-07_pinpoint",
+        "FSS-CASE-2023-2405-05_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-181114_pinpoint",
+        "EDU-KASB-180426_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-62",
+        "1115-IE-case-11",
+        "1115-IE-case-10",
+        "1115-IE-case-12",
+        "1115-IE-case-13"
+      ],
+      "본문/적용지침": [
+        "1115-24",
+        "1115-25",
+        "1115-27",
+        "1115-29",
+        "1115-30"
+      ]
+    },
+    "retriever_count": 55,
+    "retriever_by_cat": {
+      "본문/적용지침": 26,
+      "IE사례": 7,
+      "QNA": 15,
+      "감리사례": 6,
+      "교육자료": 1
+    },
+    "merged_count": 81,
+    "llm_docs": 81,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "B64~B76",
+      "B66",
+      "B68"
+    ],
+    "expected_misses": [],
+    "hit_rate": "3/3"
+  },
+  {
+    "id": "SECTION-6",
+    "title": "고객에게 지급할 대가",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "고객에게 지급할 대가",
+      "본인 vs 대리인",
+      "라이선싱"
+    ],
+    "expected_docs": [
+      "70~72",
+      "71"
+    ],
+    "pinpoint_count": 43,
+    "pinpoint_by_cat": {
+      "QNA": 13,
+      "감리사례": 6,
+      "IE사례": 11,
+      "본문/적용지침": 13
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-35617_pinpoint",
+        "QNA-SSI-202511020_pinpoint",
+        "QNA-SSI-36964_pinpoint",
+        "QNA-SSI-38680_pinpoint",
+        "QNA-2022-I-KQA014_pinpoint"
+      ],
+      "감리사례": [
+        "KICPA-CASE-2024-28_pinpoint",
+        "FSS-CASE-2024-2505-03_pinpoint",
+        "FSS-CASE-2024-2409-02_pinpoint",
+        "FSS-CASE-2022-2311-03_pinpoint",
+        "KICPA-CASE-2021-12_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-32",
+        "1115-IE-case-46",
+        "1115-IE-case-46A",
+        "1115-IE-case-47",
+        "1115-IE-case-45"
+      ],
+      "본문/적용지침": [
+        "1115-6",
+        "1115-70",
+        "1115-71",
+        "1115-B35",
+        "1115-B36"
+      ]
+    },
+    "retriever_count": 59,
+    "retriever_by_cat": {
+      "본문/적용지침": 30,
+      "QNA": 15,
+      "감리사례": 4,
+      "IE사례": 10
+    },
+    "merged_count": 89,
+    "llm_docs": 89,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "70~72",
+      "71"
+    ],
+    "expected_misses": [],
+    "hit_rate": "2/2"
+  },
+  {
+    "id": "SECTION-7",
+    "title": "진행률 측정 (미설치 고가 자재)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "진행률 측정",
+      "기간에 걸쳐 vs 한 시점 인식",
+      "수행의무 식별"
+    ],
+    "expected_docs": [
+      "B19⑵",
+      "B19⑴"
+    ],
+    "pinpoint_count": 41,
+    "pinpoint_by_cat": {
+      "QNA": 14,
+      "감리사례": 4,
+      "교육자료": 1,
+      "IE사례": 8,
+      "본문/적용지침": 14
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-202506004_pinpoint",
+        "QNA-202504C_pinpoint",
+        "QNA-SSI-38698_pinpoint",
+        "QNA-SSI-202412041_pinpoint",
+        "QNA-2017-I-KAQ015_pinpoint"
+      ],
+      "감리사례": [
+        "KICPA-CASE-2025-07_pinpoint",
+        "KICPA-CASE-2025-33_pinpoint",
+        "FSS-CASE-2023-2405-05_pinpoint",
+        "FSS-CASE-2023-2405-06_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-180426_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-18",
+        "1115-IE-case-19",
+        "1115-IE-case-13",
+        "1115-IE-case-14",
+        "1115-IE-case-16"
+      ],
+      "본문/적용지침": [
+        "1115-24",
+        "1115-25",
+        "1115-27",
+        "1115-29",
+        "1115-30"
+      ]
+    },
+    "retriever_count": 51,
+    "retriever_by_cat": {
+      "IE사례": 20,
+      "본문/적용지침": 20,
+      "QNA": 8,
+      "감리사례": 3
+    },
+    "merged_count": 86,
+    "llm_docs": 86,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "B19⑵",
+      "B19⑴"
+    ],
+    "expected_misses": [],
+    "hit_rate": "2/2"
+  },
+  {
+    "id": "SECTION-8",
+    "title": "유의적인 금융요소 (선수금)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "유의적인 금융요소",
+      "기간에 걸쳐 vs 한 시점 인식",
+      "계약의 식별"
+    ],
+    "expected_docs": [
+      "60~63",
+      "62⑶",
+      "63"
+    ],
+    "pinpoint_count": 48,
+    "pinpoint_by_cat": {
+      "QNA": 10,
+      "감리사례": 8,
+      "교육자료": 2,
+      "IE사례": 12,
+      "본문/적용지침": 16
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-36991_pinpoint",
+        "QNA-2017-I-KAQ015_pinpoint",
+        "QNA-2017-I-KQA014_pinpoint",
+        "QNA-2020-I-KQA003_pinpoint",
+        "QNA-201803B_pinpoint"
+      ],
+      "감리사례": [
+        "KICPA-CASE-2025-07_pinpoint",
+        "FSS-CASE-2023-2405-05_pinpoint",
+        "FSS-CASE-2023-2405-06_pinpoint",
+        "FSS-CASE-2024-2505-02_pinpoint",
+        "FSS-CASE-2025-2512-01_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-180426_pinpoint",
+        "EDU-KASB-BC46_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-26",
+        "1115-IE-case-29",
+        "1115-IE-case-28",
+        "1115-IE-case-27",
+        "1115-IE-case-30"
+      ],
+      "본문/적용지침": [
+        "1115-6",
+        "1115-9",
+        "1115-15",
+        "1115-16",
+        "1115-31"
+      ]
+    },
+    "retriever_count": 59,
+    "retriever_by_cat": {
+      "본문/적용지침": 21,
+      "IE사례": 13,
+      "QNA": 15,
+      "감리사례": 9,
+      "교육자료": 1
+    },
+    "merged_count": 92,
+    "llm_docs": 92,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "60~63",
+      "62⑶",
+      "63"
+    ],
+    "expected_misses": [],
+    "hit_rate": "3/3"
+  },
+  {
+    "id": "SECTION-9",
+    "title": "고객의 권리 (중요한 권리 vs 마케팅)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "거래가격 배분",
+      "변동대가",
+      "표시"
+    ],
+    "expected_docs": [
+      "B39~B41",
+      "B40",
+      "B41"
+    ],
+    "pinpoint_count": 39,
+    "pinpoint_by_cat": {
+      "QNA": 10,
+      "감리사례": 3,
+      "IE사례": 9,
+      "본문/적용지침": 17
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-38671_pinpoint",
+        "QNA-SSI-202312058_pinpoint",
+        "QNA-SSI-202312048_pinpoint",
+        "QNA-SSI-38465_pinpoint",
+        "QNA-SSI-38703_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2024-2505-04_pinpoint",
+        "FSS-CASE-2023-2405-01_pinpoint",
+        "KICPA-CASE-2025-33_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-33",
+        "1115-IE-case-34",
+        "1115-IE-case-20",
+        "1115-IE-case-21",
+        "1115-IE-case-23"
+      ],
+      "본문/적용지침": [
+        "1115-47",
+        "1115-50",
+        "1115-51",
+        "1115-52",
+        "1115-53"
+      ]
+    },
+    "retriever_count": 43,
+    "retriever_by_cat": {
+      "본문/적용지침": 30,
+      "QNA": 6,
+      "IE사례": 7
+    },
+    "merged_count": 81,
+    "llm_docs": 81,
+    "ie_excluded": 0,
+    "expected_hits": [],
+    "expected_misses": [
+      "B39~B41",
+      "B40",
+      "B41"
+    ],
+    "hit_rate": "0/3"
+  },
+  {
+    "id": "SECTION-10",
+    "title": "계약의 결합 (특수관계자)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "수행의무 식별",
+      "계약의 식별",
+      "계약의 결합"
+    ],
+    "expected_docs": [
+      "17",
+      "17⑴",
+      "17⑵"
+    ],
+    "pinpoint_count": 36,
+    "pinpoint_by_cat": {
+      "QNA": 10,
+      "감리사례": 7,
+      "교육자료": 1,
+      "IE사례": 7,
+      "본문/적용지침": 11
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-2018-I-KQA009_pinpoint",
+        "QNA-SSI-35609_pinpoint",
+        "QNA-SSI-36987_pinpoint",
+        "QNA-201901B_pinpoint",
+        "QNA-SSI-35565_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2023-2405-06_pinpoint",
+        "FSS-CASE-2024-2505-02_pinpoint",
+        "FSS-CASE-2025-2512-01_pinpoint",
+        "FSS-CASE-2024-2409-01_pinpoint",
+        "FSS-CASE-2022-2311-02_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-BC46_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-11",
+        "1115-IE-case-10",
+        "1115-IE-case-12",
+        "1115-IE-case-2",
+        "1115-IE-case-3"
+      ],
+      "본문/적용지침": [
+        "1115-6",
+        "1115-9",
+        "1115-15",
+        "1115-16",
+        "1115-17"
+      ]
+    },
+    "retriever_count": 51,
+    "retriever_by_cat": {
+      "본문/적용지침": 30,
+      "QNA": 8,
+      "감리사례": 3,
+      "IE사례": 10
+    },
+    "merged_count": 79,
+    "llm_docs": 79,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "17",
+      "17⑴",
+      "17⑵"
+    ],
+    "expected_misses": [],
+    "hit_rate": "3/3"
+  },
+  {
+    "id": "SECTION-11",
+    "title": "계약의 식별 (가공매출/회수가능성)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "계약의 식별",
+      "기간에 걸쳐 vs 한 시점 인식",
+      "고객의 인수"
+    ],
+    "expected_docs": [
+      "9",
+      "9⑷",
+      "9⑸",
+      "15",
+      "16"
+    ],
+    "pinpoint_count": 39,
+    "pinpoint_by_cat": {
+      "QNA": 10,
+      "감리사례": 8,
+      "교육자료": 2,
+      "IE사례": 7,
+      "본문/적용지침": 12
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-36917_pinpoint",
+        "QNA-SSI-36993_pinpoint",
+        "QNA-2021-I-KQA008_pinpoint",
+        "QNA-2017-I-KAQ015_pinpoint",
+        "QNA-2017-I-KQA014_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2024-2505-02_pinpoint",
+        "FSS-CASE-2025-2512-01_pinpoint",
+        "FSS-CASE-2024-2409-01_pinpoint",
+        "FSS-CASE-2022-2311-02_pinpoint",
+        "KICPA-CASE-2024-04_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-BC46_pinpoint",
+        "EDU-KASB-180426_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-2",
+        "1115-IE-case-3",
+        "1115-IE-case-1",
+        "1115-IE-case-4",
+        "1115-IE-case-13"
+      ],
+      "본문/적용지침": [
+        "1115-6",
+        "1115-9",
+        "1115-15",
+        "1115-16",
+        "1115-31"
+      ]
+    },
+    "retriever_count": 58,
+    "retriever_by_cat": {
+      "IE사례": 12,
+      "본문/적용지침": 19,
+      "QNA": 15,
+      "감리사례": 11,
+      "교육자료": 1
+    },
+    "merged_count": 80,
+    "llm_docs": 80,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "9",
+      "9⑷",
+      "9⑸",
+      "15",
+      "16"
+    ],
+    "expected_misses": [],
+    "hit_rate": "5/5"
+  },
+  {
+    "id": "SECTION-12",
+    "title": "기간에 걸쳐 vs 한 시점 (창정비)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "기간에 걸쳐 vs 한 시점 인식",
+      "고객의 인수",
+      "수행의무 식별"
+    ],
+    "expected_docs": [
+      "35",
+      "35⑵",
+      "35⑶",
+      "38"
+    ],
+    "pinpoint_count": 33,
+    "pinpoint_by_cat": {
+      "QNA": 11,
+      "감리사례": 3,
+      "교육자료": 1,
+      "IE사례": 6,
+      "본문/적용지침": 12
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-2017-I-KAQ015_pinpoint",
+        "QNA-2017-I-KQA014_pinpoint",
+        "QNA-2020-I-KQA003_pinpoint",
+        "QNA-201803B_pinpoint",
+        "QNA-SSI-38679_pinpoint"
+      ],
+      "감리사례": [
+        "KICPA-CASE-2025-07_pinpoint",
+        "FSS-CASE-2023-2405-05_pinpoint",
+        "FSS-CASE-2023-2405-06_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-180426_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-13",
+        "1115-IE-case-14",
+        "1115-IE-case-16",
+        "1115-IE-case-11",
+        "1115-IE-case-10"
+      ],
+      "본문/적용지침": [
+        "1115-24",
+        "1115-25",
+        "1115-27",
+        "1115-29",
+        "1115-30"
+      ]
+    },
+    "retriever_count": 54,
+    "retriever_by_cat": {
+      "IE사례": 19,
+      "본문/적용지침": 20,
+      "QNA": 11,
+      "감리사례": 4
+    },
+    "merged_count": 79,
+    "llm_docs": 79,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "35",
+      "35⑵",
+      "35⑶",
+      "38"
+    ],
+    "expected_misses": [],
+    "hit_rate": "4/4"
+  },
+  {
+    "id": "SECTION-13",
+    "title": "수행의무 식별 (ESS 계약 쪼개기)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "기간에 걸쳐 vs 한 시점 인식",
+      "계약의 식별",
+      "수행의무 식별"
+    ],
+    "expected_docs": [
+      "27",
+      "29",
+      "30"
+    ],
+    "pinpoint_count": 50,
+    "pinpoint_by_cat": {
+      "QNA": 14,
+      "감리사례": 8,
+      "교육자료": 2,
+      "IE사례": 10,
+      "본문/적용지침": 16
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-2017-I-KAQ015_pinpoint",
+        "QNA-2017-I-KQA014_pinpoint",
+        "QNA-2020-I-KQA003_pinpoint",
+        "QNA-201803B_pinpoint",
+        "QNA-SSI-38679_pinpoint"
+      ],
+      "감리사례": [
+        "KICPA-CASE-2025-07_pinpoint",
+        "FSS-CASE-2023-2405-05_pinpoint",
+        "FSS-CASE-2023-2405-06_pinpoint",
+        "FSS-CASE-2024-2505-02_pinpoint",
+        "FSS-CASE-2025-2512-01_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-180426_pinpoint",
+        "EDU-KASB-BC46_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-13",
+        "1115-IE-case-14",
+        "1115-IE-case-16",
+        "1115-IE-case-2",
+        "1115-IE-case-3"
+      ],
+      "본문/적용지침": [
+        "1115-6",
+        "1115-9",
+        "1115-15",
+        "1115-16",
+        "1115-24"
+      ]
+    },
+    "retriever_count": 54,
+    "retriever_by_cat": {
+      "IE사례": 20,
+      "본문/적용지침": 20,
+      "QNA": 10,
+      "감리사례": 4
+    },
+    "merged_count": 96,
+    "llm_docs": 96,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "27",
+      "29",
+      "30"
+    ],
+    "expected_misses": [],
+    "hit_rate": "3/3"
+  },
+  {
+    "id": "SECTION-14",
+    "title": "보증 (확신 vs 용역 유형)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "보증",
+      "거래가격 배분",
+      "수행의무 식별"
+    ],
+    "expected_docs": [
+      "B29~B33",
+      "B29",
+      "B30",
+      "B31"
+    ],
+    "pinpoint_count": 32,
+    "pinpoint_by_cat": {
+      "QNA": 7,
+      "감리사례": 3,
+      "교육자료": 1,
+      "IE사례": 6,
+      "본문/적용지침": 15
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-35609_pinpoint",
+        "QNA-SSI-38702_pinpoint",
+        "QNA-SSI-38671_pinpoint",
+        "QNA-2018-I-KQA009_pinpoint",
+        "QNA-SSI-36987_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2023-2405-05_pinpoint",
+        "FSS-CASE-2024-2505-04_pinpoint",
+        "FSS-CASE-2023-2405-06_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-180517-2_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-44",
+        "1115-IE-case-33",
+        "1115-IE-case-34",
+        "1115-IE-case-11",
+        "1115-IE-case-10"
+      ],
+      "본문/적용지침": [
+        "1115-24",
+        "1115-25",
+        "1115-27",
+        "1115-29",
+        "1115-30"
+      ]
+    },
+    "retriever_count": 49,
+    "retriever_by_cat": {
+      "본문/적용지침": 30,
+      "QNA": 7,
+      "감리사례": 1,
+      "교육자료": 1,
+      "IE사례": 10
+    },
+    "merged_count": 69,
+    "llm_docs": 69,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "B29~B33",
+      "B29",
+      "B30",
+      "B31"
+    ],
+    "expected_misses": [],
+    "hit_rate": "4/4"
+  },
+  {
+    "id": "SECTION-15",
+    "title": "계약체결 증분원가 (수주 비용)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "계약이행원가",
+      "계약체결 증분원가",
+      "표시"
+    ],
+    "expected_docs": [
+      "91~93",
+      "94",
+      "99"
+    ],
+    "pinpoint_count": 28,
+    "pinpoint_by_cat": {
+      "QNA": 10,
+      "감리사례": 1,
+      "IE사례": 5,
+      "본문/적용지침": 12
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-202003D_pinpoint",
+        "QNA-SSI-202412041_pinpoint",
+        "QNA-201906D_pinpoint",
+        "QNA-SSI-38676_pinpoint",
+        "QNA-SSI-202511018_pinpoint"
+      ],
+      "감리사례": [
+        "KICPA-CASE-2025-33_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-36",
+        "1115-IE-case-37",
+        "1115-IE-case-39",
+        "1115-IE-case-38",
+        "1115-IE-case-40"
+      ],
+      "본문/적용지침": [
+        "1115-91",
+        "1115-92",
+        "1115-93",
+        "1115-94",
+        "1115-95"
+      ]
+    },
+    "retriever_count": 59,
+    "retriever_by_cat": {
+      "본문/적용지침": 28,
+      "IE사례": 10,
+      "QNA": 15,
+      "감리사례": 6
+    },
+    "merged_count": 69,
+    "llm_docs": 69,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "91~93",
+      "94",
+      "99"
+    ],
+    "expected_misses": [],
+    "hit_rate": "3/3"
+  },
+  {
+    "id": "SECTION-16",
+    "title": "할인액 배분 (렌탈)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "할인액의 배분",
+      "수행의무 식별",
+      "거래가격 배분"
+    ],
+    "expected_docs": [
+      "81",
+      "82"
+    ],
+    "pinpoint_count": 26,
+    "pinpoint_by_cat": {
+      "QNA": 7,
+      "감리사례": 2,
+      "IE사례": 5,
+      "본문/적용지침": 12
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-38672_pinpoint",
+        "QNA-2018-I-KQA009_pinpoint",
+        "QNA-SSI-35609_pinpoint",
+        "QNA-SSI-36987_pinpoint",
+        "QNA-201901B_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2024-2505-04_pinpoint",
+        "FSS-CASE-2023-2405-06_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-34",
+        "1115-IE-case-11",
+        "1115-IE-case-10",
+        "1115-IE-case-12",
+        "1115-IE-case-33"
+      ],
+      "본문/적용지침": [
+        "1115-24",
+        "1115-25",
+        "1115-27",
+        "1115-29",
+        "1115-30"
+      ]
+    },
+    "retriever_count": 47,
+    "retriever_by_cat": {
+      "본문/적용지침": 18,
+      "IE사례": 22,
+      "QNA": 4,
+      "감리사례": 3
+    },
+    "merged_count": 64,
+    "llm_docs": 64,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "81",
+      "82"
+    ],
+    "expected_misses": [],
+    "hit_rate": "2/2"
+  },
+  {
+    "id": "SECTION-17",
+    "title": "반품권이 있는 판매 (신제품)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "반품권이 있는 판매",
+      "변동대가",
+      "기간에 걸쳐 vs 한 시점 인식"
+    ],
+    "expected_docs": [
+      "B20~B27",
+      "B21",
+      "B23",
+      "55~58"
+    ],
+    "pinpoint_count": 50,
+    "pinpoint_by_cat": {
+      "QNA": 15,
+      "감리사례": 5,
+      "교육자료": 1,
+      "IE사례": 9,
+      "본문/적용지침": 20
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-38485_pinpoint",
+        "QNA-SSI-38612_pinpoint",
+        "QNA-SSI-35567_pinpoint",
+        "QNA-SSI-38697_pinpoint",
+        "QNA-SSI-38695_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2024-2505-03_pinpoint",
+        "FSS-CASE-2023-2405-01_pinpoint",
+        "KICPA-CASE-2025-07_pinpoint",
+        "FSS-CASE-2023-2405-05_pinpoint",
+        "FSS-CASE-2023-2405-06_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-180426_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-22",
+        "1115-IE-case-26",
+        "1115-IE-case-20",
+        "1115-IE-case-21",
+        "1115-IE-case-23"
+      ],
+      "본문/적용지침": [
+        "1115-35",
+        "1115-37",
+        "1115-38",
+        "1115-47",
+        "1115-50"
+      ]
+    },
+    "retriever_count": 56,
+    "retriever_by_cat": {
+      "본문/적용지침": 26,
+      "IE사례": 8,
+      "QNA": 15,
+      "감리사례": 6,
+      "교육자료": 1
+    },
+    "merged_count": 93,
+    "llm_docs": 93,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "B20~B27",
+      "B21",
+      "B23",
+      "55~58"
+    ],
+    "expected_misses": [],
+    "hit_rate": "4/4"
+  },
+  {
+    "id": "SECTION-18",
+    "title": "계약자산과 계약부채 표시 (순액 상계)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "표시",
+      "계약의 식별",
+      "기간에 걸쳐 vs 한 시점 인식"
+    ],
+    "expected_docs": [
+      "105",
+      "106",
+      "107",
+      "108"
+    ],
+    "pinpoint_count": 49,
+    "pinpoint_by_cat": {
+      "QNA": 13,
+      "감리사례": 9,
+      "교육자료": 2,
+      "IE사례": 10,
+      "본문/적용지침": 15
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-202511019_pinpoint",
+        "QNA-SSI-38675_pinpoint",
+        "QNA-SSI-202312049_pinpoint",
+        "QNA-SSI-36920_pinpoint",
+        "QNA-SSI-36917_pinpoint"
+      ],
+      "감리사례": [
+        "KICPA-CASE-2025-33_pinpoint",
+        "FSS-CASE-2024-2505-02_pinpoint",
+        "FSS-CASE-2025-2512-01_pinpoint",
+        "FSS-CASE-2024-2409-01_pinpoint",
+        "FSS-CASE-2022-2311-02_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-BC46_pinpoint",
+        "EDU-KASB-180426_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-39",
+        "1115-IE-case-38",
+        "1115-IE-case-40",
+        "1115-IE-case-2",
+        "1115-IE-case-3"
+      ],
+      "본문/적용지침": [
+        "1115-6",
+        "1115-9",
+        "1115-15",
+        "1115-16",
+        "1115-31"
+      ]
+    },
+    "retriever_count": 66,
+    "retriever_by_cat": {
+      "IE사례": 19,
+      "본문/적용지침": 21,
+      "QNA": 15,
+      "감리사례": 10,
+      "교육자료": 1
+    },
+    "merged_count": 97,
+    "llm_docs": 97,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "105",
+      "106",
+      "107",
+      "108"
+    ],
+    "expected_misses": [],
+    "hit_rate": "4/4"
+  },
+  {
+    "id": "SECTION-19",
+    "title": "계약이행원가 (교육훈련비)",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "계약체결 증분원가",
+      "계약이행원가",
+      "기간에 걸쳐 vs 한 시점 인식"
+    ],
+    "expected_docs": [
+      "95",
+      "95⑴~⑶",
+      "96",
+      "98"
+    ],
+    "pinpoint_count": 34,
+    "pinpoint_by_cat": {
+      "QNA": 11,
+      "감리사례": 3,
+      "교육자료": 1,
+      "IE사례": 5,
+      "본문/적용지침": 14
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-38676_pinpoint",
+        "QNA-SSI-202511018_pinpoint",
+        "QNA-SSI-35584_pinpoint",
+        "QNA-202003D_pinpoint",
+        "QNA-SSI-202412041_pinpoint"
+      ],
+      "감리사례": [
+        "KICPA-CASE-2025-07_pinpoint",
+        "FSS-CASE-2023-2405-05_pinpoint",
+        "FSS-CASE-2023-2405-06_pinpoint"
+      ],
+      "교육자료": [
+        "EDU-KASB-180426_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-36",
+        "1115-IE-case-37",
+        "1115-IE-case-13",
+        "1115-IE-case-14",
+        "1115-IE-case-16"
+      ],
+      "본문/적용지침": [
+        "1115-35",
+        "1115-37",
+        "1115-38",
+        "1115-91",
+        "1115-92"
+      ]
+    },
+    "retriever_count": 57,
+    "retriever_by_cat": {
+      "본문/적용지침": 23,
+      "IE사례": 17,
+      "QNA": 15,
+      "감리사례": 2
+    },
+    "merged_count": 73,
+    "llm_docs": 73,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "95",
+      "95⑴~⑶",
+      "96",
+      "98"
+    ],
+    "expected_misses": [],
+    "hit_rate": "4/4"
+  },
+  {
+    "id": "SECTION-20",
+    "title": "잔여접근법 적용 한계",
+    "group": "섹션별 커버리지",
+    "routing": "IN",
+    "is_situation": true,
+    "needs_calculation": false,
+    "matched_topics": [
+      "거래가격 배분",
+      "변동대가",
+      "변동대가의 배분"
+    ],
+    "expected_docs": [
+      "76~79",
+      "79⑶",
+      "78"
+    ],
+    "pinpoint_count": 35,
+    "pinpoint_by_cat": {
+      "QNA": 7,
+      "감리사례": 2,
+      "IE사례": 7,
+      "본문/적용지침": 19
+    },
+    "pinpoint_ids": {
+      "QNA": [
+        "QNA-SSI-38671_pinpoint",
+        "QNA-SSI-202312058_pinpoint",
+        "QNA-SSI-202312048_pinpoint",
+        "QNA-SSI-38465_pinpoint",
+        "QNA-SSI-38703_pinpoint"
+      ],
+      "감리사례": [
+        "FSS-CASE-2024-2505-04_pinpoint",
+        "FSS-CASE-2023-2405-01_pinpoint"
+      ],
+      "IE사례": [
+        "1115-IE-case-33",
+        "1115-IE-case-34",
+        "1115-IE-case-20",
+        "1115-IE-case-21",
+        "1115-IE-case-23"
+      ],
+      "본문/적용지침": [
+        "1115-47",
+        "1115-50",
+        "1115-51",
+        "1115-52",
+        "1115-53"
+      ]
+    },
+    "retriever_count": 43,
+    "retriever_by_cat": {
+      "본문/적용지침": 21,
+      "IE사례": 19,
+      "QNA": 3
+    },
+    "merged_count": 74,
+    "llm_docs": 74,
+    "ie_excluded": 0,
+    "expected_hits": [
+      "76~79",
+      "79⑶",
+      "78"
+    ],
+    "expected_misses": [],
+    "hit_rate": "3/3"
+  }
+]
