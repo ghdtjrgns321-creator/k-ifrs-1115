@@ -15,6 +15,7 @@ from app.agents import (
     ClarifyDeps,
     ClarifyOutput,
 )
+from app.config import settings
 from app.domain.graph import get_graph
 from app.prompts import CLARIFY_USER, GENERATE_USER
 from app.services.query_mapping import INVERTED_MAPPING
@@ -83,6 +84,43 @@ async def generate_answer(state: dict) -> dict:
             logger.info("IE 적용사례 %d건 LLM context 제외 (calc 경로)", ie_skipped)
     else:
         docs = all_docs
+
+    # 유형별 슬롯 상한 — 문단·감리·IE를 분리해 서로 밀어내지 않게(07-retrieval-priority §3).
+    # 문단은 fetch가 tr.paras 진입순서를 보존 → 앞쪽이 topic_hint 주제 개념 문단.
+    def _kind(d: dict) -> str:
+        s = str(d.get("source", ""))
+        if "감리" in s:
+            return "findings"
+        if "질의" in s:
+            return "qna"
+        if s == "적용사례IE":
+            return "ie"
+        return "para"
+
+    buckets: dict[str, list] = {"para": [], "findings": [], "ie": [], "qna": []}
+    for d in docs:
+        buckets[_kind(d)].append(d)
+    n_before = len(docs)
+    # 문단은 무제한(doc_slot_para=0 → cap=None → 전체). A안: C 상한밀림 해소.
+    para_cap = settings.doc_slot_para or None
+    sel = {
+        "para": buckets["para"][:para_cap],
+        "ie": buckets["ie"][: settings.doc_slot_ie],
+        "findings": buckets["findings"][: settings.doc_slot_findings],
+        "qna": buckets["qna"][: settings.doc_slot_qna],
+    }
+    docs = sel["para"] + sel["ie"] + sel["findings"] + sel["qna"]
+    if n_before > len(docs):
+        logger.info(
+            "유형 슬롯: %d → %d건 (문단%d·IE%d·감리%d·QNA%d)",
+            n_before,
+            len(docs),
+            len(sel["para"]),
+            len(sel["ie"]),
+            len(sel["findings"]),
+            len(sel["qna"]),
+        )
+
     is_situation = state.get("is_situation", False)
     force_conclusion = state.get("force_conclusion", False)
     messages = state.get("messages", [])
@@ -225,7 +263,9 @@ async def _run_clarify(
         concept_hint = _format_concept_hint(state.get("concept_path", []))
         if concept_hint:
             context_str = f"[관련 개념] {concept_hint}\n\n---\n\n{context_str}"
-        tree = get_graph().match_judgment_tree(state.get("concept_ids", []))
+        tree = get_graph().match_judgment_tree(
+            state.get("concept_ids", []), state.get("via_topic", [])
+        )
         if tree:
             context_str = f"[판단 절차 — 기준서 본문]\n{tree}\n\n---\n\n{context_str}"
 
@@ -261,6 +301,7 @@ async def _run_clarify(
     else:
         logger.info("clarify model=gemini-flash(thinking=medium)")
         result = await clarify_agent.run(user_msg, deps=deps)
+    logger.info("TOKENUSAGE clarify %s", result.usage())
     return result.output
 
 
@@ -292,7 +333,9 @@ async def _run_force_conclusion(
             context_with_checks = (
                 f"[관련 개념] {concept_hint}\n\n---\n\n{context_with_checks}"
             )
-        tree = get_graph().match_judgment_tree(state.get("concept_ids", []))
+        tree = get_graph().match_judgment_tree(
+            state.get("concept_ids", []), state.get("via_topic", [])
+        )
         if tree:
             context_with_checks = (
                 f"[판단 절차 — 기준서 본문]\n{tree}\n\n---\n\n{context_with_checks}"
@@ -321,6 +364,7 @@ async def _run_force_conclusion(
             user_msg,
             model_settings={"google_thinking_config": {"thinking_level": "low"}},
         )
+    logger.info("TOKENUSAGE force_conclusion %s", result.usage())
     return result.output
 
 
@@ -329,6 +373,19 @@ async def _run_generate(
 ):
     """is_situation=False → generate_agent (개념 답변)."""
     complexity = state.get("complexity", "complex")
+
+    # 그래프 경로 힌트 + 본문 판단 트리 주입 — calc 경로에서는 스킵(산술 집중도 유지).
+    # Why(주입 0%): 일반 개념 질문 경로에 트리·개념 힌트가 없어 판단 절차를 못 봤음.
+    if not state.get("needs_calculation", False):
+        concept_hint = _format_concept_hint(state.get("concept_path", []))
+        if concept_hint:
+            context_str = f"[관련 개념] {concept_hint}\n\n---\n\n{context_str}"
+        tree = get_graph().match_judgment_tree(
+            state.get("concept_ids", []), state.get("via_topic", [])
+        )
+        if tree:
+            context_str = f"[판단 절차 — 기준서 본문]\n{tree}\n\n---\n\n{context_str}"
+
     user_msg = GENERATE_USER.format(
         complexity=complexity,
         practitioner_terms=_get_related_practitioner_terms(docs),
@@ -358,4 +415,5 @@ async def _run_generate(
         result = await generate_agent.run(user_msg)
 
     logger.info("generate model=%s, complexity=%s", model_tag, complexity)
+    logger.info("TOKENUSAGE generate %s", result.usage())
     return result.output

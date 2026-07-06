@@ -279,7 +279,7 @@ async def _validate_clarify(
         checked_text = ""
         # 사용자 원문 메시지 포함 — 이미 답변한 factor를 놓치지 않도록
         # Why: C1 — "재고위험도 저희가 부담"이라고 답했으나 checked_items에 없어 미확인 판정
-        for role, content in (ctx.deps.messages or []):
+        for role, content in ctx.deps.messages or []:
             if role == "human":
                 checked_text += " " + content
         if ctx.deps.checklist_state:
@@ -335,10 +335,7 @@ def _factor_in_text(factor: str, text: str) -> bool:
     # 공백 제거 텍스트로도 매칭 시도
     # Why: "가격결정권" vs "가격 결정권" 등 한국어 복합어 띄어쓰기 차이 대응
     text_nospace = text.replace(" ", "")
-    matched = sum(
-        1 for kw in keywords
-        if kw in text or kw in text_nospace
-    )
+    matched = sum(1 for kw in keywords if kw in text or kw in text_nospace)
     return matched >= max(1, len(keywords) // 2)
 
 

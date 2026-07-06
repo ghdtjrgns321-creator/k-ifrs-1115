@@ -41,6 +41,29 @@ class Settings(BaseSettings):
     # Why: 전체 파이프라인 무한 대기 방지 (SECTION-4 미인도청구약정 46초+ 케이스)
     pipeline_timeout: int = 100
 
+    # STEP 6 홀드아웃 검증용 — 켜면 retrieval에서 QNA(질의회신) 문서를 제외한다.
+    # Why: 골든셋(qna_testset)이 QNA 원문 파생이라, 답 출처 QNA가 근거로 끌려오면
+    #      자기 답 자기 참조(순환)가 된다. 본문+판단트리만으로 재현되는지 격리 측정.
+    exclude_qna: bool = False
+
+    # generate 프롬프트 문서 상한 — 유형별 슬롯 (07-retrieval-priority §3).
+    # Why: 총량 상한은 문단이 사례·감리를 밀어낸다. 유형을 분리해 각 근거 유형을 보존.
+    #      문단 슬롯은 fetch가 topic_hint 진입순서를 보존 → 앞쪽이 질문 주제 문단.
+    # A안(C 상한밀림 해소): 문단은 무제한(0)으로 상한 컷을 제거한다. gold 조문이
+    #      진입만 하면 위치와 무관하게 generate가 본다. 문단은 값싼 입력토큰이라
+    #      비용 증가가 작다(케이스당 +약 8~13원). IE(케이스당 77건)·감리는 노이즈·비용
+    #      폭증이라 슬롯 유지. 0 = 무제한.
+    doc_slot_para: int = 0
+    doc_slot_ie: int = 3
+    doc_slot_findings: int = 2
+    doc_slot_qna: int = 3
+
+    # topic_hint 개념의 주제군 계층 확장 임계 (07-retrieval-priority gap).
+    # Why: topic_map이 말단 개념 1개만 가리켜 형제(같은 주제군)를 놓친다. 부모 subtree가
+    #      이 값 이하면 형제를 포함, 초과(부록B 24개 등)하면 폭발 방지로 자기 하위만.
+    #      값은 진입 개념 폭발 억제(예산)용이며 골든셋 커버리지 튜닝값이 아니다.
+    subtree_expand_max: int = 8
+
     # 7. 인프라 설정
     # CORS: Streamlit(:8501) → FastAPI(:8002) 교차 요청 허용 목록
     # Why: Docker 내부(http://frontend:8501)와 외부 접속(http://공인IP:8501) 모두 허용 필요

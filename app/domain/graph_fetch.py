@@ -100,18 +100,29 @@ def fetch_documents(tr, entry_cases: list | None = None) -> list[dict]:
     coll = _db()[_MAIN]
     docs: list[dict] = []
 
-    # 1) 문단 — paraNum 배치 조회 (본문·부록B·BC)
+    # 1) 문단 — paraNum 배치 조회 후 tr.paras 진입순서 보존
+    # Why(07-retrieval-priority): $in은 입력 순서를 보장하지 않아 진입 우선순위가 깨진다.
+    # paraNum→doc 매핑 후 tr.paras 순서대로 재배열해 topic_hint 우선순위를 최종까지 보존.
     if tr.paras:
-        for d in coll.find({"paraNum": {"$in": tr.paras}}, {"embedding": 0}):
-            docs.append(_norm_para(d))
+        found = {
+            d.get("paraNum"): d
+            for d in coll.find({"paraNum": {"$in": tr.paras}}, {"embedding": 0})
+        }
+        for p in tr.paras:
+            d = found.get(p)
+            if d:
+                docs.append(_norm_para(d))
 
     # 2) 사례 — QNA·감리 parent (traverse + 용어 진입 사례 합집합, 중복 제거)
+    # STEP 6: exclude_qna면 QNA("QNA-" 접두)를 스킵(감리는 유지) — 순환 격리
     seen: set[str] = set()
     case_ids = [c["db_parent_id"] for c in tr.cases] + list(entry_cases or [])
     for cid in case_ids:
         if cid in seen:
             continue
         seen.add(cid)
+        if settings.exclude_qna and cid.startswith("QNA-"):
+            continue
         d = fetch_case(cid)
         if d:
             docs.append(_norm_case(d))

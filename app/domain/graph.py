@@ -13,6 +13,8 @@ from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
 
+from app.config import settings
+
 _ONT = Path(__file__).resolve().parents[2] / "data" / "ontology"
 
 
@@ -114,19 +116,59 @@ class Graph:
                         cases.append(c)
         return {"concept_ids": concept_ids, "cases": cases, "matched_terms": matched}
 
-    def match_judgment_tree(self, concept_ids: list[str]) -> str:
-        """진입 개념이 판단 트리 트리거에 걸리면 그 판단 절차 텍스트를 반환.
+    def match_judgment_tree(
+        self, concept_ids: list[str], via_topic: list[str] | None = None
+    ) -> str:
+        """진입 개념에 걸린 판단 트리를 전부 이어붙여 반환(트리거에 걸린 것 모두).
 
         본문에서 추출한 조건-분기(예: 기간에 걸쳐 vs 한 시점)를 generate에 주입해,
         LLM이 흩어진 문단에서 판단 순서를 스스로 조립하는 부담을 없앤다.
+
+        Why(트리 오선택): via_topic(LLM 지목 주제 개념)이 있으면 그것만으로 매칭한다.
+        concept_ids 전체는 subtree 확장으로 딸려온 배경 개념을 포함해, 투표수로 주제
+        트리를 이기는 오선택(측정 14/27)과 신규 트리 미주입(17/18)을 유발했다.
+        단일 best-1 선택 폐기: 질문 하나가 여러 개념에 걸치면 걸린 판단 절차를 모두 넣는다
+        (트리 개당 ~500자, 문단 상한 제거와 동일 논리). via_topic 없으면 concept_ids로 폴백.
         """
-        cset = set(concept_ids)
-        best_text, best_n = "", 0
-        for t in self.judgment_trees.values():
-            n = len(cset & set(t["trigger_concepts"]))
-            if n > best_n:  # 겹침 최다 트리 1개 (동점이면 먼저 정의된 트리)
-                best_n, best_text = n, t["text"]
-        return best_text
+        match_set = set(via_topic or concept_ids)
+        texts = [
+            t["text"]
+            for t in self.judgment_trees.values()
+            if match_set & set(t["trigger_concepts"])
+        ]
+        return "\n\n".join(texts)
+
+    def _resolve_topic_hint(self, th: str) -> list[str]:
+        """topic_hint → 개념. LLM 축약(예 '수행의무 식별'→'수행의무') 부분매칭 흡수."""
+        if th in self.topic_map:
+            return self.topic_map[th]
+        for key, cids in self.topic_map.items():
+            if th and (th in key or key in th):
+                return cids
+        return []
+
+    def _subtree(self, cid: str, acc: set | None = None) -> set:
+        """개념 하위 트리(자신 포함)."""
+        if acc is None:
+            acc = set()
+        acc.add(cid)
+        for ch in self.concepts.get(cid, {}).get("children", []):
+            if ch not in acc:
+                self._subtree(ch, acc)
+        return acc
+
+    def _adaptive_subtree(self, cid: str) -> set:
+        """개념의 주제군 확장 — 부모 subtree가 작으면 형제 포함, 크면 자기 하위만.
+
+        Why(07 gap): topic_map이 말단 개념 1개만 가리켜 형제(같은 주제군)를 놓친다.
+        부모가 큰 대분류(부록B 24개)면 형제 포함이 문단 폭발이므로 임계로 억제.
+        """
+        p = self.concepts.get(cid, {}).get("parent")
+        if p:
+            ps = self._subtree(p)
+            if len(ps) - 1 <= settings.subtree_expand_max:
+                return ps
+        return self._subtree(cid)
 
     def resolve_question(
         self,
@@ -134,19 +176,32 @@ class Graph:
         keywords: list[str] | None = None,
         topic_hints: list[str] | None = None,
     ) -> dict:
-        """질문 진입 통합 — 용어사전(결정적) + LLM 지목 토픽→개념 매핑.
+        """질문 진입 통합 — LLM 지목 토픽(우선) + 용어사전(보조).
 
         임베딩 유사도 없이 개념 후보를 산출. tree_matcher(match_topics) 대체.
+        topic_hint(LLM 주제 지목) 개념을 앞에 배치 → 용어사전(배경어) 개념은 뒤로.
+        Why(07-retrieval-priority): 배경어(계약·수행의무)가 진입 앞자리를 뺏어 질문 주제
+        문단이 generate 상한에 밀리는 문제. traverse는 개념 순서대로 문단을 넣으므로
+        개념 순서를 바꾸면 문단 우선순위가 따라온다.
         """
         blob = (text or "") + " " + " ".join(keywords or [])
         r = self.resolve_terms(blob)
-        cids = list(r["concept_ids"])
-        via_topic = []
+        cids: list[str] = []
+        via_topic: list[str] = []
         for th in topic_hints or []:
-            for cid in self.topic_map.get(th, []):
+            for cid in self._resolve_topic_hint(th):
                 if cid not in cids:
                     cids.append(cid)
                     via_topic.append(cid)
+        # 계층 subtree 확장 — hint 개념의 주제군 형제/하위를 후순위로 포함(gap 보강).
+        # hint 직속(위)이 앞, 확장 개념은 뒤 → 문단 우선순위 보존.
+        for cid in list(via_topic):
+            for e in self._adaptive_subtree(cid):
+                if e not in cids:
+                    cids.append(e)
+        for cid in r["concept_ids"]:
+            if cid not in cids:
+                cids.append(cid)
         return {
             "concept_ids": cids,
             "cases": r["cases"],

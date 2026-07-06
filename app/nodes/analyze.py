@@ -65,6 +65,8 @@ async def analyze_query(state: dict) -> dict:
         "is_situation": data.is_situation,
         "search_keywords": data.search_keywords,
         "concept_ids": entry["concept_ids"],
+        # via_topic: LLM 지목 주제 직속 개념(subtree 확장 전). 트리 매칭 오선택 차단용.
+        "via_topic": entry["via_topic"],
         "entry_cases": entry["cases"],
         # matched_topics: 하위 노드 호환용 — 5-3/5-4에서 그래프 탐색으로 정리
         "matched_topics": [],
