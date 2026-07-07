@@ -19,11 +19,6 @@ _CUSTOM_CSS = """
         max-width: 1220px !important;
     }
 
-    /* 홈: 제목↔박스 간격 최소화 */
-    .main .stColumn > div > div > .stMarkdown + div[data-testid="stVerticalBlockBorderWrapper"] {
-        margin-top: -1rem !important;
-    }
-
     /* expander 카드 — shadcn 스타일 */
     div[data-testid="stExpander"] {
         border: 1px solid #E2E8F0 !important;
@@ -145,6 +140,36 @@ _CUSTOM_CSS = """
         color: #64748B; font-size: 0.9em;
     }
 
+    /* 홈 chat_input — 기본 1줄이 왜소해 보여 5~6줄 높이 + 큰 글씨로 확장 */
+    div[class*="st-key-home_chat_input"] textarea {
+        min-height: 170px !important;
+        font-size: 1.05rem !important;
+    }
+
+    /* 홈 예시 질문 카드 — 굵은 주제어 + 원문, 좌측 정렬 카드형 */
+    div[class*="st-key-home_example_"] button {
+        border: 1px solid #E2E8F0 !important;
+        background: #FFFFFF !important;
+        border-radius: 10px !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
+        padding: 0.8rem 1.1rem !important;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+        transition: border-color 0.15s, background 0.15s;
+    }
+    div[class*="st-key-home_example_"] button p {
+        font-size: 1.0rem !important;
+        color: #334155 !important;
+        line-height: 1.55 !important;
+    }
+    div[class*="st-key-home_example_"] button:hover {
+        border-color: #94A3B8 !important;
+        background: #F8FAFC !important;
+    }
+    div[class*="st-key-home_example_"] {
+        margin-bottom: 0.5rem !important;
+    }
+
     /* 추가 질문 폼 — 질문하기 버튼 네이비 배경 */
     [data-testid="stFormSubmitButton"] button {
         background-color: #1E293B !important;
@@ -165,28 +190,21 @@ def _inject_css() -> None:
 
 
 def _render_header() -> None:
-    """서비스 타이틀과 설명을 중앙 정렬로 렌더링합니다."""
+    """서비스 타이틀과 설명을 중앙 정렬로 렌더링합니다.
+
+    배지·구분선 없이 제목+부제 두 줄만 — 홈의 예시 질문 칩이
+    사용법 안내를 대신하므로 헤더는 정체성 표시에만 집중합니다.
+    """
     st.html(
         """
-        <div style='text-align: center; padding-top: 16px; padding-bottom: 8px;'>
-            <span style='
-                display: inline-block;
-                border: 1px solid #E2E8F0;
-                border-radius: 4px;
-                padding: 2px 10px;
-                font-size: 0.78em;
-                font-weight: 600;
-                color: #334155;
-                letter-spacing: 0.02em;
-                margin-bottom: 8px;
-            '>K-IFRS 1115</span>
-            <h1 style='font-size: 1.85em; font-weight: 700; margin: 4px 0 0; color: #0F172A;'>
-                수익인식 기준서 분석 도구
+        <div style='max-width: 730px; margin: 0 auto; text-align: center; padding-top: 48px;'>
+            <h1 style='font-size: 2.2em; font-weight: 700; margin: 0; color: #0F172A;
+                       letter-spacing: -0.01em;'>
+                수익인식 기준서 분석
             </h1>
-            <p style='font-size: 0.9em; color: #64748B; margin-top: 6px; margin-bottom: 0;'>
-                기준서 본문 · 질의회신 · 감리사례를 근거로 AI에게 해석을 물어보세요
+            <p style='font-size: 1.05em; color: #64748B; margin: 10px 0 0;'>
+                K-IFRS 1115 기준서 본문 · 질의회신 · 감리사례를 근거로 답변합니다
             </p>
-            <hr style='border: none; border-top: 1px solid #E2E8F0; margin-top: 12px; margin-bottom: 0;'>
         </div>
     """
     )
@@ -199,9 +217,9 @@ def _render_disclaimer() -> None:
     모든 페이지 하단에 작은 회색 줄로 고정 노출합니다.
     """
     st.html(
-        "<div style='max-width: 720px; margin: 2.5rem auto 0; "
+        "<div style='max-width: 730px; margin: 2.5rem auto 0; "
         "padding-top: 0.8rem; border-top: 1px solid #E2E8F0; "
-        "text-align: center; font-size: 0.75em; color: #94A3B8; "
+        "text-align: center; font-size: 0.85em; color: #94A3B8; "
         "line-height: 1.6;'>"
         "본 답변은 실무 검토를 위한 <b>참고 목적</b>으로만 활용해 주세요. "
         "전문가적 판단이 필요한 복잡한 사안은 확정적 결론을 제공하지 못할 수 있습니다."

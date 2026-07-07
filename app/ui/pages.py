@@ -14,7 +14,7 @@ import httpx
 
 from app.ui.client import _call_chat
 from app.ui.components import _render_evidence_panel
-from app.ui.constants import FEEDBACK_URL
+from app.ui.constants import FEEDBACK_URL, HOME_EXAMPLE_QUERIES
 from app.ui.doc_helpers import _format_pdr_content
 from app.ui.session import _go_home
 from app.ui.text import _esc, clean_text
@@ -37,37 +37,39 @@ def _render_home() -> None:
     입력 제출 → /chat SSE → ai_answer 페이지로 직행합니다.
     (토픽 브라우징·사이드바 제거로 진입점을 자유 질문 하나로 단순화)
     """
-    # ── 중앙 정렬: wide 레이아웃에서 입력 블록을 가운데로 모음 ──────────────
-    _, center, _ = st.columns([1, 2, 1])
+    # ── 중앙 정렬: wide 레이아웃에서 입력 블록을 가운데로 모음 (중앙 ≈730px) ──
+    _, center, _ = st.columns([1, 3, 1])
     with center:
-        st.html(
-            "<p style='text-align:center; color:#64748B; font-size:0.95em; "
-            "line-height:1.7; margin:1.8rem 0 1.2rem;'>"
-            "구체적인 거래 구조나 애매한 회계 상황을 자유롭게 설명해 주세요.<br>"
-            "AI가 기준서를 근거로 분석해 드립니다."
-            "</p>"
-        )
+        # 헤더와 입력창 사이 여백 — 설명 문단 대신 예시 칩이 안내를 대신한다.
+        st.html("<div style='height: 1.6rem;'></div>")
 
         # Why: st.form 제출은 fragment 안에서도 전체 rerun을 유발하므로
-        #      일반 위젯 + st.button을 사용해야 fragment rerun만 발생 → 스크롤 유지
+        #      chat_input/pills + fragment 조합으로 fragment rerun만 발생 → 스크롤 유지
         @st.fragment
         def _home_search_fragment():
-            query = st.text_area(
-                "상황 입력",
-                placeholder="예: 반품 가능성이 높을 때 매출 인식 시기는 언제인가요?",
-                label_visibility="collapsed",
-                height=140,
-                key="home_search_input",
+            # 컨테이너 안의 chat_input은 화면 하단 고정이 아니라 inline으로
+            # 렌더됨 — 전송(↑) 버튼이 입력창 안에 내장된 챗봇 표준 패턴.
+            query = st.chat_input(
+                "거래 구조나 회계 상황을 구체적으로 입력하세요",
+                key="home_chat_input",
             )
-            if st.button(
-                "질문하기",
-                use_container_width=True,
-                type="primary",
-                key="home_search_btn",
-            ):
-                if query and query.strip():
-                    st.session_state.search_query = query.strip()
-                    _call_chat(query.strip(), use_cache=False)
+            if query and query.strip():
+                st.session_state.search_query = query.strip()
+                _call_chat(query.strip(), use_cache=False)
+
+            # ── 예시 질문 카드: 굵은 주제어 + 원문, 클릭 즉시 실행 ──────────
+            st.html(
+                "<p style='color:#94A3B8; font-size:0.85em; font-weight:600; "
+                "margin:1.6rem 0 0.3rem;'>이런 질문을 해보세요</p>"
+            )
+            for i, ex in enumerate(HOME_EXAMPLE_QUERIES):
+                if st.button(
+                    f"**{ex['topic']}** · {ex['question']}",
+                    use_container_width=True,
+                    key=f"home_example_{i}",
+                ):
+                    st.session_state.search_query = ex["question"]
+                    _call_chat(ex["question"], use_cache=False)
 
         _home_search_fragment()
 
