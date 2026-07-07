@@ -63,6 +63,28 @@ def _format_concept_hint(concept_path: list[str]) -> str:
     return ", ".join(names)
 
 
+def _inject_prefix(state: dict, context: str) -> str:
+    """calc 아닌 경로 공통 주입 — 관련개념·판단트리를 context 앞에.
+
+    3경로(_run_generate/_run_clarify/_run_force_conclusion)가 동일 로직을 중복하던 것을 통합.
+
+    Note: STEP2 혼동쌍 기반 프레임판별 헤더는 활성화 신호 부재로 미채택
+    (근거: app/test/qna_holdout/step2_postmortem.md). confusion_pairs.json은 보존.
+    """
+    if state.get("needs_calculation", False):
+        return context
+    g = get_graph()
+    concept_hint = _format_concept_hint(state.get("concept_path", []))
+    if concept_hint:
+        context = f"[관련 개념] {concept_hint}\n\n---\n\n{context}"
+    tree = g.match_judgment_tree(
+        state.get("concept_ids", []), state.get("via_topic", [])
+    )
+    if tree:
+        context = f"[판단 절차 — 기준서 본문]\n{tree}\n\n---\n\n{context}"
+    return context
+
+
 async def generate_answer(state: dict) -> dict:
     """최종 필터링된 문서를 바탕으로 답변을 생성합니다."""
     all_docs = state.get("relevant_docs", [])
@@ -258,16 +280,8 @@ async def _run_clarify(
     # B1/B2에서 1/3만 calc 진입하는 문제 발생 → LLM 판단으로 전환 (14/14 정확도)
     use_calc = state.get("needs_calculation", False)
 
-    # 그래프 경로 힌트 + 본문 판단 트리 주입 — calc 경로에서는 스킵 (산술 집중도 유지)
-    if not use_calc:
-        concept_hint = _format_concept_hint(state.get("concept_path", []))
-        if concept_hint:
-            context_str = f"[관련 개념] {concept_hint}\n\n---\n\n{context_str}"
-        tree = get_graph().match_judgment_tree(
-            state.get("concept_ids", []), state.get("via_topic", [])
-        )
-        if tree:
-            context_str = f"[판단 절차 — 기준서 본문]\n{tree}\n\n---\n\n{context_str}"
+    # 그래프 경로 힌트 + 판단 트리 + 프레임판별 주입 — calc 경로에서는 스킵(산술 집중도)
+    context_str = _inject_prefix(state, context_str)
 
     user_msg = CLARIFY_USER.format(
         context=context_str,
@@ -326,20 +340,8 @@ async def _run_force_conclusion(
     # calc 라우팅: analyze_agent가 LLM으로 판단한 needs_calculation 사용
     use_calc = state.get("needs_calculation", False)
 
-    # 그래프 경로 힌트 + 본문 판단 트리 주입 — calc 경로에서는 스킵 (산술 집중도 유지)
-    if not use_calc:
-        concept_hint = _format_concept_hint(state.get("concept_path", []))
-        if concept_hint:
-            context_with_checks = (
-                f"[관련 개념] {concept_hint}\n\n---\n\n{context_with_checks}"
-            )
-        tree = get_graph().match_judgment_tree(
-            state.get("concept_ids", []), state.get("via_topic", [])
-        )
-        if tree:
-            context_with_checks = (
-                f"[판단 절차 — 기준서 본문]\n{tree}\n\n---\n\n{context_with_checks}"
-            )
+    # 그래프 경로 힌트 + 판단 트리 + 프레임판별 주입 — calc 경로에서는 스킵(산술 집중도)
+    context_with_checks = _inject_prefix(state, context_with_checks)
 
     user_msg = GENERATE_USER.format(
         complexity="complex",
@@ -374,17 +376,9 @@ async def _run_generate(
     """is_situation=False → generate_agent (개념 답변)."""
     complexity = state.get("complexity", "complex")
 
-    # 그래프 경로 힌트 + 본문 판단 트리 주입 — calc 경로에서는 스킵(산술 집중도 유지).
+    # 그래프 경로 힌트 + 판단 트리 + 프레임판별 주입 — calc 경로에서는 스킵(산술 집중도).
     # Why(주입 0%): 일반 개념 질문 경로에 트리·개념 힌트가 없어 판단 절차를 못 봤음.
-    if not state.get("needs_calculation", False):
-        concept_hint = _format_concept_hint(state.get("concept_path", []))
-        if concept_hint:
-            context_str = f"[관련 개념] {concept_hint}\n\n---\n\n{context_str}"
-        tree = get_graph().match_judgment_tree(
-            state.get("concept_ids", []), state.get("via_topic", [])
-        )
-        if tree:
-            context_str = f"[판단 절차 — 기준서 본문]\n{tree}\n\n---\n\n{context_str}"
+    context_str = _inject_prefix(state, context_str)
 
     user_msg = GENERATE_USER.format(
         complexity=complexity,
