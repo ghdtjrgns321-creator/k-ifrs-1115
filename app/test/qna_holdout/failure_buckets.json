@@ -1,0 +1,268 @@
+[
+  {
+    "id": "QNA-2017-I-KQA014",
+    "bucket": "기타",
+    "evidence": {
+      "routing": "IN",
+      "gold": [
+        "32",
+        "35",
+        "37",
+        "B11",
+        "B12",
+        "B9"
+      ],
+      "gold_in_retrieved": [
+        "32",
+        "35",
+        "37",
+        "B11",
+        "B12",
+        "B9"
+      ],
+      "gold_in_cited": [
+        "35",
+        "37",
+        "B11",
+        "B12",
+        "B9"
+      ],
+      "retrieved_count": 233
+    }
+  },
+  {
+    "id": "QNA-2020-I-KQA006-Q2",
+    "bucket": "OUT",
+    "evidence": {
+      "routing": "OUT",
+      "gold": [
+        "100",
+        "31",
+        "33",
+        "38",
+        "89",
+        "99",
+        "B64",
+        "B65",
+        "B66"
+      ],
+      "gold_in_retrieved": [],
+      "gold_in_cited": [],
+      "retrieved_count": 0
+    }
+  },
+  {
+    "id": "QNA-202003D",
+    "bucket": "기타",
+    "evidence": {
+      "routing": "IN",
+      "gold": [
+        "15",
+        "2",
+        "5",
+        "69",
+        "95"
+      ],
+      "gold_in_retrieved": [
+        "15",
+        "95"
+      ],
+      "gold_in_cited": [
+        "95"
+      ],
+      "retrieved_count": 151
+    }
+  },
+  {
+    "id": "QNA-2021-I-KQA008",
+    "bucket": "기타",
+    "evidence": {
+      "routing": "IN",
+      "gold": [
+        "10",
+        "24",
+        "27",
+        "31",
+        "32",
+        "4",
+        "5",
+        "6"
+      ],
+      "gold_in_retrieved": [
+        "10",
+        "24",
+        "27",
+        "31",
+        "32"
+      ],
+      "gold_in_cited": [
+        "24",
+        "6"
+      ],
+      "retrieved_count": 278
+    }
+  },
+  {
+    "id": "QNA-2022-I-KQA007",
+    "bucket": "기타",
+    "evidence": {
+      "routing": "IN",
+      "gold": [
+        "10",
+        "11",
+        "47",
+        "8"
+      ],
+      "gold_in_retrieved": [
+        "47"
+      ],
+      "gold_in_cited": [
+        "47"
+      ],
+      "retrieved_count": 112
+    }
+  },
+  {
+    "id": "QNA-SSI-202503008",
+    "bucket": "D",
+    "evidence": {
+      "routing": "IN",
+      "gold": [
+        "88"
+      ],
+      "gold_in_retrieved": [
+        "88"
+      ],
+      "gold_in_cited": [],
+      "retrieved_count": 214
+    }
+  },
+  {
+    "id": "QNA-SSI-202511018",
+    "bucket": "기타",
+    "evidence": {
+      "routing": "IN",
+      "gold": [
+        "91",
+        "92"
+      ],
+      "gold_in_retrieved": [
+        "91",
+        "92"
+      ],
+      "gold_in_cited": [
+        "91",
+        "92"
+      ],
+      "retrieved_count": 53
+    }
+  },
+  {
+    "id": "QNA-SSI-35565",
+    "bucket": "D",
+    "evidence": {
+      "routing": "IN",
+      "gold": [
+        "54"
+      ],
+      "gold_in_retrieved": [
+        "54"
+      ],
+      "gold_in_cited": [],
+      "retrieved_count": 48
+    }
+  },
+  {
+    "id": "QNA-SSI-35567",
+    "bucket": "D",
+    "evidence": {
+      "routing": "IN",
+      "gold": [
+        "47",
+        "53",
+        "56"
+      ],
+      "gold_in_retrieved": [
+        "47",
+        "53",
+        "56"
+      ],
+      "gold_in_cited": [],
+      "retrieved_count": 274
+    }
+  },
+  {
+    "id": "QNA-SSI-38648",
+    "bucket": "기타",
+    "evidence": {
+      "routing": "IN",
+      "gold": [
+        "51"
+      ],
+      "gold_in_retrieved": [
+        "51"
+      ],
+      "gold_in_cited": [
+        "51"
+      ],
+      "retrieved_count": 190
+    }
+  },
+  {
+    "id": "QNA-SSI-38673",
+    "bucket": "OUT",
+    "evidence": {
+      "routing": "OUT",
+      "gold": [
+        "55",
+        "B20"
+      ],
+      "gold_in_retrieved": [],
+      "gold_in_cited": [],
+      "retrieved_count": 0
+    }
+  },
+  {
+    "id": "QNA-SSI-38675",
+    "bucket": "D",
+    "evidence": {
+      "routing": "IN",
+      "gold": [
+        "70"
+      ],
+      "gold_in_retrieved": [
+        "70"
+      ],
+      "gold_in_cited": [],
+      "retrieved_count": 246
+    }
+  },
+  {
+    "id": "QNA-SSI-38676",
+    "bucket": "A",
+    "evidence": {
+      "routing": "IN",
+      "gold": [
+        "91",
+        "92",
+        "94"
+      ],
+      "gold_in_retrieved": [],
+      "gold_in_cited": [],
+      "retrieved_count": 314
+    }
+  },
+  {
+    "id": "QNA-SSI-38680",
+    "bucket": "A",
+    "evidence": {
+      "routing": "IN",
+      "gold": [
+        "6"
+      ],
+      "gold_in_retrieved": [],
+      "gold_in_cited": [],
+      "retrieved_count": 237
+    }
+  }
+]
