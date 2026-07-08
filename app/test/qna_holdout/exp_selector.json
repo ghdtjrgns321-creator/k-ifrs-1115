@@ -1,0 +1,1587 @@
+{
+  "cases": [
+    "QNA-2017-I-KAQ015-Q1",
+    "QNA-2017-I-KAQ015-Q2",
+    "QNA-2017-I-KQA014",
+    "QNA-2018-I-KQA002",
+    "QNA-2018-I-KQA004",
+    "QNA-2018-I-KQA009-Q1",
+    "QNA-2018-I-KQA009-Q2",
+    "QNA-201803A",
+    "QNA-201803B",
+    "QNA-201803D",
+    "QNA-2019-I-KQA003",
+    "QNA-2019-I-KQA009-Q1",
+    "QNA-2019-I-KQA009-Q2",
+    "QNA-201901B",
+    "QNA-201906D",
+    "QNA-201909A",
+    "QNA-2020-I-KQA006-Q2",
+    "QNA-SSI-202312048",
+    "QNA-SSI-202312049",
+    "QNA-SSI-202312050",
+    "QNA-SSI-202312051",
+    "QNA-SSI-202312052",
+    "QNA-SSI-202312053",
+    "QNA-SSI-202312058",
+    "QNA-SSI-202412003",
+    "QNA-SSI-202412041",
+    "QNA-SSI-202412042",
+    "QNA-SSI-202412043",
+    "QNA-SSI-202412044",
+    "QNA-SSI-202412045",
+    "QNA-SSI-202412046",
+    "QNA-SSI-202503008",
+    "QNA-SSI-202506004",
+    "QNA-SSI-202511019",
+    "QNA-SSI-202511020",
+    "QNA-SSI-35568",
+    "QNA-SSI-35578",
+    "QNA-SSI-35579",
+    "QNA-SSI-35599",
+    "QNA-SSI-35609",
+    "QNA-SSI-35617",
+    "QNA-SSI-36904",
+    "QNA-SSI-36917",
+    "QNA-SSI-36941",
+    "QNA-SSI-36949",
+    "QNA-SSI-36951",
+    "QNA-SSI-36959",
+    "QNA-SSI-36964",
+    "QNA-SSI-36965",
+    "QNA-SSI-36975",
+    "QNA-SSI-36987",
+    "QNA-SSI-36990",
+    "QNA-SSI-36991",
+    "QNA-SSI-36993",
+    "QNA-SSI-38465",
+    "QNA-SSI-38485",
+    "QNA-SSI-38676"
+  ],
+  "rounds": [
+    {
+      "QNA-2017-I-KAQ015-Q1": {
+        "concept_ids": [
+          "5xZWrk",
+          "p1vJ25",
+          "qNvjgx",
+          "AQB8cb",
+          "bz3jWR"
+        ]
+      },
+      "QNA-2017-I-KAQ015-Q2": {
+        "concept_ids": [
+          "mtj1Wk",
+          "l3leA7",
+          "qNvjgx",
+          "5xZWrk",
+          "lIlmTb"
+        ]
+      },
+      "QNA-2017-I-KQA014": {
+        "concept_ids": [
+          "mtj1Wk",
+          "5xZWrk",
+          "CBJ3sK",
+          "l3leA7",
+          "p1vJ25"
+        ]
+      },
+      "QNA-2018-I-KQA002": {
+        "concept_ids": [
+          "CBJ3sK",
+          "5xZWrk",
+          "BqPAS9",
+          "p1vJ25",
+          "AQB8cb"
+        ]
+      },
+      "QNA-2018-I-KQA004": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "iIpmoR",
+          "O28gcg",
+          "rD7ch9"
+        ]
+      },
+      "QNA-2018-I-KQA009-Q1": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "8P5E9V",
+          "bz3jWR"
+        ]
+      },
+      "QNA-2018-I-KQA009-Q2": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "8P5E9V",
+          "AQB8cb",
+          "sM1U0t"
+        ]
+      },
+      "QNA-201803A": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "8P5E9V",
+          "5HDlPF",
+          "lIlmTb"
+        ]
+      },
+      "QNA-201803B": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "5HDlPF",
+          "lIlmTb"
+        ]
+      },
+      "QNA-201803D": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "5xZWrk",
+          "bz3jWR",
+          "lIlmTb"
+        ]
+      },
+      "QNA-2019-I-KQA003": {
+        "concept_ids": [
+          "mtj1Wk",
+          "l3leA7",
+          "p1vJ25",
+          "xR6Jtz",
+          "W6Bh7o"
+        ]
+      },
+      "QNA-2019-I-KQA009-Q1": {
+        "concept_ids": [
+          "mtj1Wk",
+          "5HDlPF",
+          "ySAFHt",
+          "bz3jWR",
+          "RF3mRJ"
+        ]
+      },
+      "QNA-2019-I-KQA009-Q2": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "5HDlPF",
+          "bz3jWR",
+          "ySAFHt"
+        ]
+      },
+      "QNA-201901B": {
+        "concept_ids": [
+          "mtj1Wk",
+          "l3leA7",
+          "p1vJ25",
+          "8P5E9V",
+          "0eXzQ4"
+        ]
+      },
+      "QNA-201906D": {
+        "concept_ids": [
+          "mtj1Wk",
+          "5HDlPF",
+          "Qfm53M",
+          "BqPAS9",
+          "TgRpnd"
+        ]
+      },
+      "QNA-201909A": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "1KOatJ",
+          "3CKe2m",
+          "rD7ch9"
+        ]
+      },
+      "QNA-2020-I-KQA006-Q2": {
+        "concept_ids": [
+          "mtj1Wk",
+          "vw8tzF",
+          "xYL1TP",
+          "rD7ch9",
+          "Cpmvf4"
+        ]
+      },
+      "QNA-SSI-202312048": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "3q1lWH",
+          "2Tb1uu",
+          "l3leA7"
+        ]
+      },
+      "QNA-SSI-202312049": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "qNvjgx",
+          "CgFt7E"
+        ]
+      },
+      "QNA-SSI-202312050": {
+        "concept_ids": [
+          "mtj1Wk",
+          "bxCGNy",
+          "Y3rhox",
+          "PQHzk5"
+        ]
+      },
+      "QNA-SSI-202312051": {
+        "concept_ids": [
+          "mtj1Wk",
+          "qNvjgx",
+          "XLz6Gv",
+          "sM1U0t",
+          "W6Bh7o"
+        ]
+      },
+      "QNA-SSI-202312052": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "5HDlPF",
+          "lIlmTb"
+        ]
+      },
+      "QNA-SSI-202312053": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "qNvjgx",
+          "XLz6Gv",
+          "fMrvaF"
+        ]
+      },
+      "QNA-SSI-202312058": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "rD7ch9",
+          "O28gcg",
+          "sM1U0t"
+        ]
+      },
+      "QNA-SSI-202412003": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "TgRpnd",
+          "AQB8cb"
+        ]
+      },
+      "QNA-SSI-202412041": {
+        "concept_ids": [
+          "mtj1Wk",
+          "T51p4P",
+          "TgRpnd",
+          "bz3jWR",
+          "RF3mRJ"
+        ]
+      },
+      "QNA-SSI-202412042": {
+        "concept_ids": [
+          "vw8tzF",
+          "24pQtH"
+        ]
+      },
+      "QNA-SSI-202412043": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "AQB8cb",
+          "5HDlPF"
+        ]
+      },
+      "QNA-SSI-202412044": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "PQHzk5"
+        ]
+      },
+      "QNA-SSI-202412045": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "qNvjgx",
+          "p1vJ25"
+        ]
+      },
+      "QNA-SSI-202412046": {
+        "concept_ids": [
+          "mtj1Wk",
+          "xYL1TP",
+          "bz3jWR",
+          "RF3mRJ",
+          "bz3jWR"
+        ]
+      },
+      "QNA-SSI-202503008": {
+        "concept_ids": [
+          "mtj1Wk",
+          "l3leA7",
+          "xYL1TP",
+          "rD7ch9",
+          "T51p4P"
+        ]
+      },
+      "QNA-SSI-202506004": {
+        "concept_ids": [
+          "bz3jWR",
+          "H8vY9D",
+          "Hkislf",
+          "T51p4P",
+          "RF3mRJ"
+        ]
+      },
+      "QNA-SSI-202511019": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "p1vJ25"
+        ]
+      },
+      "QNA-SSI-202511020": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "8P5E9V",
+          "3q1lWH"
+        ]
+      },
+      "QNA-SSI-35568": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "8P5E9V",
+          "2IbOfX"
+        ]
+      },
+      "QNA-SSI-35578": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "qNvjgx",
+          "xR6Jtz"
+        ]
+      },
+      "QNA-SSI-35579": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "AQB8cb",
+          "lIlmTb"
+        ]
+      },
+      "QNA-SSI-35599": {
+        "concept_ids": [
+          "mtj1Wk",
+          "T51p4P",
+          "TgRpnd",
+          "rD7ch9",
+          "jBozvF"
+        ]
+      },
+      "QNA-SSI-35609": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "8P5E9V",
+          "sM1U0t",
+          "bzQL7S"
+        ]
+      },
+      "QNA-SSI-35617": {
+        "concept_ids": [
+          "mtj1Wk",
+          "O28gcg",
+          "3q1lWH",
+          "FJvsfz",
+          "Cpmvf4"
+        ]
+      },
+      "QNA-SSI-36904": {
+        "concept_ids": [
+          "AQB8cb",
+          "bz3jWR",
+          "H8vY9D",
+          "Hkislf",
+          "mtj1Wk"
+        ]
+      },
+      "QNA-SSI-36917": {
+        "concept_ids": [
+          "mtj1Wk",
+          "4aNSKr",
+          "l3leA7",
+          "jBozvF",
+          "lKmqLc"
+        ]
+      },
+      "QNA-SSI-36941": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "AQB8cb",
+          "W6Bh7o"
+        ]
+      },
+      "QNA-SSI-36949": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "8P5E9V",
+          "AQB8cb"
+        ]
+      },
+      "QNA-SSI-36951": {
+        "concept_ids": [
+          "mtj1Wk",
+          "vw8tzF",
+          "rD7ch9",
+          "SMeYao",
+          "Cpmvf4"
+        ]
+      },
+      "QNA-SSI-36959": {
+        "concept_ids": [
+          "mtj1Wk",
+          "4aNSKr",
+          "l3leA7",
+          "3q1lWH",
+          "O28gcg"
+        ]
+      },
+      "QNA-SSI-36964": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "O28gcg",
+          "cTpTDN"
+        ]
+      },
+      "QNA-SSI-36965": {
+        "concept_ids": [
+          "mtj1Wk",
+          "rD7ch9",
+          "3q1lWH",
+          "cTpTDN",
+          "sM1U0t"
+        ]
+      },
+      "QNA-SSI-36975": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "rD7ch9",
+          "3q1lWH",
+          "l3leA7"
+        ]
+      },
+      "QNA-SSI-36987": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "8P5E9V",
+          "bz3jWR"
+        ]
+      },
+      "QNA-SSI-36990": {
+        "concept_ids": [
+          "mtj1Wk",
+          "Ag62GJ",
+          "rD7ch9",
+          "O28gcg",
+          "Cpmvf4"
+        ]
+      },
+      "QNA-SSI-36991": {
+        "concept_ids": [
+          "mtj1Wk",
+          "Ag62GJ",
+          "O28gcg",
+          "rD7ch9",
+          "3CKe2m"
+        ]
+      },
+      "QNA-SSI-36993": {
+        "concept_ids": [
+          "mtj1Wk",
+          "4aNSKr",
+          "sM1U0t",
+          "l3leA7",
+          "rD7ch9"
+        ]
+      },
+      "QNA-SSI-38465": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "3q1lWH",
+          "l3leA7",
+          "cTpTDN"
+        ]
+      },
+      "QNA-SSI-38485": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "2Tb1uu",
+          "rD7ch9",
+          "TtGOPn"
+        ]
+      },
+      "QNA-SSI-38676": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "FJvsfz",
+          "rD7ch9",
+          "W6Bh7o"
+        ]
+      }
+    },
+    {
+      "QNA-2017-I-KAQ015-Q1": {
+        "concept_ids": [
+          "5xZWrk",
+          "AQB8cb",
+          "lIlmTb",
+          "p1vJ25",
+          "qNvjgx"
+        ]
+      },
+      "QNA-2017-I-KAQ015-Q2": {
+        "concept_ids": [
+          "mtj1Wk",
+          "l3leA7",
+          "qNvjgx",
+          "5xZWrk",
+          "sM1U0t"
+        ]
+      },
+      "QNA-2017-I-KQA014": {
+        "concept_ids": [
+          "mtj1Wk",
+          "5xZWrk",
+          "CBJ3sK",
+          "p1vJ25",
+          "AQB8cb"
+        ]
+      },
+      "QNA-2018-I-KQA002": {
+        "concept_ids": [
+          "mtj1Wk",
+          "bz3jWR",
+          "5HDlPF",
+          "VB6r1W",
+          "5xZWrk"
+        ]
+      },
+      "QNA-2018-I-KQA004": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "iIpmoR",
+          "sM1U0t",
+          "rD7ch9"
+        ]
+      },
+      "QNA-2018-I-KQA009-Q1": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "8P5E9V",
+          "sM1U0t"
+        ]
+      },
+      "QNA-2018-I-KQA009-Q2": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "AQB8cb",
+          "5HDlPF"
+        ]
+      },
+      "QNA-201803A": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "8P5E9V",
+          "5HDlPF",
+          "lIlmTb"
+        ]
+      },
+      "QNA-201803B": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "5HDlPF",
+          "lIlmTb"
+        ]
+      },
+      "QNA-201803D": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "5xZWrk",
+          "AQB8cb",
+          "Ovyudt"
+        ]
+      },
+      "QNA-2019-I-KQA003": {
+        "concept_ids": [
+          "mtj1Wk",
+          "4aNSKr",
+          "p1vJ25",
+          "cTpTDN",
+          "SMeYao"
+        ]
+      },
+      "QNA-2019-I-KQA009-Q1": {
+        "concept_ids": [
+          "mtj1Wk",
+          "5HDlPF",
+          "ySAFHt"
+        ]
+      },
+      "QNA-2019-I-KQA009-Q2": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "5HDlPF",
+          "ySAFHt"
+        ]
+      },
+      "QNA-201901B": {
+        "concept_ids": [
+          "mtj1Wk",
+          "l3leA7",
+          "p1vJ25",
+          "qNvjgx",
+          "n94QVz"
+        ]
+      },
+      "QNA-201906D": {
+        "concept_ids": [
+          "mtj1Wk",
+          "5HDlPF",
+          "Qfm53M",
+          "BqPAS9",
+          "TgRpnd"
+        ]
+      },
+      "QNA-201909A": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "1KOatJ",
+          "3CKe2m",
+          "rD7ch9"
+        ]
+      },
+      "QNA-2020-I-KQA006-Q2": {
+        "concept_ids": [
+          "vw8tzF",
+          "24pQtH",
+          "mtj1Wk",
+          "l3leA7"
+        ]
+      },
+      "QNA-SSI-202312048": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "3q1lWH",
+          "2Tb1uu"
+        ]
+      },
+      "QNA-SSI-202312049": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "l3leA7",
+          "p1vJ25",
+          "Cpmvf4"
+        ]
+      },
+      "QNA-SSI-202312050": {
+        "concept_ids": [
+          "mtj1Wk",
+          "bxCGNy",
+          "Y3rhox",
+          "p1vJ25",
+          "qNvjgx"
+        ]
+      },
+      "QNA-SSI-202312051": {
+        "concept_ids": [
+          "mtj1Wk",
+          "xR6Jtz",
+          "XLz6Gv",
+          "sM1U0t",
+          "W6Bh7o"
+        ]
+      },
+      "QNA-SSI-202312052": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "5HDlPF",
+          "1KOatJ"
+        ]
+      },
+      "QNA-SSI-202312053": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "ySAFHt",
+          "FJvsfz"
+        ]
+      },
+      "QNA-SSI-202312058": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "rD7ch9",
+          "O28gcg",
+          "xYL1TP"
+        ]
+      },
+      "QNA-SSI-202412003": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "AQB8cb",
+          "TtGOPn",
+          "TgRpnd"
+        ]
+      },
+      "QNA-SSI-202412041": {
+        "concept_ids": [
+          "mtj1Wk",
+          "T51p4P",
+          "TgRpnd",
+          "bz3jWR",
+          "RF3mRJ"
+        ]
+      },
+      "QNA-SSI-202412042": {
+        "concept_ids": [
+          "vw8tzF",
+          "24pQtH",
+          "rD7ch9",
+          "O28gcg",
+          "cTpTDN"
+        ]
+      },
+      "QNA-SSI-202412043": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "AQB8cb",
+          "lIlmTb"
+        ]
+      },
+      "QNA-SSI-202412044": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "PQHzk5"
+        ]
+      },
+      "QNA-SSI-202412045": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "8P5E9V",
+          "O28gcg"
+        ]
+      },
+      "QNA-SSI-202412046": {
+        "concept_ids": [
+          "xYL1TP",
+          "bz3jWR",
+          "RF3mRJ",
+          "Cpmvf4",
+          "BqPAS9"
+        ]
+      },
+      "QNA-SSI-202503008": {
+        "concept_ids": [
+          "mtj1Wk",
+          "4aNSKr",
+          "xYL1TP",
+          "rD7ch9",
+          "T51p4P"
+        ]
+      },
+      "QNA-SSI-202506004": {
+        "concept_ids": [
+          "mtj1Wk",
+          "bz3jWR",
+          "H8vY9D",
+          "T51p4P",
+          "RF3mRJ"
+        ]
+      },
+      "QNA-SSI-202511019": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "5HDlPF",
+          "TtGOPn"
+        ]
+      },
+      "QNA-SSI-202511020": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "8P5E9V",
+          "3q1lWH"
+        ]
+      },
+      "QNA-SSI-35568": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "8P5E9V",
+          "2IbOfX"
+        ]
+      },
+      "QNA-SSI-35578": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "qNvjgx",
+          "W6Bh7o"
+        ]
+      },
+      "QNA-SSI-35579": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "AQB8cb",
+          "W6Bh7o"
+        ]
+      },
+      "QNA-SSI-35599": {
+        "concept_ids": [
+          "TtGOPn",
+          "TgRpnd",
+          "mtj1Wk",
+          "fMrvaF",
+          "LeIwTR"
+        ]
+      },
+      "QNA-SSI-35609": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "8P5E9V",
+          "2IbOfX"
+        ]
+      },
+      "QNA-SSI-35617": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "Cpmvf4",
+          "O28gcg",
+          "fMrvaF"
+        ]
+      },
+      "QNA-SSI-36904": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "bz3jWR",
+          "Hkislf"
+        ]
+      },
+      "QNA-SSI-36917": {
+        "concept_ids": [
+          "mtj1Wk",
+          "l3leA7",
+          "jBozvF",
+          "4aNSKr",
+          "l3leA7"
+        ]
+      },
+      "QNA-SSI-36941": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "3CKe2m",
+          "W6Bh7o"
+        ]
+      },
+      "QNA-SSI-36949": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "8P5E9V",
+          "AQB8cb"
+        ]
+      },
+      "QNA-SSI-36951": {
+        "concept_ids": [
+          "vw8tzF",
+          "mtj1Wk",
+          "sM1U0t",
+          "bz3jWR",
+          "rD7ch9"
+        ]
+      },
+      "QNA-SSI-36959": {
+        "concept_ids": [
+          "mtj1Wk",
+          "4aNSKr",
+          "l3leA7",
+          "p1vJ25",
+          "3q1lWH"
+        ]
+      },
+      "QNA-SSI-36964": {
+        "concept_ids": [
+          "sM1U0t",
+          "p1vJ25",
+          "AQB8cb",
+          "O28gcg",
+          "cTpTDN"
+        ]
+      },
+      "QNA-SSI-36965": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "rD7ch9",
+          "3q1lWH",
+          "Cpmvf4"
+        ]
+      },
+      "QNA-SSI-36975": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "rD7ch9",
+          "3q1lWH",
+          "lKmqLc"
+        ]
+      },
+      "QNA-SSI-36987": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "8P5E9V",
+          "xYL1TP"
+        ]
+      },
+      "QNA-SSI-36990": {
+        "concept_ids": [
+          "Ag62GJ",
+          "rD7ch9",
+          "O28gcg"
+        ]
+      },
+      "QNA-SSI-36991": {
+        "concept_ids": [
+          "Ag62GJ",
+          "O28gcg",
+          "mtj1Wk"
+        ]
+      },
+      "QNA-SSI-36993": {
+        "concept_ids": [
+          "mtj1Wk",
+          "4aNSKr",
+          "sM1U0t",
+          "rD7ch9",
+          "O28gcg"
+        ]
+      },
+      "QNA-SSI-38465": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "xYL1TP",
+          "O28gcg",
+          "Cpmvf4"
+        ]
+      },
+      "QNA-SSI-38485": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "2Tb1uu",
+          "rD7ch9",
+          "sM1U0t"
+        ]
+      },
+      "QNA-SSI-38676": {
+        "concept_ids": [
+          "mtj1Wk",
+          "O28gcg",
+          "FJvsfz",
+          "TtGOPn",
+          "Ks6E5m"
+        ]
+      }
+    },
+    {
+      "QNA-2017-I-KAQ015-Q1": {
+        "concept_ids": [
+          "5xZWrk",
+          "p1vJ25",
+          "qNvjgx",
+          "AQB8cb",
+          "mtj1Wk"
+        ]
+      },
+      "QNA-2017-I-KAQ015-Q2": {
+        "concept_ids": [
+          "mtj1Wk",
+          "l3leA7",
+          "lIlmTb",
+          "5xZWrk",
+          "Ovyudt"
+        ]
+      },
+      "QNA-2017-I-KQA014": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "5HDlPF",
+          "5xZWrk",
+          "CBJ3sK"
+        ]
+      },
+      "QNA-2018-I-KQA002": {
+        "concept_ids": [
+          "mtj1Wk",
+          "5HDlPF",
+          "VB6r1W",
+          "CBJ3sK",
+          "5xZWrk"
+        ]
+      },
+      "QNA-2018-I-KQA004": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "iIpmoR",
+          "Cpmvf4",
+          "rD7ch9"
+        ]
+      },
+      "QNA-2018-I-KQA009-Q1": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "8P5E9V",
+          "bz3jWR"
+        ]
+      },
+      "QNA-2018-I-KQA009-Q2": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "AQB8cb",
+          "bz3jWR"
+        ]
+      },
+      "QNA-201803A": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "8P5E9V",
+          "5HDlPF",
+          "lIlmTb"
+        ]
+      },
+      "QNA-201803B": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "5HDlPF",
+          "lIlmTb"
+        ]
+      },
+      "QNA-201803D": {
+        "concept_ids": [
+          "5xZWrk",
+          "p1vJ25",
+          "qNvjgx",
+          "xYL1TP",
+          "mtj1Wk"
+        ]
+      },
+      "QNA-2019-I-KQA003": {
+        "concept_ids": [
+          "mtj1Wk",
+          "l3leA7",
+          "p1vJ25",
+          "AQB8cb",
+          "O28gcg"
+        ]
+      },
+      "QNA-2019-I-KQA009-Q1": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "5HDlPF",
+          "ySAFHt",
+          "bz3jWR"
+        ]
+      },
+      "QNA-2019-I-KQA009-Q2": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "5HDlPF",
+          "ySAFHt"
+        ]
+      },
+      "QNA-201901B": {
+        "concept_ids": [
+          "mtj1Wk",
+          "l3leA7",
+          "p1vJ25",
+          "qNvjgx",
+          "n94QVz"
+        ]
+      },
+      "QNA-201906D": {
+        "concept_ids": [
+          "5HDlPF",
+          "Qfm53M",
+          "BqPAS9",
+          "TgRpnd"
+        ]
+      },
+      "QNA-201909A": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "1KOatJ",
+          "3CKe2m",
+          "rD7ch9"
+        ]
+      },
+      "QNA-2020-I-KQA006-Q2": {
+        "concept_ids": [
+          "mtj1Wk",
+          "vw8tzF",
+          "rD7ch9",
+          "O28gcg"
+        ]
+      },
+      "QNA-SSI-202312048": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "3q1lWH",
+          "2Tb1uu",
+          "l3leA7"
+        ]
+      },
+      "QNA-SSI-202312049": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "qNvjgx",
+          "Cpmvf4"
+        ]
+      },
+      "QNA-SSI-202312050": {
+        "concept_ids": [
+          "mtj1Wk",
+          "bxCGNy",
+          "Y3rhox",
+          "rD7ch9",
+          "sM1U0t"
+        ]
+      },
+      "QNA-SSI-202312051": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "XLz6Gv",
+          "cTpTDN",
+          "W6Bh7o"
+        ]
+      },
+      "QNA-SSI-202312052": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "5HDlPF",
+          "O28gcg"
+        ]
+      },
+      "QNA-SSI-202312053": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "qNvjgx",
+          "XLz6Gv",
+          "fMrvaF"
+        ]
+      },
+      "QNA-SSI-202312058": {
+        "concept_ids": [
+          "mtj1Wk",
+          "rD7ch9",
+          "3q1lWH",
+          "O28gcg",
+          "Cpmvf4"
+        ]
+      },
+      "QNA-SSI-202412003": {
+        "concept_ids": [
+          "mtj1Wk",
+          "xYL1TP",
+          "O28gcg",
+          "cTpTDN",
+          "T51p4P"
+        ]
+      },
+      "QNA-SSI-202412041": {
+        "concept_ids": [
+          "mtj1Wk",
+          "T51p4P",
+          "TgRpnd",
+          "bz3jWR",
+          "RF3mRJ"
+        ]
+      },
+      "QNA-SSI-202412042": {
+        "concept_ids": [
+          "vw8tzF",
+          "24pQtH",
+          "rD7ch9",
+          "O28gcg",
+          "Cpmvf4"
+        ]
+      },
+      "QNA-SSI-202412043": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "AQB8cb",
+          "5HDlPF",
+          "sM1U0t"
+        ]
+      },
+      "QNA-SSI-202412044": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "bxCGNy",
+          "PQHzk5"
+        ]
+      },
+      "QNA-SSI-202412045": {
+        "concept_ids": [
+          "mtj1Wk",
+          "l3leA7",
+          "p1vJ25",
+          "qNvjgx",
+          "sM1U0t"
+        ]
+      },
+      "QNA-SSI-202412046": {
+        "concept_ids": [
+          "xYL1TP",
+          "bz3jWR",
+          "RF3mRJ",
+          "rD7ch9",
+          "sM1U0t"
+        ]
+      },
+      "QNA-SSI-202503008": {
+        "concept_ids": [
+          "mtj1Wk",
+          "4aNSKr",
+          "xYL1TP",
+          "rD7ch9",
+          "T51p4P"
+        ]
+      },
+      "QNA-SSI-202506004": {
+        "concept_ids": [
+          "mtj1Wk",
+          "bz3jWR",
+          "RF3mRJ",
+          "TgRpnd",
+          "BqPAS9"
+        ]
+      },
+      "QNA-SSI-202511019": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "5HDlPF",
+          "rD7ch9"
+        ]
+      },
+      "QNA-SSI-202511020": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "8P5E9V",
+          "rD7ch9",
+          "3q1lWH"
+        ]
+      },
+      "QNA-SSI-35568": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "8P5E9V",
+          "2IbOfX"
+        ]
+      },
+      "QNA-SSI-35578": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "qNvjgx",
+          "W6Bh7o"
+        ]
+      },
+      "QNA-SSI-35579": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "AQB8cb",
+          "lIlmTb"
+        ]
+      },
+      "QNA-SSI-35599": {
+        "concept_ids": [
+          "mtj1Wk",
+          "T51p4P",
+          "TgRpnd",
+          "hVmPG4",
+          "xR6Jtz"
+        ]
+      },
+      "QNA-SSI-35609": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "8P5E9V",
+          "sM1U0t"
+        ]
+      },
+      "QNA-SSI-35617": {
+        "concept_ids": [
+          "mtj1Wk",
+          "O28gcg",
+          "3q1lWH",
+          "FJvsfz",
+          "cTpTDN"
+        ]
+      },
+      "QNA-SSI-36904": {
+        "concept_ids": [
+          "AQB8cb",
+          "bz3jWR",
+          "H8vY9D",
+          "Hkislf",
+          "p1vJ25"
+        ]
+      },
+      "QNA-SSI-36917": {
+        "concept_ids": [
+          "mtj1Wk",
+          "4aNSKr",
+          "l3leA7",
+          "jBozvF",
+          "lKmqLc"
+        ]
+      },
+      "QNA-SSI-36941": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "p1vJ25",
+          "AQB8cb",
+          "W6Bh7o"
+        ]
+      },
+      "QNA-SSI-36949": {
+        "concept_ids": [
+          "mtj1Wk",
+          "sM1U0t",
+          "AQB8cb",
+          "lIlmTb",
+          "5HDlPF"
+        ]
+      },
+      "QNA-SSI-36951": {
+        "concept_ids": [
+          "mtj1Wk",
+          "vw8tzF",
+          "xYL1TP",
+          "sM1U0t",
+          "p1vJ25"
+        ]
+      },
+      "QNA-SSI-36959": {
+        "concept_ids": [
+          "mtj1Wk",
+          "4aNSKr",
+          "l3leA7",
+          "p1vJ25",
+          "O28gcg"
+        ]
+      },
+      "QNA-SSI-36964": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "cTpTDN",
+          "FJvsfz"
+        ]
+      },
+      "QNA-SSI-36965": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "rD7ch9",
+          "O28gcg",
+          "Cpmvf4"
+        ]
+      },
+      "QNA-SSI-36975": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "lKmqLc",
+          "O28gcg",
+          "rD7ch9"
+        ]
+      },
+      "QNA-SSI-36987": {
+        "concept_ids": [
+          "mtj1Wk",
+          "p1vJ25",
+          "qNvjgx",
+          "8P5E9V",
+          "bz3jWR"
+        ]
+      },
+      "QNA-SSI-36990": {
+        "concept_ids": [
+          "Ag62GJ",
+          "O28gcg",
+          "rD7ch9"
+        ]
+      },
+      "QNA-SSI-36991": {
+        "concept_ids": [
+          "mtj1Wk",
+          "Ag62GJ",
+          "O28gcg",
+          "rD7ch9",
+          "3CKe2m"
+        ]
+      },
+      "QNA-SSI-36993": {
+        "concept_ids": [
+          "mtj1Wk",
+          "4aNSKr",
+          "sM1U0t",
+          "l3leA7",
+          "3CKe2m"
+        ]
+      },
+      "QNA-SSI-38465": {
+        "concept_ids": [
+          "mtj1Wk",
+          "4aNSKr",
+          "xYL1TP",
+          "O28gcg",
+          "Cpmvf4"
+        ]
+      },
+      "QNA-SSI-38485": {
+        "concept_ids": [
+          "mtj1Wk",
+          "3q1lWH",
+          "2Tb1uu",
+          "lKmqLc",
+          "T51p4P"
+        ]
+      },
+      "QNA-SSI-38676": {
+        "concept_ids": [
+          "mtj1Wk",
+          "O28gcg",
+          "FJvsfz",
+          "rD7ch9",
+          "sM1U0t"
+        ]
+      }
+    }
+  ]
+}
