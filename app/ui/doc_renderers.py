@@ -29,6 +29,7 @@ from app.ui.text import (
     _extract_para_refs,
     _normalize_doc_content,
     clean_text,
+    md_structure_to_html,
     md_tables_to_html,
 )
 
@@ -162,11 +163,11 @@ def _render_document_expander(
         normalized = _normalize_doc_content(display_text, source)
         cleaned = clean_text(normalized)
         cleaned = md_tables_to_html(cleaned)
+        cleaned = md_structure_to_html(cleaned)
         # \n+ → 단일 <br>로 통합 (이중 줄띄움 방지)
         cleaned = re.sub(r"\n+", "<br>", cleaned)
         st.markdown(
-            f'<div style="line-height:1.85; font-size:0.93em;">'
-            f"{cleaned}</div>",
+            f'<div style="line-height:1.85; font-size:0.93em;">{cleaned}</div>',
             unsafe_allow_html=True,
         )
 
@@ -235,7 +236,9 @@ def _render_pdr_expander(
 
         # desc blockquote — topic_tabs.py의 _desc_blockquote와 동일 스타일
         if entry_desc:
-            _d = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", html.escape(entry_desc))
+            _d = re.sub(
+                r"\*\*(.+?)\*\*", r"<strong>\1</strong>", html.escape(entry_desc)
+            )
             _d = re.sub(r"(?<=[가-힣])\.\s+", ".<br>", _d)
             _d = _d.replace("\n", "<br>")
             st.markdown(
@@ -252,10 +255,10 @@ def _render_pdr_expander(
             adjusted = _format_pdr_content(content)
             cleaned = clean_text(adjusted)
             cleaned = md_tables_to_html(cleaned)
+            cleaned = md_structure_to_html(cleaned)
             cleaned = re.sub(r"\n+", "<br>", cleaned)
             st.markdown(
-                f'<div style="line-height:1.85; font-size:0.93em;">'
-                f"{cleaned}</div>",
+                f'<div style="line-height:1.85; font-size:0.93em;">{cleaned}</div>',
                 unsafe_allow_html=True,
             )
             # 🔗 관련 조항 칩
@@ -265,8 +268,7 @@ def _render_pdr_expander(
 
         # 📍 출처 경로 푸터
         st.html(
-            f'<div class="source-footer">📍 출처 경로: '
-            f"{html.escape(hierarchy)}</div>"
+            f'<div class="source-footer">📍 출처 경로: {html.escape(hierarchy)}</div>'
         )
 
 

@@ -12,16 +12,11 @@ import streamlit as st
 
 from app.ui.constants import (
     ACCORDION_GROUPS,
-    DOC_PREFIX_QNA,
-    DOC_PREFIXES_FINDING,
     SRC_APPENDIX_B,
     SRC_BC,
     SRC_BODY,
     SRC_DEFINITION,
     SRC_EFFECTIVE,
-    SRC_FINDING,
-    SRC_IE,
-    SRC_QNA,
 )
 from app.ui.db import _expand_para_range, fetch_docs_by_para_ids, fetch_ie_case_docs
 from app.ui.doc_helpers import (
@@ -92,8 +87,9 @@ def _get_cited_ids() -> set[str]:
         num = _para_ref_to_num(ref)
         cited_paras.update(_expand_para_range(num))
 
-    # QNA/감리사례 ID 추출
+    # QNA/감리사례 ID 추출 (answer 정규식 + LLM 구조화 선언 cited_cases 합집합)
     pdr_ids = set(re.findall(r"(QNA-[\w-]+|FSS-CASE-[\w-]+|KICPA-CASE-[\w-]+)", answer))
+    pdr_ids |= set(st.session_state.get("cited_cases", []) or [])
 
     return cited_paras | pdr_ids
 
@@ -175,177 +171,21 @@ def _get_cited_standard_docs() -> list[dict]:
     return result
 
 
-def _get_cited_pdr_docs() -> list[dict]:
-    """AI 답변에서 인용된 QNA/감리사례를 DB에서 조회합니다.
-
-    retriever가 가져온 것과 무관하게, AI가 실제 인용한 ID만 표시합니다.
-    """
-    from app.ui.db import fetch_parent_doc
-
-    answer = st.session_state.get("ai_answer", "")
-    if not answer:
-        return []
-
-    cache_key = hash(("pdr", answer))
-    if st.session_state.get("_cited_pdr_cache_key") == cache_key:
-        return st.session_state.get("_cited_pdr_cache", [])
-
-    cited_ids = re.findall(r"(QNA-[\w-]+|FSS-CASE-[\w-]+|KICPA-CASE-[\w-]+)", answer)
-    if not cited_ids:
-        return []
-
-    result: list[dict] = []
-    for pid in dict.fromkeys(cited_ids):
-        parent = fetch_parent_doc(pid)
-        if not parent:
-            continue
-        source = SRC_FINDING if pid.startswith(DOC_PREFIXES_FINDING) else SRC_QNA
-        result.append(
-            {
-                "source": source,
-                "parent_id": pid,
-                "hierarchy": parent.get("hierarchy", ""),
-                "title": parent.get("title", ""),
-                "content": "",
-                "chunk_id": pid,
-                "score": 0.0,
-            }
-        )
-
-    st.session_state["_cited_pdr_cache_key"] = cache_key
-    st.session_state["_cited_pdr_cache"] = result
-    return result
-
-
-def _get_cited_ie_docs() -> list[dict]:
-    """AI 답변에서 인용된 IE 적용사례를 DB에서 조회합니다."""
-    answer = st.session_state.get("ai_answer", "")
-    if not answer:
-        return []
-
-    cache_key = hash(("ie", answer))
-    if st.session_state.get("_cited_ie_cache_key") == cache_key:
-        return st.session_state.get("_cited_ie_cache", [])
-
-    # "사례 24", "사례 1A" 등 추출
-    case_refs = re.findall(r"사례\s*(\d+[A-Z]?)", answer)
-    if not case_refs:
-        return []
-
-    # "사례 24" → "사례 24" 정규화하여 DB 조회
-    case_titles = list(dict.fromkeys(f"사례 {c}" for c in case_refs))
-    ie_docs = fetch_ie_case_docs(tuple(case_titles))
-    # DB 원본에 source 필드가 없으므로 ACCORDION_GROUPS 그룹핑용으로 설정
-    for d in ie_docs:
-        d["source"] = SRC_IE
-
-    st.session_state["_cited_ie_cache_key"] = cache_key
-    st.session_state["_cited_ie_cache"] = ie_docs
-    return ie_docs
-
-
-def _render_supp_extra(sources: list[str], idx_base: int) -> None:
-    """해당 소스의 보조 문서(AI 미인용, retriever 결과 TOP 3)를 더보기로 렌더링."""
-    supp_map = st.session_state.get("_supp_by_group", {})
-    # 그룹의 sources 목록에 매칭되는 보조 문서 수집
-    extra: list[dict] = []
-    for src in sources:
-        extra.extend(supp_map.get(src, []))
-    if not extra:
-        return
-    # IE 문서를 case_group_title 기준으로 중복 제거 (같은 사례는 1번만 렌더)
-    ie_seen: set[str] = set()
-    deduped: list[dict] = []
-    for d in extra:
-        cgt = d.get("case_group_title", "")
-        if cgt:
-            if cgt in ie_seen:
-                continue
-            ie_seen.add(cgt)
-        deduped.append(d)
-
-    with st.expander(f"📂 참고하면 좋은 추가 문서 ({len(deduped)}건)", expanded=False):
-        with st.container(border=True):
-            for i, d in enumerate(deduped):
-                pid = d.get("parent_id", "")
-                cgt = d.get("case_group_title", "")
-                if pid:
-                    _render_pdr_expander(
-                        d,
-                        doc_index=idx_base + i,
-                        entry_desc=get_desc_for_pdr(pid),
-                    )
-                elif cgt:
-                    # IE pinpoint: 메인 사례와 동일한 형태로 렌더링
-                    ie_case_docs = fetch_ie_case_docs((cgt,))
-                    ie_case_docs.sort(key=_extract_num)
-                    for ie_d in ie_case_docs:
-                        ie_d["case_group_title"] = cgt
-                    desc = _get_ie_desc_clean(cgt)
-                    with st.expander(f"📎 {cgt}", expanded=False):
-                        _ie_desc_blockquote(desc)
-                        for j, ie_doc in enumerate(ie_case_docs):
-                            _render_document_expander(
-                                ie_doc, doc_index=idx_base + i * 100 + j
-                            )
-                else:
-                    _render_document_expander(d, doc_index=idx_base + i)
-
-
 # ---------------------------------------------------------------------------
 # 서브 렌더링 함수들 — _render_evidence_panel에서 분리
 # ---------------------------------------------------------------------------
 
 
 def _prepare_ai_answer_docs(docs: list[dict]) -> list[dict]:
-    """ai_answer 페이지: 인용 문서를 메인으로, retriever 결과는 보조로 분리.
+    """ai_answer 페이지: LLM이 실제 읽은 컨텍스트를 좌측에 노출.
 
-    Returns: 인용 기반으로 재구성된 docs 리스트.
-    Side effect: st.session_state["_supp_by_group"] 설정.
+    docs = context_docs(via_topic 한정 — 케이스·IE는 LLM 지목 주제 직결만, 플러드 없음).
+      - QNA/감리/IE: 컨텍스트 그대로 노출 (그래프가 개념 직결로 고른 관련 근거)
+      - 문단: 개념 관할 문단이 많아 answer가 인용한 것만 (_get_cited_standard_docs)
+    답변이 실제 인용한 것은 렌더러가 cited_ids/cited_case_nums로 📌 강조한다.
     """
-    _SUPPLEMENTABLE = frozenset({SRC_QNA, "QNA", SRC_FINDING, SRC_IE})
-
-    # retriever가 가져온 QNA/감리/IE 원본 보존 (더보기용)
-    retrieved_supplementary = [
-        d for d in docs if d.get("source", "") in _SUPPLEMENTABLE
-    ]
-
-    # 인용 문서로 교체
-    docs = [
-        d
-        for d in docs
-        if d.get("source", "") not in (_STANDARD_SOURCES | _SUPPLEMENTABLE)
-    ]
+    docs = [d for d in docs if d.get("source", "") not in _STANDARD_SOURCES]
     docs.extend(_get_cited_standard_docs())
-
-    # 인용된 QNA/감리/IE
-    cited_pdr = _get_cited_pdr_docs()
-    cited_ie = _get_cited_ie_docs()
-    docs.extend(cited_pdr)
-    docs.extend(cited_ie)
-
-    # 인용 문서의 ID 집합 — 더보기에서 중복 제거용
-    cited_pdr_ids = {d.get("parent_id") or d.get("chunk_id") for d in cited_pdr}
-    cited_ie_cids = {d.get("chunk_id") for d in cited_ie}
-
-    # retriever + pinpoint 미인용 문서를 소스별로 분리 (더보기용)
-    # Why: pinpoint(큐레이션)은 AI가 인용 안 해도 "참고하면 좋은 추가 문서"로 표시
-    #       pinpoint을 우선 배치하고 retriever 문서로 보충 (소스별 최대 5건)
-    _supp_by_group: dict[str, list[dict]] = {}
-    for d in retrieved_supplementary:
-        uid = d.get("parent_id") or d.get("chunk_id", "")
-        if uid and uid not in cited_pdr_ids and uid not in cited_ie_cids:
-            src = d.get("source", "")
-            _supp_by_group.setdefault(src, []).append(d)
-    # pinpoint 우선 정렬: pinpoint(score=1.0)이 retriever보다 앞에 오도록
-    for src in _supp_by_group:
-        _supp_by_group[src].sort(
-            key=lambda x: (x.get("chunk_type") == "pinpoint", x.get("score", 0.0)),
-            reverse=True,
-        )
-        _supp_by_group[src] = _supp_by_group[src][:3]
-    st.session_state["_supp_by_group"] = _supp_by_group
-
     return docs
 
 
@@ -364,9 +204,6 @@ def _render_ie_group(
     cited_ids: set[str] | None = None,
 ) -> None:
     """IE 적용사례 그룹: 사례별 expander + 더보기 렌더링."""
-    total_count = len(group_docs)
-    st.markdown(f"### {group_name} — {total_count}건")
-
     # 사례별 분류
     seen_cases: set[str] = set()
     case_order: list[str] = []
@@ -379,6 +216,10 @@ def _render_ie_group(
         elif cgt not in seen_cases:
             seen_cases.add(cgt)
             case_order.append(cgt)
+
+    # 건수 = 사례 그룹 수 — 청크(문단) 수를 표기하면 "41건"처럼 실제 사례 수와 불일치
+    total_count = len(case_order) + len(no_case_docs)
+    st.markdown(f"### {group_name} — {total_count}건")
 
     # IE 섹션 summary 표시 (topic_tabs.py와 동일)
     ie_summary = get_summary_for_ie_cases(case_order)
@@ -403,6 +244,11 @@ def _render_ie_group(
     cited_case_nums = (
         set(re.findall(r"사례\s*(\d+[A-Z]?)", answer)) if answer else set()
     )
+    # LLM 구조화 선언 cited_ie도 강조 대상에 합류 (산문에 "Case 1"만 써도 인식)
+    for _x in st.session_state.get("cited_ie", []) or []:
+        _m = re.match(r"사례\s*(\d+[A-Za-z]?)", _x)
+        if _m:
+            cited_case_nums.add(_m.group(1))
 
     doc_idx = 0
     for cgt in main_cases:
@@ -447,16 +293,15 @@ def _render_ie_group(
                             _render_document_expander(d, doc_index=doc_idx)
                             doc_idx += 1
 
-    # 보조 문서: ACCORDION_GROUPS에서 해당 그룹의 소스 목록으로 조회
-    _render_supp_extra(ACCORDION_GROUPS.get(group_name, []), 700 + doc_idx)
-
 
 def _render_pdr_group(
-    group_name: str,
     group_docs: list[dict],
     cited_ids: set[str] | None = None,
 ) -> None:
-    """QNA/감리사례 그룹: parent_id 기준 dedup + 보조 더보기 렌더링."""
+    """QNA/감리사례 그룹: parent_id 기준 dedup 후 전량 메인 렌더링.
+
+    답변이 인용한 것은 cited_ids로 :blue[**[ID]**] 강조(숨김·강등 없음).
+    """
     unique_parents: dict[str, dict] = {}
     no_parent_docs: list[dict] = []
     for d in group_docs:
@@ -476,9 +321,6 @@ def _render_pdr_group(
             )
         else:
             _render_document_expander(d, doc_index=i, cited_ids=cited_ids)
-
-    # 보조 문서: ACCORDION_GROUPS에서 해당 그룹의 소스 목록으로 조회
-    _render_supp_extra(ACCORDION_GROUPS.get(group_name, []), 800 + len(pdr_docs))
 
 
 def _render_default_group(group_docs: list[dict]) -> None:
@@ -528,12 +370,11 @@ def _render_evidence_panel() -> None:
         deduped.append(doc)
     docs = deduped
 
-    # AI 답변 페이지: 인용 문서를 메인으로, retriever 결과는 보조로 분리
+    # AI 답변 페이지: 그래프가 가져온 QNA/IE/감리를 그대로 메인으로 노출
+    # (표준 문단만 인용분으로 교체). 인용은 렌더러가 강조만 함.
     is_ai_answer = st.session_state.get("page_state") == "ai_answer"
     if is_ai_answer:
         docs = _prepare_ai_answer_docs(docs)
-    else:
-        st.session_state["_supp_by_group"] = {}
 
     # ai_answer 단계에서만 인용된 ID 집합 계산 (1/2단계 무영향)
     cited_ids = _get_cited_ids() if is_ai_answer else None
@@ -549,24 +390,14 @@ def _render_evidence_panel() -> None:
                 groups[group_name].append(doc)
                 break
 
-    # 그룹별 렌더링 (문서가 있거나, 더보기에 참고 문서가 있는 그룹만 표시)
-    supp_map = st.session_state.get("_supp_by_group", {})
+    # 그룹별 렌더링 (메인 문서가 있는 그룹만 표시)
     for group_name, group_docs in groups.items():
-        # 메인 문서 없어도, 해당 그룹 소스에 더보기(pinpoint 미인용 등)가 있으면 렌더링
-        group_sources = ACCORDION_GROUPS.get(group_name, [])
-        has_supp = any(supp_map.get(src) for src in group_sources)
-        if not group_docs and not has_supp:
+        if not group_docs:
             continue
 
         # cluster-first 보너스 적용 후 점수 재정렬
         group_docs = _apply_cluster_first_bonus(group_docs)
         group_docs.sort(key=lambda d: d.get("score", 0.0), reverse=True)
-
-        # 메인 문서 없고 더보기만 있는 경우 → 더보기만 렌더링
-        if not group_docs:
-            st.markdown(f"### {group_name}")
-            _render_supp_extra(group_sources, 900)
-            continue
 
         # IE 적용사례 그룹
         if group_name == "📋 적용사례(IE)":
@@ -594,7 +425,7 @@ def _render_evidence_panel() -> None:
 
         # QNA/감리사례
         if group_name in _PDR_GROUPS:
-            _render_pdr_group(group_name, group_docs, cited_ids=cited_ids)
+            _render_pdr_group(group_docs, cited_ids=cited_ids)
             continue
 
         # 기타 그룹

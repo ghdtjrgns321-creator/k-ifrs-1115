@@ -2,7 +2,6 @@
 # 페이지 렌더러 함수 3개.
 #
 # - _render_home:       홈 — 자유 질문 입력창 (챗봇 전용, 미니멀)
-# - _render_evidence:   근거 열람 — 카테고리별 아코디언 + AI 질문 입력창
 # - _render_ai_answer:  AI 답변 — Split View (근거 + 답변 + 꼬리 질문)
 
 import html
@@ -74,76 +73,6 @@ def _render_home() -> None:
         _home_search_fragment()
 
 
-def _render_evidence() -> None:
-    """[근거 열람] 카테고리별 아코디언 + AI 질문 입력창을 렌더링합니다."""
-    # ── 구분선 — 헤더 바로 아래 ─────────────────────────────────────────────
-    st.markdown(
-        "<hr style='margin-top:-2.5rem; margin-bottom:0; "
-        "border:none; border-top:1px solid #E2E8F0;'>",
-        unsafe_allow_html=True,
-    )
-
-    # ── 상단 헤더: 질문 카드 + 새 검색 버튼 ──────────────────────────────────
-    current_query = (
-        st.session_state.get("search_query")
-        or st.session_state.get("standalone_query")
-        or ""
-    )
-
-    col1, col2 = st.columns([5, 1], vertical_alignment="bottom")
-
-    with col1:
-        st.html(
-            f"""
-            <div style='padding: 0.5rem 0 0;'>
-                <span style='color: #64748B; font-size: 0.9em;'>질문</span><br>
-                <span style='line-height: 1.7;'>{_format_question(current_query)}</span>
-            </div>
-        """
-        )
-
-    with col2:
-        st.button(
-            "새 검색",
-            icon=":material/home:",
-            use_container_width=True,
-            on_click=_go_home,
-        )
-
-    st.divider()
-
-    # 아코디언 패널 (공통 함수 재사용)
-    if not st.session_state.get("evidence_docs"):
-        st.info("관련 조항을 찾지 못했습니다. 다른 검색어로 시도해보세요.")
-    else:
-        _render_evidence_panel()
-
-    st.divider()
-
-    @st.fragment
-    def _ai_question_fragment():
-        st.markdown("#### :material/lightbulb: AI에게 해석을 물어보세요")
-        st.caption("위 조항들을 바탕으로 AI가 실무 관점의 답변을 드립니다.")
-
-        ai_q = st.text_area(
-            "AI 질문",
-            placeholder="예: 반품 예상 수량을 합리적으로 추정할 수 없을 때 수익을 전혀 인식하면 안 되나요?",
-            label_visibility="collapsed",
-            height=100,
-            key="evidence_ai_input",
-        )
-        if st.button(
-            "AI에게 질문하기",
-            use_container_width=True,
-            type="primary",
-            key="evidence_ai_btn",
-        ):
-            if ai_q and ai_q.strip():
-                _call_chat(ai_q.strip(), use_cache=False)
-
-    _ai_question_fragment()
-
-
 def _send_feedback(feedback: str, reason: str = "") -> None:
     """피드백을 서버에 전송하고 session_state에 결과를 저장합니다."""
     log_id = st.session_state.get("log_id")
@@ -213,13 +142,6 @@ def _render_feedback_buttons() -> None:
 
 def _render_ai_answer() -> None:
     """[AI 답변] Split View — 좌(근거 문서) + 우(AI 답변 + 꼬리질문) 동시 표시."""
-    # ── 구분선 — 헤더 바로 아래 ─────────────────────────────────────────────
-    st.markdown(
-        "<hr style='margin-top:-2.5rem; margin-bottom:0; "
-        "border:none; border-top:1px solid #E2E8F0;'>",
-        unsafe_allow_html=True,
-    )
-
     # 헤더: 질문 이력 + 새 검색 버튼
     history = st.session_state.get("ai_questions_history", [])
     # 이력이 비어있으면 현재 질문만 표시
@@ -261,7 +183,11 @@ def _render_ai_answer() -> None:
 
         answer = st.session_state.ai_answer
         if answer:
-            st.markdown(clean_text(answer), unsafe_allow_html=True)
+            # split_sentences=False — LLM 답변은 이미 구조화된 마크다운.
+            # 문장 뒤 빈 줄을 삽입하면 불릿 아랫줄 설명이 목록에서 분리된다.
+            st.markdown(
+                clean_text(answer, split_sentences=False), unsafe_allow_html=True
+            )
         else:
             st.info("답변을 준비 중입니다...")
 
@@ -287,7 +213,8 @@ def _render_ai_answer() -> None:
         @st.fragment
         def _followup_fragment():
             st.markdown("#### :material/forum: 추가 질문")
-            new_q = st.text_area(
+            # 값은 key="followup_input"으로 session_state에서 읽음(콜백 참조)
+            st.text_area(
                 "추가 질문",
                 placeholder="추가질문이나 확인 질문에 대한 답변을 입력해주세요...",
                 label_visibility="collapsed",

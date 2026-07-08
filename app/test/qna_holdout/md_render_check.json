@@ -1,0 +1,766 @@
+{
+  "bug1_ie_count": [
+    {
+      "case": "본인/대리인",
+      "chunks": 41,
+      "groups": 6,
+      "shown": 6
+    },
+    {
+      "case": "idx0(capture_step0)",
+      "chunks": 45,
+      "groups": 9,
+      "shown": 9
+    }
+  ],
+  "bug2_desc_coverage": {
+    "total": 22,
+    "covered": 22,
+    "missing": []
+  },
+  "bug3_md_residual": {
+    "total_docs": 123,
+    "docs_with_residual": 0,
+    "rows": [
+      {
+        "id": "FSS-CASE-2023-2405-06",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2021-2206-02",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2022-2311-03",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2023-2405-05",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2024-2409-01",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2024-2505-04",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "KICPA-CASE-2024-04",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "KICPA-CASE-2025-07",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2025-2606-02",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2022-2311-02",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2023-2405-01",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2023-2405-04",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2024-2505-02",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2024-2505-03",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "KICPA-CASE-2025-33",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2025-2606-03",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2024-2409-02",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2025-2512-01",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2025-2512-02",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "KICPA-CASE-2021-12",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "KICPA-CASE-2024-28",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "FSS-CASE-2025-2606-01",
+        "coll": "k-ifrs-1115-findings-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-221109A",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-202003D",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-201903F",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-201607A",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2024-I-KQA005",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2021-I-KQA007",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2020-I-KQA018",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2020-I-KQA006",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2020-I-KQA003",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-201903G",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-201901B",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2024-I-KQA007",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2022-I-KQA015",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2022-I-KQA007",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2021-I-KQA008",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2020-I-KQA010",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2019-I-KQA003",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-202504C",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-201906D",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-201803D",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-201803B",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2018-I-KQA009",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-201909A",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-201803A",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2022-I-KQA014",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2019-I-KQA009",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202511018",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202412043",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38676",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202312050",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36991",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36990",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36975",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-35565",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-35568",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38695",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38611",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38702",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202511019",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202506004",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202503008",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202412042",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202312051",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202312048",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38673",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38672",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36993",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36959",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36948",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36941",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36920",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-35617",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-35609",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38700",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38697",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38701",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38465",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2018-I-KQA004",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2017-I-KAQ015",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202511020",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202412044",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202412003",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202412041",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202312057",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202312058",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202312052",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202312049",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202312053",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38680",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38485",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38675",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38671",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36964",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36958",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36951",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36949",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-35599",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-35579",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-35578",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-35567",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38699",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38698",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38476",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38648",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38612",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38703",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2018-I-KQA002",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-2017-I-KQA014",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202412045",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-202412046",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38679",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38677",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38674",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36987",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36965",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36946",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36917",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36904",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-36898",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-35584",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      },
+      {
+        "id": "QNA-SSI-38690",
+        "coll": "k-ifrs-1115-qna-parents",
+        "headings": 0,
+        "hrs": 0
+      }
+    ]
+  },
+  "fails": []
+}

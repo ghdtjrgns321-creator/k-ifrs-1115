@@ -107,8 +107,12 @@ def _para_ref_to_num(ref: str) -> str:
     return re.sub(r"^문단", "", raw)
 
 
-def clean_text(text: str) -> str:
+def clean_text(text: str, split_sentences: bool = True) -> str:
     """크롤링 아티팩트·줄바꿈 파편화를 정제하는 정규식 파이프라인.
+
+    split_sentences=False: 규칙 6(문장 끝 빈 줄 삽입)을 끈다. LLM 답변처럼
+    이미 구조화된 마크다운에 빈 줄을 삽입하면 불릿 바로 아랫줄의 설명이
+    목록에서 분리(lazy continuation 파괴)되므로 답변 경로에서는 꺼야 한다.
 
     처리 순서:
       0.  %N 아티팩트 제거 (QNA 데이터의 %1, %2 등 형식 마커)
@@ -217,7 +221,8 @@ def clean_text(text: str) -> str:
     # 5) 리스트 항목 (1)(2) 앞 줄바꿈 정렬 + 뒤 줄바꿈 제거
     text = re.sub(r"\n*\s*(\([0-9가-하]+\))\s*\n+", r"\n\n\1 ", text)
     # 6) 문장 마침표 뒤 줄바꿈 — 소수점("1.5") 영향 방지: 마침표 뒤 한글일 때만 적용
-    text = re.sub(r"다\. (?=[가-힣])", "다.\n\n", text)
+    if split_sentences:
+        text = re.sub(r"다\. (?=[가-힣])", "다.\n\n", text)
     # 7) 3개 이상 연속 줄바꿈 압축
     text = re.sub(r"\n{3,}", "\n\n", text)
     # 8a) 각주 정의 — 마침표 뒤 "(주N)설명..." 전체를 줄바꿈 + 회색 작은 글씨로 분리
@@ -540,3 +545,28 @@ def _md_table_to_html(block: str) -> str:
 def md_tables_to_html(text: str) -> str:
     """텍스트 내 모든 마크다운 파이프 테이블을 HTML <table>로 변환합니다."""
     return _MD_TABLE_BLOCK_RE.sub(lambda m: _md_table_to_html(m.group(1)), text)
+
+
+# ── 마크다운 헤딩·수평선 → HTML 변환 ─────────────────────────────────────────
+
+# Why: 렌더러가 \n→<br> 변환 후 HTML div로 출력하므로 마크다운 파서를 안 거침.
+#      감리사례의 "## 회사의 회계처리" 같은 헤딩과 "---" 수평선이 리터럴로
+#      노출되던 것을 HTML로 미리 변환한다 (md_tables_to_html과 동일 전략).
+_MD_HEADING_LINE_RE = re.compile(r"^[ \t]*(#{1,6})\s+(.+?)\s*#*[ \t]*$", re.MULTILINE)
+_MD_HR_LINE_RE = re.compile(r"^[ \t]*(?:-{3,}|\*{3,}|_{3,})[ \t]*$", re.MULTILINE)
+
+
+def md_structure_to_html(text: str) -> str:
+    """마크다운 헤딩 라인과 수평선 라인을 HTML로 변환합니다."""
+    text = _MD_HEADING_LINE_RE.sub(
+        lambda m: (
+            '<div style="font-weight:700; font-size:1.02em; '
+            f'margin:0.9rem 0 0.3rem;">{m.group(2)}</div>'
+        ),
+        text,
+    )
+    text = _MD_HR_LINE_RE.sub(
+        '<hr style="border:none; border-top:1px solid #e2e8f0; margin:0.6rem 0;">',
+        text,
+    )
+    return text
