@@ -209,8 +209,22 @@ class Graph:
             "via_topic": via_topic,
         }
 
-    def traverse(self, concept_ids: list[str], hops: int = 1) -> TraverseResult:
-        """개념 → 관할 문단·사례·BC·관련 개념 수집. hops=1이면 문단 e3 이웃 1홉 확장."""
+    def traverse(
+        self,
+        concept_ids: list[str],
+        hops: int = 1,
+        via_topic: list[str] | None = None,
+    ) -> TraverseResult:
+        """개념 → 관할 문단·사례·BC·관련 개념 수집. hops=1이면 문단 e3 이웃 1홉 확장.
+
+        Why(케이스 플러드): subtree 확장 개념까지 케이스·IE를 끌어오면 등록순
+        플러드(실측 IE 19건 중 노이즈 다수)가 되고, 그래프엔 질문 적합도 축이 없어
+        표시단 슬롯 상한(매직넘버)으로 가릴 수밖에 없었다. 케이스·IE만 via_topic
+        (LLM 지목 주제 개념 — 결정적 신호)으로 한정한다. 문단·BC·관련개념은
+        기준서 맥락이므로 전체 유지. via_topic 없으면 기존대로 전체 수집
+        (match_judgment_tree와 동일 폴백).
+        """
+        case_set = set(via_topic or concept_ids)
         r = TraverseResult(concept_ids=list(concept_ids))
         seen_p, seen_c, seen_ie, seen_bc, seen_rc = set(), set(), set(), set(), set()
 
@@ -226,14 +240,15 @@ class Graph:
             r.path.append(f"개념[{node['title']}]")
             for p in node["paras"]:
                 add_para(p)
-            for c in self.case_by_concept.get(cid, []):
-                if c["db_parent_id"] not in seen_c:
-                    seen_c.add(c["db_parent_id"])
-                    r.cases.append(c)
-            for c in self.ie_by_concept.get(cid, []):
-                if c["id"] not in seen_ie:
-                    seen_ie.add(c["id"])
-                    r.ie_cases.append(c)
+            if cid in case_set:
+                for c in self.case_by_concept.get(cid, []):
+                    if c["db_parent_id"] not in seen_c:
+                        seen_c.add(c["db_parent_id"])
+                        r.cases.append(c)
+                for c in self.ie_by_concept.get(cid, []):
+                    if c["id"] not in seen_ie:
+                        seen_ie.add(c["id"])
+                        r.ie_cases.append(c)
             for g in self.bc_by_concept.get(cid, []):
                 if g not in seen_bc:
                     seen_bc.add(g)

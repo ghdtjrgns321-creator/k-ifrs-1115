@@ -1,0 +1,247 @@
+{
+  "total": 14,
+  "via_topic_empty": 3,
+  "reduced_count": 11,
+  "fails": [],
+  "rows": [
+    {
+      "idx": 0,
+      "via_topic_empty": false,
+      "cases_before": 79,
+      "cases_after": 33,
+      "ie_before": 26,
+      "ie_after": 9,
+      "paras_before": 92,
+      "paras_after": 92,
+      "ie_titles_after": [
+        "사례 13: 고객이 효익을 동시에 얻고 소비한다",
+        "사례 14: 대체 용도 및 지급청구권 검토",
+        "사례 15: 자산이 기업에 대체 용도가 없다",
+        "사례 16: 지금까지 수행을 완료한 부분에 대해 집행 가능한 지급청구권",
+        "사례 17: 수행의무가 한 시점에 이행되는지 또는 기간에 걸쳐 이행되는지 판단",
+        "사례 49: 고객에게 중요한 권리를 제공하는 선택권(할인권)",
+        "사례 50: 고객에게 중요한 권리를 제공하지 않는 선택권(추가 재화나 용역)",
+        "사례 51: 고객에게 중요한 권리를 제공하는 선택권(갱신 선택권)",
+        "사례 52: 고객충성제도"
+      ]
+    },
+    {
+      "idx": 1,
+      "via_topic_empty": true,
+      "cases_before": 35,
+      "cases_after": 35,
+      "ie_before": 11,
+      "ie_after": 11,
+      "paras_before": 41,
+      "paras_after": 41,
+      "ie_titles_after": [
+        "사례 1: 대가의 회수 가능성",
+        "사례 2: 대가가 표시된 가격이 아니다 - 암묵적 가격할인 (price concession)",
+        "사례 3: 암묵적 가격할인(price concession)",
+        "사례 4: 계약 식별 기준의 재검토",
+        "사례 45: 재화나 용역 제공을 주선함(기업이 대리인이다)",
+        "사례 46: 재화나 용역을 제공하기로 하는 약속(기업이 본인이다)",
+        "사례 46A: 재화나 용역을 제공하기로 하는 약속(기업이 본인이다)",
+        "사례 47: 재화나 용역을 제공하기로 하는 약속(기업이 본인이다)",
+        "사례 48: 재화나 용역 제공을 주선함(기업이 대리인이다)",
+        "사례 48A: 기업은 같은 계약에서 본인이자 대리인이다.",
+        "사례 62: 재매입약정"
+      ]
+    },
+    {
+      "idx": 2,
+      "via_topic_empty": false,
+      "cases_before": 61,
+      "cases_after": 8,
+      "ie_before": 11,
+      "ie_after": 0,
+      "paras_before": 69,
+      "paras_after": 69,
+      "ie_titles_after": []
+    },
+    {
+      "idx": 3,
+      "via_topic_empty": false,
+      "cases_before": 88,
+      "cases_after": 32,
+      "ie_before": 26,
+      "ie_after": 7,
+      "paras_before": 112,
+      "paras_after": 112,
+      "ie_titles_after": [
+        "사례 1: 대가의 회수 가능성",
+        "사례 2: 대가가 표시된 가격이 아니다 - 암묵적 가격할인 (price concession)",
+        "사례 3: 암묵적 가격할인(price concession)",
+        "사례 4: 계약 식별 기준의 재검토",
+        "사례 10: 재화와 용역이 구별되지 않는다.",
+        "사례 11: 재화나 용역이 구별되는지를 판단함",
+        "사례 12: 계약에 명시된 약속과 암묵적 약속"
+      ]
+    },
+    {
+      "idx": 4,
+      "via_topic_empty": false,
+      "cases_before": 38,
+      "cases_after": 9,
+      "ie_before": 13,
+      "ie_after": 0,
+      "paras_before": 52,
+      "paras_after": 52,
+      "ie_titles_after": []
+    },
+    {
+      "idx": 5,
+      "via_topic_empty": false,
+      "cases_before": 55,
+      "cases_after": 28,
+      "ie_before": 28,
+      "ie_after": 9,
+      "paras_before": 67,
+      "paras_after": 67,
+      "ie_titles_after": [
+        "사례 5: 계약변경―재화",
+        "사례 6: 계약변경 후 거래가격의 변경",
+        "사례 7: 계약변경―용역",
+        "사례 8: 변경에 따른 수익의 누적효과 일괄조정",
+        "사례 9: 승인되지 않은 범위 및 가격 변경",
+        "사례 1: 대가의 회수 가능성",
+        "사례 2: 대가가 표시된 가격이 아니다 - 암묵적 가격할인 (price concession)",
+        "사례 3: 암묵적 가격할인(price concession)",
+        "사례 4: 계약 식별 기준의 재검토"
+      ]
+    },
+    {
+      "idx": 6,
+      "via_topic_empty": false,
+      "cases_before": 23,
+      "cases_after": 6,
+      "ie_before": 6,
+      "ie_after": 0,
+      "paras_before": 26,
+      "paras_after": 26,
+      "ie_titles_after": []
+    },
+    {
+      "idx": 7,
+      "via_topic_empty": true,
+      "cases_before": 9,
+      "cases_after": 9,
+      "ie_before": 5,
+      "ie_after": 5,
+      "paras_before": 23,
+      "paras_after": 23,
+      "ie_titles_after": [
+        "사례 32: 고객에게 지급할 대가",
+        "사례 49: 고객에게 중요한 권리를 제공하는 선택권(할인권)",
+        "사례 50: 고객에게 중요한 권리를 제공하지 않는 선택권(추가 재화나 용역)",
+        "사례 51: 고객에게 중요한 권리를 제공하는 선택권(갱신 선택권)",
+        "사례 52: 고객충성제도"
+      ]
+    },
+    {
+      "idx": 8,
+      "via_topic_empty": false,
+      "cases_before": 99,
+      "cases_after": 17,
+      "ie_before": 27,
+      "ie_after": 1,
+      "paras_before": 128,
+      "paras_after": 128,
+      "ie_titles_after": [
+        "사례 62: 재매입약정"
+      ]
+    },
+    {
+      "idx": 9,
+      "via_topic_empty": false,
+      "cases_before": 49,
+      "cases_after": 27,
+      "ie_before": 21,
+      "ie_after": 8,
+      "paras_before": 78,
+      "paras_after": 78,
+      "ie_titles_after": [
+        "사례 20: 변동대가를 유발하는 위약금",
+        "사례 21: 변동대가 추정",
+        "사례 45: 재화나 용역 제공을 주선함(기업이 대리인이다)",
+        "사례 46: 재화나 용역을 제공하기로 하는 약속(기업이 본인이다)",
+        "사례 46A: 재화나 용역을 제공하기로 하는 약속(기업이 본인이다)",
+        "사례 47: 재화나 용역을 제공하기로 하는 약속(기업이 본인이다)",
+        "사례 48: 재화나 용역 제공을 주선함(기업이 대리인이다)",
+        "사례 48A: 기업은 같은 계약에서 본인이자 대리인이다."
+      ]
+    },
+    {
+      "idx": 10,
+      "via_topic_empty": true,
+      "cases_before": 18,
+      "cases_after": 18,
+      "ie_before": 9,
+      "ie_after": 9,
+      "paras_before": 15,
+      "paras_after": 15,
+      "ie_titles_after": [
+        "사례 1: 대가의 회수 가능성",
+        "사례 2: 대가가 표시된 가격이 아니다 - 암묵적 가격할인 (price concession)",
+        "사례 3: 암묵적 가격할인(price concession)",
+        "사례 4: 계약 식별 기준의 재검토",
+        "사례 26: 유의적인 금융요소와 반품권",
+        "사례 27: 장기 계약에 대한 지급청구권 보류",
+        "사례 28: 할인율 산정",
+        "사례 29: 선수금과 할인율 평가",
+        "사례 30: 선수금"
+      ]
+    },
+    {
+      "idx": 11,
+      "via_topic_empty": false,
+      "cases_before": 86,
+      "cases_after": 33,
+      "ie_before": 20,
+      "ie_after": 7,
+      "paras_before": 121,
+      "paras_after": 121,
+      "ie_titles_after": [
+        "사례 1: 대가의 회수 가능성",
+        "사례 2: 대가가 표시된 가격이 아니다 - 암묵적 가격할인 (price concession)",
+        "사례 3: 암묵적 가격할인(price concession)",
+        "사례 4: 계약 식별 기준의 재검토",
+        "사례 10: 재화와 용역이 구별되지 않는다.",
+        "사례 11: 재화나 용역이 구별되는지를 판단함",
+        "사례 12: 계약에 명시된 약속과 암묵적 약속"
+      ]
+    },
+    {
+      "idx": 12,
+      "via_topic_empty": false,
+      "cases_before": 95,
+      "cases_after": 21,
+      "ie_before": 29,
+      "ie_after": 3,
+      "paras_before": 135,
+      "paras_after": 135,
+      "ie_titles_after": [
+        "사례 10: 재화와 용역이 구별되지 않는다.",
+        "사례 11: 재화나 용역이 구별되는지를 판단함",
+        "사례 12: 계약에 명시된 약속과 암묵적 약속"
+      ]
+    },
+    {
+      "idx": 13,
+      "via_topic_empty": false,
+      "cases_before": 86,
+      "cases_after": 35,
+      "ie_before": 20,
+      "ie_after": 5,
+      "paras_before": 112,
+      "paras_after": 112,
+      "ie_titles_after": [
+        "사례 20: 변동대가를 유발하는 위약금",
+        "사례 21: 변동대가 추정",
+        "사례 10: 재화와 용역이 구별되지 않는다.",
+        "사례 11: 재화나 용역이 구별되는지를 판단함",
+        "사례 12: 계약에 명시된 약속과 암묵적 약속"
+      ]
+    }
+  ]
+}

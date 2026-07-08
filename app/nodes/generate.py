@@ -15,7 +15,6 @@ from app.agents import (
     ClarifyDeps,
     ClarifyOutput,
 )
-from app.config import settings
 from app.domain.graph import get_graph
 from app.prompts import CLARIFY_USER, GENERATE_USER
 from app.services.query_mapping import INVERTED_MAPPING
@@ -28,6 +27,26 @@ def _get_last_human_message(messages: list[tuple[str, str]]) -> str:
     for role, content in reversed(messages):
         if role == "human":
             return content
+    return ""
+
+
+def _short_ie(s: str) -> str:
+    """IE 사례 문자열을 표준 짧은 형태 "사례 N"으로 정규화. 매칭 키 통일용."""
+    m = re.match(r"사례\s*(\d+[A-Za-z]?)", (s or "").strip())
+    return f"사례 {m.group(1)}" if m else (s or "").strip()
+
+
+def _cite_key(doc: dict) -> str:
+    """LLM이 인용을 선언할 때 복사할 문서 식별 키.
+
+    케이스(질의회신/감리)=parent_id, IE=짧은 사례번호. 문단은 문단번호 인용을
+    쓰므로 빈 값(라벨 생략).
+    """
+    src = str(doc.get("source", ""))
+    if src == "적용사례IE":
+        return _short_ie(doc.get("case_group_title", "") or "")
+    if "질의" in src or "감리" in src:
+        return doc.get("parent_id", "") or doc.get("chunk_id", "")
     return ""
 
 
@@ -107,41 +126,9 @@ async def generate_answer(state: dict) -> dict:
     else:
         docs = all_docs
 
-    # 유형별 슬롯 상한 — 문단·감리·IE를 분리해 서로 밀어내지 않게(07-retrieval-priority §3).
-    # 문단은 fetch가 tr.paras 진입순서를 보존 → 앞쪽이 topic_hint 주제 개념 문단.
-    def _kind(d: dict) -> str:
-        s = str(d.get("source", ""))
-        if "감리" in s:
-            return "findings"
-        if "질의" in s:
-            return "qna"
-        if s == "적용사례IE":
-            return "ie"
-        return "para"
-
-    buckets: dict[str, list] = {"para": [], "findings": [], "ie": [], "qna": []}
-    for d in docs:
-        buckets[_kind(d)].append(d)
-    n_before = len(docs)
-    # 문단은 무제한(doc_slot_para=0 → cap=None → 전체). A안: C 상한밀림 해소.
-    para_cap = settings.doc_slot_para or None
-    sel = {
-        "para": buckets["para"][:para_cap],
-        "ie": buckets["ie"][: settings.doc_slot_ie],
-        "findings": buckets["findings"][: settings.doc_slot_findings],
-        "qna": buckets["qna"][: settings.doc_slot_qna],
-    }
-    docs = sel["para"] + sel["ie"] + sel["findings"] + sel["qna"]
-    if n_before > len(docs):
-        logger.info(
-            "유형 슬롯: %d → %d건 (문단%d·IE%d·감리%d·QNA%d)",
-            n_before,
-            len(docs),
-            len(sel["para"]),
-            len(sel["ie"]),
-            len(sel["findings"]),
-            len(sel["qna"]),
-        )
+    # 유형별 슬롯 상한(매직넘버 3·2·3) 제거 — 관련성 축소는 retrieve의 via_topic
+    # 한정(케이스·IE를 LLM 지목 주제 직결로만 수집)이 담당한다. 상한은 근거 없는
+    # 임의값이었고, via_topic으로 정제된 사례까지 등록순으로 잘라내는 부작용만 남았다.
 
     is_situation = state.get("is_situation", False)
     force_conclusion = state.get("force_conclusion", False)
@@ -165,13 +152,26 @@ async def generate_answer(state: dict) -> dict:
     # 문서 컨텍스트 + 출처 메타데이터 구성
     context_parts = []
     cited_sources = []
+    # LLM이 cited_cases/cited_ie에 선언할 수 있는 유효 키 — 환각 필터용
+    valid_case_ids: set[str] = set()
+    valid_ie_keys: set[str] = set()
 
     for doc in docs:
         source_type = doc.get("source", "본문")
         raw = doc.get("full_content") if source_type != "본문" else doc.get("content")
         text = raw or ""
         hierarchy = doc.get("hierarchy", "")
-        context_parts.append(f"[{source_type}] {hierarchy}\n{text}")
+        # 인용 키 라벨 — LLM이 [source | 키]의 키를 구조화 필드에 그대로 복사
+        cite_key = _cite_key(doc)
+        if cite_key:
+            label = f"[{source_type} | {cite_key}]"
+            if source_type == "적용사례IE":
+                valid_ie_keys.add(cite_key)
+            else:
+                valid_case_ids.add(cite_key)
+        else:
+            label = f"[{source_type}]"
+        context_parts.append(f"{label} {hierarchy}\n{text}")
         cited_sources.append(
             {
                 "source": source_type,
@@ -219,6 +219,16 @@ async def generate_answer(state: dict) -> dict:
             selected_branches = []
             structured_cited = getattr(output, "cited_paragraphs", [])
 
+        # 인용 케이스/IE — LLM 선언값 중 실제 컨텍스트에 있던 것만(환각 차단)
+        cited_cases = [
+            c for c in getattr(output, "cited_cases", []) if c in valid_case_ids
+        ]
+        cited_ie = [
+            k
+            for k in (_short_ie(x) for x in getattr(output, "cited_ie", []))
+            if k in valid_ie_keys
+        ]
+
         answer = output.answer
         # LLM이 answer 필드에 "follow_up_questions:" 텍스트를 포함시키는 경우 제거
         answer = re.split(
@@ -237,13 +247,20 @@ async def generate_answer(state: dict) -> dict:
         follow_up_questions = []
         selected_branches = []
         structured_cited = []
+        cited_cases = []
+        cited_ie = []
 
     return {
         "answer": answer,
         "cited_sources": cited_sources,
+        # 좌측 근거 패널은 LLM이 실제 읽은 컨텍스트를 그대로 노출한다.
+        # (via_topic 한정으로 케이스·IE가 주제 직결만 수집됨 — 플러드 없음)
+        "context_docs": docs,
         "follow_up_questions": follow_up_questions,
         "is_situation": is_situation,
         "is_conclusion": is_conclusion,
+        "cited_cases": cited_cases,
+        "cited_ie": cited_ie,
         "selected_branches": selected_branches,
         "cited_paragraphs": structured_cited,
     }

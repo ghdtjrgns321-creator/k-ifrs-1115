@@ -46,18 +46,6 @@ class Settings(BaseSettings):
     #      자기 답 자기 참조(순환)가 된다. 본문+판단트리만으로 재현되는지 격리 측정.
     exclude_qna: bool = False
 
-    # generate 프롬프트 문서 상한 — 유형별 슬롯 (07-retrieval-priority §3).
-    # Why: 총량 상한은 문단이 사례·감리를 밀어낸다. 유형을 분리해 각 근거 유형을 보존.
-    #      문단 슬롯은 fetch가 topic_hint 진입순서를 보존 → 앞쪽이 질문 주제 문단.
-    # A안(C 상한밀림 해소): 문단은 무제한(0)으로 상한 컷을 제거한다. gold 조문이
-    #      진입만 하면 위치와 무관하게 generate가 본다. 문단은 값싼 입력토큰이라
-    #      비용 증가가 작다(케이스당 +약 8~13원). IE(케이스당 77건)·감리는 노이즈·비용
-    #      폭증이라 슬롯 유지. 0 = 무제한.
-    doc_slot_para: int = 0
-    doc_slot_ie: int = 3
-    doc_slot_findings: int = 2
-    doc_slot_qna: int = 3
-
     # topic_hint 개념의 주제군 계층 확장 임계 (07-retrieval-priority gap).
     # Why: topic_map이 말단 개념 1개만 가리켜 형제(같은 주제군)를 놓친다. 부모 subtree가
     #      이 값 이하면 형제를 포함, 초과(부록B 24개 등)하면 폭발 방지로 자기 하위만.

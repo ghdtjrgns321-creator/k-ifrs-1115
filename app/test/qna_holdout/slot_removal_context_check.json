@@ -1,0 +1,183 @@
+{
+  "total": 14,
+  "max_chars_uncapped": 141175,
+  "principal_agent_ie_groups": [
+    "사례 45",
+    "사례 46",
+    "사례 46A",
+    "사례 47",
+    "사례 48",
+    "사례 48A"
+  ],
+  "fails": [],
+  "rows": [
+    {
+      "idx": 0,
+      "id": "QNA-2017-I-KQA014",
+      "docs_capped": 100,
+      "docs_uncapped": 170,
+      "chars_capped": 35714,
+      "chars_uncapped": 141175,
+      "n_para": 92,
+      "n_ie": 45,
+      "n_findings": 4,
+      "n_qna": 29
+    },
+    {
+      "idx": 1,
+      "id": "QNA-2020-I-KQA006-Q2",
+      "docs_capped": 49,
+      "docs_uncapped": 139,
+      "chars_capped": 43110,
+      "chars_uncapped": 128959,
+      "n_para": 41,
+      "n_ie": 63,
+      "n_findings": 7,
+      "n_qna": 28
+    },
+    {
+      "idx": 2,
+      "id": "QNA-202003D",
+      "docs_capped": 72,
+      "docs_uncapped": 77,
+      "chars_capped": 27709,
+      "chars_uncapped": 50106,
+      "n_para": 69,
+      "n_ie": 0,
+      "n_findings": 0,
+      "n_qna": 8
+    },
+    {
+      "idx": 3,
+      "id": "QNA-2021-I-KQA008",
+      "docs_capped": 120,
+      "docs_uncapped": 196,
+      "chars_capped": 61963,
+      "chars_uncapped": 137449,
+      "n_para": 112,
+      "n_ie": 52,
+      "n_findings": 5,
+      "n_qna": 27
+    },
+    {
+      "idx": 4,
+      "id": "QNA-2022-I-KQA007",
+      "docs_capped": 55,
+      "docs_uncapped": 61,
+      "chars_capped": 23459,
+      "chars_uncapped": 29163,
+      "n_para": 52,
+      "n_ie": 0,
+      "n_findings": 0,
+      "n_qna": 9
+    },
+    {
+      "idx": 5,
+      "id": "QNA-SSI-202503008",
+      "docs_capped": 75,
+      "docs_uncapped": 135,
+      "chars_capped": 27881,
+      "chars_uncapped": 99121,
+      "n_para": 67,
+      "n_ie": 40,
+      "n_findings": 5,
+      "n_qna": 23
+    },
+    {
+      "idx": 6,
+      "id": "QNA-SSI-202511018",
+      "docs_capped": 29,
+      "docs_uncapped": 32,
+      "chars_capped": 7913,
+      "chars_uncapped": 28822,
+      "n_para": 26,
+      "n_ie": 0,
+      "n_findings": 0,
+      "n_qna": 6
+    },
+    {
+      "idx": 7,
+      "id": "QNA-SSI-35565",
+      "docs_capped": 30,
+      "docs_uncapped": 56,
+      "chars_capped": 23972,
+      "chars_uncapped": 35381,
+      "n_para": 23,
+      "n_ie": 24,
+      "n_findings": 1,
+      "n_qna": 8
+    },
+    {
+      "idx": 8,
+      "id": "QNA-SSI-35567",
+      "docs_capped": 134,
+      "docs_uncapped": 152,
+      "chars_capped": 41671,
+      "chars_uncapped": 63953,
+      "n_para": 128,
+      "n_ie": 7,
+      "n_findings": 0,
+      "n_qna": 17
+    },
+    {
+      "idx": 9,
+      "id": "QNA-SSI-38648",
+      "docs_capped": 86,
+      "docs_uncapped": 153,
+      "chars_capped": 47383,
+      "chars_uncapped": 93333,
+      "n_para": 78,
+      "n_ie": 48,
+      "n_findings": 3,
+      "n_qna": 24
+    },
+    {
+      "idx": 10,
+      "id": "QNA-SSI-38673",
+      "docs_capped": 23,
+      "docs_uncapped": 68,
+      "chars_capped": 33150,
+      "chars_uncapped": 65931,
+      "n_para": 15,
+      "n_ie": 35,
+      "n_findings": 4,
+      "n_qna": 14
+    },
+    {
+      "idx": 11,
+      "id": "QNA-SSI-38675",
+      "docs_capped": 129,
+      "docs_uncapped": 206,
+      "chars_capped": 64113,
+      "chars_uncapped": 140408,
+      "n_para": 121,
+      "n_ie": 52,
+      "n_findings": 5,
+      "n_qna": 28
+    },
+    {
+      "idx": 12,
+      "id": "QNA-SSI-38676",
+      "docs_capped": 142,
+      "docs_uncapped": 193,
+      "chars_capped": 51248,
+      "chars_uncapped": 105626,
+      "n_para": 135,
+      "n_ie": 37,
+      "n_findings": 1,
+      "n_qna": 20
+    },
+    {
+      "idx": 13,
+      "id": "QNA-SSI-38680",
+      "docs_capped": 120,
+      "docs_uncapped": 191,
+      "chars_capped": 56746,
+      "chars_uncapped": 133683,
+      "n_para": 112,
+      "n_ie": 44,
+      "n_findings": 2,
+      "n_qna": 33
+    }
+  ]
+}

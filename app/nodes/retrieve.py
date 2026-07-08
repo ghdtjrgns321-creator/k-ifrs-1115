@@ -23,7 +23,8 @@ async def retrieve_docs(state: dict) -> dict:
     entry_cases = state.get("entry_cases", [])
 
     graph = get_graph()
-    traverse = graph.traverse(concept_ids)
+    # 케이스·IE는 via_topic(LLM 지목 주제) 직결로만 — subtree 확장 플러드 차단
+    traverse = graph.traverse(concept_ids, via_topic=state.get("via_topic", []))
 
     # DB 조회는 blocking → 스레드로
     docs = await asyncio.to_thread(fetch_documents, traverse, entry_cases)
