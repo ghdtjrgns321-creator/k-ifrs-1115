@@ -1,10 +1,8 @@
 # app/main.py
 # FastAPI 애플리케이션 진입점
 #
-# lifespan 훅을 사용하는 이유:
-#   BM25 인덱스는 MongoDB 전체 문서를 메모리에 로드해 빌드합니다.
-#   첫 번째 요청에서 빌드하면 사용자가 12~27초 + BM25 빌드 시간을 기다려야 합니다.
-#   서버 시작 시 사전 로드(warm-up)하여 첫 요청부터 정상 속도를 보장합니다.
+# 검색은 온톨로지 그래프 탐색(app/nodes/retrieve.py)으로 수행하므로
+# 기동 시 사전 로드할 인덱스가 없습니다. lifespan 훅은 향후 확장 지점으로만 유지합니다.
 import logging
 from contextlib import asynccontextmanager
 
@@ -29,19 +27,7 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """서버 시작/종료 시 실행되는 수명 주기 핸들러."""
-    # _build_bm25_index()는 MongoDB 전체를 읽는 무거운 동기 작업
-    # run_in_executor로 스레드 풀에서 실행해 event loop 블로킹 방지
-    import asyncio
-    from app.retriever import _build_bm25_index
-
-    logger.info("BM25 인덱스 사전 로드 시작")
-    loop = asyncio.get_running_loop()
-    try:
-        await loop.run_in_executor(None, _build_bm25_index)
-        logger.info("BM25 인덱스 로드 완료, 서버 준비 완료")
-    except Exception:
-        # Why: BM25 빌드 실패 시에도 vector search만으로 동작 가능 (graceful degradation)
-        logger.exception("BM25 인덱스 빌드 실패 — vector search만으로 동작합니다")
+    logger.info("서버 준비 완료 (그래프 탐색 기반 — 사전 로드 인덱스 없음)")
     yield
 
 

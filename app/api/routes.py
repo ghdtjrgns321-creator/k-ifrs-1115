@@ -4,8 +4,6 @@
 # 새 UX 흐름:
 #   POST /search → 근거 문서 목록 반환 (LLM 없는 빠른 검색)
 #   POST /chat   → AI 답변 SSE 스트리밍 (search_id 있으면 검색 단계 스킵)
-import asyncio
-from functools import partial
 from uuid import uuid4
 
 from fastapi import APIRouter, Depends, HTTPException, Request
@@ -13,9 +11,8 @@ from fastapi.responses import StreamingResponse
 
 from pydantic import BaseModel
 
-from app.api.schemas import ChatRequest, SearchRequest, SearchResponse, SSEEvent
+from app.api.schemas import ChatRequest, SSEEvent
 from app.services.chat_service import run_graph_stream
-from app.services.search_service import run_search
 from app.services.session_store import SessionStore, store
 
 router = APIRouter()
@@ -24,33 +21,6 @@ router = APIRouter()
 # FastAPI DI용 팩토리 — 테스트 시 mock store로 교체 가능합니다.
 def get_store() -> SessionStore:
     return store
-
-
-@router.post("/search", response_model=SearchResponse)
-async def search(
-    request: SearchRequest,
-    store: SessionStore = Depends(get_store),
-):
-    """K-IFRS 1115 근거 문서 검색 엔드포인트.
-
-    LLM으로 쿼리를 정규화한 뒤 하이브리드 검색 + Reranker + CRAG를 실행합니다.
-    결과는 search_id와 함께 반환되며, 이후 /chat에 search_id를 전달하면
-    retrieve/rerank 단계를 건너뛰어 응답 속도가 빨라집니다.
-
-    run_search는 LangChain sync 호출을 포함하는 동기 함수입니다.
-    run_in_executor로 별도 스레드에서 실행해 event loop 블로킹을 방지합니다.
-    """
-    session_id = request.session_id or str(uuid4())
-    try:
-        # get_running_loop(): 현재 실행 중인 루프를 참조 (Python 3.10+ 권장)
-        # get_event_loop()는 3.10+에서 DeprecationWarning 발생
-        loop = asyncio.get_running_loop()
-        return await loop.run_in_executor(
-            None,
-            partial(run_search, request.query, session_id, store),
-        )
-    except Exception as exc:
-        raise HTTPException(status_code=500, detail=str(exc))
 
 
 @router.post("/chat")

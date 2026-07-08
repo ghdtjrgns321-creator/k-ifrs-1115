@@ -12,7 +12,6 @@
 #   [ai_answer] Split View — 좌(근거 문서) + 우(AI 답변 + 꼬리질문)
 #       ↓ 꼬리 질문 클릭 또는 새 질문
 #   [ai_answer] (반복)
-# ([evidence]는 /search 경로용으로 남겨둠 — 현재 홈은 /chat 직행)
 #
 # 세부 구현은 app/ui/ 패키지로 분리되어 있습니다.
 
@@ -28,7 +27,7 @@ import streamlit as st  # noqa: E402
 
 from app.ui.layout import _inject_css, _render_disclaimer, _render_header  # noqa: E402
 from app.ui.modal import _show_reference_modal  # noqa: E402
-from app.ui.pages import _render_ai_answer, _render_evidence, _render_home  # noqa: E402
+from app.ui.pages import _render_ai_answer, _render_home  # noqa: E402
 from app.ui.session import _init_session  # noqa: E402
 
 
@@ -48,8 +47,6 @@ def main() -> None:
 
     if page == "home":
         _render_home()
-    elif page == "evidence":
-        _render_evidence()
     elif page == "ai_answer":
         _render_ai_answer()
 

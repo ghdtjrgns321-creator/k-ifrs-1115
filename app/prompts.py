@@ -281,6 +281,8 @@ follow_up_questions: [] (빈 배열)
 <structured_fields>
 - selected_branches: [결론 가이드]에서 선택한 분기 라벨을 그대로 복사하세요. TYPE 1이면 해당 Case 모든 분기, TYPE 2이면 확정 1개.
 - cited_paragraphs: answer에서 인용한 모든 문단 번호를 리스트로 기입하세요. 예: ["문단 B35", "문단 56"]
+- cited_cases: answer의 근거로 실제 사용한 질의회신/감리지적사례만, [참고 문서]의 "[source | 값]"에서 그 값(ID)을 그대로 복사. 없으면 []. 지어내기 금지.
+- cited_ie: answer의 근거로 실제 사용한 적용사례 번호(예 "사례 47")만. 없으면 [].
 </structured_fields>
 </output_contract>"""
 
@@ -399,6 +401,12 @@ TYPE 2: 확정 결론
 - 하나의 섹션 아래 모든 근거를 나열. 별도 소제목으로 분리 금지
 
 follow_up_questions: 답변한 주제를 심화·확장하는 후속 질문 3개 (20자 이내, 다른 토픽으로 이탈 금지)
+
+<structured_fields>
+- cited_paragraphs: answer에서 인용한 모든 문단 번호. 예: ["문단 46", "문단 B58"]
+- cited_cases: answer의 근거로 실제 사용한 질의회신/감리지적사례만, [참고 문서]의 "[source | 값]"에서 그 값(ID)을 그대로 복사. 인용 안 했으면 []. 지어내기 금지.
+- cited_ie: answer의 근거로 실제 사용한 적용사례 번호(예 "사례 47")만. 산문에 "Case 1"처럼 써도 기준서 사례를 근거로 썼다면 그 사례 번호를 여기 기입. 인용 안 했으면 [].
+</structured_fields>
 </output_contract>"""
 
 # user message template: 실무 용어 + 참고 문서 + 질문

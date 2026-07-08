@@ -7,7 +7,6 @@ import os
 
 # ── API 엔드포인트 ───────────────────────────────────────────────────────────────
 API_BASE = os.getenv("API_BASE_URL", "http://localhost:8002")
-SEARCH_URL = f"{API_BASE}/search"
 CHAT_URL = f"{API_BASE}/chat"
 FEEDBACK_URL = f"{API_BASE}/feedback"
 API_TIMEOUT = 120  # 초

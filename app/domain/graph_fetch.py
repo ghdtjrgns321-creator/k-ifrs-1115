@@ -12,6 +12,9 @@ from pymongo import MongoClient
 
 from app.config import settings
 
+# UI 그룹핑 SSOT — source 정규명. constants.py는 의존성 없음(os만)이라 backend 안전.
+from app.ui.constants import DOC_PREFIXES_FINDING, SRC_FINDING, SRC_QNA
+
 _MAIN = settings.mongo_collection_name
 _QNA_PARENT = "k-ifrs-1115-qna-parents"
 _FINDINGS_PARENT = "k-ifrs-1115-findings-parents"
@@ -72,6 +75,8 @@ def _norm_para(d: dict) -> dict:
         "chunk_id": d.get("chunk_id") or d.get("paraNum", ""),
         "paraNum": d.get("paraNum", ""),
         "related_paragraphs": d.get("related_paragraphs", []),
+        # IE 적용사례 그룹핑 키 — UI가 "사례 N"으로 묶으려면 필수(문단은 빈 값).
+        "case_group_title": d.get("case_group_title", ""),
     }
     # 본문은 content, 그 외(부록B·BC·IE)는 full_content 슬롯
     doc["content" if cat == "본문" else "full_content"] = text
@@ -80,11 +85,16 @@ def _norm_para(d: dict) -> dict:
 
 def _norm_case(d: dict) -> dict:
     meta = d.get("metadata", {}) or {}
+    pid = str(d.get("_id", ""))
+    # UI ACCORDION_GROUPS는 정규 소스명(질의회신/감리사례)만 인식한다. DB 원본
+    # category는 "질의회신(신속처리질의)"처럼 세분화돼 있어 그룹 매칭에 실패하므로
+    # parent_id 접두어(FSS-/KICPA- vs QNA-)로 정규화한다(fetch_case 라우팅과 동일).
+    source = SRC_FINDING if pid.startswith(DOC_PREFIXES_FINDING) else SRC_QNA
     return {
-        "source": d.get("category") or meta.get("category", "질의회신"),
+        "source": source,
         "hierarchy": d.get("hierarchy") or meta.get("hierarchy", ""),
-        "chunk_id": str(d.get("_id", "")),
-        "parent_id": str(d.get("_id", "")),
+        "chunk_id": pid,
+        "parent_id": pid,
         "full_content": d.get("content", ""),
         "related_paragraphs": d.get("related_paragraphs")
         or meta.get("related_paragraphs", []),

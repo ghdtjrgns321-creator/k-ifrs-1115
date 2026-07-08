@@ -115,6 +115,17 @@ class GenerateOutput(BaseModel):
         default_factory=list,
         description='답변에서 인용한 문단 번호 목록. 예: ["문단 46", "문단 B58"]',
     )
+    cited_cases: list[str] = Field(
+        default_factory=list,
+        description="답변의 근거로 인용한 질의회신/감리지적사례 ID 목록. "
+        '[참고 문서]의 "[source | 값]"에서 값을 그대로 복사. '
+        '예: ["QNA-SSI-202312051", "FSS-CASE-2024-2505-03"]. 없으면 빈 배열.',
+    )
+    cited_ie: list[str] = Field(
+        default_factory=list,
+        description="답변의 근거로 인용한 적용사례(IE) 번호 목록. "
+        '예: ["사례 47", "사례 46"]. 없으면 빈 배열.',
+    )
     follow_up_questions: list[str] = Field(
         description="실무 담당자를 위한 핵심 후속 질문 3개"
     )
@@ -138,6 +149,15 @@ class ClarifyOutput(BaseModel):
     cited_paragraphs: list[str] = Field(
         description='답변에서 인용한 K-IFRS 1115호 문단 번호 목록. 예: ["문단 B35", "문단 56"]',
     )
+    cited_cases: list[str] = Field(
+        default_factory=list,
+        description="답변의 근거로 인용한 질의회신/감리지적사례 ID 목록. "
+        '[참고 문서]의 "[source | 값]"에서 값을 그대로 복사. 없으면 빈 배열.',
+    )
+    cited_ie: list[str] = Field(
+        default_factory=list,
+        description='인용한 적용사례(IE) 번호 목록. 예: ["사례 47"]. 없으면 빈 배열.',
+    )
     follow_up_questions: list[str] = Field(
         default_factory=list,
         description="TYPE 1: 조건을 좁힐 후속 질문 3개. TYPE 2: 빈 배열",
@@ -159,6 +179,15 @@ class CalcClarifyOutput(BaseModel):
     cited_paragraphs: list[str] = Field(
         default_factory=list,
         description='답변에서 인용한 문단 번호 목록. 예: ["문단 B35", "문단 56"]',
+    )
+    cited_cases: list[str] = Field(
+        default_factory=list,
+        description="인용한 질의회신/감리지적사례 ID 목록. "
+        '[참고 문서]의 "[source | 값]"에서 값을 그대로 복사. 없으면 빈 배열.',
+    )
+    cited_ie: list[str] = Field(
+        default_factory=list,
+        description='인용한 적용사례(IE) 번호 목록. 예: ["사례 47"]. 없으면 빈 배열.',
     )
     follow_up_questions: list[str] = Field(
         default_factory=list,

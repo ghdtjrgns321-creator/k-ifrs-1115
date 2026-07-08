@@ -155,11 +155,12 @@ async def run_rag_pipeline(state: dict) -> AsyncGenerator[SSEEvent, None]:
 
 def _done_event(state: dict) -> SSEEvent:
     """파이프라인 완료 SSE 이벤트를 생성합니다."""
-    from app.services.search_service import _to_doc_result
+    from app.api.schemas import to_doc_result
 
-    raw_docs = state.get("relevant_docs") or []
+    # 좌측 근거 = LLM이 실제 읽은 슬롯상한 컨텍스트(context_docs). 없으면 전체 폴백.
+    raw_docs = state.get("context_docs") or state.get("relevant_docs") or []
     retrieved_docs = (
-        [_to_doc_result(d).model_dump() for d in raw_docs] if raw_docs else None
+        [to_doc_result(d).model_dump() for d in raw_docs] if raw_docs else None
     )
 
     follow_up = state.get("follow_up_questions") or []
@@ -185,4 +186,6 @@ def _done_event(state: dict) -> SSEEvent:
         is_conclusion=state.get("is_conclusion", False),
         selected_branches=state.get("selected_branches") or None,
         cited_paragraphs=state.get("cited_paragraphs") or None,
+        cited_cases=state.get("cited_cases") or None,
+        cited_ie=state.get("cited_ie") or None,
     )

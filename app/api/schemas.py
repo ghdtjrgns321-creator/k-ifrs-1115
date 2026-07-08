@@ -21,14 +21,7 @@ class ChatRequest(BaseModel):
     search_id: str | None = None
 
 
-# ── /search 요청/응답 ───────────────────────────────────────────────────────────
-
-
-class SearchRequest(BaseModel):
-    """검색 엔드포인트 요청 스키마."""
-
-    query: str
-    session_id: str | None = None
+# ── 근거 문서 결과 (done 이벤트 retrieved_docs) ─────────────────────────────────
 
 
 class DocResult(BaseModel):
@@ -52,12 +45,25 @@ class DocResult(BaseModel):
     chunk_type: str = ""
 
 
-class SearchResponse(BaseModel):
-    """검색 엔드포인트 응답 스키마."""
+def to_doc_result(doc: dict) -> DocResult:
+    """retriever/graph_fetch 반환 dict를 API 응답용 DocResult로 변환합니다.
 
-    standalone_query: str  # LLM이 정규화한 검색어 (AI 단계에서 재사용)
-    search_id: str  # 세션 캐시 키 (UUID, /chat에 함께 전송)
-    docs: list[DocResult]  # 카테고리별로 그룹화 전 원본 순서 목록
+    Split View 좌측 근거 패널(done 이벤트 retrieved_docs)에서 사용됩니다.
+    """
+    full = doc.get("full_content") or doc.get("content", "")
+    return DocResult(
+        source=doc.get("source", "본문"),
+        hierarchy=doc.get("hierarchy", ""),
+        title=doc.get("title", ""),
+        content=doc.get("content", ""),
+        full_content=full,
+        related_paragraphs=doc.get("related_paragraphs", []),
+        chunk_id=doc.get("chunk_id", ""),
+        score=doc.get("rerank_score", 0.0),
+        parent_id=doc.get("parent_id") or "",
+        case_group_title=doc.get("case_group_title") or "",
+        chunk_type=doc.get("chunk_type") or "",
+    )
 
 
 # ── SSE 이벤트 ──────────────────────────────────────────────────────────────────
@@ -98,5 +104,8 @@ class SSEEvent(BaseModel):
     selected_branches: list[str] | None = None
     # LLM이 structured output으로 명시한 인용 문단 번호
     cited_paragraphs: list[str] | None = None
+    # LLM이 명시한 인용 질의회신/감리 ID + 적용사례 번호 — 좌측 근거 스플릿용
+    cited_cases: list[str] | None = None
+    cited_ie: list[str] | None = None
     # 사용 로그 ID — 피드백(👍/👎) 연결용
     log_id: str | None = None

@@ -1,8 +1,7 @@
 # app/ui/client.py
 # FastAPI 백엔드 통신 함수.
 #
-# _call_search: /search POST → evidence 페이지로 전환
-# _call_chat:   /chat SSE 스트리밍 → ai_answer 페이지로 전환
+# _call_chat: /chat SSE 스트리밍 → ai_answer 페이지로 전환
 #
 # 공통 원칙: 예외 발생 시 page_state를 변경하지 않아 현재 화면을 유지합니다.
 
@@ -14,7 +13,6 @@ import streamlit as st
 from app.ui.constants import (
     API_TIMEOUT,
     CHAT_URL,
-    SEARCH_URL,
     _STEP_LABELS,
     _STEP_PROGRESS,
 )
@@ -33,39 +31,6 @@ def _progress_html(text: str) -> str:
         f"<span class='spinner-text'>{text}</span>"
         "</div>"
     )
-
-
-def _call_search(query: str) -> None:
-    """/search API를 호출하고 evidence 화면으로 전환합니다."""
-    if not query.strip():
-        return
-
-    with st.spinner("관련 조항을 검색하고 있어요..."):
-        try:
-            resp = httpx.post(
-                SEARCH_URL,
-                json={
-                    "query": query,
-                    "session_id": st.session_state.session_id,
-                },
-                timeout=API_TIMEOUT,
-            )
-            resp.raise_for_status()
-            data = resp.json()
-
-            st.session_state.search_query = query
-            st.session_state.standalone_query = data.get("standalone_query", query)
-            st.session_state.search_id = data.get("search_id")
-            st.session_state.evidence_docs = data.get("docs", [])
-            st.session_state.page_state = "evidence"
-            st.rerun()
-
-        except httpx.ConnectError:
-            st.error(
-                "서버에 연결할 수 없습니다. FastAPI 서버가 실행 중인지 확인하세요."
-            )
-        except Exception as e:
-            st.error(f"검색 중 오류가 발생했습니다: {e}")
 
 
 def _call_chat(question: str, use_cache: bool = False) -> None:
@@ -135,25 +100,22 @@ def _call_chat(question: str, use_cache: bool = False) -> None:
                         answer_text = event.get("text", "")
                         cited_sources = event.get("cited_sources") or []
                         findings_case = event.get("findings_case")
-                        follow_up_questions = (
-                            event.get("follow_up_questions") or []
-                        )
+                        follow_up_questions = event.get("follow_up_questions") or []
                         st.session_state.session_id = event.get("session_id")
-                        st.session_state.is_situation = event.get(
-                            "is_situation", False
-                        )
+                        st.session_state.is_situation = event.get("is_situation", False)
                         # 피드백 연결용 로그 ID 저장
                         st.session_state.log_id = event.get("log_id")
                         # 자유 입력 시에도 좌측 근거 패널을 채웁니다
                         new_docs = event.get("retrieved_docs") or []
                         if new_docs:
                             st.session_state.evidence_docs = new_docs
+                        # LLM이 선언한 인용 케이스/IE — 좌측 QNA·감리·IE 스플릿 소스
+                        st.session_state.cited_cases = event.get("cited_cases") or []
+                        st.session_state.cited_ie = event.get("cited_ie") or []
 
                     elif event_type == "error":
                         progress.empty()
-                        st.error(
-                            f"오류: {event.get('message', '알 수 없는 오류')}"
-                        )
+                        st.error(f"오류: {event.get('message', '알 수 없는 오류')}")
                         return  # page_state 변경 없이 현재 화면 유지
 
         # done 이벤트를 받지 못한 경우 (서버 조기 종료 등)
@@ -166,9 +128,7 @@ def _call_chat(question: str, use_cache: bool = False) -> None:
 
     except httpx.HTTPStatusError as e:
         progress.empty()
-        st.error(
-            f"서버 오류 ({e.response.status_code}): 잠시 후 다시 시도해주세요."
-        )
+        st.error(f"서버 오류 ({e.response.status_code}): 잠시 후 다시 시도해주세요.")
         return
     except httpx.TimeoutException:
         progress.empty()
@@ -176,9 +136,7 @@ def _call_chat(question: str, use_cache: bool = False) -> None:
         return
     except httpx.ConnectError:
         progress.empty()
-        st.error(
-            "서버에 연결할 수 없습니다. FastAPI 서버가 실행 중인지 확인하세요."
-        )
+        st.error("서버에 연결할 수 없습니다. FastAPI 서버가 실행 중인지 확인하세요.")
         return
 
     # 스트리밍 성공 후에만 ai_answer 화면으로 전환합니다.
