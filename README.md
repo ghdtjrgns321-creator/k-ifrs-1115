@@ -7,6 +7,10 @@
 ![MongoDB Atlas](https://img.shields.io/badge/MongoDB%20Atlas-47A248?logo=mongodb&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 
+<p align="center">
+  <img src="images/screenshot_home.png" width="620" alt="K-IFRS 1115 어시스턴트 시작 화면 — 거래 구조 입력창과 예시 질문">
+</p>
+
 ---
 
 ## 개요
@@ -47,6 +51,12 @@
 설계 전반이 2종 오류를 줄이는 쪽으로 편향된다. "확실할 때만 확정하고, 애매하면 근거를 보여주며 유보한다." 이 시스템은 환각 0을 주장하지 않는다 — 근거 없는 확정을 **구조적으로 어렵게** 만들고, 검증 결과를 재현율로 정직하게 보고한다.
 
 **예시.** "A가 B에게 재화를 100원에 공급하고, B가 고객 C에게 120원에 판매할 때 A의 매출은 100원인가 120원인가?" — 시스템은 단정하지 않는다. 본인/대리인 판단 조건에 따라 Case 1(120원)·Case 2(100원)로 분기하고, 각 분기에 기준서 문단을 인용한다.
+
+<p align="center">
+  <img src="images/screenshot_answer.png" width="860" alt="위 예시의 실제 답변 화면 — 좌측 근거 문서 패널, 우측 AI 판단이 본인·대리인 조건에 따라 Case 1·2·3로 분기">
+</p>
+
+<p align="center"><sub>위 예시의 실제 답변 화면. 좌측은 기준서 근거 문서(문단 31·35·35B·36 등), 우측은 AI 판단 — 단정 대신 통제권 조건에 따라 Case 1·2·3로 분기하고 각 분기에 문단을 인용한다.</sub></p>
 
 ---
 
