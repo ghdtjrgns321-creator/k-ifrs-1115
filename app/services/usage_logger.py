@@ -22,8 +22,10 @@ def _get_collection():
     global _client
     if _client is None:
         from app.config import settings
+
         _client = MongoClient(settings.mongo_uri, serverSelectionTimeoutMS=3000)
     from app.config import settings
+
     return _client[settings.mongo_db_name][_COLLECTION_NAME]
 
 
@@ -58,20 +60,21 @@ def _score_citation_coverage(cited: list[str], answer: str) -> float:
     return base
 
 
-def _score_topic_match(
-    topics: list[str], is_situation: bool, keywords: list[str],
-) -> float:
+def _score_topic_match(topics: list[str], is_situation: bool) -> float:
     """토픽 매칭 적절성."""
+    # 개념 질문은 토픽 매칭 대상이 아니므로 고정 baseline
     if not is_situation:
-        return 0.9 if len(keywords) >= 3 else 0.7
+        return 0.8
     if not topics:
         return 0.2
     return 1.0 if len(topics) >= 2 else 0.7
 
 
 def _score_conclusion_safety(
-    is_situation: bool, is_conclusion: bool,
-    branches: list[str], answer: str,
+    is_situation: bool,
+    is_conclusion: bool,
+    branches: list[str],
+    answer: str,
 ) -> float:
     """결론 신중성. 성급하게 결론 내리지 않았는가."""
     if not is_situation:
@@ -94,17 +97,25 @@ _WEIGHTS = {
 
 
 def _auto_score(
-    *, answer: str, cited: list[str], topics: list[str],
-    keywords: list[str], is_situation: bool, is_conclusion: bool,
-    branches: list[str], response_time_ms: int,
+    *,
+    answer: str,
+    cited: list[str],
+    topics: list[str],
+    is_situation: bool,
+    is_conclusion: bool,
+    branches: list[str],
+    response_time_ms: int,
 ) -> dict:
     """규칙 기반 4개 메트릭 채점 + 가중 평균 산출."""
     metrics = {
         "response_time": _score_response_time(response_time_ms),
         "citation_coverage": _score_citation_coverage(cited, answer),
-        "topic_match": _score_topic_match(topics, is_situation, keywords),
+        "topic_match": _score_topic_match(topics, is_situation),
         "conclusion_safety": _score_conclusion_safety(
-            is_situation, is_conclusion, branches, answer,
+            is_situation,
+            is_conclusion,
+            branches,
+            answer,
         ),
     }
     total = sum(metrics[k] * _WEIGHTS[k] for k in metrics) / sum(_WEIGHTS.values())
@@ -125,7 +136,6 @@ def log_chat_response(
     question: str,
     answer: str,
     matched_topics: list[str] | None = None,
-    search_keywords: list[str] | None = None,
     cited_paragraphs: list[str] | None = None,
     is_situation: bool = False,
     needs_calculation: bool = False,
@@ -141,7 +151,6 @@ def log_chat_response(
     try:
         cited = cited_paragraphs or []
         topics = matched_topics or []
-        keywords = search_keywords or []
         branches = selected_branches or []
         truncated_answer = answer[:2000]
 
@@ -150,7 +159,6 @@ def log_chat_response(
             answer=truncated_answer,
             cited=cited,
             topics=topics,
-            keywords=keywords,
             is_situation=is_situation,
             is_conclusion=is_conclusion,
             branches=branches,
@@ -162,7 +170,6 @@ def log_chat_response(
             "question": question,
             "answer": truncated_answer,
             "matched_topics": topics,
-            "search_keywords": keywords,
             "cited_paragraphs": cited,
             "is_situation": is_situation,
             "needs_calculation": needs_calculation,
@@ -177,7 +184,8 @@ def log_chat_response(
         result = _get_collection().insert_one(doc)
         logger.info(
             "usage_log saved: %s (score: %.2f)",
-            result.inserted_id, auto_scores["total"],
+            result.inserted_id,
+            auto_scores["total"],
         )
         return str(result.inserted_id)
     except Exception as exc:

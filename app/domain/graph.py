@@ -173,7 +173,6 @@ class Graph:
     def resolve_question(
         self,
         text: str,
-        keywords: list[str] | None = None,
         topic_hints: list[str] | None = None,
     ) -> dict:
         """질문 진입 통합 — LLM 지목 토픽(우선) + 용어사전(보조).
@@ -184,8 +183,7 @@ class Graph:
         문단이 generate 상한에 밀리는 문제. traverse는 개념 순서대로 문단을 넣으므로
         개념 순서를 바꾸면 문단 우선순위가 따라온다.
         """
-        blob = (text or "") + " " + " ".join(keywords or [])
-        r = self.resolve_terms(blob)
+        r = self.resolve_terms(text or "")
         cids: list[str] = []
         via_topic: list[str] = []
         for th in topic_hints or []:

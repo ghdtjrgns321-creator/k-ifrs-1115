@@ -182,7 +182,6 @@ def _done_event(state: dict) -> SSEEvent:
         needs_calculation=state.get("needs_calculation", False),
         retrieved_docs=retrieved_docs,
         matched_topic_keys=topic_keys if topic_keys else None,
-        search_keywords=state.get("search_keywords") or None,
         is_conclusion=state.get("is_conclusion", False),
         selected_branches=state.get("selected_branches") or None,
         cited_paragraphs=state.get("cited_paragraphs") or None,

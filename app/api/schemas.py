@@ -96,8 +96,6 @@ class SSEEvent(BaseModel):
     needs_calculation: bool = False
     # 매칭된 체크리스트 토픽 키 목록 — 핀포인트 패널용
     matched_topic_keys: list[str] | None = None
-    # analyze가 추출한 검색 키워드 목록
-    search_keywords: list[str] | None = None
     # clarify가 결론을 내렸는지 여부 — UI에서 추가 질문 표시 분기용
     is_conclusion: bool = False
     # clarify가 선택한 결론 가이드 분기 라벨

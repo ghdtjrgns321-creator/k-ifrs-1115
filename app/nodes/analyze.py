@@ -55,7 +55,6 @@ async def analyze_query(state: dict) -> dict:
     # 임베딩 유사도 미사용. 개념 질문/상황 질문 모두 적용(그래프 탐색이 후보 축소).
     entry = get_graph().resolve_question(
         data.standalone_query or user_text,
-        data.search_keywords,
         data.topic_hints,
     )
 
@@ -63,7 +62,6 @@ async def analyze_query(state: dict) -> dict:
         "routing": data.routing,
         "standalone_query": data.standalone_query,
         "is_situation": data.is_situation,
-        "search_keywords": data.search_keywords,
         "concept_ids": entry["concept_ids"],
         # via_topic: LLM 지목 주제 직속 개념(subtree 확장 전). 트리 매칭 오선택 차단용.
         "via_topic": entry["via_topic"],

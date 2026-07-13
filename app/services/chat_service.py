@@ -55,8 +55,9 @@ def _build_initial_state(
         "follow_up_questions": [],
         "pre_retrieved_docs": effective_pre,
         "is_situation": True if is_followup else False,
-        "search_keywords": [],
-        "matched_topics": checklist_state.get("matched_topics", []) if is_followup else [],
+        "matched_topics": checklist_state.get("matched_topics", [])
+        if is_followup
+        else [],
         "checklist_state": checklist_state,
         "is_clarify_followup": is_followup,
         # needs_calculation: 첫 턴에서 저장한 값 복원 (fast-path에서 리셋 방지)
@@ -121,7 +122,6 @@ async def run_graph_stream(
                     question=message,
                     answer=final_state.get("answer", ""),
                     matched_topics=topics,
-                    search_keywords=final_state.get("search_keywords"),
                     cited_paragraphs=final_state.get("cited_paragraphs"),
                     is_situation=final_state.get("is_situation", False),
                     needs_calculation=final_state.get("needs_calculation", False),

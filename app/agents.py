@@ -64,9 +64,6 @@ class AnalyzeResult(BaseModel):
     is_situation: bool = Field(
         default=False, description="구체적 거래 상황 설명이면 True"
     )
-    search_keywords: list[str] = Field(
-        default_factory=list, description="벡터 DB 검색용 K-IFRS 핵심 키워드 3~5개"
-    )
     confusion_point: str = Field(
         default="",
         description="사용자 혼동 원인 (예: '세금계산서 발행 주체'). 없으면 빈 문자열",
