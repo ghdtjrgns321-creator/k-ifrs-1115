@@ -43,3 +43,7 @@ app/domain/trees_plan.md
 .idea/
 .ruff_cache/
 .playwright-cli/
+
+# main(포트폴리오)에서 제외 — dev 브랜치에만 유지
+legacy/
+usage-data-collecting/
