@@ -1,0 +1,9038 @@
+{
+  "_meta": {
+    "generated_by": "app/preprocessing/17-ontology-aliases.py",
+    "status": "finalized_2026-07-04",
+    "sources": {
+      "query-mapping": 288,
+      "titles": 123,
+      "appendixA": 9
+    },
+    "rows": 415,
+    "auto": 316,
+    "review": 99,
+    "delegated_review": {
+      "full": 41,
+      "partial": 34,
+      "escalated": 3
+    },
+    "final": {
+      "listed": 389,
+      "definition_only": 3,
+      "excluded": 23
+    },
+    "island_fix": {
+      "terms": 6,
+      "edges": 9
+    }
+  },
+  "terms": [
+    {
+      "term": "CIF",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 5,
+          "paras": [
+            "38"
+          ]
+        },
+        {
+          "concept": "본인 대 대리인의 고려사항",
+          "concept_id": "XLz6Gv",
+          "hits": 2,
+          "paras": [
+            "B35"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "FOB",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 6,
+          "paras": [
+            "38"
+          ]
+        },
+        {
+          "concept": "본인 대 대리인의 고려사항",
+          "concept_id": "XLz6Gv",
+          "hits": 2,
+          "paras": [
+            "B35"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "IP",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "기업 약속의 성격을 판단함",
+        "라이선싱",
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "PQHzk5",
+        "bxCGNy",
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "기업 약속의 성격을 판단함",
+          "concept_id": "PQHzk5",
+          "hits": 39,
+          "paras": [
+            "B58",
+            "B59",
+            "B59A",
+            "B60"
+          ]
+        },
+        {
+          "concept": "라이선싱",
+          "concept_id": "bxCGNy",
+          "hits": 23,
+          "paras": [
+            "B52",
+            "B53",
+            "B54",
+            "B55"
+          ]
+        },
+        {
+          "concept": "판매기준 로열티나 사용기준 로열티",
+          "concept_id": "Y3rhox",
+          "hits": 9,
+          "paras": [
+            "B63",
+            "B63A"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "MOU",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "계약을 식별함",
+          "concept_id": "l3leA7",
+          "hits": 3,
+          "paras": [
+            "10",
+            "11"
+          ]
+        },
+        {
+          "concept": "계약변경",
+          "concept_id": "xYL1TP",
+          "hits": 2,
+          "paras": [
+            "18"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약변경"
+        ],
+        "added": [],
+        "reason": "MOU는 계약 성립 여부 쟁점 — 변경 무관"
+      }
+    },
+    {
+      "term": "SaaS",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "라이선싱",
+        "기업 약속의 성격을 판단함",
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "bxCGNy",
+        "PQHzk5",
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "라이선싱",
+          "concept_id": "bxCGNy",
+          "hits": 19,
+          "paras": [
+            "B52",
+            "B53",
+            "B54",
+            "B55"
+          ]
+        },
+        {
+          "concept": "기업 약속의 성격을 판단함",
+          "concept_id": "PQHzk5",
+          "hits": 18,
+          "paras": [
+            "B58",
+            "B60",
+            "B61",
+            "B62"
+          ]
+        },
+        {
+          "concept": "판매기준 로열티나 사용기준 로열티",
+          "concept_id": "Y3rhox",
+          "hits": 5,
+          "paras": [
+            "B63",
+            "B63A"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "가계약",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "계약을 식별함",
+          "concept_id": "l3leA7",
+          "hits": 3,
+          "paras": [
+            "10",
+            "11"
+          ]
+        },
+        {
+          "concept": "계약변경",
+          "concept_id": "xYL1TP",
+          "hits": 2,
+          "paras": [
+            "18"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약변경"
+        ],
+        "added": [],
+        "reason": "동상"
+      }
+    },
+    {
+      "term": "가맹비",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "라이선싱",
+        "기업 약속의 성격을 판단함",
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "bxCGNy",
+        "PQHzk5",
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "라이선싱",
+          "concept_id": "bxCGNy",
+          "hits": 19,
+          "paras": [
+            "B52",
+            "B53",
+            "B54",
+            "B55"
+          ]
+        },
+        {
+          "concept": "기업 약속의 성격을 판단함",
+          "concept_id": "PQHzk5",
+          "hits": 18,
+          "paras": [
+            "B58",
+            "B60",
+            "B61",
+            "B62"
+          ]
+        },
+        {
+          "concept": "판매기준 로열티나 사용기준 로열티",
+          "concept_id": "Y3rhox",
+          "hits": 5,
+          "paras": [
+            "B63",
+            "B63A"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "가상재화",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "개별 판매가격",
+      "sources": [
+        "부록A정의"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "개별 판매가격에 기초한 배분",
+        "할인액의 배분",
+        "추가 재화나 용역에 대한 고객의 선택권"
+      ],
+      "concept_ids": [
+        "TtGOPn",
+        "7XbqhS",
+        "oHAy0O"
+      ],
+      "cases": [],
+      "note": "공식 정의 보유 — 개념 목적지 확인 필요",
+      "definition": "기업이 약속한 재화나 용역을 고객에게 별도로 판매할 경우의 가격",
+      "proposals": [
+        {
+          "concept": "개별 판매가격에 기초한 배분",
+          "concept_id": "TtGOPn",
+          "hits": 24,
+          "paras": [
+            "76",
+            "77",
+            "78",
+            "79"
+          ]
+        },
+        {
+          "concept": "할인액의 배분",
+          "concept_id": "7XbqhS",
+          "hits": 4,
+          "paras": [
+            "81",
+            "82",
+            "83"
+          ]
+        },
+        {
+          "concept": "추가 재화나 용역에 대한 고객의 선택권",
+          "concept_id": "oHAy0O",
+          "hits": 4,
+          "paras": [
+            "B41",
+            "B42",
+            "B43"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "개별판매가격",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "개별 판매가격에 기초한 배분"
+      ],
+      "concept_ids": [
+        "TtGOPn"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "개별 판매가격에 기초한 배분",
+          "concept_id": "TtGOPn",
+          "hits": 1,
+          "paras": [
+            "77"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "거래가격",
+      "sources": [
+        "query-mapping",
+        "부록A정의"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "거래가격의 변동",
+        "비현금 대가",
+        "거래가격을 산정함"
+      ],
+      "concept_ids": [
+        "Cpmvf4",
+        "ySAFHt",
+        "O28gcg"
+      ],
+      "cases": [],
+      "note": "",
+      "definition": "고객에게 약속한 재화나 용역을 이전하고 그 대가로 기업이 받을 권리를 갖게 될 것으로 예상하는 금액이며, 제삼자를 대신하여 회수한 금액은 제외",
+      "proposals": [
+        {
+          "concept": "거래가격의 변동",
+          "concept_id": "Cpmvf4",
+          "hits": 10,
+          "paras": [
+            "87",
+            "88",
+            "89",
+            "90"
+          ]
+        },
+        {
+          "concept": "비현금 대가",
+          "concept_id": "ySAFHt",
+          "hits": 7,
+          "paras": [
+            "66",
+            "67",
+            "68",
+            "69"
+          ]
+        },
+        {
+          "concept": "거래가격을 산정함",
+          "concept_id": "O28gcg",
+          "hits": 6,
+          "paras": [
+            "47",
+            "48",
+            "49"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "거래가격배분",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "개별 판매가격에 기초한 배분",
+        "할인액의 배분"
+      ],
+      "concept_ids": [
+        "TtGOPn",
+        "7XbqhS"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "개별 판매가격에 기초한 배분",
+          "concept_id": "TtGOPn",
+          "hits": 4,
+          "paras": [
+            "79",
+            "80"
+          ]
+        },
+        {
+          "concept": "할인액의 배분",
+          "concept_id": "7XbqhS",
+          "hits": 1,
+          "paras": [
+            "83"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "검수기준",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "고객의 인수"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "Ovyudt"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 1,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [
+          "고객의 인수"
+        ],
+        "reason": "검수 조건=B83~86 고객의 인수가 정면 조항"
+      }
+    },
+    {
+      "term": "게임",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "기업 약속의 성격을 판단함",
+        "라이선싱",
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "PQHzk5",
+        "bxCGNy",
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "기업 약속의 성격을 판단함",
+          "concept_id": "PQHzk5",
+          "hits": 20,
+          "paras": [
+            "B58",
+            "B60",
+            "B61",
+            "B62"
+          ]
+        },
+        {
+          "concept": "라이선싱",
+          "concept_id": "bxCGNy",
+          "hits": 19,
+          "paras": [
+            "B52",
+            "B53",
+            "B54",
+            "B55"
+          ]
+        },
+        {
+          "concept": "판매기준 로열티나 사용기준 로열티",
+          "concept_id": "Y3rhox",
+          "hits": 5,
+          "paras": [
+            "B63",
+            "B63A"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "견본품",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무"
+      ],
+      "concept_ids": [
+        "lIlmTb"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 1,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "계약",
+      "sources": [
+        "부록A정의"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": "공식 정의 보유 — 개념 목적지 확인 필요",
+      "definition": "둘 이상의 당사자들 사이에 집행 가능한(enforceable) 권리와 의무가 생기게 하는 합의",
+      "proposals": [
+        {
+          "concept": "계약변경",
+          "concept_id": "xYL1TP",
+          "hits": 42,
+          "paras": [
+            "18",
+            "19",
+            "20",
+            "21"
+          ]
+        },
+        {
+          "concept": "지금까지 수행을 완료한 부분에 대한 지급청구권",
+          "concept_id": "5xZWrk",
+          "hits": 30,
+          "paras": [
+            "B9",
+            "B10",
+            "B11",
+            "B12"
+          ]
+        },
+        {
+          "concept": "계약을 식별함",
+          "concept_id": "l3leA7",
+          "hits": 27,
+          "paras": [
+            "9",
+            "10",
+            "11",
+            "12"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약변경",
+          "지금까지 수행을 완료한 부분에 대한 지급청구권"
+        ],
+        "added": [],
+        "reason": "일반 용어 — 단어 빈도 제안은 노이즈, 정의의 뿌리인 식별만"
+      }
+    },
+    {
+      "term": "계약강제력",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "계약을 식별함",
+          "concept_id": "l3leA7",
+          "hits": 3,
+          "paras": [
+            "10",
+            "11"
+          ]
+        },
+        {
+          "concept": "계약변경",
+          "concept_id": "xYL1TP",
+          "hits": 2,
+          "paras": [
+            "18"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약변경"
+        ],
+        "added": [],
+        "reason": "집행가능성=식별 요건(문단 9)"
+      }
+    },
+    {
+      "term": "계약맥락에서구별",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "계약부채",
+      "sources": [
+        "query-mapping",
+        "부록A정의"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약 잔액",
+        "고객이 행사하지 아니한 권리",
+        "표시"
+      ],
+      "concept_ids": [
+        "SMeYao",
+        "Ruylm4",
+        "W6Bh7o"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "definition": "기업이 고객에게서 이미 받은 대가(또는 지급기일이 된 대가)에 상응하여 고객에게 재화나 용역을 이전하여야 하는 기업의 의무",
+      "proposals": [
+        {
+          "concept": "계약 잔액",
+          "concept_id": "SMeYao",
+          "hits": 7,
+          "paras": [
+            "116",
+            "117",
+            "118"
+          ]
+        },
+        {
+          "concept": "고객이 행사하지 아니한 권리",
+          "concept_id": "Ruylm4",
+          "hits": 5,
+          "paras": [
+            "B44",
+            "B46"
+          ]
+        },
+        {
+          "concept": "표시",
+          "concept_id": "W6Bh7o",
+          "hits": 4,
+          "paras": [
+            "105",
+            "106",
+            "109"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "계약서미작성",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "계약을 식별함",
+          "concept_id": "l3leA7",
+          "hits": 3,
+          "paras": [
+            "10",
+            "11"
+          ]
+        },
+        {
+          "concept": "계약변경",
+          "concept_id": "xYL1TP",
+          "hits": 2,
+          "paras": [
+            "18"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약변경"
+        ],
+        "added": [],
+        "reason": "구두계약 쟁점=식별"
+      }
+    },
+    {
+      "term": "계약서없는거래",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "계약을 식별함",
+          "concept_id": "l3leA7",
+          "hits": 3,
+          "paras": [
+            "10",
+            "11"
+          ]
+        },
+        {
+          "concept": "계약변경",
+          "concept_id": "xYL1TP",
+          "hits": 2,
+          "paras": [
+            "18"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약변경"
+        ],
+        "added": [],
+        "reason": "동상"
+      }
+    },
+    {
+      "term": "계약식별",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "계약을 식별함",
+          "concept_id": "l3leA7",
+          "hits": 4,
+          "paras": [
+            "9",
+            "10",
+            "11"
+          ]
+        },
+        {
+          "concept": "계약변경",
+          "concept_id": "xYL1TP",
+          "hits": 2,
+          "paras": [
+            "18"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약변경"
+        ],
+        "added": [],
+        "reason": "동어"
+      }
+    },
+    {
+      "term": "계약자산",
+      "sources": [
+        "query-mapping",
+        "부록A정의"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "표시",
+        "계약 잔액",
+        "계약에 있는 유의적인 금융요소"
+      ],
+      "concept_ids": [
+        "W6Bh7o",
+        "SMeYao",
+        "Ag62GJ"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "definition": "기업이 고객에게 이전한 재화나 용역에 대하여 그 대가를 받을 기업의 권리로 그 권리에 시간의 경과 외의 조건(예: 기업의 미래 수행)이 있는 자산",
+      "proposals": [
+        {
+          "concept": "표시",
+          "concept_id": "W6Bh7o",
+          "hits": 17,
+          "paras": [
+            "105",
+            "106",
+            "107",
+            "108"
+          ]
+        },
+        {
+          "concept": "계약 잔액",
+          "concept_id": "SMeYao",
+          "hits": 9,
+          "paras": [
+            "116",
+            "117",
+            "118"
+          ]
+        },
+        {
+          "concept": "계약에 있는 유의적인 금융요소",
+          "concept_id": "Ag62GJ",
+          "hits": 2,
+          "paras": [
+            "65"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "고객",
+      "sources": [
+        "부록A정의"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "공식 정의 보유 — 개념 목적지 확인 필요",
+      "definition": "기업의 통상적인 활동의 산출물인 재화나 용역을 대가와 교환하여 획득하기로 기업과 계약한 당사자",
+      "proposals": [
+        {
+          "concept": "구별되는 재화나 용역",
+          "concept_id": "8P5E9V",
+          "hits": 25,
+          "paras": [
+            "26",
+            "27",
+            "28",
+            "29"
+          ]
+        },
+        {
+          "concept": "본인 대 대리인의 고려사항",
+          "concept_id": "XLz6Gv",
+          "hits": 25,
+          "paras": [
+            "B34",
+            "B34A",
+            "B35",
+            "B35A"
+          ]
+        },
+        {
+          "concept": "계약에 있는 유의적인 금융요소",
+          "concept_id": "Ag62GJ",
+          "hits": 22,
+          "paras": [
+            "60",
+            "61",
+            "62",
+            "63"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "구별되는 재화나 용역",
+          "본인 대 대리인의 고려사항",
+          "계약에 있는 유의적인 금융요소"
+        ],
+        "added": [],
+        "reason": "불용어급 일반 용어 — 간선 무의미, 부록A 정의만 노드 속성으로 보존"
+      }
+    },
+    {
+      "term": "고객에게지급하는대가",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "고객충성제도",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "추가 재화나 용역에 대한 고객의 선택권"
+      ],
+      "concept_ids": [
+        "oHAy0O"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "다른 기준서의 대체",
+          "concept_id": "xR6Jtz",
+          "hits": 1,
+          "paras": [
+            "C10"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "다른 기준서의 대체"
+        ],
+        "added": [
+          "추가 재화나 용역에 대한 고객의 선택권"
+        ],
+        "reason": "C10 출현은 1113 폐지 언급 노이즈 — 충성제도=B40 선택권"
+      }
+    },
+    {
+      "term": "구두계약",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "계약을 식별함",
+          "concept_id": "l3leA7",
+          "hits": 3,
+          "paras": [
+            "10",
+            "11"
+          ]
+        },
+        {
+          "concept": "계약변경",
+          "concept_id": "xYL1TP",
+          "hits": 2,
+          "paras": [
+            "18"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약변경"
+        ],
+        "added": [],
+        "reason": "식별 쟁점"
+      }
+    },
+    {
+      "term": "기성청구",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "표시",
+        "계약 잔액"
+      ],
+      "concept_ids": [
+        "W6Bh7o",
+        "SMeYao"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "표시",
+          "concept_id": "W6Bh7o",
+          "hits": 17,
+          "paras": [
+            "105",
+            "106",
+            "107",
+            "108"
+          ]
+        },
+        {
+          "concept": "계약 잔액",
+          "concept_id": "SMeYao",
+          "hits": 9,
+          "paras": [
+            "116",
+            "117",
+            "118"
+          ]
+        },
+        {
+          "concept": "계약에 있는 유의적인 금융요소",
+          "concept_id": "Ag62GJ",
+          "hits": 2,
+          "paras": [
+            "65"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약에 있는 유의적인 금융요소"
+        ],
+        "added": [],
+        "reason": "금융요소 출현(¶65)은 부수 언급"
+      }
+    },
+    {
+      "term": "납품수량",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무"
+      ],
+      "concept_ids": [
+        "lIlmTb"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 2,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "누적수익조정",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약변경"
+      ],
+      "concept_ids": [
+        "xYL1TP"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "계약변경",
+          "concept_id": "xYL1TP",
+          "hits": 1,
+          "paras": [
+            "21"
+          ]
+        },
+        {
+          "concept": "계약 잔액",
+          "concept_id": "SMeYao",
+          "hits": 1,
+          "paras": [
+            "118"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약 잔액"
+        ],
+        "added": [],
+        "reason": "누적효과 일괄조정=문단 21"
+      }
+    },
+    {
+      "term": "도착기준",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무"
+      ],
+      "concept_ids": [
+        "lIlmTb"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 1,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "도착지인도",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 5,
+          "paras": [
+            "38"
+          ]
+        },
+        {
+          "concept": "본인 대 대리인의 고려사항",
+          "concept_id": "XLz6Gv",
+          "hits": 2,
+          "paras": [
+            "B35"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "독립판매가격",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "개별 판매가격에 기초한 배분"
+      ],
+      "concept_ids": [
+        "TtGOPn"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "개별 판매가격에 기초한 배분",
+          "concept_id": "TtGOPn",
+          "hits": 1,
+          "paras": [
+            "77"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "독점판매권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "기업 약속의 성격을 판단함",
+        "라이선싱",
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "PQHzk5",
+        "bxCGNy",
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "기업 약속의 성격을 판단함",
+          "concept_id": "PQHzk5",
+          "hits": 22,
+          "paras": [
+            "B58",
+            "B60",
+            "B61",
+            "B62"
+          ]
+        },
+        {
+          "concept": "라이선싱",
+          "concept_id": "bxCGNy",
+          "hits": 19,
+          "paras": [
+            "B52",
+            "B53",
+            "B54",
+            "B55"
+          ]
+        },
+        {
+          "concept": "판매기준 로열티나 사용기준 로열티",
+          "concept_id": "Y3rhox",
+          "hits": 5,
+          "paras": [
+            "B63",
+            "B63A"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "렌탈",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "선도나 콜옵션",
+        "풋옵션",
+        "적용범위"
+      ],
+      "concept_ids": [
+        "ha4Yp2",
+        "24pQtH",
+        "4aNSKr"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "선도나 콜옵션",
+          "concept_id": "ha4Yp2",
+          "hits": 4,
+          "paras": [
+            "B66"
+          ]
+        },
+        {
+          "concept": "풋옵션",
+          "concept_id": "24pQtH",
+          "hits": 3,
+          "paras": [
+            "B70"
+          ]
+        },
+        {
+          "concept": "적용범위",
+          "concept_id": "4aNSKr",
+          "hits": 2,
+          "paras": [
+            "5"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "리워드",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "추가 재화나 용역에 대한 고객의 선택권"
+      ],
+      "concept_ids": [
+        "oHAy0O"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "다른 기준서의 대체",
+          "concept_id": "xR6Jtz",
+          "hits": 1,
+          "paras": [
+            "C10"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "다른 기준서의 대체"
+        ],
+        "added": [
+          "추가 재화나 용역에 대한 고객의 선택권"
+        ],
+        "reason": "동상(마일리지 계열)"
+      }
+    },
+    {
+      "term": "마일리지",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "추가 재화나 용역에 대한 고객의 선택권"
+      ],
+      "concept_ids": [
+        "oHAy0O"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "다른 기준서의 대체",
+          "concept_id": "xR6Jtz",
+          "hits": 1,
+          "paras": [
+            "C10"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "다른 기준서의 대체"
+        ],
+        "added": [
+          "추가 재화나 용역에 대한 고객의 선택권"
+        ],
+        "reason": "동상"
+      }
+    },
+    {
+      "term": "매출채권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "표시",
+        "계약 잔액",
+        "계약에 있는 유의적인 금융요소"
+      ],
+      "concept_ids": [
+        "W6Bh7o",
+        "SMeYao",
+        "Ag62GJ"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "표시",
+          "concept_id": "W6Bh7o",
+          "hits": 17,
+          "paras": [
+            "105",
+            "106",
+            "107",
+            "108"
+          ]
+        },
+        {
+          "concept": "계약 잔액",
+          "concept_id": "SMeYao",
+          "hits": 9,
+          "paras": [
+            "116",
+            "117",
+            "118"
+          ]
+        },
+        {
+          "concept": "계약에 있는 유의적인 금융요소",
+          "concept_id": "Ag62GJ",
+          "hits": 2,
+          "paras": [
+            "65"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "매출채권손상",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약에 있는 유의적인 금융요소",
+        "상각과 손상"
+      ],
+      "concept_ids": [
+        "Ag62GJ",
+        "hyCSKL"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "계약에 있는 유의적인 금융요소",
+          "concept_id": "Ag62GJ",
+          "hits": 1,
+          "paras": [
+            "64"
+          ]
+        },
+        {
+          "concept": "상각과 손상",
+          "concept_id": "hyCSKL",
+          "hits": 1,
+          "paras": [
+            "102"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "모바일게임",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "라이선싱",
+        "기업 약속의 성격을 판단함",
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "bxCGNy",
+        "PQHzk5",
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "라이선싱",
+          "concept_id": "bxCGNy",
+          "hits": 19,
+          "paras": [
+            "B52",
+            "B53",
+            "B54",
+            "B55"
+          ]
+        },
+        {
+          "concept": "기업 약속의 성격을 판단함",
+          "concept_id": "PQHzk5",
+          "hits": 18,
+          "paras": [
+            "B58",
+            "B60",
+            "B61",
+            "B62"
+          ]
+        },
+        {
+          "concept": "판매기준 로열티나 사용기준 로열티",
+          "concept_id": "Y3rhox",
+          "hits": 5,
+          "paras": [
+            "B63",
+            "B63A"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "모바일상품권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "묵시적계약",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "물질적권리",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "미수수익",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "표시",
+        "계약 잔액"
+      ],
+      "concept_ids": [
+        "W6Bh7o",
+        "SMeYao"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "표시",
+          "concept_id": "W6Bh7o",
+          "hits": 8,
+          "paras": [
+            "105",
+            "107",
+            "109"
+          ]
+        },
+        {
+          "concept": "계약 잔액",
+          "concept_id": "SMeYao",
+          "hits": 7,
+          "paras": [
+            "116",
+            "117",
+            "118"
+          ]
+        },
+        {
+          "concept": "계약에 있는 유의적인 금융요소",
+          "concept_id": "Ag62GJ",
+          "hits": 1,
+          "paras": [
+            "65"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약에 있는 유의적인 금융요소"
+        ],
+        "added": [],
+        "reason": "동상"
+      }
+    },
+    {
+      "term": "미행사권리",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "발송기준",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무"
+      ],
+      "concept_ids": [
+        "lIlmTb"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 2,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "부가가치세",
+      "sources": [
+        "query-mapping",
+        "제목추출(04b 감사 보강)"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "거래가격을 산정함"
+      ],
+      "concept_ids": [
+        "O28gcg"
+      ],
+      "cases": [
+        "QNA-SSI-36898"
+      ],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": [],
+      "decision": {
+        "by": "AI 위임 판단 (DEAD-END 보강, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "거래가격을 산정함"
+        ],
+        "reason": "제목에 '부가가치세' 포함 사례 1건의 감사본 주제 합집합 — 본문 출현 0 제외 행 부활(제목이 목적지 제공)"
+      }
+    },
+    {
+      "term": "부담금",
+      "sources": [
+        "query-mapping",
+        "제목추출(04b 감사 보강)"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "투입법",
+        "계약이행원가",
+        "상각과 손상"
+      ],
+      "concept_ids": [
+        "RF3mRJ",
+        "TgRpnd",
+        "hyCSKL"
+      ],
+      "cases": [
+        "QNA-SSI-202412041"
+      ],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": [],
+      "decision": {
+        "by": "AI 위임 판단 (DEAD-END 보강, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "투입법",
+          "계약이행원가",
+          "상각과 손상"
+        ],
+        "reason": "제목에 '부담금' 포함 사례 1건의 감사본 주제 합집합 — 본문 출현 0 제외 행 부활(제목이 목적지 제공)"
+      }
+    },
+    {
+      "term": "사용권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "기업 약속의 성격을 판단함",
+        "라이선싱",
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "PQHzk5",
+        "bxCGNy",
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "기업 약속의 성격을 판단함",
+          "concept_id": "PQHzk5",
+          "hits": 20,
+          "paras": [
+            "B58",
+            "B60",
+            "B61",
+            "B62"
+          ]
+        },
+        {
+          "concept": "라이선싱",
+          "concept_id": "bxCGNy",
+          "hits": 19,
+          "paras": [
+            "B52",
+            "B53",
+            "B54",
+            "B55"
+          ]
+        },
+        {
+          "concept": "판매기준 로열티나 사용기준 로열티",
+          "concept_id": "Y3rhox",
+          "hits": 5,
+          "paras": [
+            "B63",
+            "B63A"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "상품권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "고객에게 지급할 대가",
+        "고객이 행사하지 아니한 권리"
+      ],
+      "concept_ids": [
+        "FJvsfz",
+        "Ruylm4"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "고객에게 지급할 대가",
+          "concept_id": "FJvsfz",
+          "hits": 1,
+          "paras": [
+            "70"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [
+          "고객이 행사하지 아니한 권리"
+        ],
+        "reason": "미행사 상품권=B44~47 정면 조항"
+      }
+    },
+    {
+      "term": "선수금",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "고객이 행사하지 아니한 권리",
+        "환불되지 않는 선수수수료(와 일부 관련 원가)",
+        "계약 잔액"
+      ],
+      "concept_ids": [
+        "Ruylm4",
+        "n94QVz",
+        "SMeYao"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "고객이 행사하지 아니한 권리",
+          "concept_id": "Ruylm4",
+          "hits": 2,
+          "paras": [
+            "B44"
+          ]
+        },
+        {
+          "concept": "환불되지 않는 선수수수료(와 일부 관련 원가)",
+          "concept_id": "n94QVz",
+          "hits": 1,
+          "paras": [
+            "B49"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [
+          "계약 잔액"
+        ],
+        "reason": "선수금=계약부채(116~118)"
+      }
+    },
+    {
+      "term": "선수수익",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "선적기준",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 6,
+          "paras": [
+            "38"
+          ]
+        },
+        {
+          "concept": "본인 대 대리인의 고려사항",
+          "concept_id": "XLz6Gv",
+          "hits": 2,
+          "paras": [
+            "B35"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "선적지인도",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 6,
+          "paras": [
+            "38"
+          ]
+        },
+        {
+          "concept": "본인 대 대리인의 고려사항",
+          "concept_id": "XLz6Gv",
+          "hits": 2,
+          "paras": [
+            "B35"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "설계시공",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "구별되는 재화나 용역",
+        "본인 대 대리인의 고려사항",
+        "기간에 걸쳐 이행하는 수행의무"
+      ],
+      "concept_ids": [
+        "8P5E9V",
+        "XLz6Gv",
+        "yyaySE"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "구별되는 재화나 용역",
+          "concept_id": "8P5E9V",
+          "hits": 3,
+          "paras": [
+            "29"
+          ]
+        },
+        {
+          "concept": "본인 대 대리인의 고려사항",
+          "concept_id": "XLz6Gv",
+          "hits": 1,
+          "paras": [
+            "B35A"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [
+          "기간에 걸쳐 이행하는 수행의무"
+        ],
+        "reason": "건설계약 핵심 쟁점 추가"
+      }
+    },
+    {
+      "term": "소유권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 9,
+          "paras": [
+            "38"
+          ]
+        },
+        {
+          "concept": "본인 대 대리인의 고려사항",
+          "concept_id": "XLz6Gv",
+          "hits": 4,
+          "paras": [
+            "B35"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "소프트웨어",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "기업 약속의 성격을 판단함",
+        "라이선싱",
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "PQHzk5",
+        "bxCGNy",
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "기업 약속의 성격을 판단함",
+          "concept_id": "PQHzk5",
+          "hits": 25,
+          "paras": [
+            "B58",
+            "B59A",
+            "B60",
+            "B61"
+          ]
+        },
+        {
+          "concept": "라이선싱",
+          "concept_id": "bxCGNy",
+          "hits": 20,
+          "paras": [
+            "B52",
+            "B53",
+            "B54",
+            "B55"
+          ]
+        },
+        {
+          "concept": "판매기준 로열티나 사용기준 로열티",
+          "concept_id": "Y3rhox",
+          "hits": 5,
+          "paras": [
+            "B63",
+            "B63A"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "손실충당금",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "상각과 손상"
+      ],
+      "concept_ids": [
+        "uslBeH",
+        "hyCSKL"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "원가 기준 투입법 적용 계약의 추가 공시",
+          "concept_id": "uslBeH",
+          "hits": 2,
+          "paras": [
+            "한129.1"
+          ]
+        },
+        {
+          "concept": "계약에 있는 유의적인 금융요소",
+          "concept_id": "Ag62GJ",
+          "hits": 1,
+          "paras": [
+            "64"
+          ]
+        },
+        {
+          "concept": "상각과 손상",
+          "concept_id": "hyCSKL",
+          "hits": 1,
+          "paras": [
+            "102"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약에 있는 유의적인 금융요소"
+        ],
+        "added": [],
+        "reason": "한129 공사손실충당 공시가 정면, 금융요소 제외"
+      }
+    },
+    {
+      "term": "수익(Income)",
+      "sources": [
+        "부록A정의"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "공식 정의 보유 — 개념 목적지 확인 필요",
+      "definition": "자산의 유입 또는 가치 증가나 부채의 감소 형태로 자본의 증가를 가져오는, 특정 회계기간에 생긴 경제적 효익의 증가로서, 지분참여자의 출연과 관련된 것은 제외",
+      "proposals": [
+        {
+          "concept": "부록 A. 용어의 정의",
+          "concept_id": "fGwEsL",
+          "hits": 1,
+          "paras": [
+            "웩5"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "부록 A. 용어의 정의"
+        ],
+        "added": [],
+        "reason": "동상 (정의 보존)"
+      }
+    },
+    {
+      "term": "수익(Revenue)",
+      "sources": [
+        "부록A정의"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "공식 정의 보유 — 개념 목적지 확인 필요",
+      "definition": "광의의 수익(income) 중 기업의 통상적인 활동에서 생기는 것",
+      "proposals": [
+        {
+          "concept": "부록 A. 용어의 정의",
+          "concept_id": "fGwEsL",
+          "hits": 1,
+          "paras": [
+            "웩5"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "부록 A. 용어의 정의"
+        ],
+        "added": [],
+        "reason": "동상 (정의 보존)"
+      }
+    },
+    {
+      "term": "수행의무",
+      "sources": [
+        "부록A정의"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "수행의무를 식별함",
+        "수행의무의 이행"
+      ],
+      "concept_ids": [
+        "p1vJ25",
+        "AQB8cb"
+      ],
+      "cases": [],
+      "note": "공식 정의 보유 — 개념 목적지 확인 필요",
+      "definition": "고객과의 계약에서 다음의 어느 하나를 고객에게 이전하기로 한 각 약속 ⑴ 구별되는 재화나 용역 (또는 재화나 용역의 묶음) ⑵ 실질적으로 서로 같고 고객에게 이전하는 방식도 같은 일련의 구별되는 재화나 용역",
+      "proposals": [
+        {
+          "concept": "본인 대 대리인의 고려사항",
+          "concept_id": "XLz6Gv",
+          "hits": 11,
+          "paras": [
+            "B34",
+            "B35",
+            "B35B",
+            "B36"
+          ]
+        },
+        {
+          "concept": "보증",
+          "concept_id": "KaYPON",
+          "hits": 9,
+          "paras": [
+            "B29",
+            "B31",
+            "B32",
+            "B33"
+          ]
+        },
+        {
+          "concept": "거래가격의 변동",
+          "concept_id": "Cpmvf4",
+          "hits": 8,
+          "paras": [
+            "88",
+            "89",
+            "90"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "본인 대 대리인의 고려사항",
+          "보증",
+          "거래가격의 변동"
+        ],
+        "added": [
+          "수행의무를 식별함",
+          "수행의무의 이행"
+        ],
+        "reason": "일반 용어 — 빈도 제안 노이즈, 정의상 핵심 두 개념 지정"
+      }
+    },
+    {
+      "term": "숙박",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "숙박권",
+      "sources": [
+        "query-mapping",
+        "제목추출(04b 감사 보강)"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "기간에 걸쳐 이행하는 수행의무",
+        "수행의무의 이행",
+        "기업의 수행에서 효익을 동시에 얻고 소비(문단 35⑴)",
+        "고객이 행사하지 아니한 권리",
+        "만들어지거나 가치가 높아지는 대로 고객이 통제하는 자산(문단 35⑵)",
+        "표시"
+      ],
+      "concept_ids": [
+        "5HDlPF",
+        "AQB8cb",
+        "KMTj0R",
+        "Ruylm4",
+        "VB6r1W",
+        "W6Bh7o"
+      ],
+      "cases": [
+        "QNA-SSI-35579"
+      ],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": [],
+      "decision": {
+        "by": "AI 위임 판단 (DEAD-END 보강, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "기간에 걸쳐 이행하는 수행의무",
+          "수행의무의 이행",
+          "기업의 수행에서 효익을 동시에 얻고 소비(문단 35⑴)",
+          "고객이 행사하지 아니한 권리",
+          "만들어지거나 가치가 높아지는 대로 고객이 통제하는 자산(문단 35⑵)",
+          "표시"
+        ],
+        "reason": "제목에 '숙박권' 포함 사례 1건의 감사본 주제 합집합 — 본문 출현 0 제외 행 부활(제목이 목적지 제공)"
+      }
+    },
+    {
+      "term": "시상품",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "사용자 확정",
+      "concepts": [
+        "고객에게 지급할 대가",
+        "추가 재화나 용역에 대한 고객의 선택권"
+      ],
+      "concept_ids": [
+        "FJvsfz",
+        "oHAy0O"
+      ],
+      "cases": [],
+      "proposals": [
+        {
+          "concept": "다른 기준서의 대체",
+          "concept_id": "xR6Jtz",
+          "hits": 1,
+          "paras": [
+            "C10"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "사용자 판정 2026-07-04",
+        "reason": "사용자 판정: 대가 감액·추가 약속 양쪽 후보 (문맥이 최종 선택)"
+      }
+    },
+    {
+      "term": "시송품",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무"
+      ],
+      "concept_ids": [
+        "lIlmTb"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 1,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "시장조정접근법",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "식품",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무"
+      ],
+      "concept_ids": [
+        "lIlmTb"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 1,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "신속처리질의",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "실질지배",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "수행의무의 이행"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "AQB8cb"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 1,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [
+          "수행의무의 이행"
+        ],
+        "reason": "통제 정의(31~33) 추가"
+      }
+    },
+    {
+      "term": "아이템",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "제외(사용자 확정)",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "proposals": [
+        {
+          "concept": "다른 기준서의 대체",
+          "concept_id": "xR6Jtz",
+          "hits": 1,
+          "paras": [
+            "C10"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "사용자 판정 2026-07-04",
+        "reason": "사용자 판정: 단독 무의미어 — 미등재 (문맥 의존 과다)"
+      }
+    },
+    {
+      "term": "연회비",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "예상원가가산접근법",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "위험과보상",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "수행의무의 이행"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "AQB8cb"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 4,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [
+          "수행의무의 이행"
+        ],
+        "reason": "문단 33 위험·보상 지표"
+      }
+    },
+    {
+      "term": "의료기기",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "보증",
+        "선도나 콜옵션",
+        "풋옵션"
+      ],
+      "concept_ids": [
+        "KaYPON",
+        "ha4Yp2",
+        "24pQtH"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "보증",
+          "concept_id": "KaYPON",
+          "hits": 22,
+          "paras": [
+            "B28",
+            "B29",
+            "B30",
+            "B31"
+          ]
+        },
+        {
+          "concept": "선도나 콜옵션",
+          "concept_id": "ha4Yp2",
+          "hits": 4,
+          "paras": [
+            "B66"
+          ]
+        },
+        {
+          "concept": "풋옵션",
+          "concept_id": "24pQtH",
+          "hits": 3,
+          "paras": [
+            "B70"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "인도기준",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무"
+      ],
+      "concept_ids": [
+        "lIlmTb"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 1,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "인수절차",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "고객의 인수"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "Ovyudt"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 1,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [
+          "고객의 인수"
+        ],
+        "reason": "동상"
+      }
+    },
+    {
+      "term": "인코텀즈",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무"
+      ],
+      "concept_ids": [
+        "lIlmTb"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 2,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "잔여접근법",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "개별 판매가격에 기초한 배분",
+        "할인액의 배분"
+      ],
+      "concept_ids": [
+        "TtGOPn",
+        "7XbqhS"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "개별 판매가격에 기초한 배분",
+          "concept_id": "TtGOPn",
+          "hits": 4,
+          "paras": [
+            "79",
+            "80"
+          ]
+        },
+        {
+          "concept": "할인액의 배분",
+          "concept_id": "7XbqhS",
+          "hits": 1,
+          "paras": [
+            "83"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "잔존가치접근법",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "개별 판매가격에 기초한 배분",
+        "할인액의 배분"
+      ],
+      "concept_ids": [
+        "TtGOPn",
+        "7XbqhS"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "개별 판매가격에 기초한 배분",
+          "concept_id": "TtGOPn",
+          "hits": 4,
+          "paras": [
+            "79",
+            "80"
+          ]
+        },
+        {
+          "concept": "할인액의 배분",
+          "concept_id": "7XbqhS",
+          "hits": 1,
+          "paras": [
+            "83"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "접근권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "라이선싱",
+        "기업 약속의 성격을 판단함",
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "bxCGNy",
+        "PQHzk5",
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "라이선싱",
+          "concept_id": "bxCGNy",
+          "hits": 19,
+          "paras": [
+            "B52",
+            "B53",
+            "B54",
+            "B55"
+          ]
+        },
+        {
+          "concept": "기업 약속의 성격을 판단함",
+          "concept_id": "PQHzk5",
+          "hits": 18,
+          "paras": [
+            "B58",
+            "B60",
+            "B61",
+            "B62"
+          ]
+        },
+        {
+          "concept": "판매기준 로열티나 사용기준 로열티",
+          "concept_id": "Y3rhox",
+          "hits": 5,
+          "paras": [
+            "B63",
+            "B63A"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "정부보조금",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "조정접근법",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "준공",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "기간에 걸쳐 이행하는 수행의무"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "yyaySE"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 1,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [
+          "기간에 걸쳐 이행하는 수행의무"
+        ],
+        "reason": "동상"
+      }
+    },
+    {
+      "term": "지적재산",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "기업 약속의 성격을 판단함",
+        "라이선싱",
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "PQHzk5",
+        "bxCGNy",
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "기업 약속의 성격을 판단함",
+          "concept_id": "PQHzk5",
+          "hits": 43,
+          "paras": [
+            "B58",
+            "B59",
+            "B59A",
+            "B60"
+          ]
+        },
+        {
+          "concept": "라이선싱",
+          "concept_id": "bxCGNy",
+          "hits": 23,
+          "paras": [
+            "B52",
+            "B53",
+            "B54",
+            "B55"
+          ]
+        },
+        {
+          "concept": "판매기준 로열티나 사용기준 로열티",
+          "concept_id": "Y3rhox",
+          "hits": 9,
+          "paras": [
+            "B63",
+            "B63A"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "집행가능성",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "계약을 식별함",
+          "concept_id": "l3leA7",
+          "hits": 3,
+          "paras": [
+            "10",
+            "11"
+          ]
+        },
+        {
+          "concept": "계약변경",
+          "concept_id": "xYL1TP",
+          "hits": 2,
+          "paras": [
+            "18"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약변경"
+        ],
+        "added": [],
+        "reason": "문단 9 요건"
+      }
+    },
+    {
+      "term": "채무불이행",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약에 있는 유의적인 금융요소",
+        "상각과 손상"
+      ],
+      "concept_ids": [
+        "Ag62GJ",
+        "hyCSKL"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "계약에 있는 유의적인 금융요소",
+          "concept_id": "Ag62GJ",
+          "hits": 1,
+          "paras": [
+            "64"
+          ]
+        },
+        {
+          "concept": "상각과 손상",
+          "concept_id": "hyCSKL",
+          "hits": 1,
+          "paras": [
+            "102"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "출시전재화",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무"
+      ],
+      "concept_ids": [
+        "lIlmTb"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 1,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "취소불가능",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "계약을 식별함",
+          "concept_id": "l3leA7",
+          "hits": 3,
+          "paras": [
+            "10",
+            "11"
+          ]
+        },
+        {
+          "concept": "계약변경",
+          "concept_id": "xYL1TP",
+          "hits": 2,
+          "paras": [
+            "18"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약변경"
+        ],
+        "added": [],
+        "reason": "위약 조건=식별 쟁점"
+      }
+    },
+    {
+      "term": "콘텐츠",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "기업 약속의 성격을 판단함",
+        "라이선싱",
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "PQHzk5",
+        "bxCGNy",
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "기업 약속의 성격을 판단함",
+          "concept_id": "PQHzk5",
+          "hits": 24,
+          "paras": [
+            "B58",
+            "B59A",
+            "B60",
+            "B61"
+          ]
+        },
+        {
+          "concept": "라이선싱",
+          "concept_id": "bxCGNy",
+          "hits": 20,
+          "paras": [
+            "B52",
+            "B53",
+            "B54",
+            "B55"
+          ]
+        },
+        {
+          "concept": "판매기준 로열티나 사용기준 로열티",
+          "concept_id": "Y3rhox",
+          "hits": 5,
+          "paras": [
+            "B63",
+            "B63A"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "턴키",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "구별되는 재화나 용역",
+        "본인 대 대리인의 고려사항",
+        "기간에 걸쳐 이행하는 수행의무"
+      ],
+      "concept_ids": [
+        "8P5E9V",
+        "XLz6Gv",
+        "yyaySE"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "구별되는 재화나 용역",
+          "concept_id": "8P5E9V",
+          "hits": 3,
+          "paras": [
+            "29"
+          ]
+        },
+        {
+          "concept": "본인 대 대리인의 고려사항",
+          "concept_id": "XLz6Gv",
+          "hits": 1,
+          "paras": [
+            "B35A"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [
+          "기간에 걸쳐 이행하는 수행의무"
+        ],
+        "reason": "동상"
+      }
+    },
+    {
+      "term": "토지등기",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 5,
+          "paras": [
+            "38"
+          ]
+        },
+        {
+          "concept": "본인 대 대리인의 고려사항",
+          "concept_id": "XLz6Gv",
+          "hits": 2,
+          "paras": [
+            "B35"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [],
+        "reason": "출현 근거 제안 전부 채택"
+      }
+    },
+    {
+      "term": "통제권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "수행의무의 이행"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "AQB8cb"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 1,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [
+          "수행의무의 이행"
+        ],
+        "reason": "동상"
+      }
+    },
+    {
+      "term": "통제이전",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "수행의무의 이행"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "AQB8cb"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "한 시점에 이행하는 수행의무",
+          "concept_id": "lIlmTb",
+          "hits": 1,
+          "paras": [
+            "38"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [],
+        "added": [
+          "수행의무의 이행"
+        ],
+        "reason": "동상"
+      }
+    },
+    {
+      "term": "평생수강권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "포인트",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "추가 재화나 용역에 대한 고객의 선택권"
+      ],
+      "concept_ids": [
+        "oHAy0O"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "다른 기준서의 대체",
+          "concept_id": "xR6Jtz",
+          "hits": 1,
+          "paras": [
+            "C10"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "다른 기준서의 대체"
+        ],
+        "added": [
+          "추가 재화나 용역에 대한 고객의 선택권"
+        ],
+        "reason": "동상"
+      }
+    },
+    {
+      "term": "항공",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "제외(사용자 확정)",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "proposals": [
+        {
+          "concept": "다른 기준서의 대체",
+          "concept_id": "xR6Jtz",
+          "hits": 1,
+          "paras": [
+            "C10"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "사용자 판정 2026-07-04",
+        "reason": "사용자 판정: 업종 태그 — 미등재 ('마일리지' 용어가 선택권 매핑 보유)"
+      }
+    },
+    {
+      "term": "해지권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "화폐성항목",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "검토",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요 / 본문 출현 0 — 제외 제안",
+      "proposals": []
+    },
+    {
+      "term": "회수가능성",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": "개념 미매칭 — 목적지 지정 필요",
+      "proposals": [
+        {
+          "concept": "계약에 있는 유의적인 금융요소",
+          "concept_id": "Ag62GJ",
+          "hits": 1,
+          "paras": [
+            "64"
+          ]
+        },
+        {
+          "concept": "상각과 손상",
+          "concept_id": "hyCSKL",
+          "hits": 1,
+          "paras": [
+            "102"
+          ]
+        }
+      ],
+      "decision": {
+        "by": "AI 위임 판단 (사용자 지시 2026-07-04, 다중 목적지 허용)",
+        "dropped": [
+          "계약에 있는 유의적인 금융요소",
+          "상각과 손상"
+        ],
+        "added": [
+          "계약을 식별함"
+        ],
+        "reason": "회수가능성=문단 9⑸ 식별 요건이 정면 — 출현 제안(64·102)은 부수"
+      }
+    },
+    {
+      "term": "(별도재무제표) 선박에 대한 통제 이전 여부",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2022-I-KQA015"
+      ],
+      "note": ""
+    },
+    {
+      "term": "(별도재무제표) 종속기업 투자주식을 신설종속기업에 매각 후 콜옵션 보유 시 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2020-I-KQA018"
+      ],
+      "note": ""
+    },
+    {
+      "term": "EPC",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "투입법"
+      ],
+      "concept_ids": [
+        "uslBeH",
+        "RF3mRJ"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "NFT",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "비현금 대가"
+      ],
+      "concept_ids": [
+        "ySAFHt"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "가격결정권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "가격보호",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "환불부채",
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "2Tb1uu",
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "가상화폐",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "비현금 대가"
+      ],
+      "concept_ids": [
+        "ySAFHt"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "가입비",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "구별되는 재화나 용역"
+      ],
+      "concept_ids": [
+        "8P5E9V"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "각종 부담금의 진행률 산입 여부",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202412041"
+      ],
+      "note": ""
+    },
+    {
+      "term": "개발용역",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "기업이 수행하여 대체 용도가 있는 자산을 만들지 않는다(문단 35⑶)",
+        "지금까지 수행을 완료한 부분에 대한 지급청구권",
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "CBJ3sK",
+        "5xZWrk",
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "거래처별 다른 워런티",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38702"
+      ],
+      "note": ""
+    },
+    {
+      "term": "건설",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "기업이 수행하여 대체 용도가 있는 자산을 만들지 않는다(문단 35⑶)",
+        "지금까지 수행을 완료한 부분에 대한 지급청구권",
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "투입법"
+      ],
+      "concept_ids": [
+        "CBJ3sK",
+        "5xZWrk",
+        "uslBeH",
+        "RF3mRJ"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "건설되는 재화의 기간에 걸친 이전",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-201903G"
+      ],
+      "note": ""
+    },
+    {
+      "term": "계약 변경 시 제공한 가격할인",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38672"
+      ],
+      "note": ""
+    },
+    {
+      "term": "계약 해지로 지급하는 위약금의 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202503008"
+      ],
+      "note": ""
+    },
+    {
+      "term": "계약결합",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약의 결합",
+        "목적",
+        "수행의무"
+      ],
+      "concept_ids": [
+        "ds2v9B",
+        "3CKe2m",
+        "2IbOfX"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "계약변경과 수익인식",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약변경"
+      ],
+      "concept_ids": [
+        "xYL1TP"
+      ],
+      "cases": [
+        "QNA-SSI-38690"
+      ],
+      "note": "",
+      "decision": {
+        "by": "AI 위임 판단 (섬 6건 개념 연결, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "계약변경"
+        ],
+        "reason": "구별되지 않는 계약변경의 누적효과 조정 — 계약변경(18~21) 정면 조항"
+      }
+    },
+    {
+      "term": "계약분리",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "구별되는 재화나 용역",
+        "계약변경"
+      ],
+      "concept_ids": [
+        "8P5E9V",
+        "xYL1TP"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "계약손실",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약이행원가",
+        "계약원가"
+      ],
+      "concept_ids": [
+        "TgRpnd",
+        "T51p4P"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "계약수정",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약변경"
+      ],
+      "concept_ids": [
+        "xYL1TP"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "계약원가자산",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약원가",
+        "계약체결 증분원가",
+        "계약이행원가"
+      ],
+      "concept_ids": [
+        "T51p4P",
+        "Ks6E5m",
+        "TgRpnd"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "계약을 이행하는 데 드는 교육훈련원가",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-202003D"
+      ],
+      "note": ""
+    },
+    {
+      "term": "계약을 이행하는 데 드는 원가",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-201906D"
+      ],
+      "note": ""
+    },
+    {
+      "term": "계약이행원가",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약이행원가",
+        "계약원가"
+      ],
+      "concept_ids": [
+        "TgRpnd",
+        "T51p4P"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "계약이행원가에 대한 적용 기준서",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-35599"
+      ],
+      "note": ""
+    },
+    {
+      "term": "계약이행자산",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약이행원가",
+        "계약원가"
+      ],
+      "concept_ids": [
+        "TgRpnd",
+        "T51p4P"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "계약입찰을 위한 설계원가의 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-35584"
+      ],
+      "note": ""
+    },
+    {
+      "term": "계약종료",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약변경"
+      ],
+      "concept_ids": [
+        "xYL1TP"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "계약체결 증분원가의 인식시기",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202511018"
+      ],
+      "note": ""
+    },
+    {
+      "term": "계약체결비용",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약체결 증분원가"
+      ],
+      "concept_ids": [
+        "Ks6E5m"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "고객 요청에 따라 재화를 인도하지 않는 경우의 수익",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36949"
+      ],
+      "note": ""
+    },
+    {
+      "term": "고객 주문에 따라 상품 구매 후 판매 시 수익 인식(순액 vs 총액)",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-35578"
+      ],
+      "note": ""
+    },
+    {
+      "term": "고객에 대한 환불부채의 분류",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38673"
+      ],
+      "note": ""
+    },
+    {
+      "term": "고객에게 추가로 제공하는 제품",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202412003"
+      ],
+      "note": ""
+    },
+    {
+      "term": "고객에게 판매한 제품을 재매입 후 다른 고객에게 판매",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36951"
+      ],
+      "note": ""
+    },
+    {
+      "term": "고객에게 풋옵션이 부여된 판매",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202412042"
+      ],
+      "note": ""
+    },
+    {
+      "term": "고객의 계약종료권과 제작물의 폐기 요구권이 기업의 지급청구권 보유여부에 영향을 미치는가?",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2018-I-KQA002"
+      ],
+      "note": ""
+    },
+    {
+      "term": "고객의 신용도가 변경되면 유의적인 금융요소 관련 할인율을 변경해야 하는지",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36990"
+      ],
+      "note": ""
+    },
+    {
+      "term": "고객의 채무불이행에 따른 계약 종료 시 기업의 지급청구권 보유 여부",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2017-I-KQA014"
+      ],
+      "note": ""
+    },
+    {
+      "term": "고객이 운송용역을 대신 제공하는 경우의 수익인식",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36964"
+      ],
+      "note": ""
+    },
+    {
+      "term": "고객이 원재료 매입금액의 일부를 보전하는 경우",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202312058"
+      ],
+      "note": ""
+    },
+    {
+      "term": "고객이 포함된 연결실체 내 다른 기업에 회사가 신주인수권 부여 시 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2021-I-KQA007"
+      ],
+      "note": ""
+    },
+    {
+      "term": "고정제조간접원가",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약이행원가",
+        "계약원가"
+      ],
+      "concept_ids": [
+        "TgRpnd",
+        "T51p4P"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "공동광고비",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "공동영업자의 산출물 판매",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 이행"
+      ],
+      "concept_ids": [
+        "AQB8cb"
+      ],
+      "cases": [
+        "QNA-201903F"
+      ],
+      "note": "",
+      "decision": {
+        "by": "AI 위임 판단 (섬 6건 개념 연결, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "수행의무의 이행"
+        ],
+        "reason": "회신 결론=고객에게 '이전한' 산출물만 수익 인식 — 이전(31~45)이 근거 (IFRS 11 몫 산정은 외부 기준서 영역)"
+      }
+    },
+    {
+      "term": "공사변경",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약변경"
+      ],
+      "concept_ids": [
+        "xYL1TP"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "공사사고",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약이행원가",
+        "계약원가"
+      ],
+      "concept_ids": [
+        "TgRpnd",
+        "T51p4P"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "공사사고 보상비와 진행률 산정",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38698"
+      ],
+      "note": ""
+    },
+    {
+      "term": "과다매출",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "변동대가",
+        "변동대가 추정치를 제약함",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "3q1lWH",
+        "lKmqLc",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "광고",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항",
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "XLz6Gv",
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "교육",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "교환거래",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "비현금 대가"
+      ],
+      "concept_ids": [
+        "ySAFHt"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "구독서비스",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "구두계약으로 계약서가 없는 경우의 수익인식",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36917"
+      ],
+      "note": ""
+    },
+    {
+      "term": "구별가능성",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "구별되는 재화나 용역"
+      ],
+      "concept_ids": [
+        "8P5E9V"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "금융",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약에 있는 유의적인 금융요소"
+      ],
+      "concept_ids": [
+        "Ag62GJ"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "기간귀속",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "기댓값법",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "기성",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "기술이전",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "구별되는 재화나 용역"
+      ],
+      "concept_ids": [
+        "8P5E9V"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "납기지연",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "납기지연으로 고객에게 지급할 대가",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36975"
+      ],
+      "note": ""
+    },
+    {
+      "term": "납품수량 증가에 따른 추가 대가의 수익인식",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36965"
+      ],
+      "note": ""
+    },
+    {
+      "term": "녹화가 완료된 강의의 평생수강권 판매 수익 인식시기",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202412043"
+      ],
+      "note": ""
+    },
+    {
+      "term": "대금의 회수 가능성이 낮을 경우에, 제1115호 적용 여부",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36993"
+      ],
+      "note": ""
+    },
+    {
+      "term": "대금지급보류",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "환불부채",
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "2Tb1uu",
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "대리점",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항",
+        "위탁약정"
+      ],
+      "concept_ids": [
+        "XLz6Gv",
+        "RPTMXY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "대리점 임의반출을 통한 매출액 및 매출원가 과대계상",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2021-2206-02"
+      ],
+      "note": ""
+    },
+    {
+      "term": "대행",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "대행사에 지급한 수수료의 비용 인식시점",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38676"
+      ],
+      "note": ""
+    },
+    {
+      "term": "도급공사",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "기업이 수행하여 대체 용도가 있는 자산을 만들지 않는다(문단 35⑶)",
+        "지금까지 수행을 완료한 부분에 대한 지급청구권",
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "투입법"
+      ],
+      "concept_ids": [
+        "CBJ3sK",
+        "5xZWrk",
+        "uslBeH",
+        "RF3mRJ"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "도급공사 진행률 산정 오류",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2025-2606-02"
+      ],
+      "note": ""
+    },
+    {
+      "term": "도매",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "반품권이 있는 판매"
+      ],
+      "concept_ids": [
+        "1IdzfY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "독립적구별",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "구별되는 재화나 용역"
+      ],
+      "concept_ids": [
+        "8P5E9V"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "로열티",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "리베이트",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "리스",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "적용"
+      ],
+      "concept_ids": [
+        "jBozvF"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "마일스톤",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "산출법",
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "BqPAS9",
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "마켓플레이스",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "매출 기간 귀속오류",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2023-2405-06"
+      ],
+      "note": ""
+    },
+    {
+      "term": "매출 기간귀속 오류",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2024-2505-04"
+      ],
+      "note": ""
+    },
+    {
+      "term": "매출 및 매입 과대계상",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "KICPA-CASE-2021-12"
+      ],
+      "note": ""
+    },
+    {
+      "term": "매출 및 매출원가 과대계상",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2024-2505-03"
+      ],
+      "note": ""
+    },
+    {
+      "term": "매출 및 매출원가 허위계상",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2023-2405-04",
+        "FSS-CASE-2024-2409-01",
+        "FSS-CASE-2025-2512-01"
+      ],
+      "note": ""
+    },
+    {
+      "term": "매출 및 매출채권 과대계상",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "KICPA-CASE-2024-04"
+      ],
+      "note": ""
+    },
+    {
+      "term": "매출 및 지급수수료 과대계상",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "KICPA-CASE-2024-28"
+      ],
+      "note": ""
+    },
+    {
+      "term": "매출 시 지급한 지체상금의 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38465"
+      ],
+      "note": ""
+    },
+    {
+      "term": "매출 연동 지급수수료 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38680"
+      ],
+      "note": ""
+    },
+    {
+      "term": "매출 조기인식을 통한 매출액 과대계상",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2022-2311-02"
+      ],
+      "note": ""
+    },
+    {
+      "term": "매출 허위계상",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2024-2505-02"
+      ],
+      "note": ""
+    },
+    {
+      "term": "매출 환급 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202312048"
+      ],
+      "note": ""
+    },
+    {
+      "term": "매출계약에 포함된 유의적인 금융요소 관련 할인율",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36991"
+      ],
+      "note": ""
+    },
+    {
+      "term": "매출과대계상",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항",
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "XLz6Gv",
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "매출누락",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "매출조기인식",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "인식",
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "sM1U0t",
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "매출채권 및 선수금 과대계상",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "KICPA-CASE-2025-33"
+      ],
+      "note": ""
+    },
+    {
+      "term": "면세점",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항",
+        "위탁약정"
+      ],
+      "concept_ids": [
+        "XLz6Gv",
+        "RPTMXY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "면세점 판매수수료",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202312051"
+      ],
+      "note": ""
+    },
+    {
+      "term": "모바일 게임 플랫폼 수수료",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202312053"
+      ],
+      "note": ""
+    },
+    {
+      "term": "모바일 상품권을 할인 발행한 경우 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38675"
+      ],
+      "note": ""
+    },
+    {
+      "term": "모집수수료",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약체결 증분원가",
+        "실무적 간편법"
+      ],
+      "concept_ids": [
+        "Ks6E5m",
+        "iIpmoR"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "무상사급",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "비현금 대가"
+      ],
+      "concept_ids": [
+        "ySAFHt"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "무상수리",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "보증"
+      ],
+      "concept_ids": [
+        "KaYPON"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "물물교환",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "비현금 대가"
+      ],
+      "concept_ids": [
+        "ySAFHt"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "미인도청구",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "미인도청구약정"
+      ],
+      "concept_ids": [
+        "PiNlZp"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "미인도청구약정",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "미인도청구약정"
+      ],
+      "concept_ids": [
+        "PiNlZp"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "미지급장려금 과소계상에 따른 매출 과대계상",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2023-2405-01"
+      ],
+      "note": ""
+    },
+    {
+      "term": "미청구공사",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "민간투자사업에서 사업시행자가 사업허가자에게 지급하는 금액",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-201607A"
+      ],
+      "note": ""
+    },
+    {
+      "term": "밀어내기",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "위탁약정"
+      ],
+      "concept_ids": [
+        "RPTMXY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "바이오",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "바터거래",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "비현금 대가"
+      ],
+      "concept_ids": [
+        "ySAFHt"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "반품관련 비용",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38485"
+      ],
+      "note": ""
+    },
+    {
+      "term": "반품관련비용",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "반품권이 있는 판매"
+      ],
+      "concept_ids": [
+        "1IdzfY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "반품금액 추정이 불가능한 반품조건부 판매",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38697"
+      ],
+      "note": ""
+    },
+    {
+      "term": "반품금액추정",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "반품권이 있는 판매",
+        "환불부채",
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "1IdzfY",
+        "2Tb1uu",
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "반품의 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "반품권이 있는 판매",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "1IdzfY",
+        "XLz6Gv"
+      ],
+      "cases": [
+        "QNA-SSI-38695"
+      ],
+      "note": "",
+      "decision": {
+        "by": "AI 위임 판단 (섬 6건 개념 연결, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "반품권이 있는 판매",
+          "본인 대 대리인의 고려사항"
+        ],
+        "reason": "쟁점=반품·환불부채(B20~27) + 회신 논거='본인으로서 책임'(B34~38)"
+      }
+    },
+    {
+      "term": "반품조건부 판매의 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-35567"
+      ],
+      "note": ""
+    },
+    {
+      "term": "반품조건부판매",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "반품권이 있는 판매",
+        "환불부채"
+      ],
+      "concept_ids": [
+        "1IdzfY",
+        "2Tb1uu"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "발전소",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "기업이 수행하여 대체 용도가 있는 자산을 만들지 않는다(문단 35⑶)",
+        "지금까지 수행을 완료한 부분에 대한 지급청구권",
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "투입법"
+      ],
+      "concept_ids": [
+        "CBJ3sK",
+        "5xZWrk",
+        "uslBeH",
+        "RF3mRJ"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "방산",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "기업이 수행하여 대체 용도가 있는 자산을 만들지 않는다(문단 35⑶)",
+        "지금까지 수행을 완료한 부분에 대한 지급청구권"
+      ],
+      "concept_ids": [
+        "CBJ3sK",
+        "5xZWrk"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "방위산업",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "기업이 수행하여 대체 용도가 있는 자산을 만들지 않는다(문단 35⑶)",
+        "지금까지 수행을 완료한 부분에 대한 지급청구권",
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "CBJ3sK",
+        "5xZWrk",
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "배송",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "백마진",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "백화점",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항",
+        "위탁약정"
+      ],
+      "concept_ids": [
+        "XLz6Gv",
+        "RPTMXY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "백화점 입점업체의 수익인식",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38612"
+      ],
+      "note": ""
+    },
+    {
+      "term": "변경계약서",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약변경"
+      ],
+      "concept_ids": [
+        "xYL1TP"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "변경에 합의하였으나 변경계약서를 작성하지 않은 경우, 수익 인식",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38677"
+      ],
+      "note": ""
+    },
+    {
+      "term": "변동대가제약",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "보상판매",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "비현금 대가"
+      ],
+      "concept_ids": [
+        "ySAFHt"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "보험",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "적용"
+      ],
+      "concept_ids": [
+        "jBozvF"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "본인 대 대리인: 소프트웨어 재판매자",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-221109A"
+      ],
+      "note": ""
+    },
+    {
+      "term": "볼륨디스카운트",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "부가가치세의 수익 포함 여부",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36898"
+      ],
+      "note": ""
+    },
+    {
+      "term": "부동산",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "기업이 수행하여 대체 용도가 있는 자산을 만들지 않는다(문단 35⑶)",
+        "지금까지 수행을 완료한 부분에 대한 지급청구권"
+      ],
+      "concept_ids": [
+        "CBJ3sK",
+        "5xZWrk"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "부동산 계약의 수익 인식",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-201803B"
+      ],
+      "note": ""
+    },
+    {
+      "term": "분식회계",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "분양",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "기업이 수행하여 대체 용도가 있는 자산을 만들지 않는다(문단 35⑶)",
+        "지금까지 수행을 완료한 부분에 대한 지급청구권"
+      ],
+      "concept_ids": [
+        "CBJ3sK",
+        "5xZWrk"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "분양공사",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "기업이 수행하여 대체 용도가 있는 자산을 만들지 않는다(문단 35⑶)",
+        "지금까지 수행을 완료한 부분에 대한 지급청구권",
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "CBJ3sK",
+        "5xZWrk",
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "비소급법",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "경과 규정"
+      ],
+      "concept_ids": [
+        "1Kj78O"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "비소급적용",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "적용",
+        "계약변경"
+      ],
+      "concept_ids": [
+        "jBozvF",
+        "xYL1TP"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "비현금대가",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "비현금 대가"
+      ],
+      "concept_ids": [
+        "ySAFHt"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "사은품",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "구별되는 재화나 용역"
+      ],
+      "concept_ids": [
+        "8P5E9V"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "산출법",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "산출법",
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "BqPAS9",
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "상품 매입 시 공급자에게서 받는 물류 관련 수수료의 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2022-I-KQA014"
+      ],
+      "note": ""
+    },
+    {
+      "term": "상품권 수익인식",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36948"
+      ],
+      "note": ""
+    },
+    {
+      "term": "상품할인이벤트",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "상품할인이벤트 지원금의 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-35617"
+      ],
+      "note": ""
+    },
+    {
+      "term": "선급비용",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약이행원가",
+        "계약원가"
+      ],
+      "concept_ids": [
+        "TgRpnd",
+        "T51p4P"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "선도거래",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "재매입약정"
+      ],
+      "concept_ids": [
+        "vw8tzF"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "선택권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "추가 재화나 용역에 대한 고객의 선택권"
+      ],
+      "concept_ids": [
+        "oHAy0O"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "설계변경",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약변경"
+      ],
+      "concept_ids": [
+        "xYL1TP"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "설계원가",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약이행원가",
+        "계약원가",
+        "계약체결 증분원가"
+      ],
+      "concept_ids": [
+        "TgRpnd",
+        "T51p4P",
+        "Ks6E5m"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "설치비",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "구별되는 재화나 용역"
+      ],
+      "concept_ids": [
+        "8P5E9V"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "설치용역",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "구별되는 재화나 용역"
+      ],
+      "concept_ids": [
+        "8P5E9V"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "성과보상",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "성과보상 인센티브와 변동대가",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38648"
+      ],
+      "note": ""
+    },
+    {
+      "term": "소급적용",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "적용",
+        "계약변경"
+      ],
+      "concept_ids": [
+        "jBozvF",
+        "xYL1TP"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "소매",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "반품권이 있는 판매"
+      ],
+      "concept_ids": [
+        "1IdzfY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "소프트웨어와 용역을 함께 제공하는 계약의 수행의무 구별",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-35568"
+      ],
+      "note": ""
+    },
+    {
+      "term": "손실부담계약",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약이행원가",
+        "계약원가"
+      ],
+      "concept_ids": [
+        "TgRpnd",
+        "T51p4P"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "손실부담계약 평가 시 재고자산 원가에 배부되지 않을 것으로 예상되는 고정제조간접원가의 포함 여부",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2020-I-KQA010"
+      ],
+      "note": ""
+    },
+    {
+      "term": "수수료",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "환불되지 않는 선수수수료(와 일부 관련 원가)",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "n94QVz",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "수업료 수익의 인식",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "기간에 걸쳐 이행하는 수행의무",
+        "수행의무의 진행률을 측정함"
+      ],
+      "concept_ids": [
+        "5HDlPF",
+        "bz3jWR"
+      ],
+      "cases": [
+        "QNA-202504C"
+      ],
+      "note": "",
+      "decision": {
+        "by": "AI 위임 판단 (섬 6건 개념 연결, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "기간에 걸쳐 이행하는 수행의무",
+          "수행의무의 진행률을 측정함"
+        ],
+        "reason": "쟁점=수익을 '어느 기간에 걸쳐' 인식하는가(10개월 vs 12개월) — 기간에 걸쳐 이행(35~37)과 진행률 측정(39~43)이 정면 조항"
+      }
+    },
+    {
+      "term": "수익 인식시기",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202312052"
+      ],
+      "note": ""
+    },
+    {
+      "term": "수익·비용의 기간귀속 오류(용역)",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "KICPA-CASE-2025-07"
+      ],
+      "note": ""
+    },
+    {
+      "term": "수익기간귀속",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "수익인식 시점 및 계약자산 손상",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38611"
+      ],
+      "note": ""
+    },
+    {
+      "term": "수익인식기준",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "인식",
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "sM1U0t",
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "수익인식기준 적용 오류",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2023-2405-05"
+      ],
+      "note": ""
+    },
+    {
+      "term": "수익인식방법",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "인식",
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "투입법",
+        "산출법"
+      ],
+      "concept_ids": [
+        "sM1U0t",
+        "uslBeH",
+        "RF3mRJ",
+        "BqPAS9"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "수익인식오류",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "인식",
+        "본인 대 대리인의 고려사항",
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "sM1U0t",
+        "XLz6Gv",
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "수익인식요건",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "인식"
+      ],
+      "concept_ids": [
+        "sM1U0t"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "수익인식정책",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "인식"
+      ],
+      "concept_ids": [
+        "sM1U0t"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "수입 자동차에 부과되는 개별소비세의 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2022-I-KQA007"
+      ],
+      "note": ""
+    },
+    {
+      "term": "수취채권과 계약자산의 구분",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202511019"
+      ],
+      "note": ""
+    },
+    {
+      "term": "수취한 회원권 입회보증금의 최초 인식 시 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2019-I-KQA003"
+      ],
+      "note": ""
+    },
+    {
+      "term": "수탁",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "위탁약정",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "RPTMXY",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "수탁생산",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항",
+        "위탁약정"
+      ],
+      "concept_ids": [
+        "XLz6Gv",
+        "RPTMXY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "숙박권 판매에 따른 수익인식",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-35579"
+      ],
+      "note": ""
+    },
+    {
+      "term": "순액인식",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "인식",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "sM1U0t",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "스트리밍",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "슬로팅피",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "신주인수권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "비현금 대가"
+      ],
+      "concept_ids": [
+        "ySAFHt"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "신탁",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "신탁 부동산의 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36946"
+      ],
+      "note": ""
+    },
+    {
+      "term": "실무적간편법",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "실무적 간편법"
+      ],
+      "concept_ids": [
+        "iIpmoR"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "실제와 예상 발생사고 수의 차이에 의한 이행현금흐름 변동의 회계처리와 보험수익 인식방법",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2024-I-KQA007"
+      ],
+      "note": ""
+    },
+    {
+      "term": "약속한 재화나 용역의 검토",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-201901B"
+      ],
+      "note": ""
+    },
+    {
+      "term": "업프론트피",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "구별되는 재화나 용역"
+      ],
+      "concept_ids": [
+        "8P5E9V"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "역분개",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약변경",
+        "반품권이 있는 판매"
+      ],
+      "concept_ids": [
+        "xYL1TP",
+        "1IdzfY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "연결실체",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "연장보증",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "보증"
+      ],
+      "concept_ids": [
+        "KaYPON"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "연착이나 취소에 대한 보상",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-201909A"
+      ],
+      "note": ""
+    },
+    {
+      "term": "영업수익 및 영업비용 과대계상",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2025-2606-01"
+      ],
+      "note": ""
+    },
+    {
+      "term": "온라인쇼핑몰",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항",
+        "위탁약정"
+      ],
+      "concept_ids": [
+        "XLz6Gv",
+        "RPTMXY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "완료된 계약에서 변동대가 미확정 시 실무적 간편법 적용",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2018-I-KQA004"
+      ],
+      "note": ""
+    },
+    {
+      "term": "완료된계약",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "실무적 간편법"
+      ],
+      "concept_ids": [
+        "iIpmoR"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "완성비율법",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "투입법",
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "uslBeH",
+        "RF3mRJ",
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "외화 계약자산 및 계약부채의 화폐성 항목 해당 여부",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36920"
+      ],
+      "note": ""
+    },
+    {
+      "term": "외화 계약자산의 적용환율 결정과 화폐성자산 여부",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2019-I-KQA009"
+      ],
+      "note": ""
+    },
+    {
+      "term": "외화계약",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "비현금 대가",
+        "거래가격을 산정함",
+        "거래가격을 수행의무에 배분함",
+        "거래가격의 변동",
+        "나머지 수행의무에 배분된 거래가격",
+        "거래가격과 수행의무에 배분하는 금액을 산정함"
+      ],
+      "concept_ids": [
+        "ySAFHt",
+        "O28gcg",
+        "cTpTDN",
+        "Cpmvf4",
+        "ecpv5y",
+        "CSXeaG"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "용역제공",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법",
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "투입법",
+        "산출법"
+      ],
+      "concept_ids": [
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M",
+        "uslBeH",
+        "RF3mRJ",
+        "BqPAS9"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "용역제공 시 진행기준 적용 여부",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36904"
+      ],
+      "note": ""
+    },
+    {
+      "term": "용역형보증",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "보증"
+      ],
+      "concept_ids": [
+        "KaYPON"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "우선매수협상권과 통제 이전의 관계",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2020-I-KQA006"
+      ],
+      "note": ""
+    },
+    {
+      "term": "운송",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "워런티",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "보증"
+      ],
+      "concept_ids": [
+        "KaYPON"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "원가발생기준",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "투입법",
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "uslBeH",
+        "RF3mRJ",
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "위약금",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "위탁",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "위탁약정",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "RPTMXY",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "위탁판매",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "위탁약정"
+      ],
+      "concept_ids": [
+        "RPTMXY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "위탁판매 수익 인식시점",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38699"
+      ],
+      "note": ""
+    },
+    {
+      "term": "유상사급",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "비현금 대가",
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "ySAFHt",
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "유상사급 거래의 수익 인식(총액 vs 순액)",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36941"
+      ],
+      "note": ""
+    },
+    {
+      "term": "유상사급 관련 매출 및 매출원가 과대계상",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2025-2606-03"
+      ],
+      "note": ""
+    },
+    {
+      "term": "유상사급 관련 매출액 과대계상",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2022-2311-03"
+      ],
+      "note": ""
+    },
+    {
+      "term": "유상사급 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202412045"
+      ],
+      "note": ""
+    },
+    {
+      "term": "유의적금융요소",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약에 있는 유의적인 금융요소"
+      ],
+      "concept_ids": [
+        "Ag62GJ"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "유지보수",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "구별되는 재화나 용역",
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "8P5E9V",
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "유통",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항",
+        "위탁약정"
+      ],
+      "concept_ids": [
+        "XLz6Gv",
+        "RPTMXY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "유형자산 처분대가로 대출채권을 수령한 경우",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202312057"
+      ],
+      "note": ""
+    },
+    {
+      "term": "의약품",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "의약품 수탁생산계약의 수행의무 구별",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2018-I-KQA009"
+      ],
+      "note": ""
+    },
+    {
+      "term": "이커머스",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항",
+        "위탁약정"
+      ],
+      "concept_ids": [
+        "XLz6Gv",
+        "RPTMXY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "이행책임",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "구별되는 재화나 용역"
+      ],
+      "concept_ids": [
+        "8P5E9V"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "인센티브",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "인센티브 수취의 수익 인식시기",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2024-I-KQA005"
+      ],
+      "note": ""
+    },
+    {
+      "term": "인식기준",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "인식"
+      ],
+      "concept_ids": [
+        "sM1U0t"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "인식시점",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "인식"
+      ],
+      "concept_ids": [
+        "sM1U0t"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "인앱결제",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "인플루언서",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "임가공",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "임대차",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "적용"
+      ],
+      "concept_ids": [
+        "jBozvF"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "임대차계약에 제1115호를 적용할 수 있는지",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36959"
+      ],
+      "note": ""
+    },
+    {
+      "term": "임상",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법",
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M",
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "입점수수료",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "입회보증금",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "보증",
+        "환불부채"
+      ],
+      "concept_ids": [
+        "KaYPON",
+        "2Tb1uu"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "자체 분양공사에 대한 기업의 지급청구권 보유 여부",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2017-I-KAQ015"
+      ],
+      "note": ""
+    },
+    {
+      "term": "장기 무상수리를 별도 수행의무로 보아야 하는지",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-35609"
+      ],
+      "note": ""
+    },
+    {
+      "term": "장기할부",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약에 있는 유의적인 금융요소"
+      ],
+      "concept_ids": [
+        "Ag62GJ"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "장기할부판매",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "한 시점에 이행하는 수행의무",
+        "계약에 있는 유의적인 금융요소"
+      ],
+      "concept_ids": [
+        "lIlmTb",
+        "Ag62GJ"
+      ],
+      "cases": [
+        "QNA-SSI-38700"
+      ],
+      "note": "",
+      "decision": {
+        "by": "AI 위임 판단 (섬 6건 개념 연결, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "한 시점에 이행하는 수행의무",
+          "계약에 있는 유의적인 금융요소"
+        ],
+        "reason": "회신=할부기간 무관 통제 이전 시점(38) 인식 + 장기할부=금융요소(60~65) 쟁점"
+      }
+    },
+    {
+      "term": "재고위험",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "재고자산의 인식 여부",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38476"
+      ],
+      "note": ""
+    },
+    {
+      "term": "재고자산인식",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "인식"
+      ],
+      "concept_ids": [
+        "sM1U0t"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "재공품",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약이행원가",
+        "계약원가"
+      ],
+      "concept_ids": [
+        "TgRpnd",
+        "T51p4P"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "재매입",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "재매입약정",
+        "선도나 콜옵션"
+      ],
+      "concept_ids": [
+        "vw8tzF",
+        "ha4Yp2"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "재화에 대한 고객의 인수 절차가 있는 경우 수익인식 시점 판단",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38679"
+      ],
+      "note": ""
+    },
+    {
+      "term": "재화의 제공과 운송용역을 같이 제공하는 경우, 수행의무의 식별",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36987"
+      ],
+      "note": ""
+    },
+    {
+      "term": "정부보조금 수령 시 원가기준 투입법의 진행률 산정",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202506004"
+      ],
+      "note": ""
+    },
+    {
+      "term": "제약",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "제품 독점판매권의 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202412044"
+      ],
+      "note": ""
+    },
+    {
+      "term": "제품 판매 후 재매입",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "재매입약정"
+      ],
+      "concept_ids": [
+        "vw8tzF"
+      ],
+      "cases": [
+        "QNA-SSI-38701"
+      ],
+      "note": "",
+      "decision": {
+        "by": "AI 위임 판단 (섬 6건 개념 연결, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "재매입약정"
+        ],
+        "reason": "쟁점=사후 합의 재매입이 재매입약정(B64~76)에 해당하는지"
+      }
+    },
+    {
+      "term": "조선",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "기업이 수행하여 대체 용도가 있는 자산을 만들지 않는다(문단 35⑶)",
+        "지금까지 수행을 완료한 부분에 대한 지급청구권",
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "투입법"
+      ],
+      "concept_ids": [
+        "CBJ3sK",
+        "5xZWrk",
+        "uslBeH",
+        "RF3mRJ"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "종료조항",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "종속기업의 라이선스 수익 인식 오류",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2025-2512-02"
+      ],
+      "note": ""
+    },
+    {
+      "term": "종속회사의 밀어내기 매출을 통한 매출(연결) 허위 계상 및 상품매출 총액 인식 오류",
+      "sources": [
+        "제목(findings)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "FSS-CASE-2024-2409-02"
+      ],
+      "note": ""
+    },
+    {
+      "term": "주선",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "중개",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "증분원가",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약체결 증분원가"
+      ],
+      "concept_ids": [
+        "Ks6E5m"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "증정품",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "구별되는 재화나 용역"
+      ],
+      "concept_ids": [
+        "8P5E9V"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "지금까지 수행을 완료한 부분에 대한 지급청구권",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-201803D"
+      ],
+      "note": ""
+    },
+    {
+      "term": "지급 능력이 낮은 고객과의 계약에서 회수 가능성 판단",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38674"
+      ],
+      "note": ""
+    },
+    {
+      "term": "지급수수료",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약체결 증분원가",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "Ks6E5m",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "지급청구권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "지금까지 수행을 완료한 부분에 대한 지급청구권",
+        "기업이 수행하여 대체 용도가 있는 자산을 만들지 않는다(문단 35⑶)"
+      ],
+      "concept_ids": [
+        "5xZWrk",
+        "CBJ3sK"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "지급청구권의 집행 가능성",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2020-I-KQA003"
+      ],
+      "note": ""
+    },
+    {
+      "term": "지체상금",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "진열비",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "진행기준",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법",
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "투입법",
+        "산출법"
+      ],
+      "concept_ids": [
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M",
+        "uslBeH",
+        "RF3mRJ",
+        "BqPAS9"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "창정비",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "구별되는 재화나 용역",
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "8P5E9V",
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "초과청구공사",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "총공사예정원가",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "투입법",
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "uslBeH",
+        "RF3mRJ",
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "총액인식",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "인식",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "sM1U0t",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "총판",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "최빈값법",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "변동대가",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "추정제약",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "변동대가",
+        "변동대가 추정치를 제약함",
+        "환불부채"
+      ],
+      "concept_ids": [
+        "3q1lWH",
+        "lKmqLc",
+        "2Tb1uu"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "출시 전 재화가 포함된 수행의무에 대한 거래가격 배분",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38671"
+      ],
+      "note": ""
+    },
+    {
+      "term": "캐시백",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "캐시백리워드",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "컨설팅",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법",
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "투입법"
+      ],
+      "concept_ids": [
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M",
+        "uslBeH",
+        "RF3mRJ"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "콜옵션",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "선도나 콜옵션",
+        "재매입약정"
+      ],
+      "concept_ids": [
+        "ha4Yp2",
+        "vw8tzF"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "쿠폰",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "크리에이터",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "클레임",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "변동대가",
+        "변동대가 추정치를 제약함",
+        "계약변경"
+      ],
+      "concept_ids": [
+        "3q1lWH",
+        "lKmqLc",
+        "xYL1TP"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "택배",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "토지 등기 이전 시 제거 여부",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-36958"
+      ],
+      "note": ""
+    },
+    {
+      "term": "토지 이전을 포함하는 부동산 계약의 수익 인식",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-201803A"
+      ],
+      "note": ""
+    },
+    {
+      "term": "통신",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약에 있는 유의적인 금융요소",
+        "계약체결 증분원가"
+      ],
+      "concept_ids": [
+        "Ag62GJ",
+        "Ks6E5m"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "투입법",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "투입법",
+        "수행의무의 진행률을 측정함",
+        "진행률 측정방법",
+        "합리적인 진행률 측정",
+        "수행의무의 진행률 측정 방법"
+      ],
+      "concept_ids": [
+        "uslBeH",
+        "RF3mRJ",
+        "bz3jWR",
+        "H8vY9D",
+        "Hkislf",
+        "Qfm53M"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "투입법에 따른 진행률로 매출을 인식하는 계약의 변경",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202412046"
+      ],
+      "note": ""
+    },
+    {
+      "term": "파생게임",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "구별되는 재화나 용역"
+      ],
+      "concept_ids": [
+        "8P5E9V"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "판매기준 로열티 수익인식",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202312050"
+      ],
+      "note": ""
+    },
+    {
+      "term": "판매수수료",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약체결 증분원가"
+      ],
+      "concept_ids": [
+        "Ks6E5m"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "판매장려",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "판매장려 목적의 할인",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-38703"
+      ],
+      "note": ""
+    },
+    {
+      "term": "판매장려금",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "판매장려금 인식시기",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202511020"
+      ],
+      "note": ""
+    },
+    {
+      "term": "판매촉진",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "판매촉진 목적으로 제공한 시상품의 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-35565"
+      ],
+      "note": ""
+    },
+    {
+      "term": "포인트 제공 회계처리",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-SSI-202312049"
+      ],
+      "note": ""
+    },
+    {
+      "term": "풋옵션",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "풋옵션",
+        "재매입약정",
+        "반품권이 있는 판매"
+      ],
+      "concept_ids": [
+        "24pQtH",
+        "vw8tzF",
+        "1IdzfY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "프랜차이즈",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "판매기준 로열티나 사용기준 로열티"
+      ],
+      "concept_ids": [
+        "Y3rhox"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "플랫폼",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "하도급",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "본인 대 대리인의 고려사항",
+        "원가 기준 투입법 적용 계약의 추가 공시",
+        "투입법"
+      ],
+      "concept_ids": [
+        "XLz6Gv",
+        "uslBeH",
+        "RF3mRJ"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "하자보수",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "보증"
+      ],
+      "concept_ids": [
+        "KaYPON"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "할인권",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "할인율",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약에 있는 유의적인 금융요소"
+      ],
+      "concept_ids": [
+        "Ag62GJ"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "허위계상",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "허위매출",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "현금을 수취하고 암호자산을 이전하기로 한 거래",
+      "sources": [
+        "제목(qna)"
+      ],
+      "grade": "자동",
+      "concepts": [],
+      "concept_ids": [],
+      "cases": [
+        "QNA-2021-I-KQA008"
+      ],
+      "note": ""
+    },
+    {
+      "term": "호텔",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "위탁약정",
+        "본인 대 대리인의 고려사항"
+      ],
+      "concept_ids": [
+        "RPTMXY",
+        "XLz6Gv"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "확신형보증",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "보증"
+      ],
+      "concept_ids": [
+        "KaYPON"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "환급",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "환불부채",
+        "반품권이 있는 판매"
+      ],
+      "concept_ids": [
+        "2Tb1uu",
+        "1IdzfY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "환불부채",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "환불부채",
+        "반품권이 있는 판매"
+      ],
+      "concept_ids": [
+        "2Tb1uu",
+        "1IdzfY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "회수자산",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "반품권이 있는 판매"
+      ],
+      "concept_ids": [
+        "1IdzfY"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "후원금",
+      "sources": [
+        "query-mapping"
+      ],
+      "grade": "자동",
+      "concepts": [
+        "계약을 식별함"
+      ],
+      "concept_ids": [
+        "l3leA7"
+      ],
+      "cases": [],
+      "note": ""
+    },
+    {
+      "term": "수강권",
+      "sources": [
+        "제목추출(04b 감사 보강)"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "기간에 걸쳐 이행하는 수행의무",
+        "구별되는 재화나 용역",
+        "라이선싱"
+      ],
+      "concept_ids": [
+        "5HDlPF",
+        "8P5E9V",
+        "bxCGNy"
+      ],
+      "cases": [
+        "QNA-SSI-202412043"
+      ],
+      "note": "",
+      "decision": {
+        "by": "AI 위임 판단 (DEAD-END 보강, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "기간에 걸쳐 이행하는 수행의무",
+          "구별되는 재화나 용역",
+          "라이선싱"
+        ],
+        "reason": "제목에 '수강권' 포함 사례 1건의 감사본 주제 합집합"
+      }
+    },
+    {
+      "term": "암호자산",
+      "sources": [
+        "제목추출(04b 감사 보강)"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "적용범위",
+        "기간에 걸쳐 이행하는 수행의무",
+        "구별되는 재화나 용역",
+        "수행의무의 이행",
+        "고객과의 계약으로 한 약속"
+      ],
+      "concept_ids": [
+        "4aNSKr",
+        "5HDlPF",
+        "8P5E9V",
+        "AQB8cb",
+        "qNvjgx"
+      ],
+      "cases": [
+        "QNA-2021-I-KQA008"
+      ],
+      "note": "",
+      "decision": {
+        "by": "AI 위임 판단 (DEAD-END 보강, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "적용범위",
+          "기간에 걸쳐 이행하는 수행의무",
+          "구별되는 재화나 용역",
+          "수행의무의 이행",
+          "고객과의 계약으로 한 약속"
+        ],
+        "reason": "제목에 '암호자산' 포함 사례 1건의 감사본 주제 합집합"
+      }
+    },
+    {
+      "term": "개별소비세",
+      "sources": [
+        "제목추출(04b 감사 보강)"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "거래가격을 산정함"
+      ],
+      "concept_ids": [
+        "O28gcg"
+      ],
+      "cases": [
+        "QNA-2022-I-KQA007"
+      ],
+      "note": "",
+      "decision": {
+        "by": "AI 위임 판단 (DEAD-END 보강, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "거래가격을 산정함"
+        ],
+        "reason": "제목에 '개별소비세' 포함 사례 1건의 감사본 주제 합집합"
+      }
+    },
+    {
+      "term": "연착",
+      "sources": [
+        "제목추출(04b 감사 보강)"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "환불부채",
+        "변동대가",
+        "변동대가의 재검토",
+        "보증",
+        "거래가격을 산정함",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "2Tb1uu",
+        "3q1lWH",
+        "85VgUd",
+        "KaYPON",
+        "O28gcg",
+        "lKmqLc"
+      ],
+      "cases": [
+        "QNA-201909A"
+      ],
+      "note": "",
+      "decision": {
+        "by": "AI 위임 판단 (DEAD-END 보강, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "환불부채",
+          "변동대가",
+          "변동대가의 재검토",
+          "보증",
+          "거래가격을 산정함",
+          "변동대가 추정치를 제약함"
+        ],
+        "reason": "제목에 '연착' 포함 사례 1건의 감사본 주제 합집합"
+      }
+    },
+    {
+      "term": "민간투자사업",
+      "sources": [
+        "제목추출(04b 감사 보강)"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "고객에게 지급할 대가"
+      ],
+      "concept_ids": [
+        "FJvsfz"
+      ],
+      "cases": [
+        "QNA-201607A"
+      ],
+      "note": "",
+      "decision": {
+        "by": "AI 위임 판단 (DEAD-END 보강, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "고객에게 지급할 대가"
+        ],
+        "reason": "제목에 '민간투자사업' 포함 사례 1건의 감사본 주제 합집합"
+      }
+    },
+    {
+      "term": "인식시기",
+      "sources": [
+        "제목추출(04b 감사 보강)"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "환불부채",
+        "변동대가",
+        "기간에 걸쳐 이행하는 수행의무",
+        "구별되는 재화나 용역",
+        "수행의무의 이행",
+        "고객에게 지급할 대가",
+        "계약체결 증분원가",
+        "판매기준 로열티나 사용기준 로열티",
+        "라이선싱",
+        "한 시점에 이행하는 수행의무",
+        "변동대가 추정치를 제약함"
+      ],
+      "concept_ids": [
+        "2Tb1uu",
+        "3q1lWH",
+        "5HDlPF",
+        "8P5E9V",
+        "AQB8cb",
+        "FJvsfz",
+        "Ks6E5m",
+        "Y3rhox",
+        "bxCGNy",
+        "lIlmTb",
+        "lKmqLc"
+      ],
+      "cases": [
+        "QNA-2024-I-KQA005",
+        "QNA-SSI-202511020",
+        "QNA-SSI-202511018",
+        "QNA-SSI-202412043",
+        "QNA-SSI-202312052"
+      ],
+      "note": "",
+      "decision": {
+        "by": "AI 위임 판단 (DEAD-END 보강, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "환불부채",
+          "변동대가",
+          "기간에 걸쳐 이행하는 수행의무",
+          "구별되는 재화나 용역",
+          "수행의무의 이행",
+          "고객에게 지급할 대가",
+          "계약체결 증분원가",
+          "판매기준 로열티나 사용기준 로열티",
+          "라이선싱",
+          "한 시점에 이행하는 수행의무",
+          "변동대가 추정치를 제약함"
+        ],
+        "reason": "제목에 '인식시기' 포함 사례 5건의 감사본 주제 합집합"
+      }
+    },
+    {
+      "term": "순액",
+      "sources": [
+        "제목추출(04b 감사 보강)"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "기간에 걸쳐 이행하는 수행의무",
+        "수행의무의 이행",
+        "본인 대 대리인의 고려사항",
+        "한 시점에 이행하는 수행의무"
+      ],
+      "concept_ids": [
+        "5HDlPF",
+        "AQB8cb",
+        "XLz6Gv",
+        "lIlmTb"
+      ],
+      "cases": [
+        "QNA-SSI-36941",
+        "QNA-SSI-35578"
+      ],
+      "note": "",
+      "decision": {
+        "by": "AI 위임 판단 (DEAD-END 보강, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "기간에 걸쳐 이행하는 수행의무",
+          "수행의무의 이행",
+          "본인 대 대리인의 고려사항",
+          "한 시점에 이행하는 수행의무"
+        ],
+        "reason": "제목에 '순액' 포함 사례 2건의 감사본 주제 합집합"
+      }
+    },
+    {
+      "term": "과대계상",
+      "sources": [
+        "제목추출(04b 감사 보강)"
+      ],
+      "grade": "자동(위임판단)",
+      "concepts": [
+        "변동대가",
+        "구별되는 재화나 용역",
+        "수행의무의 이행",
+        "고객에게 지급할 대가",
+        "위탁약정",
+        "표시",
+        "본인 대 대리인의 고려사항",
+        "선도나 콜옵션",
+        "계약을 식별함",
+        "한 시점에 이행하는 수행의무",
+        "수행의무를 식별함"
+      ],
+      "concept_ids": [
+        "3q1lWH",
+        "8P5E9V",
+        "AQB8cb",
+        "FJvsfz",
+        "RPTMXY",
+        "W6Bh7o",
+        "XLz6Gv",
+        "ha4Yp2",
+        "l3leA7",
+        "lIlmTb",
+        "p1vJ25"
+      ],
+      "cases": [
+        "FSS-CASE-2022-2311-02",
+        "FSS-CASE-2022-2311-03",
+        "FSS-CASE-2023-2405-01",
+        "FSS-CASE-2024-2505-03",
+        "KICPA-CASE-2021-12",
+        "KICPA-CASE-2024-04",
+        "KICPA-CASE-2024-28",
+        "KICPA-CASE-2025-33",
+        "FSS-CASE-2021-2206-02",
+        "FSS-CASE-2025-2606-01",
+        "FSS-CASE-2025-2606-03"
+      ],
+      "note": "",
+      "decision": {
+        "by": "AI 위임 판단 (DEAD-END 보강, 사용자 승인 2026-07-04)",
+        "dropped": [],
+        "added": [
+          "변동대가",
+          "구별되는 재화나 용역",
+          "수행의무의 이행",
+          "고객에게 지급할 대가",
+          "위탁약정",
+          "표시",
+          "본인 대 대리인의 고려사항",
+          "선도나 콜옵션",
+          "계약을 식별함",
+          "한 시점에 이행하는 수행의무",
+          "수행의무를 식별함"
+        ],
+        "reason": "제목에 '과대계상' 포함 사례 11건의 감사본 주제 합집합"
+      }
+    }
+  ]
+}

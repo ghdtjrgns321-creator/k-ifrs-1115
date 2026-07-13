@@ -1,0 +1,2893 @@
+{
+  "_meta": {
+    "generated_by": "app/preprocessing/16-ontology-cases.py",
+    "stats": {
+      "qna": {
+        "tokens": 703,
+        "adopted": 645,
+        "excluded": [
+          "202003D:BC307",
+          "201901B:BC87",
+          "201803D:BC143",
+          "201803B:BC129",
+          "201803B:BC131",
+          "201803B:BC143",
+          "201803A:BC100",
+          "201803A:BC105",
+          "201803A:BC116J",
+          "201803A:BC116K",
+          "201803A:BC116N",
+          "201803A:BC129",
+          "2024-I-KQA005:BC219",
+          "2024-I-KQA005:BC415",
+          "2022-I-KQA015:BC54",
+          "2022-I-KQA015:BC56",
+          "2022-I-KQA015:BC155",
+          "2022-I-KQA014:BC116S",
+          "2022-I-KQA007:BC187",
+          "2021-I-KQA008:BC55",
+          "2021-I-KQA008:BC56",
+          "2021-I-KQA007:BC357",
+          "2020-I-KQA003:BC32",
+          "2018-I-KQA009:BC111",
+          "2018-I-KQA009:BC112",
+          "2018-I-KQA004:BC437",
+          "2018-I-KQA004:BC441",
+          "2018-I-KQA004:BC445D",
+          "2017-I-KAQ015:BC142",
+          "2017-I-KAQ015:BC143",
+          "2017-I-KAQ015:BC144",
+          "2017-I-KAQ015:BC145",
+          "2017-I-KAQ015:BC146",
+          "2017-I-KAQ015:BC147",
+          "2017-I-KQA014:BC142",
+          "2017-I-KQA014:BC143",
+          "2017-I-KQA014:BC144",
+          "2017-I-KQA014:BC145",
+          "2017-I-KQA014:BC146",
+          "2017-I-KQA014:BC147",
+          "SSI-202511019:BC322",
+          "SSI-202511019:BC323",
+          "SSI-202511019:BC324",
+          "SSI-202511019:BC325",
+          "SSI-38674:BC42",
+          "SSI-38674:BC43",
+          "SSI-38674:BC46C",
+          "SSI-38674:BC46D",
+          "SSI-38674:BC46E",
+          "SSI-38674:BC259",
+          "SSI-38674:BC260",
+          "SSI-38674:BC261",
+          "SSI-38674:BC262",
+          "SSI-38674:BC263",
+          "SSI-38674:BC264",
+          "SSI-38674:BC265",
+          "SSI-36987:BC116R",
+          "SSI-36987:BC116S"
+        ]
+      },
+      "findings": {
+        "tokens": 66,
+        "adopted": 65,
+        "excluded": [
+          "KICPA-CASE-2025-33:BC317"
+        ]
+      },
+      "ie": {
+        "mentions": 350,
+        "resolved": 350,
+        "external": 0,
+        "unresolved": 0
+      }
+    },
+    "edge_total": 1220
+  },
+  "qna": [
+    {
+      "id": "202504C",
+      "db_parent_id": "QNA-202504C",
+      "title": "수업료 수익의 인식",
+      "paras": [],
+      "source": "related_paragraphs(감사본)",
+      "concepts": [
+        "5HDlPF",
+        "bz3jWR"
+      ]
+    },
+    {
+      "id": "221109A",
+      "db_parent_id": "QNA-221109A",
+      "title": "본인 대 대리인: 소프트웨어 재판매자",
+      "paras": [
+        "24",
+        "27",
+        "28",
+        "29",
+        "30",
+        "33",
+        "B34",
+        "B34A",
+        "B35",
+        "B35A",
+        "B36",
+        "B37",
+        "B37A",
+        "B38",
+        "119",
+        "123"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "202003D",
+      "db_parent_id": "QNA-202003D",
+      "title": "계약을 이행하는 데 드는 교육훈련원가",
+      "paras": [
+        "95"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "201909A",
+      "db_parent_id": "QNA-201909A",
+      "title": "연착이나 취소에 대한 보상",
+      "paras": [
+        "B33",
+        "47",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "201906D",
+      "db_parent_id": "QNA-201906D",
+      "title": "계약을 이행하는 데 드는 원가",
+      "paras": [
+        "B15",
+        "35",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "95",
+        "98"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "201903G",
+      "db_parent_id": "QNA-201903G",
+      "title": "건설되는 재화의 기간에 걸친 이전",
+      "paras": [
+        "35"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "201903F",
+      "db_parent_id": "QNA-201903F",
+      "title": "공동영업자의 산출물 판매",
+      "paras": [],
+      "source": "related_paragraphs(감사본)",
+      "concepts": [
+        "AQB8cb"
+      ]
+    },
+    {
+      "id": "201901B",
+      "db_parent_id": "QNA-201901B",
+      "title": "약속한 재화나 용역의 검토",
+      "paras": [
+        "22",
+        "25",
+        "B49"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "201803D",
+      "db_parent_id": "QNA-201803D",
+      "title": "지금까지 수행을 완료한 부분에 대한 지급청구권",
+      "paras": [
+        "B9",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "35",
+        "37",
+        "38"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "201803B",
+      "db_parent_id": "QNA-201803B",
+      "title": "부동산 계약의 수익 인식",
+      "paras": [
+        "9",
+        "B12",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "32",
+        "35",
+        "36",
+        "37",
+        "38"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "201803A",
+      "db_parent_id": "QNA-201803A",
+      "title": "토지 이전을 포함하는 부동산 계약의 수익 인식",
+      "paras": [
+        "9",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "32",
+        "35",
+        "38"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "201607A",
+      "db_parent_id": "QNA-201607A",
+      "title": "민간투자사업에서 사업시행자가 사업허가자에게 지급하는 금액",
+      "paras": [
+        "70",
+        "71",
+        "72"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2024-I-KQA007",
+      "db_parent_id": "QNA-2024-I-KQA007",
+      "title": "실제와 예상 발생사고 수의 차이에 의한 이행현금흐름 변동의 회계처리와 보험수익 인식방법",
+      "paras": [
+        "5"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2024-I-KQA005",
+      "db_parent_id": "QNA-2024-I-KQA005",
+      "title": "인센티브 수취의 수익 인식시기",
+      "paras": [
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "B63",
+        "B63A",
+        "B63B"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2022-I-KQA015",
+      "db_parent_id": "QNA-2022-I-KQA015",
+      "title": "(별도재무제표) 선박에 대한 통제 이전 여부",
+      "paras": [
+        "6",
+        "27",
+        "31",
+        "32",
+        "33",
+        "34",
+        "38"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2022-I-KQA014",
+      "db_parent_id": "QNA-2022-I-KQA014",
+      "title": "상품 매입 시 공급자에게서 받는  물류 관련 수수료의 회계처리",
+      "paras": [
+        "6",
+        "B34"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2022-I-KQA007",
+      "db_parent_id": "QNA-2022-I-KQA007",
+      "title": "수입 자동차에 부과되는 개별소비세의 회계처리",
+      "paras": [
+        "47"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2021-I-KQA008",
+      "db_parent_id": "QNA-2021-I-KQA008",
+      "title": "현금을 수취하고 암호자산을  이전하기로 한 거래",
+      "paras": [
+        "5",
+        "6",
+        "24",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2021-I-KQA007",
+      "db_parent_id": "QNA-2021-I-KQA007",
+      "title": "고객이 포함된 연결실체 내 다른 기업에  회사가 신주인수권 부여 시 회계처리",
+      "paras": [
+        "6",
+        "9",
+        "10",
+        "36",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "63",
+        "66",
+        "68",
+        "70",
+        "71",
+        "72",
+        "104"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2020-I-KQA018",
+      "db_parent_id": "QNA-2020-I-KQA018",
+      "title": "(별도재무제표) 종속기업 투자주식을 신설종속기업에 매각 후 콜옵션 보유 시 회계처리",
+      "paras": [
+        "31",
+        "34",
+        "B66"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2020-I-KQA010",
+      "db_parent_id": "QNA-2020-I-KQA010",
+      "title": "손실부담계약 평가 시 재고자산 원가에 배부되지 않을 것으로 예상되는 고정제조간접원가의 포함 여부",
+      "paras": [
+        "95",
+        "97"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2020-I-KQA006",
+      "db_parent_id": "QNA-2020-I-KQA006",
+      "title": "우선매수협상권과 통제 이전의 관계",
+      "paras": [
+        "31",
+        "33",
+        "38",
+        "B64",
+        "B65",
+        "B66",
+        "B67",
+        "B68",
+        "B69",
+        "B70",
+        "B71",
+        "B72",
+        "B73",
+        "B74",
+        "B75",
+        "B76"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2020-I-KQA003",
+      "db_parent_id": "QNA-2020-I-KQA003",
+      "title": "지급청구권의 집행 가능성",
+      "paras": [
+        "10",
+        "B12",
+        "35",
+        "37"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2019-I-KQA009",
+      "db_parent_id": "QNA-2019-I-KQA009",
+      "title": "외화 계약자산의 적용환율 결정과 화폐성자산 여부",
+      "paras": [
+        "31",
+        "35",
+        "39",
+        "44",
+        "56",
+        "107"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2019-I-KQA003",
+      "db_parent_id": "QNA-2019-I-KQA003",
+      "title": "수취한 회원권 입회보증금의 최초 인식 시 회계처리",
+      "paras": [
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "B9",
+        "B10",
+        "B11",
+        "B12",
+        "B13",
+        "22",
+        "31",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2018-I-KQA009",
+      "db_parent_id": "QNA-2018-I-KQA009",
+      "title": "의약품 수탁생산계약의 수행의무 구별",
+      "paras": [
+        "22",
+        "25",
+        "27",
+        "29",
+        "35",
+        "37",
+        "39",
+        "95",
+        "99"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2018-I-KQA004",
+      "db_parent_id": "QNA-2018-I-KQA004",
+      "title": "완료된 계약에서 변동대가 미확정 시 실무적 간편법 적용",
+      "paras": [
+        "C2",
+        "C3",
+        "C5",
+        "50",
+        "59"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2018-I-KQA002",
+      "db_parent_id": "QNA-2018-I-KQA002",
+      "title": "고객의 계약종료권과 제작물의 폐기 요구권이 기업의 지급청구권 보유여부에 영향을 미치는가?",
+      "paras": [
+        "B9",
+        "B11",
+        "B12",
+        "35",
+        "37"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2017-I-KAQ015",
+      "db_parent_id": "QNA-2017-I-KAQ015",
+      "title": "자체 분양공사에 대한 기업의 지급청구권 보유 여부",
+      "paras": [
+        "9",
+        "B9",
+        "B10",
+        "B11",
+        "B12",
+        "B13",
+        "32",
+        "35",
+        "37"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "2017-I-KQA014",
+      "db_parent_id": "QNA-2017-I-KQA014",
+      "title": "고객의 채무불이행에 따른 계약 종료 시 기업의 지급청구권 보유 여부",
+      "paras": [
+        "B9",
+        "B10",
+        "B11",
+        "B12",
+        "B13",
+        "32",
+        "35",
+        "37"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202511020",
+      "db_parent_id": "QNA-SSI-202511020",
+      "title": "판매장려금 인식시기",
+      "paras": [
+        "50",
+        "56",
+        "70"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202511018",
+      "db_parent_id": "QNA-SSI-202511018",
+      "title": "계약체결 증분원가의 인식시기",
+      "paras": [
+        "91",
+        "92"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202511019",
+      "db_parent_id": "QNA-SSI-202511019",
+      "title": "수취채권과 계약자산의 구분",
+      "paras": [
+        "B10",
+        "105",
+        "108"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202506004",
+      "db_parent_id": "QNA-SSI-202506004",
+      "title": "정부보조금 수령 시 원가기준 투입법의 진행률 산정",
+      "paras": [
+        "B18",
+        "39"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202503008",
+      "db_parent_id": "QNA-SSI-202503008",
+      "title": "계약 해지로 지급하는 위약금의 회계처리",
+      "paras": [
+        "88"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202412042",
+      "db_parent_id": "QNA-SSI-202412042",
+      "title": "고객에게 풋옵션이 부여된 판매",
+      "paras": [
+        "B68",
+        "B73"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202412045",
+      "db_parent_id": "QNA-SSI-202412045",
+      "title": "유상사급 회계처리",
+      "paras": [
+        "31",
+        "33",
+        "B64",
+        "B66",
+        "B67",
+        "B68",
+        "B69"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202412044",
+      "db_parent_id": "QNA-SSI-202412044",
+      "title": "제품 독점판매권의 회계처리",
+      "paras": [
+        "31"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202412003",
+      "db_parent_id": "QNA-SSI-202412003",
+      "title": "고객에게 추가로 제공하는 제품",
+      "paras": [
+        "31",
+        "33",
+        "38"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202412046",
+      "db_parent_id": "QNA-SSI-202412046",
+      "title": "투입법에 따른 진행률로 매출을 인식하는 계약의 변경",
+      "paras": [
+        "18",
+        "40",
+        "43",
+        "59"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202412041",
+      "db_parent_id": "QNA-SSI-202412041",
+      "title": "각종 부담금의 진행률 산입 여부",
+      "paras": [
+        "B19",
+        "95",
+        "96",
+        "97",
+        "98",
+        "99"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202412043",
+      "db_parent_id": "QNA-SSI-202412043",
+      "title": "녹화가 완료된 강의의 평생수강권 판매 수익 인식시기",
+      "paras": [
+        "27",
+        "35",
+        "B54"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38676",
+      "db_parent_id": "QNA-SSI-38676",
+      "title": "대행사에 지급한 수수료의 비용 인식시점",
+      "paras": [
+        "91",
+        "92",
+        "94",
+        "99"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202312057",
+      "db_parent_id": "QNA-SSI-202312057",
+      "title": "유형자산 처분대가로 대출채권을 수령한 경우",
+      "paras": [
+        "66"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202312051",
+      "db_parent_id": "QNA-SSI-202312051",
+      "title": "면세점 판매수수료",
+      "paras": [
+        "B35B",
+        "47"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202312058",
+      "db_parent_id": "QNA-SSI-202312058",
+      "title": "고객이 원재료 매입금액의 일부를 보전하는 경우",
+      "paras": [
+        "47",
+        "51"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202312052",
+      "db_parent_id": "QNA-SSI-202312052",
+      "title": "수익 인식시기",
+      "paras": [
+        "31",
+        "35",
+        "38"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202312048",
+      "db_parent_id": "QNA-SSI-202312048",
+      "title": "매출 환급 회계처리",
+      "paras": [
+        "50",
+        "56"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202312049",
+      "db_parent_id": "QNA-SSI-202312049",
+      "title": "포인트 제공 회계처리",
+      "paras": [
+        "70"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202312053",
+      "db_parent_id": "QNA-SSI-202312053",
+      "title": "모바일 게임 플랫폼 수수료",
+      "paras": [
+        "B35B",
+        "47"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-202312050",
+      "db_parent_id": "QNA-SSI-202312050",
+      "title": "판매기준 로열티 수익인식",
+      "paras": [
+        "B63"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38680",
+      "db_parent_id": "QNA-SSI-38680",
+      "title": "매출 연동 지급수수료 회계처리",
+      "paras": [
+        "6"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38679",
+      "db_parent_id": "QNA-SSI-38679",
+      "title": "재화에 대한 고객의 인수 절차가 있는 경우 수익인식 시점 판단",
+      "paras": [
+        "38",
+        "B84",
+        "B85",
+        "B86"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38677",
+      "db_parent_id": "QNA-SSI-38677",
+      "title": "변경에 합의하였으나 변경계약서를 작성하지 않은 경우, 수익 인식",
+      "paras": [
+        "18",
+        "19",
+        "20",
+        "21",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "56",
+        "57",
+        "58"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38485",
+      "db_parent_id": "QNA-SSI-38485",
+      "title": "반품관련 비용",
+      "paras": [
+        "B25"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38675",
+      "db_parent_id": "QNA-SSI-38675",
+      "title": "모바일 상품권을 할인 발행한 경우 회계처리",
+      "paras": [
+        "70"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38674",
+      "db_parent_id": "QNA-SSI-38674",
+      "title": "지급 능력이 낮은 고객과의 계약에서 회수 가능성 판단",
+      "paras": [
+        "9",
+        "52"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38673",
+      "db_parent_id": "QNA-SSI-38673",
+      "title": "고객에 대한 환불부채의 분류",
+      "paras": [
+        "B20",
+        "B21",
+        "B22",
+        "B23",
+        "B24",
+        "B25",
+        "B26",
+        "B27",
+        "55"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38672",
+      "db_parent_id": "QNA-SSI-38672",
+      "title": "계약 변경 시 제공한 가격할인",
+      "paras": [
+        "20"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38671",
+      "db_parent_id": "QNA-SSI-38671",
+      "title": "출시 전 재화가 포함된 수행의무에 대한 거래가격 배분",
+      "paras": [
+        "76",
+        "78",
+        "79"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36993",
+      "db_parent_id": "QNA-SSI-36993",
+      "title": "대금의 회수 가능성이 낮을 경우에, 제1115호 적용 여부",
+      "paras": [
+        "9",
+        "14"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36991",
+      "db_parent_id": "QNA-SSI-36991",
+      "title": "매출계약에 포함된 유의적인 금융요소 관련 할인율",
+      "paras": [
+        "61",
+        "64"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36990",
+      "db_parent_id": "QNA-SSI-36990",
+      "title": "고객의 신용도가 변경되면 유의적인 금융요소 관련 할인율을 변경해야 하는지",
+      "paras": [
+        "61",
+        "64"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36987",
+      "db_parent_id": "QNA-SSI-36987",
+      "title": "재화의 제공과 운송용역을 같이 제공하는 경우, 수행의무의 식별",
+      "paras": [
+        "22",
+        "23"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36975",
+      "db_parent_id": "QNA-SSI-36975",
+      "title": "납기지연으로 고객에게 지급할 대가",
+      "paras": [
+        "46",
+        "48",
+        "50",
+        "51",
+        "56",
+        "57",
+        "58",
+        "88"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36965",
+      "db_parent_id": "QNA-SSI-36965",
+      "title": "납품수량 증가에 따른 추가 대가의 수익인식",
+      "paras": [
+        "46",
+        "48",
+        "50",
+        "51",
+        "53",
+        "56",
+        "57",
+        "58",
+        "88"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36964",
+      "db_parent_id": "QNA-SSI-36964",
+      "title": "고객이 운송용역을 대신 제공하는 경우의 수익인식",
+      "paras": [
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "70",
+        "71",
+        "72"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36959",
+      "db_parent_id": "QNA-SSI-36959",
+      "title": "임대차계약에 제1115호를 적용할 수 있는지",
+      "paras": [
+        "5"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36958",
+      "db_parent_id": "QNA-SSI-36958",
+      "title": "토지 등기 이전 시 제거 여부",
+      "paras": [
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36951",
+      "db_parent_id": "QNA-SSI-36951",
+      "title": "고객에게 판매한 제품을 재매입 후 다른 고객에게 판매",
+      "paras": [
+        "B66"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36949",
+      "db_parent_id": "QNA-SSI-36949",
+      "title": "고객 요청에 따라 재화를 인도하지 않는 경우의 수익",
+      "paras": [
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "B64",
+        "B65",
+        "B66",
+        "B67",
+        "B68",
+        "B69",
+        "B70",
+        "B71",
+        "B72",
+        "B73",
+        "73",
+        "74",
+        "B74",
+        "B75",
+        "75",
+        "B76",
+        "76",
+        "B77",
+        "77",
+        "B78",
+        "78",
+        "79",
+        "B79",
+        "80",
+        "B80",
+        "B81",
+        "81",
+        "B82",
+        "82",
+        "B83",
+        "83",
+        "84",
+        "B84",
+        "85",
+        "B85",
+        "B86",
+        "86"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36948",
+      "db_parent_id": "QNA-SSI-36948",
+      "title": "상품권 수익인식",
+      "paras": [
+        "31",
+        "106"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36946",
+      "db_parent_id": "QNA-SSI-36946",
+      "title": "신탁 부동산의 회계처리",
+      "paras": [
+        "31"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36941",
+      "db_parent_id": "QNA-SSI-36941",
+      "title": "유상사급 거래의 수익 인식(총액 vs 순액)",
+      "paras": [
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36920",
+      "db_parent_id": "QNA-SSI-36920",
+      "title": "외화 계약자산 및 계약부채의 화폐성 항목 해당 여부",
+      "paras": [
+        "106",
+        "107"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36917",
+      "db_parent_id": "QNA-SSI-36917",
+      "title": "구두계약으로 계약서가 없는 경우의 수익인식",
+      "paras": [
+        "9",
+        "52"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36904",
+      "db_parent_id": "QNA-SSI-36904",
+      "title": "용역제공 시 진행기준 적용 여부",
+      "paras": [
+        "35"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-36898",
+      "db_parent_id": "QNA-SSI-36898",
+      "title": "부가가치세의 수익 포함 여부",
+      "paras": [
+        "47"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-35617",
+      "db_parent_id": "QNA-SSI-35617",
+      "title": "상품할인이벤트 지원금의 회계처리",
+      "paras": [
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "70",
+        "71"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-35565",
+      "db_parent_id": "QNA-SSI-35565",
+      "title": "판매촉진 목적으로 제공한 시상품의 회계처리",
+      "paras": [
+        "9",
+        "22",
+        "31"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-35609",
+      "db_parent_id": "QNA-SSI-35609",
+      "title": "장기 무상수리를 별도 수행의무로 보아야 하는지",
+      "paras": [
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "B29",
+        "29",
+        "B30",
+        "30",
+        "B31",
+        "B32",
+        "73",
+        "74",
+        "75",
+        "76",
+        "77",
+        "78",
+        "79",
+        "80",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-35599",
+      "db_parent_id": "QNA-SSI-35599",
+      "title": "계약이행원가에 대한 적용 기준서",
+      "paras": [
+        "95"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-35584",
+      "db_parent_id": "QNA-SSI-35584",
+      "title": "계약입찰을 위한 설계원가의 회계처리",
+      "paras": [
+        "91",
+        "92",
+        "93"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-35579",
+      "db_parent_id": "QNA-SSI-35579",
+      "title": "숙박권 판매에 따른 수익인식",
+      "paras": [
+        "B3",
+        "B4",
+        "B5",
+        "31",
+        "33",
+        "35",
+        "36",
+        "37",
+        "B44",
+        "106"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-35578",
+      "db_parent_id": "QNA-SSI-35578",
+      "title": "고객 주문에 따라 상품 구매 후 판매 시 수익 인식(순액 vs 총액)",
+      "paras": [
+        "B34",
+        "B35",
+        "B37"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-35568",
+      "db_parent_id": "QNA-SSI-35568",
+      "title": "소프트웨어와 용역을 함께 제공하는 계약의 수행의무 구별",
+      "paras": [
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-35567",
+      "db_parent_id": "QNA-SSI-35567",
+      "title": "반품조건부 판매의 회계처리",
+      "paras": [
+        "B20",
+        "B21",
+        "B23",
+        "B24",
+        "B25",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "55",
+        "56",
+        "57",
+        "58",
+        "59",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "66",
+        "67",
+        "68",
+        "69",
+        "70",
+        "71",
+        "72"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38700",
+      "db_parent_id": "QNA-SSI-38700",
+      "title": "장기할부판매",
+      "paras": [],
+      "source": "related_paragraphs(감사본)",
+      "concepts": [
+        "lIlmTb",
+        "Ag62GJ"
+      ]
+    },
+    {
+      "id": "SSI-38699",
+      "db_parent_id": "QNA-SSI-38699",
+      "title": "위탁판매 수익 인식시점",
+      "paras": [
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38698",
+      "db_parent_id": "QNA-SSI-38698",
+      "title": "공사사고 보상비와 진행률 산정",
+      "paras": [
+        "B19"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38476",
+      "db_parent_id": "QNA-SSI-38476",
+      "title": "재고자산의 인식 여부",
+      "paras": [
+        "33"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38697",
+      "db_parent_id": "QNA-SSI-38697",
+      "title": "반품금액 추정이 불가능한 반품조건부 판매",
+      "paras": [
+        "56"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38695",
+      "db_parent_id": "QNA-SSI-38695",
+      "title": "반품의 회계처리",
+      "paras": [],
+      "source": "related_paragraphs(감사본)",
+      "concepts": [
+        "1IdzfY",
+        "XLz6Gv"
+      ]
+    },
+    {
+      "id": "SSI-38690",
+      "db_parent_id": "QNA-SSI-38690",
+      "title": "계약변경과 수익인식",
+      "paras": [],
+      "source": "related_paragraphs(감사본)",
+      "concepts": [
+        "xYL1TP"
+      ]
+    },
+    {
+      "id": "SSI-38648",
+      "db_parent_id": "QNA-SSI-38648",
+      "title": "성과보상 인센티브와 변동대가",
+      "paras": [
+        "51"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38612",
+      "db_parent_id": "QNA-SSI-38612",
+      "title": "백화점 입점업체의 수익인식",
+      "paras": [
+        "38"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38611",
+      "db_parent_id": "QNA-SSI-38611",
+      "title": "수익인식 시점 및 계약자산 손상",
+      "paras": [
+        "9"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38703",
+      "db_parent_id": "QNA-SSI-38703",
+      "title": "판매장려 목적의 할인",
+      "paras": [
+        "B20",
+        "B21",
+        "B22",
+        "B23",
+        "B24",
+        "B25",
+        "B26",
+        "B27",
+        "50",
+        "51",
+        "53",
+        "55",
+        "56"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38702",
+      "db_parent_id": "QNA-SSI-38702",
+      "title": "거래처별 다른 워런티",
+      "paras": [
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "B28",
+        "B29",
+        "29",
+        "B30",
+        "30",
+        "B32",
+        "73",
+        "74",
+        "75",
+        "76",
+        "77",
+        "78",
+        "79",
+        "80",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "SSI-38701",
+      "db_parent_id": "QNA-SSI-38701",
+      "title": "제품 판매 후 재매입",
+      "paras": [],
+      "source": "related_paragraphs(감사본)",
+      "concepts": [
+        "vw8tzF"
+      ]
+    },
+    {
+      "id": "SSI-38465",
+      "db_parent_id": "QNA-SSI-38465",
+      "title": "매출 시 지급한 지체상금의 회계처리",
+      "paras": [
+        "B33",
+        "50",
+        "51"
+      ],
+      "source": "related_paragraphs(감사본)"
+    }
+  ],
+  "findings": [
+    {
+      "id": "FSS-CASE-2022-2311-02",
+      "db_parent_id": "FSS-CASE-2022-2311-02",
+      "title": "매출 조기인식을 통한 매출액 과대계상",
+      "paras": [
+        "9",
+        "31"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2022-2311-03",
+      "db_parent_id": "FSS-CASE-2022-2311-03",
+      "title": "유상사급 관련 매출액 과대계상",
+      "paras": [
+        "31",
+        "33",
+        "34",
+        "B66"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2023-2405-01",
+      "db_parent_id": "FSS-CASE-2023-2405-01",
+      "title": "미지급장려금 과소계상에 따른 매출 과대계상",
+      "paras": [
+        "50",
+        "51"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2023-2405-04",
+      "db_parent_id": "FSS-CASE-2023-2405-04",
+      "title": "매출 및 매출원가 허위계상",
+      "paras": [
+        "12",
+        "31"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2023-2405-05",
+      "db_parent_id": "FSS-CASE-2023-2405-05",
+      "title": "수익인식기준 적용 오류",
+      "paras": [
+        "38"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2023-2405-06",
+      "db_parent_id": "FSS-CASE-2023-2405-06",
+      "title": "매출 기간 귀속오류",
+      "paras": [
+        "29",
+        "31"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2024-2409-01",
+      "db_parent_id": "FSS-CASE-2024-2409-01",
+      "title": "매출 및 매출원가 허위계상",
+      "paras": [
+        "31"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2024-2409-02",
+      "db_parent_id": "FSS-CASE-2024-2409-02",
+      "title": "종속회사의 밀어내기 매출을 통한 매출(연결) 허위 계상 및 상품매출 총액 인식 오류",
+      "paras": [
+        "B15"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2024-2505-02",
+      "db_parent_id": "FSS-CASE-2024-2505-02",
+      "title": "매출 허위계상",
+      "paras": [
+        "9",
+        "31"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2024-2505-03",
+      "db_parent_id": "FSS-CASE-2024-2505-03",
+      "title": "매출 및 매출원가 과대계상",
+      "paras": [
+        "33",
+        "B34",
+        "B35",
+        "B36",
+        "B37",
+        "B38"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2024-2505-04",
+      "db_parent_id": "FSS-CASE-2024-2505-04",
+      "title": "매출 기간귀속 오류",
+      "paras": [
+        "73",
+        "74",
+        "75",
+        "76",
+        "77",
+        "78",
+        "79",
+        "80",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86",
+        "87",
+        "88",
+        "89",
+        "90"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2025-2512-01",
+      "db_parent_id": "FSS-CASE-2025-2512-01",
+      "title": "매출 및 매출원가 허위계상",
+      "paras": [
+        "31"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2025-2512-02",
+      "db_parent_id": "FSS-CASE-2025-2512-02",
+      "title": "종속기업의 라이선스 수익 인식 오류",
+      "paras": [
+        "B56",
+        "B58"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "KICPA-CASE-2021-12",
+      "db_parent_id": "KICPA-CASE-2021-12",
+      "title": "매출 및 매입 과대계상",
+      "paras": [
+        "31",
+        "33",
+        "38"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "KICPA-CASE-2024-04",
+      "db_parent_id": "KICPA-CASE-2024-04",
+      "title": "매출 및 매출채권 과대계상",
+      "paras": [
+        "9"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "KICPA-CASE-2024-28",
+      "db_parent_id": "KICPA-CASE-2024-28",
+      "title": "매출 및 지급수수료 과대계상",
+      "paras": [
+        "70"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "KICPA-CASE-2025-07",
+      "db_parent_id": "KICPA-CASE-2025-07",
+      "title": "수익·비용의 기간귀속 오류(용역)",
+      "paras": [
+        "35"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "KICPA-CASE-2025-33",
+      "db_parent_id": "KICPA-CASE-2025-33",
+      "title": "매출채권 및 선수금 과대계상",
+      "paras": [
+        "105"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2021-2206-02",
+      "db_parent_id": "FSS-CASE-2021-2206-02",
+      "title": "대리점 임의반출을 통한 매출액 및 매출원가 과대계상",
+      "paras": [
+        "31",
+        "B77"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2025-2606-01",
+      "db_parent_id": "FSS-CASE-2025-2606-01",
+      "title": "영업수익 및 영업비용 과대계상",
+      "paras": [
+        "22",
+        "26",
+        "B34",
+        "B35",
+        "B36",
+        "B37"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2025-2606-02",
+      "db_parent_id": "FSS-CASE-2025-2606-02",
+      "title": "도급공사 진행률 산정 오류",
+      "paras": [
+        "18",
+        "21"
+      ],
+      "source": "related_paragraphs(감사본)"
+    },
+    {
+      "id": "FSS-CASE-2025-2606-03",
+      "db_parent_id": "FSS-CASE-2025-2606-03",
+      "title": "유상사급 관련 매출 및 매출원가 과대계상",
+      "paras": [
+        "33",
+        "38"
+      ],
+      "source": "related_paragraphs(감사본)"
+    }
+  ],
+  "ie": [
+    {
+      "id": "G1Tn3g",
+      "title": "사례 1: 대가의 회수 가능성",
+      "paras": [
+        "9",
+        "14",
+        "15",
+        "16"
+      ],
+      "group": "계약의 식별",
+      "concept": "l3leA7",
+      "concept_title": "계약을 식별함"
+    },
+    {
+      "id": "Auvtz1",
+      "title": "사례 2: 대가가 표시된 가격이 아니다 - 암묵적 가격할인 (price concession)",
+      "paras": [
+        "9",
+        "47",
+        "52"
+      ],
+      "group": "계약의 식별",
+      "concept": "l3leA7",
+      "concept_title": "계약을 식별함"
+    },
+    {
+      "id": "yvFBSg",
+      "title": "사례 3: 암묵적 가격할인(price concession)",
+      "paras": [
+        "9",
+        "14",
+        "47",
+        "52"
+      ],
+      "group": "계약의 식별",
+      "concept": "l3leA7",
+      "concept_title": "계약을 식별함"
+    },
+    {
+      "id": "YhLPbg",
+      "title": "사례 4: 계약 식별 기준의 재검토",
+      "paras": [
+        "9",
+        "13",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "56",
+        "57",
+        "58",
+        "B63",
+        "87",
+        "88",
+        "89",
+        "90"
+      ],
+      "group": "계약의 식별",
+      "concept": "l3leA7",
+      "concept_title": "계약을 식별함"
+    },
+    {
+      "id": "GsGmoa",
+      "title": "사례 5: 계약변경―재화",
+      "paras": [
+        "20",
+        "21",
+        "27"
+      ],
+      "group": "계약변경",
+      "concept": "xYL1TP",
+      "concept_title": "계약변경"
+    },
+    {
+      "id": "Va8pTO",
+      "title": "사례 6: 계약변경 후 거래가격의 변경",
+      "paras": [
+        "21",
+        "85",
+        "90"
+      ],
+      "group": "계약변경",
+      "concept": "xYL1TP",
+      "concept_title": "계약변경"
+    },
+    {
+      "id": "Fu52x3",
+      "title": "사례 7: 계약변경―용역",
+      "paras": [
+        "21",
+        "22",
+        "27"
+      ],
+      "group": "계약변경",
+      "concept": "xYL1TP",
+      "concept_title": "계약변경"
+    },
+    {
+      "id": "p1jfmd",
+      "title": "사례 8: 변경에 따른 수익의 누적효과 일괄조정",
+      "paras": [
+        "21",
+        "27",
+        "29",
+        "35",
+        "56",
+        "57",
+        "58"
+      ],
+      "group": "계약변경",
+      "concept": "xYL1TP",
+      "concept_title": "계약변경"
+    },
+    {
+      "id": "vJs3Oi",
+      "title": "사례 9: 승인되지 않은 범위 및 가격 변경",
+      "paras": [
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "56",
+        "57",
+        "58"
+      ],
+      "group": "계약변경",
+      "concept": "xYL1TP",
+      "concept_title": "계약변경"
+    },
+    {
+      "id": "Unl14N",
+      "title": "사례 10: 재화와 용역이 구별되지 않는다.",
+      "paras": [
+        "27",
+        "29"
+      ],
+      "group": "수행의무의 식별",
+      "concept": "p1vJ25",
+      "concept_title": "수행의무를 식별함"
+    },
+    {
+      "id": "2PBgdu",
+      "title": "사례 11: 재화나 용역이 구별되는지를 판단함",
+      "paras": [
+        "27",
+        "28",
+        "29",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "B58"
+      ],
+      "group": "수행의무의 식별",
+      "concept": "p1vJ25",
+      "concept_title": "수행의무를 식별함"
+    },
+    {
+      "id": "IaulE4",
+      "title": "사례 12: 계약에 명시된 약속과 암묵적 약속",
+      "paras": [
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "B7",
+        "B8",
+        "B9",
+        "B10",
+        "B11",
+        "B12",
+        "B13",
+        "24",
+        "27",
+        "29",
+        "35",
+        "36",
+        "37",
+        "38"
+      ],
+      "group": "수행의무의 식별",
+      "concept": "p1vJ25",
+      "concept_title": "수행의무를 식별함"
+    },
+    {
+      "id": "YujOCN",
+      "title": "사례 13: 고객이 효익을 동시에 얻고 소비한다",
+      "paras": [
+        "B14",
+        "B15",
+        "B16",
+        "B17",
+        "B18",
+        "B19",
+        "22",
+        "35",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45"
+      ],
+      "group": "기간에 걸쳐 이행하는 수행의무",
+      "concept": "5HDlPF",
+      "concept_title": "기간에 걸쳐 이행하는 수행의무"
+    },
+    {
+      "id": "aNuast",
+      "title": "사례 14: 대체 용도 및 지급청구권 검토",
+      "paras": [
+        "B3",
+        "B4",
+        "B6",
+        "B7",
+        "B8",
+        "B9",
+        "B10",
+        "B11",
+        "B12",
+        "B13",
+        "B14",
+        "B15",
+        "B16",
+        "B17",
+        "B18",
+        "B19",
+        "35",
+        "36",
+        "37",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45"
+      ],
+      "group": "기간에 걸쳐 이행하는 수행의무",
+      "concept": "5HDlPF",
+      "concept_title": "기간에 걸쳐 이행하는 수행의무"
+    },
+    {
+      "id": "6uii7Z",
+      "title": "사례 15: 자산이 기업에 대체 용도가 없다",
+      "paras": [
+        "35"
+      ],
+      "group": "기간에 걸쳐 이행하는 수행의무",
+      "concept": "5HDlPF",
+      "concept_title": "기간에 걸쳐 이행하는 수행의무"
+    },
+    {
+      "id": "O2rMYe",
+      "title": "사례 16: 지금까지 수행을 완료한 부분에 대해 집행 가능한 지급청구권",
+      "paras": [
+        "35",
+        "38"
+      ],
+      "group": "기간에 걸쳐 이행하는 수행의무",
+      "concept": "5HDlPF",
+      "concept_title": "기간에 걸쳐 이행하는 수행의무"
+    },
+    {
+      "id": "qGfMeX",
+      "title": "사례 17: 수행의무가 한 시점에 이행되는지 또는 기간에 걸쳐 이행되는지 판단",
+      "paras": [
+        "B9",
+        "B10",
+        "B11",
+        "B12",
+        "B13",
+        "B14",
+        "B15",
+        "B16",
+        "B17",
+        "B18",
+        "B19",
+        "35",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45"
+      ],
+      "group": "기간에 걸쳐 이행하는 수행의무",
+      "concept": "5HDlPF",
+      "concept_title": "기간에 걸쳐 이행하는 수행의무"
+    },
+    {
+      "id": "KodCx6",
+      "title": "사례 18: 재화나 용역을 사용할 수 있게 하는 경우의 진행률 측정",
+      "paras": [
+        "35"
+      ],
+      "group": "수행의무의 진행률 측정",
+      "concept": "bz3jWR",
+      "concept_title": "수행의무의 진행률을 측정함"
+    },
+    {
+      "id": "abfbAl",
+      "title": "사례 19: 미설치 설비",
+      "paras": [
+        "B19",
+        "B34",
+        "B34A",
+        "B35",
+        "B35A",
+        "B35B",
+        "B36",
+        "B37",
+        "B37A",
+        "B38",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54"
+      ],
+      "group": "수행의무의 진행률 측정",
+      "concept": "bz3jWR",
+      "concept_title": "수행의무의 진행률을 측정함"
+    },
+    {
+      "id": "Xs4GmR",
+      "title": "사례 20: 변동대가를 유발하는 위약금",
+      "paras": [
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "56",
+        "57",
+        "58"
+      ],
+      "group": "변동대가",
+      "concept": "3q1lWH",
+      "concept_title": "변동대가"
+    },
+    {
+      "id": "R2Zngs",
+      "title": "사례 21: 변동대가 추정",
+      "paras": [
+        "B20",
+        "B21",
+        "B22",
+        "B23",
+        "B24",
+        "B25",
+        "B26",
+        "B27",
+        "53",
+        "55",
+        "56",
+        "57",
+        "58",
+        "84",
+        "85",
+        "86"
+      ],
+      "group": "변동대가",
+      "concept": "3q1lWH",
+      "concept_title": "변동대가"
+    },
+    {
+      "id": "tqZE3l",
+      "title": "사례 22: 반품권",
+      "paras": [
+        "4",
+        "B21",
+        "53",
+        "55",
+        "56",
+        "57",
+        "58"
+      ],
+      "group": "변동대가 추정치의 제약",
+      "concept": "lKmqLc",
+      "concept_title": "변동대가 추정치를 제약함"
+    },
+    {
+      "id": "c5z4EV",
+      "title": "사례 23: 가격할인(price concessions)",
+      "paras": [
+        "53",
+        "56",
+        "57",
+        "58",
+        "59"
+      ],
+      "group": "변동대가 추정치의 제약",
+      "concept": "lKmqLc",
+      "concept_title": "변동대가 추정치를 제약함"
+    },
+    {
+      "id": "k2xQzu",
+      "title": "사례 24: 대량 할인 장려금",
+      "paras": [
+        "56",
+        "57",
+        "58",
+        "87",
+        "88"
+      ],
+      "group": "변동대가 추정치의 제약",
+      "concept": "lKmqLc",
+      "concept_title": "변동대가 추정치를 제약함"
+    },
+    {
+      "id": "sfJcy5",
+      "title": "사례 25: 제약 대상 관리수수료",
+      "paras": [
+        "B20",
+        "B21",
+        "22",
+        "B22",
+        "B23",
+        "B24",
+        "B25",
+        "B26",
+        "B27",
+        "50",
+        "51",
+        "52",
+        "53",
+        "54",
+        "56",
+        "57",
+        "58",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65",
+        "73",
+        "84"
+      ],
+      "group": "변동대가 추정치의 제약",
+      "concept": "lKmqLc",
+      "concept_title": "변동대가 추정치를 제약함"
+    },
+    {
+      "id": "ZtcuFN",
+      "title": "사례 26: 유의적인 금융요소와 반품권",
+      "paras": [
+        "B20",
+        "B21",
+        "B22",
+        "B23",
+        "B24",
+        "B25",
+        "B26",
+        "B27",
+        "56",
+        "57",
+        "58",
+        "60",
+        "61",
+        "62",
+        "65"
+      ],
+      "group": "계약에 있는 유의적인 금융요소",
+      "concept": "Ag62GJ",
+      "concept_title": "계약에 있는 유의적인 금융요소"
+    },
+    {
+      "id": "RGOwoZ",
+      "title": "사례 27: 장기 계약에 대한 지급청구권 보류",
+      "paras": [
+        "62"
+      ],
+      "group": "계약에 있는 유의적인 금융요소",
+      "concept": "Ag62GJ",
+      "concept_title": "계약에 있는 유의적인 금융요소"
+    },
+    {
+      "id": "L2sXve",
+      "title": "사례 28: 할인율 산정",
+      "paras": [
+        "64"
+      ],
+      "group": "계약에 있는 유의적인 금융요소",
+      "concept": "Ag62GJ",
+      "concept_title": "계약에 있는 유의적인 금융요소"
+    },
+    {
+      "id": "2CErok",
+      "title": "사례 29: 선수금과 할인율 평가",
+      "paras": [
+        "64",
+        "65"
+      ],
+      "group": "계약에 있는 유의적인 금융요소",
+      "concept": "Ag62GJ",
+      "concept_title": "계약에 있는 유의적인 금융요소"
+    },
+    {
+      "id": "yBecDH",
+      "title": "사례 30: 선수금",
+      "paras": [
+        "22",
+        "56",
+        "57",
+        "58",
+        "62",
+        "66",
+        "67",
+        "68",
+        "69"
+      ],
+      "group": "계약에 있는 유의적인 금융요소",
+      "concept": "Ag62GJ",
+      "concept_title": "계약에 있는 유의적인 금융요소"
+    },
+    {
+      "id": "iY6Ko7",
+      "title": "사례 31: 비현금 대가를 받을 권리",
+      "paras": [
+        "22",
+        "70",
+        "71",
+        "72"
+      ],
+      "group": "비현금 대가",
+      "concept": "ySAFHt",
+      "concept_title": "비현금 대가"
+    },
+    {
+      "id": "TOu3Ls",
+      "title": "사례 32: 고객에게 지급할 대가",
+      "paras": [
+        "53",
+        "B63",
+        "70",
+        "71",
+        "72",
+        "73",
+        "74",
+        "75",
+        "76",
+        "77",
+        "78",
+        "79",
+        "80",
+        "81",
+        "82",
+        "83",
+        "84",
+        "85",
+        "86"
+      ],
+      "group": "고객에게 지급할 대가",
+      "concept": "FJvsfz",
+      "concept_title": "고객에게 지급할 대가"
+    },
+    {
+      "id": "cKKYtt",
+      "title": "사례 33: 배분 방법론",
+      "paras": [
+        "76",
+        "77",
+        "78",
+        "79",
+        "81"
+      ],
+      "group": "거래가격을 수행의무에 배분",
+      "concept": "cTpTDN",
+      "concept_title": "거래가격을 수행의무에 배분함"
+    },
+    {
+      "id": "4bRWLS",
+      "title": "사례 34: 할인액의 배분",
+      "paras": [
+        "73",
+        "74",
+        "75",
+        "76",
+        "77",
+        "78",
+        "79",
+        "80",
+        "81",
+        "82",
+        "83"
+      ],
+      "group": "거래가격을 수행의무에 배분",
+      "concept": "cTpTDN",
+      "concept_title": "거래가격을 수행의무에 배분함"
+    },
+    {
+      "id": "hEnOKE",
+      "title": "사례 35: 변동대가의 배분",
+      "paras": [
+        "53",
+        "B63",
+        "73",
+        "76",
+        "77",
+        "78",
+        "79",
+        "80",
+        "85",
+        "86",
+        "91",
+        "92",
+        "93",
+        "94",
+        "95",
+        "96",
+        "97",
+        "98",
+        "99",
+        "100",
+        "101",
+        "102",
+        "103",
+        "104"
+      ],
+      "group": "거래가격을 수행의무에 배분",
+      "concept": "cTpTDN",
+      "concept_title": "거래가격을 수행의무에 배분함"
+    },
+    {
+      "id": "KAJ4Bs",
+      "title": "사례 36: 계약체결 증분원가",
+      "paras": [
+        "91",
+        "93"
+      ],
+      "group": "계약원가",
+      "concept": "T51p4P",
+      "concept_title": "계약원가"
+    },
+    {
+      "id": "z4Rp37",
+      "title": "사례 37: 자산이 되는 원가",
+      "paras": [
+        "91",
+        "95",
+        "98",
+        "99",
+        "105",
+        "106",
+        "107",
+        "108",
+        "109"
+      ],
+      "group": "계약원가",
+      "concept": "T51p4P",
+      "concept_title": "계약원가"
+    },
+    {
+      "id": "HZdlLJ",
+      "title": "사례 38: 계약부채와 수취채권",
+      "paras": [],
+      "group": "표시",
+      "concept": "W6Bh7o",
+      "concept_title": "표시"
+    },
+    {
+      "id": "oy9zV2",
+      "title": "사례 39: 기업의 수행 정도에 대해 인식하는 계약자산",
+      "paras": [],
+      "group": "표시",
+      "concept": "W6Bh7o",
+      "concept_title": "표시"
+    },
+    {
+      "id": "ajJynp",
+      "title": "사례 40: 기업의 수행 정도에 대해 인식하는 수취채권",
+      "paras": [
+        "B16",
+        "55",
+        "57",
+        "B87",
+        "B88",
+        "B89",
+        "114",
+        "115",
+        "120",
+        "121",
+        "122"
+      ],
+      "group": "표시",
+      "concept": "W6Bh7o",
+      "concept_title": "표시"
+    },
+    {
+      "id": "kXY80h",
+      "title": "사례 41: 수익 구분—양적 공시",
+      "paras": [
+        "114",
+        "115"
+      ],
+      "group": "공시",
+      "concept": "fMrvaF",
+      "concept_title": "공시"
+    },
+    {
+      "id": "0pnbgn",
+      "title": "사례 42: 나머지 수행의무에 배분된 거래가격의 공시",
+      "paras": [
+        "B16",
+        "57",
+        "120",
+        "121",
+        "122"
+      ],
+      "group": "공시",
+      "concept": "fMrvaF",
+      "concept_title": "공시"
+    },
+    {
+      "id": "KJy4j8",
+      "title": "사례 43: 나머지 수행의무에 배분된 거래가격 공시—질적 공시",
+      "paras": [
+        "27",
+        "B28",
+        "28",
+        "29",
+        "B29",
+        "B30",
+        "B31",
+        "B32",
+        "B33"
+      ],
+      "group": "공시",
+      "concept": "fMrvaF",
+      "concept_title": "공시"
+    },
+    {
+      "id": "VcqslY",
+      "title": "사례 44: 보증",
+      "paras": [
+        "27",
+        "B28",
+        "29",
+        "B29",
+        "B30",
+        "B31",
+        "B32",
+        "B33",
+        "B34",
+        "B34A",
+        "B35",
+        "B35A",
+        "B35B",
+        "B36",
+        "B37",
+        "B37A",
+        "B38"
+      ],
+      "group": "보증",
+      "concept": "KaYPON",
+      "concept_title": "보증"
+    },
+    {
+      "id": "lA2ryj",
+      "title": "사례 45: 재화나 용역 제공을 주선함(기업이 대리인이다)",
+      "paras": [
+        "B37"
+      ],
+      "group": "본인 대 대리인의 고려사항",
+      "concept": "XLz6Gv",
+      "concept_title": "본인 대 대리인의 고려사항"
+    },
+    {
+      "id": "sFxuXx",
+      "title": "사례 46: 재화나 용역을 제공하기로 하는 약속(기업이 본인이다)",
+      "paras": [
+        "B35A",
+        "B37"
+      ],
+      "group": "본인 대 대리인의 고려사항",
+      "concept": "XLz6Gv",
+      "concept_title": "본인 대 대리인의 고려사항"
+    },
+    {
+      "id": "0RNEGX",
+      "title": "사례 46A: 재화나 용역을 제공하기로 하는 약속(기업이 본인이다)",
+      "paras": [
+        "B35A",
+        "B37"
+      ],
+      "group": "본인 대 대리인의 고려사항",
+      "concept": "XLz6Gv",
+      "concept_title": "본인 대 대리인의 고려사항"
+    },
+    {
+      "id": "dfw7dF",
+      "title": "사례 47: 재화나 용역을 제공하기로 하는 약속(기업이 본인이다)",
+      "paras": [
+        "B35A",
+        "B37"
+      ],
+      "group": "본인 대 대리인의 고려사항",
+      "concept": "XLz6Gv",
+      "concept_title": "본인 대 대리인의 고려사항"
+    },
+    {
+      "id": "MiNQrf",
+      "title": "사례 48: 재화나 용역 제공을 주선함(기업이 대리인이다)",
+      "paras": [
+        "B37"
+      ],
+      "group": "본인 대 대리인의 고려사항",
+      "concept": "XLz6Gv",
+      "concept_title": "본인 대 대리인의 고려사항"
+    },
+    {
+      "id": "5pzjcN",
+      "title": "사례 48A: 기업은 같은 계약에서 본인이자 대리인이다.",
+      "paras": [
+        "27",
+        "28",
+        "29",
+        "30",
+        "B37",
+        "B39",
+        "B40",
+        "B41",
+        "B42",
+        "B43"
+      ],
+      "group": "본인 대 대리인의 고려사항",
+      "concept": "XLz6Gv",
+      "concept_title": "본인 대 대리인의 고려사항"
+    },
+    {
+      "id": "djrZKU",
+      "title": "사례 49: 고객에게 중요한 권리를 제공하는 선택권(할인권)",
+      "paras": [
+        "B42"
+      ],
+      "group": "추가 재화나 용역에 대한 고객의 선택권",
+      "concept": "oHAy0O",
+      "concept_title": "추가 재화나 용역에 대한 고객의 선택권"
+    },
+    {
+      "id": "Hdmqqi",
+      "title": "사례 50: 고객에게 중요한 권리를 제공하지 않는 선택권(추가 재화나 용역)",
+      "paras": [
+        "27",
+        "B41"
+      ],
+      "group": "추가 재화나 용역에 대한 고객의 선택권",
+      "concept": "oHAy0O",
+      "concept_title": "추가 재화나 용역에 대한 고객의 선택권"
+    },
+    {
+      "id": "ldgGzv",
+      "title": "사례 51: 고객에게 중요한 권리를 제공하는 선택권(갱신 선택권)",
+      "paras": [
+        "B43"
+      ],
+      "group": "추가 재화나 용역에 대한 고객의 선택권",
+      "concept": "oHAy0O",
+      "concept_title": "추가 재화나 용역에 대한 고객의 선택권"
+    },
+    {
+      "id": "DGoE8D",
+      "title": "사례 52: 고객충성제도",
+      "paras": [
+        "B42",
+        "B48",
+        "B49",
+        "B50",
+        "B51"
+      ],
+      "group": "추가 재화나 용역에 대한 고객의 선택권",
+      "concept": "oHAy0O",
+      "concept_title": "추가 재화나 용역에 대한 고객의 선택권"
+    },
+    {
+      "id": "Y87b5Z",
+      "title": "사례 53: 환불되지 않는 선수수수료",
+      "paras": [
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "39",
+        "40",
+        "B40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "B49",
+        "B52",
+        "B53",
+        "B54",
+        "B55",
+        "B56",
+        "B57",
+        "B58",
+        "B59",
+        "B59A",
+        "B60",
+        "B61",
+        "B62",
+        "B63",
+        "B63A",
+        "B63B",
+        "84",
+        "85",
+        "86"
+      ],
+      "group": "환불되지 않는 선수수수료",
+      "concept": "n94QVz",
+      "concept_title": "환불되지 않는 선수수수료(와 일부 관련 원가)"
+    },
+    {
+      "id": "WiWPbq",
+      "title": "사례 54: 지적재산 사용권",
+      "paras": [
+        "B58"
+      ],
+      "group": "라이선싱",
+      "concept": "bxCGNy",
+      "concept_title": "라이선싱"
+    },
+    {
+      "id": "cyL2sE",
+      "title": "사례 55: 지적재산의 라이선스",
+      "paras": [
+        "27",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38"
+      ],
+      "group": "라이선싱",
+      "concept": "bxCGNy",
+      "concept_title": "라이선싱"
+    },
+    {
+      "id": "E4vXmv",
+      "title": "사례 56: 구별되는 라이선스를 식별함",
+      "paras": [
+        "27",
+        "29",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "B58"
+      ],
+      "group": "라이선싱",
+      "concept": "bxCGNy",
+      "concept_title": "라이선싱"
+    },
+    {
+      "id": "Z29t2W",
+      "title": "사례 57: 프랜차이즈 권리",
+      "paras": [
+        "27",
+        "35",
+        "B58",
+        "B63",
+        "B63A",
+        "85"
+      ],
+      "group": "라이선싱",
+      "concept": "bxCGNy",
+      "concept_title": "라이선싱"
+    },
+    {
+      "id": "XJekZu",
+      "title": "사례 58: 지적재산에 접근",
+      "paras": [
+        "27",
+        "35",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "B58"
+      ],
+      "group": "라이선싱",
+      "concept": "bxCGNy",
+      "concept_title": "라이선싱"
+    },
+    {
+      "id": "DU006h",
+      "title": "사례 59: 지적재산 사용권",
+      "paras": [
+        "27",
+        "B58",
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65"
+      ],
+      "group": "라이선싱",
+      "concept": "bxCGNy",
+      "concept_title": "라이선싱"
+    },
+    {
+      "id": "W6muip",
+      "title": "사례 60: 지적재산 라이선스에 대한 판매기준 로열티",
+      "paras": [
+        "B63"
+      ],
+      "group": "라이선싱",
+      "concept": "bxCGNy",
+      "concept_title": "라이선싱"
+    },
+    {
+      "id": "nxwxV4",
+      "title": "사례 61: 지적재산에 접근",
+      "paras": [
+        "27",
+        "35",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "B58",
+        "B63",
+        "B64",
+        "B65",
+        "B66",
+        "B67",
+        "B68",
+        "B69",
+        "B70",
+        "B71",
+        "B72",
+        "B73",
+        "B74",
+        "B75",
+        "B76"
+      ],
+      "group": "라이선싱",
+      "concept": "bxCGNy",
+      "concept_title": "라이선싱"
+    },
+    {
+      "id": "JoGkOm",
+      "title": "사례 62: 재매입약정",
+      "paras": [
+        "B66",
+        "B68",
+        "B70",
+        "B71",
+        "B72",
+        "B73",
+        "B74",
+        "B75",
+        "B76",
+        "B79",
+        "B80",
+        "B81",
+        "B82"
+      ],
+      "group": "재매입약정",
+      "concept": "vw8tzF",
+      "concept_title": "재매입약정"
+    },
+    {
+      "id": "ifUuDJ",
+      "title": "사례 63: 미인도청구약정",
+      "paras": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "38",
+        "47",
+        "52",
+        "60",
+        "61",
+        "62",
+        "B63",
+        "63",
+        "64",
+        "65",
+        "B81"
+      ],
+      "group": "미인도청구약정",
+      "concept": "PiNlZp",
+      "concept_title": "미인도청구약정"
+    }
+  ]
+}

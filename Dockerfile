@@ -22,6 +22,9 @@ COPY --from=builder /app/.venv /app/.venv
 # 소스코드 복사 (app/domain/topics.json 포함)
 COPY app/ ./app/
 
+# 온톨로지 그래프 런타임 데이터 (graph.py가 /app/data/ontology 에서 로드)
+COPY data/ontology/ ./data/ontology/
+
 # Streamlit 테마 설정
 COPY .streamlit/ ./.streamlit/
 

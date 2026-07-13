@@ -11,8 +11,18 @@ CLAUDE.md
 # ── 환경변수 / 시크릿 ────────────────────────────────────────────
 .env
 
-# ── 데이터 (MongoDB에 적재 완료, 런타임 불필요) ──────────────────
-data/
+# ── 데이터 (원본은 MongoDB 적재 완료, git 제외) ──────────────────
+# 단, 온톨로지 그래프 런타임 데이터(graph.py가 로컬 파일로 로드)는 추적·배포
+data/*
+!data/ontology/
+data/ontology/*
+!data/ontology/concepts.json
+!data/ontology/edges.json
+!data/ontology/case_links.json
+!data/ontology/bc_links.json
+!data/ontology/aliases.json
+!data/ontology/topic_concept_map.json
+!data/ontology/judgment_trees.json
 
 # ── 테스트 결과 (JSON) ────────────────────────────────────────────
 app/test/**/results/*.json

@@ -1,0 +1,5296 @@
+{
+  "_meta": {
+    "generated_by": "app/preprocessing/18-ontology-bc.py",
+    "bc_paras": 652,
+    "groups": 21,
+    "e_bc1": {
+      "mentions": 341,
+      "resolved": 327,
+      "external": 7,
+      "unresolved": 7,
+      "unresolved_raw": [
+        "310",
+        "606",
+        "946"
+      ]
+    },
+    "e_bc3": {
+      "activated": 59,
+      "missing": 0
+    }
+  },
+  "groups": [
+    {
+      "group": "도입",
+      "ref": "BC1A",
+      "concept": null,
+      "method": "메타(제외)",
+      "concept_title": null,
+      "concepts_within": []
+    },
+    {
+      "group": "개요",
+      "ref": "BC2~BC3",
+      "concept": null,
+      "method": "메타(제외)",
+      "concept_title": null,
+      "concepts_within": []
+    },
+    {
+      "group": "배경",
+      "ref": "BC4~BC27H",
+      "concept": null,
+      "method": "메타(제외)",
+      "concept_title": null,
+      "concepts_within": []
+    },
+    {
+      "group": "적용범위",
+      "ref": "BC28~BC66",
+      "concept": null,
+      "method": "미연결(사용자 확정)",
+      "concept_title": null,
+      "concepts_within": [
+        "4aNSKr"
+      ]
+    },
+    {
+      "group": "계약의 식별(문단 9~16)",
+      "ref": "BC67~BC83",
+      "concept": "l3leA7",
+      "method": "괄호표기(기계)",
+      "concept_title": "계약을 식별함",
+      "concepts_within": [
+        "ds2v9B",
+        "l3leA7",
+        "xYL1TP"
+      ]
+    },
+    {
+      "group": "수행의무의 식별",
+      "ref": "BC84~BC116U",
+      "concept": "p1vJ25",
+      "method": "제목매칭(사용자 승인)",
+      "concept_title": "수행의무를 식별함",
+      "concepts_within": [
+        "8P5E9V",
+        "p1vJ25",
+        "qNvjgx"
+      ]
+    },
+    {
+      "group": "수행의무의 이행(문단 31~45)",
+      "ref": "BC117~BC180",
+      "concept": "AQB8cb",
+      "method": "괄호표기(기계)",
+      "concept_title": "수행의무의 이행",
+      "concepts_within": [
+        "5HDlPF",
+        "AQB8cb",
+        "lIlmTb"
+      ]
+    },
+    {
+      "group": "수익 측정(문단 46~90)",
+      "ref": "BC181~BC265",
+      "concept": "rD7ch9",
+      "method": "괄호표기(기계)",
+      "concept_title": "측정",
+      "concepts_within": [
+        "3q1lWH",
+        "Ag62GJ",
+        "O28gcg",
+        "rD7ch9",
+        "ySAFHt"
+      ]
+    },
+    {
+      "group": "거래가격을 수행의무에 배분함(문단 73~86)",
+      "ref": "BC266~BC293",
+      "concept": "cTpTDN",
+      "method": "괄호표기(기계)",
+      "concept_title": "거래가격을 수행의무에 배분함",
+      "concepts_within": [
+        "7XbqhS",
+        "TtGOPn",
+        "cTpTDN",
+        "f9OXP2"
+      ]
+    },
+    {
+      "group": "손실부담 수행의무",
+      "ref": "BC294~BC296",
+      "concept": null,
+      "method": "미연결(사용자 확정)",
+      "concept_title": null,
+      "concepts_within": []
+    },
+    {
+      "group": "계약원가(문단 91~104)",
+      "ref": "BC297~BC316",
+      "concept": "T51p4P",
+      "method": "괄호표기(기계)",
+      "concept_title": "계약원가",
+      "concepts_within": [
+        "Ks6E5m",
+        "T51p4P",
+        "TgRpnd",
+        "hyCSKL"
+      ]
+    },
+    {
+      "group": "표시(문단 105~109)",
+      "ref": "BC317~BC326",
+      "concept": "W6Bh7o",
+      "method": "괄호표기(기계)",
+      "concept_title": "표시",
+      "concepts_within": [
+        "W6Bh7o"
+      ]
+    },
+    {
+      "group": "공시(문단 110~129)",
+      "ref": "BC327~BC361",
+      "concept": "fMrvaF",
+      "method": "괄호표기(기계)",
+      "concept_title": "공시",
+      "concepts_within": [
+        "2IbOfX",
+        "CgFt7E",
+        "LeIwTR",
+        "SMeYao",
+        "bzQL7S",
+        "ecpv5y",
+        "fMrvaF"
+      ]
+    },
+    {
+      "group": "적용지침(문단 B2~B89)",
+      "ref": "BC362~BC433",
+      "concept": "OPNV6t",
+      "method": "괄호표기(기계)",
+      "concept_title": "부록 B 적용지침",
+      "concepts_within": [
+        "1IdzfY",
+        "KaYPON",
+        "OPNV6t",
+        "Ruylm4",
+        "XLz6Gv",
+        "bxCGNy",
+        "oHAy0O",
+        "vw8tzF"
+      ]
+    },
+    {
+      "group": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+      "ref": "BC434~BC453J",
+      "concept": "Et3hDA",
+      "method": "괄호표기(기계)",
+      "concept_title": "부록 C. 시행일과 경과 규정",
+      "concepts_within": [
+        "1Kj78O",
+        "y0kqvd"
+      ]
+    },
+    {
+      "group": "IFRS 15의 영향 분석",
+      "ref": "BC454~BC493",
+      "concept": null,
+      "method": "메타(제외)",
+      "concept_title": null,
+      "concepts_within": []
+    },
+    {
+      "group": "결과적인 개정",
+      "ref": "BC494~BC503",
+      "concept": null,
+      "method": "메타(제외)",
+      "concept_title": null,
+      "concepts_within": []
+    },
+    {
+      "group": "IFRS 최초채택기업의 경과 규정",
+      "ref": "BC504~BC509",
+      "concept": null,
+      "method": "메타(제외)",
+      "concept_title": null,
+      "concepts_within": []
+    },
+    {
+      "group": "2011년 공개초안과 달라진 주요 내용 요약",
+      "ref": "BC510",
+      "concept": null,
+      "method": "메타(제외)",
+      "concept_title": null,
+      "concepts_within": []
+    },
+    {
+      "group": "2016년 4월에 공표한 ‘IFRS 15 (고객과의 계약에서 생기는 수익) 명확화’에 대한 소수의견",
+      "ref": "DO1~DO5",
+      "concept": null,
+      "method": "메타(제외)",
+      "concept_title": null,
+      "concepts_within": []
+    },
+    {
+      "group": "문단 한129.1~한129.5의 공시 추가 개정에 대한 한봉희 위원의 소수의견",
+      "ref": "한DO1.1",
+      "concept": null,
+      "method": "메타(제외)",
+      "concept_title": null,
+      "concepts_within": []
+    }
+  ],
+  "bc_to_concept": {
+    "BC67": {
+      "concept": "l3leA7",
+      "via": "계약의 식별(문단 9~16)",
+      "level": 2
+    },
+    "BC68": {
+      "concept": "l3leA7",
+      "via": "계약의 식별(문단 9~16)",
+      "level": 2
+    },
+    "BC69": {
+      "concept": "l3leA7",
+      "via": "계약의 식별(문단 9~16)",
+      "level": 2
+    },
+    "BC70": {
+      "concept": "l3leA7",
+      "via": "계약의 식별(문단 9~16)",
+      "level": 2
+    },
+    "BC71": {
+      "concept": "ds2v9B",
+      "via": "계약의 결합(문단 17)",
+      "level": 3
+    },
+    "BC72": {
+      "concept": "ds2v9B",
+      "via": "계약의 결합(문단 17)",
+      "level": 3
+    },
+    "BC73": {
+      "concept": "ds2v9B",
+      "via": "계약의 결합(문단 17)",
+      "level": 3
+    },
+    "BC74": {
+      "concept": "ds2v9B",
+      "via": "계약의 결합(문단 17)",
+      "level": 3
+    },
+    "BC75": {
+      "concept": "ds2v9B",
+      "via": "계약의 결합(문단 17)",
+      "level": 3
+    },
+    "BC76": {
+      "concept": "xYL1TP",
+      "via": "계약변경(문단 18~21)",
+      "level": 3
+    },
+    "BC77": {
+      "concept": "xYL1TP",
+      "via": "계약변경(문단 18~21)",
+      "level": 3
+    },
+    "BC78": {
+      "concept": "xYL1TP",
+      "via": "계약변경(문단 18~21)",
+      "level": 3
+    },
+    "BC79": {
+      "concept": "xYL1TP",
+      "via": "계약변경(문단 18~21)",
+      "level": 3
+    },
+    "BC80": {
+      "concept": "xYL1TP",
+      "via": "계약변경(문단 18~21)",
+      "level": 3
+    },
+    "BC81": {
+      "concept": "xYL1TP",
+      "via": "계약변경(문단 18~21)",
+      "level": 3
+    },
+    "BC82": {
+      "concept": "xYL1TP",
+      "via": "계약변경(문단 18~21)",
+      "level": 3
+    },
+    "BC83": {
+      "concept": "xYL1TP",
+      "via": "계약변경(문단 18~21)",
+      "level": 3
+    },
+    "BC117": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC118": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC119": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC120": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC121": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC122": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC123": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC124": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC125": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC126": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC127": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC128": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC129": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC130": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC131": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC132": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC133": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC134": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC135": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC136": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC137": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC138": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC139": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC140": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC141": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC142": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC143": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC144": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC145": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC146": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC147": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC148": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC149": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC150": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC151": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC152": {
+      "concept": "5HDlPF",
+      "via": "기간에 걸쳐 이행하는 수행의무(문단 35~37)",
+      "level": 3
+    },
+    "BC153": {
+      "concept": "lIlmTb",
+      "via": "한 시점에 이행하는 수행의무(문단 38)",
+      "level": 3
+    },
+    "BC154": {
+      "concept": "lIlmTb",
+      "via": "한 시점에 이행하는 수행의무(문단 38)",
+      "level": 3
+    },
+    "BC155": {
+      "concept": "lIlmTb",
+      "via": "한 시점에 이행하는 수행의무(문단 38)",
+      "level": 3
+    },
+    "BC156": {
+      "concept": "lIlmTb",
+      "via": "한 시점에 이행하는 수행의무(문단 38)",
+      "level": 3
+    },
+    "BC157": {
+      "concept": "lIlmTb",
+      "via": "한 시점에 이행하는 수행의무(문단 38)",
+      "level": 3
+    },
+    "BC158": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC159": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC160": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC161": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC162": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC163": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC164": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC165": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC166": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC167": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC168": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC169": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC170": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC171": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC172": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC173": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC174": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC175": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC176": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC177": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC178": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC179": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC180": {
+      "concept": "AQB8cb",
+      "via": "수행의무의 이행(문단 31~45)",
+      "level": 2
+    },
+    "BC181": {
+      "concept": "rD7ch9",
+      "via": "수익 측정(문단 46~90)",
+      "level": 2
+    },
+    "BC182": {
+      "concept": "rD7ch9",
+      "via": "수익 측정(문단 46~90)",
+      "level": 2
+    },
+    "BC183": {
+      "concept": "rD7ch9",
+      "via": "수익 측정(문단 46~90)",
+      "level": 2
+    },
+    "BC184": {
+      "concept": "O28gcg",
+      "via": "거래가격을 산정함(문단 47~72)",
+      "level": 3
+    },
+    "BC185": {
+      "concept": "O28gcg",
+      "via": "거래가격을 산정함(문단 47~72)",
+      "level": 3
+    },
+    "BC186": {
+      "concept": "O28gcg",
+      "via": "거래가격을 산정함(문단 47~72)",
+      "level": 3
+    },
+    "BC187": {
+      "concept": "O28gcg",
+      "via": "거래가격을 산정함(문단 47~72)",
+      "level": 3
+    },
+    "BC188": {
+      "concept": "O28gcg",
+      "via": "거래가격을 산정함(문단 47~72)",
+      "level": 3
+    },
+    "BC188A": {
+      "concept": "O28gcg",
+      "via": "거래가격을 산정함(문단 47~72)",
+      "level": 3
+    },
+    "BC188B": {
+      "concept": "O28gcg",
+      "via": "거래가격을 산정함(문단 47~72)",
+      "level": 3
+    },
+    "BC188C": {
+      "concept": "O28gcg",
+      "via": "거래가격을 산정함(문단 47~72)",
+      "level": 3
+    },
+    "BC188D": {
+      "concept": "O28gcg",
+      "via": "거래가격을 산정함(문단 47~72)",
+      "level": 3
+    },
+    "BC189": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC190": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC191": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC192": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC193": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC194": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC195": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC196": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC197": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC198": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC199": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC200": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC201": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC202": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC203": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC204": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC205": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC206": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC207": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC208": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC209": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC210": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC211": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC212": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC213": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC214": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC215": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC216": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC217": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC218": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC219": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC220": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC221": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC222": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC223": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC224": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC225": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC226": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC227": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC228": {
+      "concept": "3q1lWH",
+      "via": "변동대가(문단 50~59)",
+      "level": 3
+    },
+    "BC229": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC230": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC231": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC232": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC233": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC234": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC235": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC236": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC237": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC238": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC239": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC240": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC241": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC242": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC243": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC244": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC245": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC246": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC247": {
+      "concept": "Ag62GJ",
+      "via": "계약에 있는 유의적인 금융요소(문단 60~65)",
+      "level": 3
+    },
+    "BC248": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC249": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC250": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC251": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC252": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC253": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC254": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC254A": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC254B": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC254C": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC254D": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC254E": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC254F": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC254G": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC254H": {
+      "concept": "ySAFHt",
+      "via": "비현금 대가(문단 66~69)",
+      "level": 3
+    },
+    "BC255": {
+      "concept": "rD7ch9",
+      "via": "수익 측정(문단 46~90)",
+      "level": 2
+    },
+    "BC256": {
+      "concept": "rD7ch9",
+      "via": "수익 측정(문단 46~90)",
+      "level": 2
+    },
+    "BC257": {
+      "concept": "rD7ch9",
+      "via": "수익 측정(문단 46~90)",
+      "level": 2
+    },
+    "BC258": {
+      "concept": "rD7ch9",
+      "via": "수익 측정(문단 46~90)",
+      "level": 2
+    },
+    "BC259": {
+      "concept": "rD7ch9",
+      "via": "수익 측정(문단 46~90)",
+      "level": 2
+    },
+    "BC260": {
+      "concept": "rD7ch9",
+      "via": "수익 측정(문단 46~90)",
+      "level": 2
+    },
+    "BC261": {
+      "concept": "rD7ch9",
+      "via": "수익 측정(문단 46~90)",
+      "level": 2
+    },
+    "BC262": {
+      "concept": "rD7ch9",
+      "via": "수익 측정(문단 46~90)",
+      "level": 2
+    },
+    "BC263": {
+      "concept": "rD7ch9",
+      "via": "수익 측정(문단 46~90)",
+      "level": 2
+    },
+    "BC264": {
+      "concept": "rD7ch9",
+      "via": "수익 측정(문단 46~90)",
+      "level": 2
+    },
+    "BC265": {
+      "concept": "rD7ch9",
+      "via": "수익 측정(문단 46~90)",
+      "level": 2
+    },
+    "BC266": {
+      "concept": "cTpTDN",
+      "via": "거래가격을 수행의무에 배분함(문단 73~86)",
+      "level": 2
+    },
+    "BC267": {
+      "concept": "cTpTDN",
+      "via": "거래가격을 수행의무에 배분함(문단 73~86)",
+      "level": 2
+    },
+    "BC268": {
+      "concept": "TtGOPn",
+      "via": "개별 판매가격을 추정함(문단 76~80)",
+      "level": 3
+    },
+    "BC269": {
+      "concept": "TtGOPn",
+      "via": "개별 판매가격을 추정함(문단 76~80)",
+      "level": 3
+    },
+    "BC270": {
+      "concept": "TtGOPn",
+      "via": "개별 판매가격을 추정함(문단 76~80)",
+      "level": 3
+    },
+    "BC271": {
+      "concept": "TtGOPn",
+      "via": "개별 판매가격을 추정함(문단 76~80)",
+      "level": 3
+    },
+    "BC272": {
+      "concept": "TtGOPn",
+      "via": "개별 판매가격을 추정함(문단 76~80)",
+      "level": 3
+    },
+    "BC273": {
+      "concept": "TtGOPn",
+      "via": "개별 판매가격을 추정함(문단 76~80)",
+      "level": 3
+    },
+    "BC274": {
+      "concept": "TtGOPn",
+      "via": "개별 판매가격을 추정함(문단 76~80)",
+      "level": 3
+    },
+    "BC275": {
+      "concept": "TtGOPn",
+      "via": "개별 판매가격을 추정함(문단 76~80)",
+      "level": 3
+    },
+    "BC276": {
+      "concept": "TtGOPn",
+      "via": "개별 판매가격을 추정함(문단 76~80)",
+      "level": 3
+    },
+    "BC277": {
+      "concept": "cTpTDN",
+      "via": "할인액 배분과 변동대가(문단 81~86)",
+      "level": 3
+    },
+    "BC278": {
+      "concept": "cTpTDN",
+      "via": "할인액 배분과 변동대가(문단 81~86)",
+      "level": 3
+    },
+    "BC279": {
+      "concept": "cTpTDN",
+      "via": "할인액 배분과 변동대가(문단 81~86)",
+      "level": 3
+    },
+    "BC280": {
+      "concept": "cTpTDN",
+      "via": "할인액 배분과 변동대가(문단 81~86)",
+      "level": 3
+    },
+    "BC281": {
+      "concept": "7XbqhS",
+      "via": "할인액을 배분함(문단 81~83)",
+      "level": 4
+    },
+    "BC282": {
+      "concept": "7XbqhS",
+      "via": "할인액을 배분함(문단 81~83)",
+      "level": 4
+    },
+    "BC283": {
+      "concept": "7XbqhS",
+      "via": "할인액을 배분함(문단 81~83)",
+      "level": 4
+    },
+    "BC284": {
+      "concept": "f9OXP2",
+      "via": "변동대가의 배분(문단 84~86)",
+      "level": 4
+    },
+    "BC285": {
+      "concept": "f9OXP2",
+      "via": "변동대가의 배분(문단 84~86)",
+      "level": 4
+    },
+    "BC286": {
+      "concept": "cTpTDN",
+      "via": "거래가격을 수행의무에 배분함(문단 73~86)",
+      "level": 2
+    },
+    "BC287": {
+      "concept": "cTpTDN",
+      "via": "거래가격을 수행의무에 배분함(문단 73~86)",
+      "level": 2
+    },
+    "BC288": {
+      "concept": "cTpTDN",
+      "via": "거래가격을 수행의무에 배분함(문단 73~86)",
+      "level": 2
+    },
+    "BC289": {
+      "concept": "cTpTDN",
+      "via": "거래가격을 수행의무에 배분함(문단 73~86)",
+      "level": 2
+    },
+    "BC290": {
+      "concept": "cTpTDN",
+      "via": "거래가격을 수행의무에 배분함(문단 73~86)",
+      "level": 2
+    },
+    "BC291": {
+      "concept": "cTpTDN",
+      "via": "거래가격을 수행의무에 배분함(문단 73~86)",
+      "level": 2
+    },
+    "BC292": {
+      "concept": "cTpTDN",
+      "via": "거래가격을 수행의무에 배분함(문단 73~86)",
+      "level": 2
+    },
+    "BC293": {
+      "concept": "cTpTDN",
+      "via": "거래가격을 수행의무에 배분함(문단 73~86)",
+      "level": 2
+    },
+    "BC297": {
+      "concept": "Ks6E5m",
+      "via": "계약체결 증분원가(문단 91~94)",
+      "level": 3
+    },
+    "BC298": {
+      "concept": "Ks6E5m",
+      "via": "계약체결 증분원가(문단 91~94)",
+      "level": 3
+    },
+    "BC299": {
+      "concept": "Ks6E5m",
+      "via": "계약체결 증분원가(문단 91~94)",
+      "level": 3
+    },
+    "BC300": {
+      "concept": "Ks6E5m",
+      "via": "계약체결 증분원가(문단 91~94)",
+      "level": 3
+    },
+    "BC301": {
+      "concept": "Ks6E5m",
+      "via": "계약체결 증분원가(문단 91~94)",
+      "level": 3
+    },
+    "BC302": {
+      "concept": "Ks6E5m",
+      "via": "계약체결 증분원가(문단 91~94)",
+      "level": 3
+    },
+    "BC303": {
+      "concept": "Ks6E5m",
+      "via": "계약체결 증분원가(문단 91~94)",
+      "level": 3
+    },
+    "BC304": {
+      "concept": "TgRpnd",
+      "via": "계약이행원가(문단 95~98)",
+      "level": 3
+    },
+    "BC305": {
+      "concept": "TgRpnd",
+      "via": "계약이행원가(문단 95~98)",
+      "level": 3
+    },
+    "BC306": {
+      "concept": "TgRpnd",
+      "via": "계약이행원가(문단 95~98)",
+      "level": 3
+    },
+    "BC307": {
+      "concept": "TgRpnd",
+      "via": "계약이행원가(문단 95~98)",
+      "level": 3
+    },
+    "BC308": {
+      "concept": "TgRpnd",
+      "via": "계약이행원가(문단 95~98)",
+      "level": 3
+    },
+    "BC309": {
+      "concept": "hyCSKL",
+      "via": "상각과 손상(문단 99~104)",
+      "level": 3
+    },
+    "BC310": {
+      "concept": "hyCSKL",
+      "via": "상각과 손상(문단 99~104)",
+      "level": 3
+    },
+    "BC311": {
+      "concept": "hyCSKL",
+      "via": "상각과 손상(문단 99~104)",
+      "level": 3
+    },
+    "BC312": {
+      "concept": "T51p4P",
+      "via": "계약원가(문단 91~104)",
+      "level": 2
+    },
+    "BC313": {
+      "concept": "T51p4P",
+      "via": "계약원가(문단 91~104)",
+      "level": 2
+    },
+    "BC314": {
+      "concept": "T51p4P",
+      "via": "계약원가(문단 91~104)",
+      "level": 2
+    },
+    "BC315": {
+      "concept": "T51p4P",
+      "via": "계약원가(문단 91~104)",
+      "level": 2
+    },
+    "BC316": {
+      "concept": "T51p4P",
+      "via": "계약원가(문단 91~104)",
+      "level": 2
+    },
+    "BC317": {
+      "concept": "W6Bh7o",
+      "via": "표시(문단 105~109)",
+      "level": 2
+    },
+    "BC318": {
+      "concept": "W6Bh7o",
+      "via": "표시(문단 105~109)",
+      "level": 2
+    },
+    "BC319": {
+      "concept": "W6Bh7o",
+      "via": "표시(문단 105~109)",
+      "level": 2
+    },
+    "BC320": {
+      "concept": "W6Bh7o",
+      "via": "표시(문단 105~109)",
+      "level": 2
+    },
+    "BC321": {
+      "concept": "W6Bh7o",
+      "via": "표시(문단 105~109)",
+      "level": 2
+    },
+    "BC322": {
+      "concept": "W6Bh7o",
+      "via": "표시(문단 105~109)",
+      "level": 2
+    },
+    "BC323": {
+      "concept": "W6Bh7o",
+      "via": "표시(문단 105~109)",
+      "level": 2
+    },
+    "BC324": {
+      "concept": "W6Bh7o",
+      "via": "표시(문단 105~109)",
+      "level": 2
+    },
+    "BC325": {
+      "concept": "W6Bh7o",
+      "via": "표시(문단 105~109)",
+      "level": 2
+    },
+    "BC326": {
+      "concept": "W6Bh7o",
+      "via": "표시(문단 105~109)",
+      "level": 2
+    },
+    "BC327": {
+      "concept": "fMrvaF",
+      "via": "공시(문단 110~129)",
+      "level": 2
+    },
+    "BC328": {
+      "concept": "fMrvaF",
+      "via": "공시(문단 110~129)",
+      "level": 2
+    },
+    "BC329": {
+      "concept": "fMrvaF",
+      "via": "공시(문단 110~129)",
+      "level": 2
+    },
+    "BC330": {
+      "concept": "fMrvaF",
+      "via": "공시 목적과 중요성(문단 110 ~ 112)",
+      "level": 3
+    },
+    "BC331": {
+      "concept": "fMrvaF",
+      "via": "공시 목적과 중요성(문단 110 ~ 112)",
+      "level": 3
+    },
+    "BC332": {
+      "concept": "fMrvaF",
+      "via": "공시(문단 110~129)",
+      "level": 2
+    },
+    "BC333": {
+      "concept": "fMrvaF",
+      "via": "공시(문단 110~129)",
+      "level": 2
+    },
+    "BC334": {
+      "concept": "fMrvaF",
+      "via": "공시(문단 110~129)",
+      "level": 2
+    },
+    "BC335": {
+      "concept": "CgFt7E",
+      "via": "수익의 구분(문단 114 ~ 115)",
+      "level": 4
+    },
+    "BC336": {
+      "concept": "CgFt7E",
+      "via": "수익의 구분(문단 114 ~ 115)",
+      "level": 4
+    },
+    "BC337": {
+      "concept": "CgFt7E",
+      "via": "수익의 구분(문단 114 ~ 115)",
+      "level": 4
+    },
+    "BC338": {
+      "concept": "CgFt7E",
+      "via": "수익의 구분(문단 114 ~ 115)",
+      "level": 4
+    },
+    "BC339": {
+      "concept": "CgFt7E",
+      "via": "수익의 구분(문단 114 ~ 115)",
+      "level": 4
+    },
+    "BC340": {
+      "concept": "CgFt7E",
+      "via": "수익의 구분(문단 114 ~ 115)",
+      "level": 4
+    },
+    "BC341": {
+      "concept": "SMeYao",
+      "via": "계약 잔액(문단 116~118)",
+      "level": 4
+    },
+    "BC342": {
+      "concept": "SMeYao",
+      "via": "계약 잔액(문단 116~118)",
+      "level": 4
+    },
+    "BC343": {
+      "concept": "SMeYao",
+      "via": "계약 잔액(문단 116~118)",
+      "level": 4
+    },
+    "BC344": {
+      "concept": "SMeYao",
+      "via": "계약 잔액(문단 116~118)",
+      "level": 4
+    },
+    "BC345": {
+      "concept": "SMeYao",
+      "via": "계약 잔액(문단 116~118)",
+      "level": 4
+    },
+    "BC346": {
+      "concept": "SMeYao",
+      "via": "계약 잔액(문단 116~118)",
+      "level": 4
+    },
+    "BC347": {
+      "concept": "SMeYao",
+      "via": "계약 잔액(문단 116~118)",
+      "level": 4
+    },
+    "BC348": {
+      "concept": "ecpv5y",
+      "via": "나머지 수행의무에 배분한 거래가격의 공시(문단 120~122)",
+      "level": 4
+    },
+    "BC349": {
+      "concept": "ecpv5y",
+      "via": "나머지 수행의무에 배분한 거래가격의 공시(문단 120~122)",
+      "level": 4
+    },
+    "BC350": {
+      "concept": "ecpv5y",
+      "via": "나머지 수행의무에 배분한 거래가격의 공시(문단 120~122)",
+      "level": 4
+    },
+    "BC351": {
+      "concept": "ecpv5y",
+      "via": "나머지 수행의무에 배분한 거래가격의 공시(문단 120~122)",
+      "level": 4
+    },
+    "BC352": {
+      "concept": "ecpv5y",
+      "via": "나머지 수행의무에 배분한 거래가격의 공시(문단 120~122)",
+      "level": 4
+    },
+    "BC353": {
+      "concept": "ecpv5y",
+      "via": "나머지 수행의무에 배분한 거래가격의 공시(문단 120~122)",
+      "level": 4
+    },
+    "BC354": {
+      "concept": "2IbOfX",
+      "via": "수행의무(문단 119)",
+      "level": 3
+    },
+    "BC355": {
+      "concept": "bzQL7S",
+      "via": "유의적인 판단(문단 123~126)",
+      "level": 3
+    },
+    "BC356": {
+      "concept": "LeIwTR",
+      "via": "고객과 계약을 체결하거나 이행하기 위해 들인 원가 중에서 인식한 자산(문단 127~128)",
+      "level": 3
+    },
+    "BC357": {
+      "concept": "LeIwTR",
+      "via": "고객과 계약을 체결하거나 이행하기 위해 들인 원가 중에서 인식한 자산(문단 127~128)",
+      "level": 3
+    },
+    "BC358": {
+      "concept": "fMrvaF",
+      "via": "공시(문단 110~129)",
+      "level": 2
+    },
+    "BC359": {
+      "concept": "fMrvaF",
+      "via": "공시(문단 110~129)",
+      "level": 2
+    },
+    "BC360": {
+      "concept": "fMrvaF",
+      "via": "공시(문단 110~129)",
+      "level": 2
+    },
+    "BC361": {
+      "concept": "fMrvaF",
+      "via": "공시(문단 110~129)",
+      "level": 2
+    },
+    "BC362": {
+      "concept": "OPNV6t",
+      "via": "적용지침(문단 B2~B89)",
+      "level": 2
+    },
+    "BC363": {
+      "concept": "1IdzfY",
+      "via": "반품권이 있는 판매(문단 B20~B27)",
+      "level": 3
+    },
+    "BC364": {
+      "concept": "1IdzfY",
+      "via": "반품권이 있는 판매(문단 B20~B27)",
+      "level": 3
+    },
+    "BC365": {
+      "concept": "1IdzfY",
+      "via": "반품권이 있는 판매(문단 B20~B27)",
+      "level": 3
+    },
+    "BC366": {
+      "concept": "1IdzfY",
+      "via": "반품권이 있는 판매(문단 B20~B27)",
+      "level": 3
+    },
+    "BC367": {
+      "concept": "1IdzfY",
+      "via": "반품권이 있는 판매(문단 B20~B27)",
+      "level": 3
+    },
+    "BC368": {
+      "concept": "KaYPON",
+      "via": "보증(문단 B28~B33)",
+      "level": 3
+    },
+    "BC369": {
+      "concept": "KaYPON",
+      "via": "보증(문단 B28~B33)",
+      "level": 3
+    },
+    "BC370": {
+      "concept": "KaYPON",
+      "via": "보증(문단 B28~B33)",
+      "level": 3
+    },
+    "BC371": {
+      "concept": "KaYPON",
+      "via": "보증(문단 B28~B33)",
+      "level": 3
+    },
+    "BC372": {
+      "concept": "KaYPON",
+      "via": "보증(문단 B28~B33)",
+      "level": 3
+    },
+    "BC373": {
+      "concept": "KaYPON",
+      "via": "보증(문단 B28~B33)",
+      "level": 3
+    },
+    "BC374": {
+      "concept": "KaYPON",
+      "via": "보증(문단 B28~B33)",
+      "level": 3
+    },
+    "BC375": {
+      "concept": "KaYPON",
+      "via": "보증(문단 B28~B33)",
+      "level": 3
+    },
+    "BC376": {
+      "concept": "KaYPON",
+      "via": "보증(문단 B28~B33)",
+      "level": 3
+    },
+    "BC377": {
+      "concept": "KaYPON",
+      "via": "보증(문단 B28~B33)",
+      "level": 3
+    },
+    "BC378": {
+      "concept": "KaYPON",
+      "via": "보증(문단 B28~B33)",
+      "level": 3
+    },
+    "BC379": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC380": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC381": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC382": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC383": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC384": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385A": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385B": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385C": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385D": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385E": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385F": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385G": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385H": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385I": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385J": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385K": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385L": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385M": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385N": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385O": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385P": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385Q": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385R": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385S": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385T": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385U": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385V": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385W": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385X": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385Y": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC385Z": {
+      "concept": "XLz6Gv",
+      "via": "본인 대 대리인의 고려사항(문단 B34~B38)(주8)",
+      "level": 3
+    },
+    "BC386": {
+      "concept": "oHAy0O",
+      "via": "추가 재화나 용역에 대한 고객의 선택권(문단 B39~B43)",
+      "level": 3
+    },
+    "BC387": {
+      "concept": "oHAy0O",
+      "via": "추가 재화나 용역에 대한 고객의 선택권(문단 B39~B43)",
+      "level": 3
+    },
+    "BC388": {
+      "concept": "oHAy0O",
+      "via": "추가 재화나 용역에 대한 고객의 선택권(문단 B39~B43)",
+      "level": 3
+    },
+    "BC389": {
+      "concept": "oHAy0O",
+      "via": "추가 재화나 용역에 대한 고객의 선택권(문단 B39~B43)",
+      "level": 3
+    },
+    "BC390": {
+      "concept": "oHAy0O",
+      "via": "추가 재화나 용역에 대한 고객의 선택권(문단 B39~B43)",
+      "level": 3
+    },
+    "BC391": {
+      "concept": "oHAy0O",
+      "via": "추가 재화나 용역에 대한 고객의 선택권(문단 B39~B43)",
+      "level": 3
+    },
+    "BC392": {
+      "concept": "oHAy0O",
+      "via": "추가 재화나 용역에 대한 고객의 선택권(문단 B39~B43)",
+      "level": 3
+    },
+    "BC393": {
+      "concept": "oHAy0O",
+      "via": "추가 재화나 용역에 대한 고객의 선택권(문단 B39~B43)",
+      "level": 3
+    },
+    "BC394": {
+      "concept": "oHAy0O",
+      "via": "추가 재화나 용역에 대한 고객의 선택권(문단 B39~B43)",
+      "level": 3
+    },
+    "BC395": {
+      "concept": "oHAy0O",
+      "via": "추가 재화나 용역에 대한 고객의 선택권(문단 B39~B43)",
+      "level": 3
+    },
+    "BC396": {
+      "concept": "Ruylm4",
+      "via": "고객이 행사하지 아니한 권리(미행사 부분)(문단 B44~B47)",
+      "level": 3
+    },
+    "BC397": {
+      "concept": "Ruylm4",
+      "via": "고객이 행사하지 아니한 권리(미행사 부분)(문단 B44~B47)",
+      "level": 3
+    },
+    "BC398": {
+      "concept": "Ruylm4",
+      "via": "고객이 행사하지 아니한 권리(미행사 부분)(문단 B44~B47)",
+      "level": 3
+    },
+    "BC399": {
+      "concept": "Ruylm4",
+      "via": "고객이 행사하지 아니한 권리(미행사 부분)(문단 B44~B47)",
+      "level": 3
+    },
+    "BC400": {
+      "concept": "Ruylm4",
+      "via": "고객이 행사하지 아니한 권리(미행사 부분)(문단 B44~B47)",
+      "level": 3
+    },
+    "BC401": {
+      "concept": "Ruylm4",
+      "via": "고객이 행사하지 아니한 권리(미행사 부분)(문단 B44~B47)",
+      "level": 3
+    },
+    "BC402": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC403": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC404": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC405": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC406": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC407": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC408": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC409": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC410": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC411": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC412": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC413": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414A": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414B": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414C": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414D": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414E": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414F": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414G": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414H": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414I": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414J": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414K": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414L": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414M": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414N": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414O": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414P": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414Q": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414R": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414S": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414T": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414U": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414V": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414W": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414X": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC414Y": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC415": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC416": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC417": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC418": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC419": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC420": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC421": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC421A": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC421B": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC421C": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC421D": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC421E": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC421F": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC421G": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC421H": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC421I": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC421J": {
+      "concept": "bxCGNy",
+      "via": "라이선싱(문단 B52~B63B)(주9)",
+      "level": 3
+    },
+    "BC422": {
+      "concept": "vw8tzF",
+      "via": "재매입약정(문단 B64~B76)",
+      "level": 3
+    },
+    "BC423": {
+      "concept": "vw8tzF",
+      "via": "재매입약정(문단 B64~B76)",
+      "level": 3
+    },
+    "BC424": {
+      "concept": "vw8tzF",
+      "via": "재매입약정(문단 B64~B76)",
+      "level": 3
+    },
+    "BC425": {
+      "concept": "vw8tzF",
+      "via": "재매입약정(문단 B64~B76)",
+      "level": 3
+    },
+    "BC426": {
+      "concept": "vw8tzF",
+      "via": "재매입약정(문단 B64~B76)",
+      "level": 3
+    },
+    "BC427": {
+      "concept": "vw8tzF",
+      "via": "재매입약정(문단 B64~B76)",
+      "level": 3
+    },
+    "BC428": {
+      "concept": "vw8tzF",
+      "via": "재매입약정(문단 B64~B76)",
+      "level": 3
+    },
+    "BC429": {
+      "concept": "vw8tzF",
+      "via": "재매입약정(문단 B64~B76)",
+      "level": 3
+    },
+    "BC430": {
+      "concept": "vw8tzF",
+      "via": "재매입약정(문단 B64~B76)",
+      "level": 3
+    },
+    "BC431": {
+      "concept": "vw8tzF",
+      "via": "재매입약정(문단 B64~B76)",
+      "level": 3
+    },
+    "BC432": {
+      "concept": "vw8tzF",
+      "via": "재매입약정(문단 B64~B76)",
+      "level": 3
+    },
+    "BC433": {
+      "concept": "vw8tzF",
+      "via": "재매입약정(문단 B64~B76)",
+      "level": 3
+    },
+    "BC434": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC435": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC436": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC437": {
+      "concept": "1Kj78O",
+      "via": "간편법의 소급 적용(문단 C4~C6)",
+      "level": 4
+    },
+    "BC438": {
+      "concept": "1Kj78O",
+      "via": "간편법의 소급 적용(문단 C4~C6)",
+      "level": 4
+    },
+    "BC439": {
+      "concept": "1Kj78O",
+      "via": "누적효과를 당기에 인식하는 소급 적용(문단 C7~C8)",
+      "level": 4
+    },
+    "BC440": {
+      "concept": "1Kj78O",
+      "via": "누적효과를 당기에 인식하는 소급 적용(문단 C7~C8)",
+      "level": 4
+    },
+    "BC441": {
+      "concept": "1Kj78O",
+      "via": "누적효과를 당기에 인식하는 소급 적용(문단 C7~C8)",
+      "level": 4
+    },
+    "BC442": {
+      "concept": "1Kj78O",
+      "via": "누적효과를 당기에 인식하는 소급 적용(문단 C7~C8)",
+      "level": 4
+    },
+    "BC443": {
+      "concept": "1Kj78O",
+      "via": "누적효과를 당기에 인식하는 소급 적용(문단 C7~C8)",
+      "level": 4
+    },
+    "BC444": {
+      "concept": "1Kj78O",
+      "via": "누적효과를 당기에 인식하는 소급 적용(문단 C7~C8)",
+      "level": 4
+    },
+    "BC445": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445A": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445B": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445C": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445D": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445E": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445F": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445G": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445H": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445I": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445J": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445K": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445L": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445M": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445N": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445O": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445P": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445Q": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445R": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445S": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445T": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC445U": {
+      "concept": "1Kj78O",
+      "via": "경과 규정(문단  C2~C8A)",
+      "level": 3
+    },
+    "BC446": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC447": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC448": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC449": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC450": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC451": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC452": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC453": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC453A": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC453B": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC453C": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC453D": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC453E": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC453F": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC453G": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC453H": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC453I": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC453J": {
+      "concept": "y0kqvd",
+      "via": "시행일과 조기 적용(문단 C1∼C1B)",
+      "level": 3
+    },
+    "BC60": {
+      "concept": "4aNSKr",
+      "via": "규정의 적용범위에서 벗어나는 고객과의 계약(문단 5)",
+      "level": 3
+    },
+    "BC61": {
+      "concept": "4aNSKr",
+      "via": "규정의 적용범위에서 벗어나는 고객과의 계약(문단 5)",
+      "level": 3
+    },
+    "BC62": {
+      "concept": "4aNSKr",
+      "via": "규정의 적용범위에서 벗어나는 고객과의 계약(문단 5)",
+      "level": 3
+    },
+    "BC63": {
+      "concept": "4aNSKr",
+      "via": "규정의 적용범위에서 벗어나는 고객과의 계약(문단 5)",
+      "level": 3
+    },
+    "BC64": {
+      "concept": "4aNSKr",
+      "via": "다른 기준서의 적용범위에 일부만 포함되는 계약(문단 7)",
+      "level": 3
+    },
+    "BC65": {
+      "concept": "4aNSKr",
+      "via": "다른 기준서의 적용범위에 일부만 포함되는 계약(문단 7)",
+      "level": 3
+    },
+    "BC66": {
+      "concept": "4aNSKr",
+      "via": "다른 기준서의 적용범위에 일부만 포함되는 계약(문단 7)",
+      "level": 3
+    },
+    "BC87": {
+      "concept": "qNvjgx",
+      "via": "약속한 재화나 용역의 식별(문단 24~25)",
+      "level": 3
+    },
+    "BC88": {
+      "concept": "qNvjgx",
+      "via": "약속한 재화나 용역의 식별(문단 24~25)",
+      "level": 3
+    },
+    "BC89": {
+      "concept": "qNvjgx",
+      "via": "약속한 재화나 용역의 식별(문단 24~25)",
+      "level": 3
+    },
+    "BC90": {
+      "concept": "qNvjgx",
+      "via": "약속한 재화나 용역의 식별(문단 24~25)",
+      "level": 3
+    },
+    "BC91": {
+      "concept": "qNvjgx",
+      "via": "약속한 재화나 용역의 식별(문단 24~25)",
+      "level": 3
+    },
+    "BC92": {
+      "concept": "qNvjgx",
+      "via": "약속한 재화나 용역의 식별(문단 24~25)",
+      "level": 3
+    },
+    "BC93": {
+      "concept": "qNvjgx",
+      "via": "약속한 재화나 용역의 식별(문단 24~25)",
+      "level": 3
+    },
+    "BC94": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC95": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC96": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC97": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC98": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC99": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC100": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC101": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC102": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC103": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC104": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC105": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC106": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC107": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC108": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC109": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC110": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC111": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC112": {
+      "concept": "p1vJ25",
+      "via": "약속이 수행의무를 나타내는 경우를 식별함(문단 22~30)",
+      "level": 3
+    },
+    "BC116": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116A": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116B": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116C": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116D": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116E": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116F": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116G": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116H": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116I": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116J": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116K": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116L": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116M": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116N": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116O": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116P": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116Q": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116R": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116S": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116T": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC116U": {
+      "concept": "8P5E9V",
+      "via": "수행의무를 식별함(문단 27∼30)",
+      "level": 4
+    },
+    "BC84": {
+      "concept": "p1vJ25",
+      "via": "수행의무의 식별",
+      "level": 2
+    },
+    "BC85": {
+      "concept": "p1vJ25",
+      "via": "수행의무의 식별",
+      "level": 2
+    },
+    "BC86": {
+      "concept": "p1vJ25",
+      "via": "수행의무의 식별",
+      "level": 2
+    },
+    "BC113": {
+      "concept": "p1vJ25",
+      "via": "수행의무의 식별",
+      "level": 2
+    },
+    "BC114": {
+      "concept": "p1vJ25",
+      "via": "수행의무의 식별",
+      "level": 2
+    },
+    "BC115": {
+      "concept": "p1vJ25",
+      "via": "수행의무의 식별",
+      "level": 2
+    }
+  },
+  "bc_group_of": {
+    "BC1": "도입",
+    "BC1A": "도입",
+    "BC2": "개요",
+    "BC3": "개요",
+    "BC4": "배경",
+    "BC5": "배경",
+    "BC6": "배경",
+    "BC7": "배경",
+    "BC8": "배경",
+    "BC9": "배경",
+    "BC10": "배경",
+    "BC11": "배경",
+    "BC12": "배경",
+    "BC13": "배경",
+    "BC14": "배경",
+    "BC15": "배경",
+    "BC16": "배경",
+    "BC17": "배경",
+    "BC18": "배경",
+    "BC19": "배경",
+    "BC20": "배경",
+    "BC21": "배경",
+    "BC22": "배경",
+    "BC23": "배경",
+    "BC24": "배경",
+    "BC25": "배경",
+    "BC26": "배경",
+    "BC27": "배경",
+    "BC27A": "배경",
+    "BC27B": "배경",
+    "BC27C": "배경",
+    "BC27D": "배경",
+    "BC27E": "배경",
+    "BC27F": "배경",
+    "BC27G": "배경",
+    "BC27H": "배경",
+    "BC28": "적용범위",
+    "BC29": "적용범위",
+    "BC30": "적용범위",
+    "BC31": "적용범위",
+    "BC32": "적용범위",
+    "BC33": "적용범위",
+    "BC34": "적용범위",
+    "BC35": "적용범위",
+    "BC36": "적용범위",
+    "BC37": "적용범위",
+    "BC38": "적용범위",
+    "BC39": "적용범위",
+    "BC40": "적용범위",
+    "BC41": "적용범위",
+    "BC42": "적용범위",
+    "BC43": "적용범위",
+    "BC44": "적용범위",
+    "BC45": "적용범위",
+    "BC46": "적용범위",
+    "BC46A": "적용범위",
+    "BC46B": "적용범위",
+    "BC46C": "적용범위",
+    "BC46D": "적용범위",
+    "BC46E": "적용범위",
+    "BC46F": "적용범위",
+    "BC46G": "적용범위",
+    "BC46H": "적용범위",
+    "BC47": "적용범위",
+    "BC48": "적용범위",
+    "BC49": "적용범위",
+    "BC50": "적용범위",
+    "BC51": "적용범위",
+    "BC52": "적용범위",
+    "BC53": "적용범위",
+    "BC54": "적용범위",
+    "BC55": "적용범위",
+    "BC56": "적용범위",
+    "BC57": "적용범위",
+    "BC58": "적용범위",
+    "BC59": "적용범위",
+    "BC60": "적용범위",
+    "BC61": "적용범위",
+    "BC62": "적용범위",
+    "BC63": "적용범위",
+    "BC64": "적용범위",
+    "BC65": "적용범위",
+    "BC66": "적용범위",
+    "BC67": "계약의 식별(문단 9~16)",
+    "BC68": "계약의 식별(문단 9~16)",
+    "BC69": "계약의 식별(문단 9~16)",
+    "BC70": "계약의 식별(문단 9~16)",
+    "BC71": "계약의 식별(문단 9~16)",
+    "BC72": "계약의 식별(문단 9~16)",
+    "BC73": "계약의 식별(문단 9~16)",
+    "BC74": "계약의 식별(문단 9~16)",
+    "BC75": "계약의 식별(문단 9~16)",
+    "BC76": "계약의 식별(문단 9~16)",
+    "BC77": "계약의 식별(문단 9~16)",
+    "BC78": "계약의 식별(문단 9~16)",
+    "BC79": "계약의 식별(문단 9~16)",
+    "BC80": "계약의 식별(문단 9~16)",
+    "BC81": "계약의 식별(문단 9~16)",
+    "BC82": "계약의 식별(문단 9~16)",
+    "BC83": "계약의 식별(문단 9~16)",
+    "BC84": "수행의무의 식별",
+    "BC85": "수행의무의 식별",
+    "BC86": "수행의무의 식별",
+    "BC87": "수행의무의 식별",
+    "BC88": "수행의무의 식별",
+    "BC89": "수행의무의 식별",
+    "BC90": "수행의무의 식별",
+    "BC91": "수행의무의 식별",
+    "BC92": "수행의무의 식별",
+    "BC93": "수행의무의 식별",
+    "BC94": "수행의무의 식별",
+    "BC95": "수행의무의 식별",
+    "BC96": "수행의무의 식별",
+    "BC97": "수행의무의 식별",
+    "BC98": "수행의무의 식별",
+    "BC99": "수행의무의 식별",
+    "BC100": "수행의무의 식별",
+    "BC101": "수행의무의 식별",
+    "BC102": "수행의무의 식별",
+    "BC103": "수행의무의 식별",
+    "BC104": "수행의무의 식별",
+    "BC105": "수행의무의 식별",
+    "BC106": "수행의무의 식별",
+    "BC107": "수행의무의 식별",
+    "BC108": "수행의무의 식별",
+    "BC109": "수행의무의 식별",
+    "BC110": "수행의무의 식별",
+    "BC111": "수행의무의 식별",
+    "BC112": "수행의무의 식별",
+    "BC113": "수행의무의 식별",
+    "BC114": "수행의무의 식별",
+    "BC115": "수행의무의 식별",
+    "BC116": "수행의무의 식별",
+    "BC116A": "수행의무의 식별",
+    "BC116B": "수행의무의 식별",
+    "BC116C": "수행의무의 식별",
+    "BC116D": "수행의무의 식별",
+    "BC116E": "수행의무의 식별",
+    "BC116F": "수행의무의 식별",
+    "BC116G": "수행의무의 식별",
+    "BC116H": "수행의무의 식별",
+    "BC116I": "수행의무의 식별",
+    "BC116J": "수행의무의 식별",
+    "BC116K": "수행의무의 식별",
+    "BC116L": "수행의무의 식별",
+    "BC116M": "수행의무의 식별",
+    "BC116N": "수행의무의 식별",
+    "BC116O": "수행의무의 식별",
+    "BC116P": "수행의무의 식별",
+    "BC116Q": "수행의무의 식별",
+    "BC116R": "수행의무의 식별",
+    "BC116S": "수행의무의 식별",
+    "BC116T": "수행의무의 식별",
+    "BC116U": "수행의무의 식별",
+    "BC117": "수행의무의 이행(문단 31~45)",
+    "BC118": "수행의무의 이행(문단 31~45)",
+    "BC119": "수행의무의 이행(문단 31~45)",
+    "BC120": "수행의무의 이행(문단 31~45)",
+    "BC121": "수행의무의 이행(문단 31~45)",
+    "BC122": "수행의무의 이행(문단 31~45)",
+    "BC123": "수행의무의 이행(문단 31~45)",
+    "BC124": "수행의무의 이행(문단 31~45)",
+    "BC125": "수행의무의 이행(문단 31~45)",
+    "BC126": "수행의무의 이행(문단 31~45)",
+    "BC127": "수행의무의 이행(문단 31~45)",
+    "BC128": "수행의무의 이행(문단 31~45)",
+    "BC129": "수행의무의 이행(문단 31~45)",
+    "BC130": "수행의무의 이행(문단 31~45)",
+    "BC131": "수행의무의 이행(문단 31~45)",
+    "BC132": "수행의무의 이행(문단 31~45)",
+    "BC133": "수행의무의 이행(문단 31~45)",
+    "BC134": "수행의무의 이행(문단 31~45)",
+    "BC135": "수행의무의 이행(문단 31~45)",
+    "BC136": "수행의무의 이행(문단 31~45)",
+    "BC137": "수행의무의 이행(문단 31~45)",
+    "BC138": "수행의무의 이행(문단 31~45)",
+    "BC139": "수행의무의 이행(문단 31~45)",
+    "BC140": "수행의무의 이행(문단 31~45)",
+    "BC141": "수행의무의 이행(문단 31~45)",
+    "BC142": "수행의무의 이행(문단 31~45)",
+    "BC143": "수행의무의 이행(문단 31~45)",
+    "BC144": "수행의무의 이행(문단 31~45)",
+    "BC145": "수행의무의 이행(문단 31~45)",
+    "BC146": "수행의무의 이행(문단 31~45)",
+    "BC147": "수행의무의 이행(문단 31~45)",
+    "BC148": "수행의무의 이행(문단 31~45)",
+    "BC149": "수행의무의 이행(문단 31~45)",
+    "BC150": "수행의무의 이행(문단 31~45)",
+    "BC151": "수행의무의 이행(문단 31~45)",
+    "BC152": "수행의무의 이행(문단 31~45)",
+    "BC153": "수행의무의 이행(문단 31~45)",
+    "BC154": "수행의무의 이행(문단 31~45)",
+    "BC155": "수행의무의 이행(문단 31~45)",
+    "BC156": "수행의무의 이행(문단 31~45)",
+    "BC157": "수행의무의 이행(문단 31~45)",
+    "BC158": "수행의무의 이행(문단 31~45)",
+    "BC159": "수행의무의 이행(문단 31~45)",
+    "BC160": "수행의무의 이행(문단 31~45)",
+    "BC161": "수행의무의 이행(문단 31~45)",
+    "BC162": "수행의무의 이행(문단 31~45)",
+    "BC163": "수행의무의 이행(문단 31~45)",
+    "BC164": "수행의무의 이행(문단 31~45)",
+    "BC165": "수행의무의 이행(문단 31~45)",
+    "BC166": "수행의무의 이행(문단 31~45)",
+    "BC167": "수행의무의 이행(문단 31~45)",
+    "BC168": "수행의무의 이행(문단 31~45)",
+    "BC169": "수행의무의 이행(문단 31~45)",
+    "BC170": "수행의무의 이행(문단 31~45)",
+    "BC171": "수행의무의 이행(문단 31~45)",
+    "BC172": "수행의무의 이행(문단 31~45)",
+    "BC173": "수행의무의 이행(문단 31~45)",
+    "BC174": "수행의무의 이행(문단 31~45)",
+    "BC175": "수행의무의 이행(문단 31~45)",
+    "BC176": "수행의무의 이행(문단 31~45)",
+    "BC177": "수행의무의 이행(문단 31~45)",
+    "BC178": "수행의무의 이행(문단 31~45)",
+    "BC179": "수행의무의 이행(문단 31~45)",
+    "BC180": "수행의무의 이행(문단 31~45)",
+    "BC181": "수익 측정(문단 46~90)",
+    "BC182": "수익 측정(문단 46~90)",
+    "BC183": "수익 측정(문단 46~90)",
+    "BC184": "수익 측정(문단 46~90)",
+    "BC185": "수익 측정(문단 46~90)",
+    "BC186": "수익 측정(문단 46~90)",
+    "BC187": "수익 측정(문단 46~90)",
+    "BC188": "수익 측정(문단 46~90)",
+    "BC188A": "수익 측정(문단 46~90)",
+    "BC188B": "수익 측정(문단 46~90)",
+    "BC188C": "수익 측정(문단 46~90)",
+    "BC188D": "수익 측정(문단 46~90)",
+    "BC189": "수익 측정(문단 46~90)",
+    "BC190": "수익 측정(문단 46~90)",
+    "BC191": "수익 측정(문단 46~90)",
+    "BC192": "수익 측정(문단 46~90)",
+    "BC193": "수익 측정(문단 46~90)",
+    "BC194": "수익 측정(문단 46~90)",
+    "BC195": "수익 측정(문단 46~90)",
+    "BC196": "수익 측정(문단 46~90)",
+    "BC197": "수익 측정(문단 46~90)",
+    "BC198": "수익 측정(문단 46~90)",
+    "BC199": "수익 측정(문단 46~90)",
+    "BC200": "수익 측정(문단 46~90)",
+    "BC201": "수익 측정(문단 46~90)",
+    "BC202": "수익 측정(문단 46~90)",
+    "BC203": "수익 측정(문단 46~90)",
+    "BC204": "수익 측정(문단 46~90)",
+    "BC205": "수익 측정(문단 46~90)",
+    "BC206": "수익 측정(문단 46~90)",
+    "BC207": "수익 측정(문단 46~90)",
+    "BC208": "수익 측정(문단 46~90)",
+    "BC209": "수익 측정(문단 46~90)",
+    "BC210": "수익 측정(문단 46~90)",
+    "BC211": "수익 측정(문단 46~90)",
+    "BC212": "수익 측정(문단 46~90)",
+    "BC213": "수익 측정(문단 46~90)",
+    "BC214": "수익 측정(문단 46~90)",
+    "BC215": "수익 측정(문단 46~90)",
+    "BC216": "수익 측정(문단 46~90)",
+    "BC217": "수익 측정(문단 46~90)",
+    "BC218": "수익 측정(문단 46~90)",
+    "BC219": "수익 측정(문단 46~90)",
+    "BC220": "수익 측정(문단 46~90)",
+    "BC221": "수익 측정(문단 46~90)",
+    "BC222": "수익 측정(문단 46~90)",
+    "BC223": "수익 측정(문단 46~90)",
+    "BC224": "수익 측정(문단 46~90)",
+    "BC225": "수익 측정(문단 46~90)",
+    "BC226": "수익 측정(문단 46~90)",
+    "BC227": "수익 측정(문단 46~90)",
+    "BC228": "수익 측정(문단 46~90)",
+    "BC229": "수익 측정(문단 46~90)",
+    "BC230": "수익 측정(문단 46~90)",
+    "BC231": "수익 측정(문단 46~90)",
+    "BC232": "수익 측정(문단 46~90)",
+    "BC233": "수익 측정(문단 46~90)",
+    "BC234": "수익 측정(문단 46~90)",
+    "BC235": "수익 측정(문단 46~90)",
+    "BC236": "수익 측정(문단 46~90)",
+    "BC237": "수익 측정(문단 46~90)",
+    "BC238": "수익 측정(문단 46~90)",
+    "BC239": "수익 측정(문단 46~90)",
+    "BC240": "수익 측정(문단 46~90)",
+    "BC241": "수익 측정(문단 46~90)",
+    "BC242": "수익 측정(문단 46~90)",
+    "BC243": "수익 측정(문단 46~90)",
+    "BC244": "수익 측정(문단 46~90)",
+    "BC245": "수익 측정(문단 46~90)",
+    "BC246": "수익 측정(문단 46~90)",
+    "BC247": "수익 측정(문단 46~90)",
+    "BC248": "수익 측정(문단 46~90)",
+    "BC249": "수익 측정(문단 46~90)",
+    "BC250": "수익 측정(문단 46~90)",
+    "BC251": "수익 측정(문단 46~90)",
+    "BC252": "수익 측정(문단 46~90)",
+    "BC253": "수익 측정(문단 46~90)",
+    "BC254": "수익 측정(문단 46~90)",
+    "BC254A": "수익 측정(문단 46~90)",
+    "BC254B": "수익 측정(문단 46~90)",
+    "BC254C": "수익 측정(문단 46~90)",
+    "BC254D": "수익 측정(문단 46~90)",
+    "BC254E": "수익 측정(문단 46~90)",
+    "BC254F": "수익 측정(문단 46~90)",
+    "BC254G": "수익 측정(문단 46~90)",
+    "BC254H": "수익 측정(문단 46~90)",
+    "BC255": "수익 측정(문단 46~90)",
+    "BC256": "수익 측정(문단 46~90)",
+    "BC257": "수익 측정(문단 46~90)",
+    "BC258": "수익 측정(문단 46~90)",
+    "BC259": "수익 측정(문단 46~90)",
+    "BC260": "수익 측정(문단 46~90)",
+    "BC261": "수익 측정(문단 46~90)",
+    "BC262": "수익 측정(문단 46~90)",
+    "BC263": "수익 측정(문단 46~90)",
+    "BC264": "수익 측정(문단 46~90)",
+    "BC265": "수익 측정(문단 46~90)",
+    "BC266": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC267": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC268": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC269": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC270": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC271": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC272": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC273": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC274": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC275": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC276": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC277": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC278": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC279": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC280": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC281": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC282": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC283": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC284": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC285": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC286": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC287": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC288": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC289": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC290": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC291": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC292": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC293": "거래가격을 수행의무에 배분함(문단 73~86)",
+    "BC294": "손실부담 수행의무",
+    "BC295": "손실부담 수행의무",
+    "BC296": "손실부담 수행의무",
+    "BC297": "계약원가(문단 91~104)",
+    "BC298": "계약원가(문단 91~104)",
+    "BC299": "계약원가(문단 91~104)",
+    "BC300": "계약원가(문단 91~104)",
+    "BC301": "계약원가(문단 91~104)",
+    "BC302": "계약원가(문단 91~104)",
+    "BC303": "계약원가(문단 91~104)",
+    "BC304": "계약원가(문단 91~104)",
+    "BC305": "계약원가(문단 91~104)",
+    "BC306": "계약원가(문단 91~104)",
+    "BC307": "계약원가(문단 91~104)",
+    "BC308": "계약원가(문단 91~104)",
+    "BC309": "계약원가(문단 91~104)",
+    "BC310": "계약원가(문단 91~104)",
+    "BC311": "계약원가(문단 91~104)",
+    "BC312": "계약원가(문단 91~104)",
+    "BC313": "계약원가(문단 91~104)",
+    "BC314": "계약원가(문단 91~104)",
+    "BC315": "계약원가(문단 91~104)",
+    "BC316": "계약원가(문단 91~104)",
+    "BC317": "표시(문단 105~109)",
+    "BC318": "표시(문단 105~109)",
+    "BC319": "표시(문단 105~109)",
+    "BC320": "표시(문단 105~109)",
+    "BC321": "표시(문단 105~109)",
+    "BC322": "표시(문단 105~109)",
+    "BC323": "표시(문단 105~109)",
+    "BC324": "표시(문단 105~109)",
+    "BC325": "표시(문단 105~109)",
+    "BC326": "표시(문단 105~109)",
+    "BC327": "공시(문단 110~129)",
+    "BC328": "공시(문단 110~129)",
+    "BC329": "공시(문단 110~129)",
+    "BC330": "공시(문단 110~129)",
+    "BC331": "공시(문단 110~129)",
+    "BC332": "공시(문단 110~129)",
+    "BC333": "공시(문단 110~129)",
+    "BC334": "공시(문단 110~129)",
+    "BC335": "공시(문단 110~129)",
+    "BC336": "공시(문단 110~129)",
+    "BC337": "공시(문단 110~129)",
+    "BC338": "공시(문단 110~129)",
+    "BC339": "공시(문단 110~129)",
+    "BC340": "공시(문단 110~129)",
+    "BC341": "공시(문단 110~129)",
+    "BC342": "공시(문단 110~129)",
+    "BC343": "공시(문단 110~129)",
+    "BC344": "공시(문단 110~129)",
+    "BC345": "공시(문단 110~129)",
+    "BC346": "공시(문단 110~129)",
+    "BC347": "공시(문단 110~129)",
+    "BC348": "공시(문단 110~129)",
+    "BC349": "공시(문단 110~129)",
+    "BC350": "공시(문단 110~129)",
+    "BC351": "공시(문단 110~129)",
+    "BC352": "공시(문단 110~129)",
+    "BC353": "공시(문단 110~129)",
+    "BC354": "공시(문단 110~129)",
+    "BC355": "공시(문단 110~129)",
+    "BC356": "공시(문단 110~129)",
+    "BC357": "공시(문단 110~129)",
+    "BC358": "공시(문단 110~129)",
+    "BC359": "공시(문단 110~129)",
+    "BC360": "공시(문단 110~129)",
+    "BC361": "공시(문단 110~129)",
+    "BC362": "적용지침(문단 B2~B89)",
+    "BC363": "적용지침(문단 B2~B89)",
+    "BC364": "적용지침(문단 B2~B89)",
+    "BC365": "적용지침(문단 B2~B89)",
+    "BC366": "적용지침(문단 B2~B89)",
+    "BC367": "적용지침(문단 B2~B89)",
+    "BC368": "적용지침(문단 B2~B89)",
+    "BC369": "적용지침(문단 B2~B89)",
+    "BC370": "적용지침(문단 B2~B89)",
+    "BC371": "적용지침(문단 B2~B89)",
+    "BC372": "적용지침(문단 B2~B89)",
+    "BC373": "적용지침(문단 B2~B89)",
+    "BC374": "적용지침(문단 B2~B89)",
+    "BC375": "적용지침(문단 B2~B89)",
+    "BC376": "적용지침(문단 B2~B89)",
+    "BC377": "적용지침(문단 B2~B89)",
+    "BC378": "적용지침(문단 B2~B89)",
+    "BC379": "적용지침(문단 B2~B89)",
+    "BC380": "적용지침(문단 B2~B89)",
+    "BC381": "적용지침(문단 B2~B89)",
+    "BC382": "적용지침(문단 B2~B89)",
+    "BC383": "적용지침(문단 B2~B89)",
+    "BC384": "적용지침(문단 B2~B89)",
+    "BC385": "적용지침(문단 B2~B89)",
+    "BC385A": "적용지침(문단 B2~B89)",
+    "BC385B": "적용지침(문단 B2~B89)",
+    "BC385C": "적용지침(문단 B2~B89)",
+    "BC385D": "적용지침(문단 B2~B89)",
+    "BC385E": "적용지침(문단 B2~B89)",
+    "BC385F": "적용지침(문단 B2~B89)",
+    "BC385G": "적용지침(문단 B2~B89)",
+    "BC385H": "적용지침(문단 B2~B89)",
+    "BC385I": "적용지침(문단 B2~B89)",
+    "BC385J": "적용지침(문단 B2~B89)",
+    "BC385K": "적용지침(문단 B2~B89)",
+    "BC385L": "적용지침(문단 B2~B89)",
+    "BC385M": "적용지침(문단 B2~B89)",
+    "BC385N": "적용지침(문단 B2~B89)",
+    "BC385O": "적용지침(문단 B2~B89)",
+    "BC385P": "적용지침(문단 B2~B89)",
+    "BC385Q": "적용지침(문단 B2~B89)",
+    "BC385R": "적용지침(문단 B2~B89)",
+    "BC385S": "적용지침(문단 B2~B89)",
+    "BC385T": "적용지침(문단 B2~B89)",
+    "BC385U": "적용지침(문단 B2~B89)",
+    "BC385V": "적용지침(문단 B2~B89)",
+    "BC385W": "적용지침(문단 B2~B89)",
+    "BC385X": "적용지침(문단 B2~B89)",
+    "BC385Y": "적용지침(문단 B2~B89)",
+    "BC385Z": "적용지침(문단 B2~B89)",
+    "BC386": "적용지침(문단 B2~B89)",
+    "BC387": "적용지침(문단 B2~B89)",
+    "BC388": "적용지침(문단 B2~B89)",
+    "BC389": "적용지침(문단 B2~B89)",
+    "BC390": "적용지침(문단 B2~B89)",
+    "BC391": "적용지침(문단 B2~B89)",
+    "BC392": "적용지침(문단 B2~B89)",
+    "BC393": "적용지침(문단 B2~B89)",
+    "BC394": "적용지침(문단 B2~B89)",
+    "BC395": "적용지침(문단 B2~B89)",
+    "BC396": "적용지침(문단 B2~B89)",
+    "BC397": "적용지침(문단 B2~B89)",
+    "BC398": "적용지침(문단 B2~B89)",
+    "BC399": "적용지침(문단 B2~B89)",
+    "BC400": "적용지침(문단 B2~B89)",
+    "BC401": "적용지침(문단 B2~B89)",
+    "BC402": "적용지침(문단 B2~B89)",
+    "BC403": "적용지침(문단 B2~B89)",
+    "BC404": "적용지침(문단 B2~B89)",
+    "BC405": "적용지침(문단 B2~B89)",
+    "BC406": "적용지침(문단 B2~B89)",
+    "BC407": "적용지침(문단 B2~B89)",
+    "BC408": "적용지침(문단 B2~B89)",
+    "BC409": "적용지침(문단 B2~B89)",
+    "BC410": "적용지침(문단 B2~B89)",
+    "BC411": "적용지침(문단 B2~B89)",
+    "BC412": "적용지침(문단 B2~B89)",
+    "BC413": "적용지침(문단 B2~B89)",
+    "BC414": "적용지침(문단 B2~B89)",
+    "BC414A": "적용지침(문단 B2~B89)",
+    "BC414B": "적용지침(문단 B2~B89)",
+    "BC414C": "적용지침(문단 B2~B89)",
+    "BC414D": "적용지침(문단 B2~B89)",
+    "BC414E": "적용지침(문단 B2~B89)",
+    "BC414F": "적용지침(문단 B2~B89)",
+    "BC414G": "적용지침(문단 B2~B89)",
+    "BC414H": "적용지침(문단 B2~B89)",
+    "BC414I": "적용지침(문단 B2~B89)",
+    "BC414J": "적용지침(문단 B2~B89)",
+    "BC414K": "적용지침(문단 B2~B89)",
+    "BC414L": "적용지침(문단 B2~B89)",
+    "BC414M": "적용지침(문단 B2~B89)",
+    "BC414N": "적용지침(문단 B2~B89)",
+    "BC414O": "적용지침(문단 B2~B89)",
+    "BC414P": "적용지침(문단 B2~B89)",
+    "BC414Q": "적용지침(문단 B2~B89)",
+    "BC414R": "적용지침(문단 B2~B89)",
+    "BC414S": "적용지침(문단 B2~B89)",
+    "BC414T": "적용지침(문단 B2~B89)",
+    "BC414U": "적용지침(문단 B2~B89)",
+    "BC414V": "적용지침(문단 B2~B89)",
+    "BC414W": "적용지침(문단 B2~B89)",
+    "BC414X": "적용지침(문단 B2~B89)",
+    "BC414Y": "적용지침(문단 B2~B89)",
+    "BC415": "적용지침(문단 B2~B89)",
+    "BC416": "적용지침(문단 B2~B89)",
+    "BC417": "적용지침(문단 B2~B89)",
+    "BC418": "적용지침(문단 B2~B89)",
+    "BC419": "적용지침(문단 B2~B89)",
+    "BC420": "적용지침(문단 B2~B89)",
+    "BC421": "적용지침(문단 B2~B89)",
+    "BC421A": "적용지침(문단 B2~B89)",
+    "BC421B": "적용지침(문단 B2~B89)",
+    "BC421C": "적용지침(문단 B2~B89)",
+    "BC421D": "적용지침(문단 B2~B89)",
+    "BC421E": "적용지침(문단 B2~B89)",
+    "BC421F": "적용지침(문단 B2~B89)",
+    "BC421G": "적용지침(문단 B2~B89)",
+    "BC421H": "적용지침(문단 B2~B89)",
+    "BC421I": "적용지침(문단 B2~B89)",
+    "BC421J": "적용지침(문단 B2~B89)",
+    "BC422": "적용지침(문단 B2~B89)",
+    "BC423": "적용지침(문단 B2~B89)",
+    "BC424": "적용지침(문단 B2~B89)",
+    "BC425": "적용지침(문단 B2~B89)",
+    "BC426": "적용지침(문단 B2~B89)",
+    "BC427": "적용지침(문단 B2~B89)",
+    "BC428": "적용지침(문단 B2~B89)",
+    "BC429": "적용지침(문단 B2~B89)",
+    "BC430": "적용지침(문단 B2~B89)",
+    "BC431": "적용지침(문단 B2~B89)",
+    "BC432": "적용지침(문단 B2~B89)",
+    "BC433": "적용지침(문단 B2~B89)",
+    "BC434": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC435": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC436": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC437": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC438": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC439": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC440": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC441": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC442": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC443": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC444": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445A": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445B": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445C": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445D": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445E": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445F": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445G": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445H": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445I": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445J": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445K": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445L": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445M": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445N": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445O": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445P": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445Q": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445R": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445S": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445T": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC445U": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC446": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC447": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC448": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC449": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC450": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC451": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC452": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC453": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC453A": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC453B": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC453C": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC453D": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC453E": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC453F": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC453G": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC453H": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC453I": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC453J": "경과 규정, 시행일, 조기 적용(문단 C1~C9)",
+    "BC454": "IFRS 15의 영향 분석",
+    "BC455": "IFRS 15의 영향 분석",
+    "BC456": "IFRS 15의 영향 분석",
+    "BC457": "IFRS 15의 영향 분석",
+    "BC458": "IFRS 15의 영향 분석",
+    "BC459": "IFRS 15의 영향 분석",
+    "BC460": "IFRS 15의 영향 분석",
+    "BC461": "IFRS 15의 영향 분석",
+    "BC462": "IFRS 15의 영향 분석",
+    "BC463": "IFRS 15의 영향 분석",
+    "BC464": "IFRS 15의 영향 분석",
+    "BC465": "IFRS 15의 영향 분석",
+    "BC466": "IFRS 15의 영향 분석",
+    "BC467": "IFRS 15의 영향 분석",
+    "BC468": "IFRS 15의 영향 분석",
+    "BC469": "IFRS 15의 영향 분석",
+    "BC470": "IFRS 15의 영향 분석",
+    "BC471": "IFRS 15의 영향 분석",
+    "BC472": "IFRS 15의 영향 분석",
+    "BC473": "IFRS 15의 영향 분석",
+    "BC474": "IFRS 15의 영향 분석",
+    "BC475": "IFRS 15의 영향 분석",
+    "BC476": "IFRS 15의 영향 분석",
+    "BC477": "IFRS 15의 영향 분석",
+    "BC478": "IFRS 15의 영향 분석",
+    "BC479": "IFRS 15의 영향 분석",
+    "BC480": "IFRS 15의 영향 분석",
+    "BC481": "IFRS 15의 영향 분석",
+    "BC482": "IFRS 15의 영향 분석",
+    "BC483": "IFRS 15의 영향 분석",
+    "BC484": "IFRS 15의 영향 분석",
+    "BC485": "IFRS 15의 영향 분석",
+    "BC486": "IFRS 15의 영향 분석",
+    "BC487": "IFRS 15의 영향 분석",
+    "BC488": "IFRS 15의 영향 분석",
+    "BC489": "IFRS 15의 영향 분석",
+    "BC490": "IFRS 15의 영향 분석",
+    "BC491": "IFRS 15의 영향 분석",
+    "BC492": "IFRS 15의 영향 분석",
+    "BC493": "IFRS 15의 영향 분석",
+    "BC494": "결과적인 개정",
+    "BC495": "결과적인 개정",
+    "BC496": "결과적인 개정",
+    "BC497": "결과적인 개정",
+    "BC498": "결과적인 개정",
+    "BC499": "결과적인 개정",
+    "BC500": "결과적인 개정",
+    "BC501": "결과적인 개정",
+    "BC502": "결과적인 개정",
+    "BC503": "결과적인 개정",
+    "BC504": "IFRS 최초채택기업의 경과 규정",
+    "BC505": "IFRS 최초채택기업의 경과 규정",
+    "BC506": "IFRS 최초채택기업의 경과 규정",
+    "BC507": "IFRS 최초채택기업의 경과 규정",
+    "BC508": "IFRS 최초채택기업의 경과 규정",
+    "BC509": "IFRS 최초채택기업의 경과 규정",
+    "BC510": "2011년 공개초안과 달라진 주요 내용 요약"
+  },
+  "e_bc1_bc_to_para": {
+    "BC27G": [
+      "C3"
+    ],
+    "BC33": [
+      "9"
+    ],
+    "BC34": [
+      "13"
+    ],
+    "BC36": [
+      "9"
+    ],
+    "BC41": [
+      "9"
+    ],
+    "BC42": [
+      "9"
+    ],
+    "BC43": [
+      "9"
+    ],
+    "BC44": [
+      "9"
+    ],
+    "BC45": [
+      "52"
+    ],
+    "BC46": [
+      "9"
+    ],
+    "BC46A": [
+      "9",
+      "15"
+    ],
+    "BC46B": [
+      "9"
+    ],
+    "BC46C": [
+      "9"
+    ],
+    "BC46E": [
+      "9"
+    ],
+    "BC46F": [
+      "15"
+    ],
+    "BC46G": [
+      "15"
+    ],
+    "BC46H": [
+      "15"
+    ],
+    "BC47": [
+      "9",
+      "14",
+      "15",
+      "16"
+    ],
+    "BC48": [
+      "9",
+      "15"
+    ],
+    "BC49": [
+      "9"
+    ],
+    "BC51": [
+      "120"
+    ],
+    "BC61": [
+      "5"
+    ],
+    "BC63": [
+      "5"
+    ],
+    "BC67": [
+      "9"
+    ],
+    "BC69": [
+      "4"
+    ],
+    "BC71": [
+      "17"
+    ],
+    "BC73": [
+      "17"
+    ],
+    "BC77": [
+      "20"
+    ],
+    "BC78": [
+      "21"
+    ],
+    "BC79": [
+      "21"
+    ],
+    "BC81": [
+      "18",
+      "19",
+      "21"
+    ],
+    "BC83": [
+      "21",
+      "90"
+    ],
+    "BC96": [
+      "27"
+    ],
+    "BC99": [
+      "27",
+      "28"
+    ],
+    "BC102": [
+      "27"
+    ],
+    "BC105": [
+      "27",
+      "29"
+    ],
+    "BC106": [
+      "29"
+    ],
+    "BC108": [
+      "27",
+      "29"
+    ],
+    "BC111": [
+      "29"
+    ],
+    "BC113": [
+      "35"
+    ],
+    "BC114": [
+      "22"
+    ],
+    "BC115": [
+      "22"
+    ],
+    "BC116": [
+      "22"
+    ],
+    "BC116F": [
+      "27",
+      "29"
+    ],
+    "BC116G": [
+      "29"
+    ],
+    "BC116H": [
+      "29"
+    ],
+    "BC116I": [
+      "27",
+      "29"
+    ],
+    "BC116L": [
+      "29"
+    ],
+    "BC116M": [
+      "29"
+    ],
+    "BC116N": [
+      "27",
+      "29"
+    ],
+    "BC116U": [
+      "22"
+    ],
+    "BC124": [
+      "35"
+    ],
+    "BC128": [
+      "35"
+    ],
+    "BC131": [
+      "35"
+    ],
+    "BC132": [
+      "35"
+    ],
+    "BC139": [
+      "B4",
+      "35"
+    ],
+    "BC141": [
+      "35"
+    ],
+    "BC144": [
+      "B9"
+    ],
+    "BC146": [
+      "B12"
+    ],
+    "BC150": [
+      "35",
+      "36",
+      "37"
+    ],
+    "BC152": [
+      "35"
+    ],
+    "BC153": [
+      "38"
+    ],
+    "BC155": [
+      "31",
+      "38"
+    ],
+    "BC162": [
+      "B14",
+      "B15",
+      "B16",
+      "B17",
+      "B18",
+      "B19"
+    ],
+    "BC170": [
+      "39"
+    ],
+    "BC172": [
+      "B19"
+    ],
+    "BC174": [
+      "B19"
+    ],
+    "BC176": [
+      "B19"
+    ],
+    "BC179": [
+      "95"
+    ],
+    "BC188A": [
+      "47"
+    ],
+    "BC190": [
+      "51"
+    ],
+    "BC195": [
+      "53"
+    ],
+    "BC212": [
+      "57"
+    ],
+    "BC213": [
+      "57"
+    ],
+    "BC214": [
+      "53"
+    ],
+    "BC227": [
+      "87",
+      "88",
+      "89",
+      "90"
+    ],
+    "BC231": [
+      "60"
+    ],
+    "BC232": [
+      "61"
+    ],
+    "BC233": [
+      "62"
+    ],
+    "BC235": [
+      "63"
+    ],
+    "BC241": [
+      "62"
+    ],
+    "BC244": [
+      "60",
+      "61",
+      "62",
+      "63",
+      "64",
+      "65"
+    ],
+    "BC247": [
+      "65"
+    ],
+    "BC250": [
+      "56",
+      "57",
+      "58"
+    ],
+    "BC254B": [
+      "66"
+    ],
+    "BC254E": [
+      "126"
+    ],
+    "BC254F": [
+      "56",
+      "57",
+      "58"
+    ],
+    "BC254G": [
+      "68"
+    ],
+    "BC265": [
+      "9"
+    ],
+    "BC268": [
+      "79"
+    ],
+    "BC271": [
+      "79"
+    ],
+    "BC273": [
+      "79"
+    ],
+    "BC280": [
+      "81",
+      "82",
+      "83",
+      "84",
+      "85",
+      "86"
+    ],
+    "BC282": [
+      "82"
+    ],
+    "BC283": [
+      "82"
+    ],
+    "BC284": [
+      "84",
+      "85",
+      "86"
+    ],
+    "BC285": [
+      "22",
+      "84"
+    ],
+    "BC286": [
+      "85",
+      "89"
+    ],
+    "BC293": [
+      "4"
+    ],
+    "BC307": [
+      "91",
+      "92",
+      "93",
+      "94",
+      "95",
+      "96",
+      "97",
+      "98"
+    ],
+    "BC329": [
+      "110",
+      "111",
+      "112",
+      "113",
+      "114",
+      "115",
+      "116",
+      "117",
+      "118",
+      "119",
+      "120",
+      "121",
+      "122",
+      "123",
+      "124",
+      "125",
+      "126",
+      "127",
+      "128",
+      "129"
+    ],
+    "BC331": [
+      "111"
+    ],
+    "BC336": [
+      "114"
+    ],
+    "BC337": [
+      "114"
+    ],
+    "BC338": [
+      "114"
+    ],
+    "BC340": [
+      "112",
+      "114"
+    ],
+    "BC346": [
+      "116",
+      "117",
+      "118"
+    ],
+    "BC352": [
+      "B16",
+      "120",
+      "121"
+    ],
+    "BC353": [
+      "116"
+    ],
+    "BC354": [
+      "119"
+    ],
+    "BC371": [
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30"
+    ],
+    "BC373": [
+      "B28",
+      "B29",
+      "B30",
+      "B31",
+      "B32",
+      "B33"
+    ],
+    "BC378": [
+      "B33"
+    ],
+    "BC382": [
+      "B37"
+    ],
+    "BC385A": [
+      "B34",
+      "B34A",
+      "B35",
+      "B35A",
+      "B35B",
+      "B36",
+      "B37",
+      "B37A",
+      "B38"
+    ],
+    "BC385B": [
+      "B34"
+    ],
+    "BC385C": [
+      "B34"
+    ],
+    "BC385D": [
+      "33"
+    ],
+    "BC385E": [
+      "B34",
+      "B34A",
+      "B35",
+      "B35A",
+      "B35B",
+      "B36",
+      "B37",
+      "B37A",
+      "B38"
+    ],
+    "BC385F": [
+      "B37"
+    ],
+    "BC385G": [
+      "B37"
+    ],
+    "BC385H": [
+      "B37"
+    ],
+    "BC385I": [
+      "38"
+    ],
+    "BC385J": [
+      "33",
+      "B37"
+    ],
+    "BC385K": [
+      "B37"
+    ],
+    "BC385L": [
+      "B37",
+      "38"
+    ],
+    "BC385N": [
+      "26"
+    ],
+    "BC385R": [
+      "B35A"
+    ],
+    "BC385S": [
+      "33",
+      "B34",
+      "B34A"
+    ],
+    "BC385T": [
+      "B34A"
+    ],
+    "BC385U": [
+      "B35A"
+    ],
+    "BC385W": [
+      "B35",
+      "B35A"
+    ],
+    "BC385X": [
+      "B34",
+      "B34A",
+      "B35",
+      "B35A",
+      "B35B",
+      "B36",
+      "B37",
+      "B37A",
+      "B38",
+      "46",
+      "47",
+      "48",
+      "49",
+      "50",
+      "51",
+      "52",
+      "53",
+      "54",
+      "55",
+      "56",
+      "57",
+      "58",
+      "59",
+      "60",
+      "61",
+      "62",
+      "63",
+      "64",
+      "65",
+      "66",
+      "67",
+      "68",
+      "69",
+      "70",
+      "71",
+      "72",
+      "73",
+      "74",
+      "75",
+      "76",
+      "77",
+      "78",
+      "79",
+      "80",
+      "81",
+      "82",
+      "83",
+      "84",
+      "85",
+      "86",
+      "87",
+      "88",
+      "89",
+      "90"
+    ],
+    "BC390": [
+      "B42"
+    ],
+    "BC399": [
+      "56",
+      "57",
+      "58"
+    ],
+    "BC401": [
+      "B42",
+      "82"
+    ],
+    "BC406": [
+      "27",
+      "28",
+      "29",
+      "30"
+    ],
+    "BC407": [
+      "30",
+      "B58"
+    ],
+    "BC408": [
+      "B58"
+    ],
+    "BC410": [
+      "B58"
+    ],
+    "BC411": [
+      "B62"
+    ],
+    "BC414": [
+      "33",
+      "35",
+      "38"
+    ],
+    "BC414C": [
+      "B58"
+    ],
+    "BC414D": [
+      "B57",
+      "B58"
+    ],
+    "BC414E": [
+      "B58"
+    ],
+    "BC414F": [
+      "B58",
+      "B61"
+    ],
+    "BC414G": [
+      "B59A"
+    ],
+    "BC414H": [
+      "B58"
+    ],
+    "BC414J": [
+      "B57",
+      "B59A"
+    ],
+    "BC414O": [
+      "B61",
+      "B62"
+    ],
+    "BC414P": [
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30"
+    ],
+    "BC414Q": [
+      "27",
+      "28",
+      "29",
+      "30"
+    ],
+    "BC414R": [
+      "B62"
+    ],
+    "BC414S": [
+      "B61"
+    ],
+    "BC414T": [
+      "18",
+      "19",
+      "20",
+      "21"
+    ],
+    "BC414V": [
+      "27",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "B55"
+    ],
+    "BC414Y": [
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45"
+    ],
+    "BC416": [
+      "B63"
+    ],
+    "BC421": [
+      "B63"
+    ],
+    "BC421A": [
+      "B63"
+    ],
+    "BC421B": [
+      "27"
+    ],
+    "BC421C": [
+      "50",
+      "51",
+      "52",
+      "53",
+      "54",
+      "55",
+      "56",
+      "57",
+      "58",
+      "59"
+    ],
+    "BC421D": [
+      "27",
+      "B63A"
+    ],
+    "BC421G": [
+      "84",
+      "85"
+    ],
+    "BC421H": [
+      "B63"
+    ],
+    "BC421I": [
+      "B63"
+    ],
+    "BC421J": [
+      "50",
+      "51",
+      "52",
+      "53",
+      "54",
+      "55",
+      "56",
+      "57",
+      "58",
+      "59",
+      "B63",
+      "B63B"
+    ],
+    "BC423": [
+      "B34",
+      "B34A",
+      "B35",
+      "B35A",
+      "B35B",
+      "B36",
+      "B37",
+      "B37A",
+      "B38",
+      "B64"
+    ],
+    "BC437": [
+      "C5",
+      "C7A",
+      "120"
+    ],
+    "BC438": [
+      "C6"
+    ],
+    "BC441": [
+      "C3",
+      "C7"
+    ],
+    "BC445": [
+      "C3"
+    ],
+    "BC445A": [
+      "C2",
+      "C3"
+    ],
+    "BC445B": [
+      "C3"
+    ],
+    "BC445C": [
+      "C2"
+    ],
+    "BC445E": [
+      "C5",
+      "C7"
+    ],
+    "BC445G": [
+      "C3",
+      "C8"
+    ],
+    "BC445I": [
+      "C3"
+    ],
+    "BC445J": [
+      "C3",
+      "C7"
+    ],
+    "BC445K": [
+      "C3"
+    ],
+    "BC445L": [
+      "C3"
+    ],
+    "BC445M": [
+      "C3"
+    ],
+    "BC445O": [
+      "C5",
+      "20",
+      "21"
+    ],
+    "BC445P": [
+      "C3"
+    ],
+    "BC445Q": [
+      "C3"
+    ],
+    "BC445U": [
+      "C3"
+    ],
+    "BC504": [
+      "C3",
+      "C7",
+      "C7A",
+      "C8"
+    ],
+    "BC505": [
+      "C5"
+    ],
+    "BC506": [
+      "C5",
+      "C6"
+    ],
+    "BC510": [
+      "9"
+    ]
+  },
+  "para_to_bc": {
+    "C3": [
+      "BC27G",
+      "BC441",
+      "BC445",
+      "BC445A",
+      "BC445B",
+      "BC445G",
+      "BC445I",
+      "BC445J",
+      "BC445K",
+      "BC445L",
+      "BC445M",
+      "BC445P",
+      "BC445Q",
+      "BC445U",
+      "BC504"
+    ],
+    "9": [
+      "BC265",
+      "BC33",
+      "BC36",
+      "BC41",
+      "BC42",
+      "BC43",
+      "BC44",
+      "BC46",
+      "BC46A",
+      "BC46B",
+      "BC46C",
+      "BC46E",
+      "BC47",
+      "BC48",
+      "BC49",
+      "BC510",
+      "BC67"
+    ],
+    "13": [
+      "BC34"
+    ],
+    "52": [
+      "BC385X",
+      "BC421C",
+      "BC421J",
+      "BC45"
+    ],
+    "15": [
+      "BC46A",
+      "BC46F",
+      "BC46G",
+      "BC46H",
+      "BC47",
+      "BC48"
+    ],
+    "14": [
+      "BC47"
+    ],
+    "16": [
+      "BC47"
+    ],
+    "120": [
+      "BC329",
+      "BC352",
+      "BC437",
+      "BC51"
+    ],
+    "5": [
+      "BC61",
+      "BC63"
+    ],
+    "4": [
+      "BC293",
+      "BC69"
+    ],
+    "17": [
+      "BC71",
+      "BC73"
+    ],
+    "20": [
+      "BC414T",
+      "BC445O",
+      "BC77"
+    ],
+    "21": [
+      "BC414T",
+      "BC445O",
+      "BC78",
+      "BC79",
+      "BC81",
+      "BC83"
+    ],
+    "18": [
+      "BC414T",
+      "BC81"
+    ],
+    "19": [
+      "BC414T",
+      "BC81"
+    ],
+    "90": [
+      "BC227",
+      "BC385X",
+      "BC83"
+    ],
+    "27": [
+      "BC102",
+      "BC105",
+      "BC108",
+      "BC116F",
+      "BC116I",
+      "BC116N",
+      "BC371",
+      "BC406",
+      "BC414P",
+      "BC414Q",
+      "BC414V",
+      "BC421B",
+      "BC421D",
+      "BC96",
+      "BC99"
+    ],
+    "28": [
+      "BC371",
+      "BC406",
+      "BC414P",
+      "BC414Q",
+      "BC99"
+    ],
+    "29": [
+      "BC105",
+      "BC106",
+      "BC108",
+      "BC111",
+      "BC116F",
+      "BC116G",
+      "BC116H",
+      "BC116I",
+      "BC116L",
+      "BC116M",
+      "BC116N",
+      "BC371",
+      "BC406",
+      "BC414P",
+      "BC414Q"
+    ],
+    "35": [
+      "BC113",
+      "BC124",
+      "BC128",
+      "BC131",
+      "BC132",
+      "BC139",
+      "BC141",
+      "BC150",
+      "BC152",
+      "BC414",
+      "BC414V",
+      "BC414Y"
+    ],
+    "22": [
+      "BC114",
+      "BC115",
+      "BC116",
+      "BC116U",
+      "BC285",
+      "BC371",
+      "BC414P"
+    ],
+    "B4": [
+      "BC139"
+    ],
+    "B9": [
+      "BC144"
+    ],
+    "B12": [
+      "BC146"
+    ],
+    "36": [
+      "BC150",
+      "BC414V",
+      "BC414Y"
+    ],
+    "37": [
+      "BC150",
+      "BC414V",
+      "BC414Y"
+    ],
+    "38": [
+      "BC153",
+      "BC155",
+      "BC385I",
+      "BC385L",
+      "BC414",
+      "BC414V",
+      "BC414Y"
+    ],
+    "31": [
+      "BC155",
+      "BC414V",
+      "BC414Y"
+    ],
+    "B14": [
+      "BC162"
+    ],
+    "B15": [
+      "BC162"
+    ],
+    "B16": [
+      "BC162",
+      "BC352"
+    ],
+    "B17": [
+      "BC162"
+    ],
+    "B18": [
+      "BC162"
+    ],
+    "B19": [
+      "BC162",
+      "BC172",
+      "BC174",
+      "BC176"
+    ],
+    "39": [
+      "BC170",
+      "BC414Y"
+    ],
+    "95": [
+      "BC179",
+      "BC307"
+    ],
+    "47": [
+      "BC188A",
+      "BC385X"
+    ],
+    "51": [
+      "BC190",
+      "BC385X",
+      "BC421C",
+      "BC421J"
+    ],
+    "53": [
+      "BC195",
+      "BC214",
+      "BC385X",
+      "BC421C",
+      "BC421J"
+    ],
+    "57": [
+      "BC212",
+      "BC213",
+      "BC250",
+      "BC254F",
+      "BC385X",
+      "BC399",
+      "BC421C",
+      "BC421J"
+    ],
+    "87": [
+      "BC227",
+      "BC385X"
+    ],
+    "88": [
+      "BC227",
+      "BC385X"
+    ],
+    "89": [
+      "BC227",
+      "BC286",
+      "BC385X"
+    ],
+    "60": [
+      "BC231",
+      "BC244",
+      "BC385X"
+    ],
+    "61": [
+      "BC232",
+      "BC244",
+      "BC385X"
+    ],
+    "62": [
+      "BC233",
+      "BC241",
+      "BC244",
+      "BC385X"
+    ],
+    "63": [
+      "BC235",
+      "BC244",
+      "BC385X"
+    ],
+    "64": [
+      "BC244",
+      "BC385X"
+    ],
+    "65": [
+      "BC244",
+      "BC247",
+      "BC385X"
+    ],
+    "56": [
+      "BC250",
+      "BC254F",
+      "BC385X",
+      "BC399",
+      "BC421C",
+      "BC421J"
+    ],
+    "58": [
+      "BC250",
+      "BC254F",
+      "BC385X",
+      "BC399",
+      "BC421C",
+      "BC421J"
+    ],
+    "66": [
+      "BC254B",
+      "BC385X"
+    ],
+    "126": [
+      "BC254E",
+      "BC329"
+    ],
+    "68": [
+      "BC254G",
+      "BC385X"
+    ],
+    "79": [
+      "BC268",
+      "BC271",
+      "BC273",
+      "BC385X"
+    ],
+    "81": [
+      "BC280",
+      "BC385X"
+    ],
+    "82": [
+      "BC280",
+      "BC282",
+      "BC283",
+      "BC385X",
+      "BC401"
+    ],
+    "83": [
+      "BC280",
+      "BC385X"
+    ],
+    "84": [
+      "BC280",
+      "BC284",
+      "BC285",
+      "BC385X",
+      "BC421G"
+    ],
+    "85": [
+      "BC280",
+      "BC284",
+      "BC286",
+      "BC385X",
+      "BC421G"
+    ],
+    "86": [
+      "BC280",
+      "BC284",
+      "BC385X"
+    ],
+    "91": [
+      "BC307"
+    ],
+    "92": [
+      "BC307"
+    ],
+    "93": [
+      "BC307"
+    ],
+    "94": [
+      "BC307"
+    ],
+    "96": [
+      "BC307"
+    ],
+    "97": [
+      "BC307"
+    ],
+    "98": [
+      "BC307"
+    ],
+    "110": [
+      "BC329"
+    ],
+    "111": [
+      "BC329",
+      "BC331"
+    ],
+    "112": [
+      "BC329",
+      "BC340"
+    ],
+    "113": [
+      "BC329"
+    ],
+    "114": [
+      "BC329",
+      "BC336",
+      "BC337",
+      "BC338",
+      "BC340"
+    ],
+    "115": [
+      "BC329"
+    ],
+    "116": [
+      "BC329",
+      "BC346",
+      "BC353"
+    ],
+    "117": [
+      "BC329",
+      "BC346"
+    ],
+    "118": [
+      "BC329",
+      "BC346"
+    ],
+    "119": [
+      "BC329",
+      "BC354"
+    ],
+    "121": [
+      "BC329",
+      "BC352"
+    ],
+    "122": [
+      "BC329"
+    ],
+    "123": [
+      "BC329"
+    ],
+    "124": [
+      "BC329"
+    ],
+    "125": [
+      "BC329"
+    ],
+    "127": [
+      "BC329"
+    ],
+    "128": [
+      "BC329"
+    ],
+    "129": [
+      "BC329"
+    ],
+    "23": [
+      "BC371",
+      "BC414P"
+    ],
+    "24": [
+      "BC371",
+      "BC414P"
+    ],
+    "25": [
+      "BC371",
+      "BC414P"
+    ],
+    "26": [
+      "BC371",
+      "BC385N",
+      "BC414P"
+    ],
+    "30": [
+      "BC371",
+      "BC406",
+      "BC407",
+      "BC414P",
+      "BC414Q"
+    ],
+    "B28": [
+      "BC373"
+    ],
+    "B29": [
+      "BC373"
+    ],
+    "B30": [
+      "BC373"
+    ],
+    "B31": [
+      "BC373"
+    ],
+    "B32": [
+      "BC373"
+    ],
+    "B33": [
+      "BC373",
+      "BC378"
+    ],
+    "B37": [
+      "BC382",
+      "BC385A",
+      "BC385E",
+      "BC385F",
+      "BC385G",
+      "BC385H",
+      "BC385J",
+      "BC385K",
+      "BC385L",
+      "BC385X",
+      "BC423"
+    ],
+    "B34": [
+      "BC385A",
+      "BC385B",
+      "BC385C",
+      "BC385E",
+      "BC385S",
+      "BC385X",
+      "BC423"
+    ],
+    "B34A": [
+      "BC385A",
+      "BC385E",
+      "BC385S",
+      "BC385T",
+      "BC385X",
+      "BC423"
+    ],
+    "B35": [
+      "BC385A",
+      "BC385E",
+      "BC385W",
+      "BC385X",
+      "BC423"
+    ],
+    "B35A": [
+      "BC385A",
+      "BC385E",
+      "BC385R",
+      "BC385U",
+      "BC385W",
+      "BC385X",
+      "BC423"
+    ],
+    "B35B": [
+      "BC385A",
+      "BC385E",
+      "BC385X",
+      "BC423"
+    ],
+    "B36": [
+      "BC385A",
+      "BC385E",
+      "BC385X",
+      "BC423"
+    ],
+    "B37A": [
+      "BC385A",
+      "BC385E",
+      "BC385X",
+      "BC423"
+    ],
+    "B38": [
+      "BC385A",
+      "BC385E",
+      "BC385X",
+      "BC423"
+    ],
+    "33": [
+      "BC385D",
+      "BC385J",
+      "BC385S",
+      "BC414",
+      "BC414V",
+      "BC414Y"
+    ],
+    "46": [
+      "BC385X"
+    ],
+    "48": [
+      "BC385X"
+    ],
+    "49": [
+      "BC385X"
+    ],
+    "50": [
+      "BC385X",
+      "BC421C",
+      "BC421J"
+    ],
+    "54": [
+      "BC385X",
+      "BC421C",
+      "BC421J"
+    ],
+    "55": [
+      "BC385X",
+      "BC421C",
+      "BC421J"
+    ],
+    "59": [
+      "BC385X",
+      "BC421C",
+      "BC421J"
+    ],
+    "67": [
+      "BC385X"
+    ],
+    "69": [
+      "BC385X"
+    ],
+    "70": [
+      "BC385X"
+    ],
+    "71": [
+      "BC385X"
+    ],
+    "72": [
+      "BC385X"
+    ],
+    "73": [
+      "BC385X"
+    ],
+    "74": [
+      "BC385X"
+    ],
+    "75": [
+      "BC385X"
+    ],
+    "76": [
+      "BC385X"
+    ],
+    "77": [
+      "BC385X"
+    ],
+    "78": [
+      "BC385X"
+    ],
+    "80": [
+      "BC385X"
+    ],
+    "B42": [
+      "BC390",
+      "BC401"
+    ],
+    "B58": [
+      "BC407",
+      "BC408",
+      "BC410",
+      "BC414C",
+      "BC414D",
+      "BC414E",
+      "BC414F",
+      "BC414H"
+    ],
+    "B62": [
+      "BC411",
+      "BC414O",
+      "BC414R"
+    ],
+    "B57": [
+      "BC414D",
+      "BC414J"
+    ],
+    "B61": [
+      "BC414F",
+      "BC414O",
+      "BC414S"
+    ],
+    "B59A": [
+      "BC414G",
+      "BC414J"
+    ],
+    "32": [
+      "BC414V",
+      "BC414Y"
+    ],
+    "34": [
+      "BC414V",
+      "BC414Y"
+    ],
+    "B55": [
+      "BC414V"
+    ],
+    "40": [
+      "BC414Y"
+    ],
+    "41": [
+      "BC414Y"
+    ],
+    "42": [
+      "BC414Y"
+    ],
+    "43": [
+      "BC414Y"
+    ],
+    "44": [
+      "BC414Y"
+    ],
+    "45": [
+      "BC414Y"
+    ],
+    "B63": [
+      "BC416",
+      "BC421",
+      "BC421A",
+      "BC421H",
+      "BC421I",
+      "BC421J"
+    ],
+    "B63A": [
+      "BC421D"
+    ],
+    "B63B": [
+      "BC421J"
+    ],
+    "B64": [
+      "BC423"
+    ],
+    "C5": [
+      "BC437",
+      "BC445E",
+      "BC445O",
+      "BC505",
+      "BC506"
+    ],
+    "C7A": [
+      "BC437",
+      "BC504"
+    ],
+    "C6": [
+      "BC438",
+      "BC506"
+    ],
+    "C7": [
+      "BC441",
+      "BC445E",
+      "BC445J",
+      "BC504"
+    ],
+    "C2": [
+      "BC445A",
+      "BC445C"
+    ],
+    "C8": [
+      "BC445G",
+      "BC504"
+    ]
+  },
+  "e_bc3_case_to_bc": [
+    {
+      "case": "QNA-202003D",
+      "bc": "BC307"
+    },
+    {
+      "case": "QNA-201901B",
+      "bc": "BC87"
+    },
+    {
+      "case": "QNA-201803D",
+      "bc": "BC143"
+    },
+    {
+      "case": "QNA-201803B",
+      "bc": "BC129"
+    },
+    {
+      "case": "QNA-201803B",
+      "bc": "BC131"
+    },
+    {
+      "case": "QNA-201803B",
+      "bc": "BC143"
+    },
+    {
+      "case": "QNA-201803A",
+      "bc": "BC100"
+    },
+    {
+      "case": "QNA-201803A",
+      "bc": "BC105"
+    },
+    {
+      "case": "QNA-201803A",
+      "bc": "BC116J"
+    },
+    {
+      "case": "QNA-201803A",
+      "bc": "BC116K"
+    },
+    {
+      "case": "QNA-201803A",
+      "bc": "BC116N"
+    },
+    {
+      "case": "QNA-201803A",
+      "bc": "BC129"
+    },
+    {
+      "case": "QNA-2024-I-KQA005",
+      "bc": "BC219"
+    },
+    {
+      "case": "QNA-2024-I-KQA005",
+      "bc": "BC415"
+    },
+    {
+      "case": "QNA-2022-I-KQA015",
+      "bc": "BC54"
+    },
+    {
+      "case": "QNA-2022-I-KQA015",
+      "bc": "BC56"
+    },
+    {
+      "case": "QNA-2022-I-KQA015",
+      "bc": "BC155"
+    },
+    {
+      "case": "QNA-2022-I-KQA014",
+      "bc": "BC116S"
+    },
+    {
+      "case": "QNA-2022-I-KQA007",
+      "bc": "BC187"
+    },
+    {
+      "case": "QNA-2021-I-KQA008",
+      "bc": "BC55"
+    },
+    {
+      "case": "QNA-2021-I-KQA008",
+      "bc": "BC56"
+    },
+    {
+      "case": "QNA-2021-I-KQA007",
+      "bc": "BC357"
+    },
+    {
+      "case": "QNA-2020-I-KQA003",
+      "bc": "BC32"
+    },
+    {
+      "case": "QNA-2018-I-KQA009",
+      "bc": "BC111"
+    },
+    {
+      "case": "QNA-2018-I-KQA009",
+      "bc": "BC112"
+    },
+    {
+      "case": "QNA-2018-I-KQA004",
+      "bc": "BC437"
+    },
+    {
+      "case": "QNA-2018-I-KQA004",
+      "bc": "BC441"
+    },
+    {
+      "case": "QNA-2018-I-KQA004",
+      "bc": "BC445D"
+    },
+    {
+      "case": "QNA-2017-I-KAQ015",
+      "bc": "BC142"
+    },
+    {
+      "case": "QNA-2017-I-KAQ015",
+      "bc": "BC143"
+    },
+    {
+      "case": "QNA-2017-I-KAQ015",
+      "bc": "BC144"
+    },
+    {
+      "case": "QNA-2017-I-KAQ015",
+      "bc": "BC145"
+    },
+    {
+      "case": "QNA-2017-I-KAQ015",
+      "bc": "BC146"
+    },
+    {
+      "case": "QNA-2017-I-KAQ015",
+      "bc": "BC147"
+    },
+    {
+      "case": "QNA-2017-I-KQA014",
+      "bc": "BC142"
+    },
+    {
+      "case": "QNA-2017-I-KQA014",
+      "bc": "BC143"
+    },
+    {
+      "case": "QNA-2017-I-KQA014",
+      "bc": "BC144"
+    },
+    {
+      "case": "QNA-2017-I-KQA014",
+      "bc": "BC145"
+    },
+    {
+      "case": "QNA-2017-I-KQA014",
+      "bc": "BC146"
+    },
+    {
+      "case": "QNA-2017-I-KQA014",
+      "bc": "BC147"
+    },
+    {
+      "case": "QNA-SSI-202511019",
+      "bc": "BC322"
+    },
+    {
+      "case": "QNA-SSI-202511019",
+      "bc": "BC323"
+    },
+    {
+      "case": "QNA-SSI-202511019",
+      "bc": "BC324"
+    },
+    {
+      "case": "QNA-SSI-202511019",
+      "bc": "BC325"
+    },
+    {
+      "case": "QNA-SSI-38674",
+      "bc": "BC42"
+    },
+    {
+      "case": "QNA-SSI-38674",
+      "bc": "BC43"
+    },
+    {
+      "case": "QNA-SSI-38674",
+      "bc": "BC46C"
+    },
+    {
+      "case": "QNA-SSI-38674",
+      "bc": "BC46D"
+    },
+    {
+      "case": "QNA-SSI-38674",
+      "bc": "BC46E"
+    },
+    {
+      "case": "QNA-SSI-38674",
+      "bc": "BC259"
+    },
+    {
+      "case": "QNA-SSI-38674",
+      "bc": "BC260"
+    },
+    {
+      "case": "QNA-SSI-38674",
+      "bc": "BC261"
+    },
+    {
+      "case": "QNA-SSI-38674",
+      "bc": "BC262"
+    },
+    {
+      "case": "QNA-SSI-38674",
+      "bc": "BC263"
+    },
+    {
+      "case": "QNA-SSI-38674",
+      "bc": "BC264"
+    },
+    {
+      "case": "QNA-SSI-38674",
+      "bc": "BC265"
+    },
+    {
+      "case": "QNA-SSI-36987",
+      "bc": "BC116R"
+    },
+    {
+      "case": "QNA-SSI-36987",
+      "bc": "BC116S"
+    },
+    {
+      "case": "KICPA-CASE-2025-33",
+      "bc": "BC317"
+    }
+  ]
+}

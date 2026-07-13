@@ -1,0 +1,1495 @@
+{
+  "_meta": {
+    "source": "data\\web\\kifrs-1115-all.json",
+    "generated_by": "app/preprocessing/14-ontology-concepts.py",
+    "concept_count": 80,
+    "para_count": 251,
+    "sections": {
+      "본문": 49,
+      "부록A": 1,
+      "부록B": 25,
+      "부록C": 5
+    }
+  },
+  "concepts": {
+    "mtj1Wk": {
+      "title": "기업회계기준서 제1115호 고객과의 계약에서 생기는 수익",
+      "level": 1.0,
+      "ref": "",
+      "parent": null,
+      "children": [
+        "3CKe2m",
+        "jBozvF",
+        "4aNSKr",
+        "sM1U0t",
+        "rD7ch9",
+        "T51p4P",
+        "W6Bh7o",
+        "fMrvaF",
+        "fGwEsL",
+        "OPNV6t",
+        "Et3hDA"
+      ],
+      "paras": [],
+      "path": "",
+      "section": "본문"
+    },
+    "3CKe2m": {
+      "title": "목적",
+      "level": 2.0,
+      "ref": "1~4",
+      "parent": "mtj1Wk",
+      "children": [
+        "kgsREp"
+      ],
+      "paras": [
+        "1"
+      ],
+      "path": "목적",
+      "section": "본문"
+    },
+    "kgsREp": {
+      "title": "목적 달성",
+      "level": 3.0,
+      "ref": "2~4",
+      "parent": "3CKe2m",
+      "children": [],
+      "paras": [
+        "2",
+        "3",
+        "4"
+      ],
+      "path": "목적 > 목적 달성",
+      "section": "본문"
+    },
+    "jBozvF": {
+      "title": "적용",
+      "level": 2.0,
+      "ref": "한4.1",
+      "parent": "mtj1Wk",
+      "children": [],
+      "paras": [
+        "한4.1"
+      ],
+      "path": "적용",
+      "section": "본문"
+    },
+    "4aNSKr": {
+      "title": "적용범위",
+      "level": 2.0,
+      "ref": "5~8",
+      "parent": "mtj1Wk",
+      "children": [],
+      "paras": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "path": "적용범위",
+      "section": "본문"
+    },
+    "sM1U0t": {
+      "title": "인식",
+      "level": 2.0,
+      "ref": "9~45",
+      "parent": "mtj1Wk",
+      "children": [
+        "l3leA7",
+        "ds2v9B",
+        "xYL1TP",
+        "p1vJ25",
+        "AQB8cb"
+      ],
+      "paras": [],
+      "path": "인식",
+      "section": "본문"
+    },
+    "l3leA7": {
+      "title": "계약을 식별함",
+      "level": 3.0,
+      "ref": "9~16",
+      "parent": "sM1U0t",
+      "children": [],
+      "paras": [
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      "path": "인식 > 계약을 식별함",
+      "section": "본문"
+    },
+    "ds2v9B": {
+      "title": "계약의 결합",
+      "level": 3.0,
+      "ref": "17",
+      "parent": "sM1U0t",
+      "children": [],
+      "paras": [
+        "17"
+      ],
+      "path": "인식 > 계약의 결합",
+      "section": "본문"
+    },
+    "xYL1TP": {
+      "title": "계약변경",
+      "level": 3.0,
+      "ref": "18~21",
+      "parent": "sM1U0t",
+      "children": [],
+      "paras": [
+        "18",
+        "19",
+        "20",
+        "21"
+      ],
+      "path": "인식 > 계약변경",
+      "section": "본문"
+    },
+    "p1vJ25": {
+      "title": "수행의무를 식별함",
+      "level": 3.0,
+      "ref": "22~30",
+      "parent": "sM1U0t",
+      "children": [
+        "qNvjgx",
+        "8P5E9V"
+      ],
+      "paras": [
+        "22",
+        "23"
+      ],
+      "path": "인식 > 수행의무를 식별함",
+      "section": "본문"
+    },
+    "qNvjgx": {
+      "title": "고객과의 계약으로 한 약속",
+      "level": 4.0,
+      "ref": "24~25",
+      "parent": "p1vJ25",
+      "children": [],
+      "paras": [
+        "24",
+        "25"
+      ],
+      "path": "인식 > 수행의무를 식별함 > 고객과의 계약으로 한 약속",
+      "section": "본문"
+    },
+    "8P5E9V": {
+      "title": "구별되는 재화나 용역",
+      "level": 4.0,
+      "ref": "26~30",
+      "parent": "p1vJ25",
+      "children": [],
+      "paras": [
+        "26",
+        "27",
+        "28",
+        "29",
+        "30"
+      ],
+      "path": "인식 > 수행의무를 식별함 > 구별되는 재화나 용역",
+      "section": "본문"
+    },
+    "AQB8cb": {
+      "title": "수행의무의 이행",
+      "level": 3.0,
+      "ref": "31~45",
+      "parent": "sM1U0t",
+      "children": [
+        "5HDlPF",
+        "lIlmTb",
+        "bz3jWR",
+        "Hkislf"
+      ],
+      "paras": [
+        "31",
+        "32",
+        "33",
+        "34"
+      ],
+      "path": "인식 > 수행의무의 이행",
+      "section": "본문"
+    },
+    "5HDlPF": {
+      "title": "기간에 걸쳐 이행하는 수행의무",
+      "level": 4.0,
+      "ref": "35~37",
+      "parent": "AQB8cb",
+      "children": [],
+      "paras": [
+        "35",
+        "36",
+        "37"
+      ],
+      "path": "인식 > 수행의무의 이행 > 기간에 걸쳐 이행하는 수행의무",
+      "section": "본문"
+    },
+    "lIlmTb": {
+      "title": "한 시점에 이행하는 수행의무",
+      "level": 4.0,
+      "ref": "38",
+      "parent": "AQB8cb",
+      "children": [],
+      "paras": [
+        "38"
+      ],
+      "path": "인식 > 수행의무의 이행 > 한 시점에 이행하는 수행의무",
+      "section": "본문"
+    },
+    "bz3jWR": {
+      "title": "수행의무의 진행률을 측정함",
+      "level": 4.0,
+      "ref": "39~43",
+      "parent": "AQB8cb",
+      "children": [
+        "H8vY9D"
+      ],
+      "paras": [
+        "39",
+        "40"
+      ],
+      "path": "인식 > 수행의무의 이행 > 수행의무의 진행률을 측정함",
+      "section": "본문"
+    },
+    "H8vY9D": {
+      "title": "진행률 측정방법",
+      "level": 5.0,
+      "ref": "41~43",
+      "parent": "bz3jWR",
+      "children": [],
+      "paras": [
+        "41",
+        "42",
+        "43"
+      ],
+      "path": "인식 > 수행의무의 이행 > 수행의무의 진행률을 측정함 > 진행률 측정방법",
+      "section": "본문"
+    },
+    "Hkislf": {
+      "title": "합리적인 진행률 측정",
+      "level": 4.0,
+      "ref": "44~45",
+      "parent": "AQB8cb",
+      "children": [],
+      "paras": [
+        "44",
+        "45"
+      ],
+      "path": "인식 > 수행의무의 이행 > 합리적인 진행률 측정",
+      "section": "본문"
+    },
+    "rD7ch9": {
+      "title": "측정",
+      "level": 2.0,
+      "ref": "46~90",
+      "parent": "mtj1Wk",
+      "children": [
+        "O28gcg",
+        "cTpTDN",
+        "Cpmvf4"
+      ],
+      "paras": [
+        "46"
+      ],
+      "path": "측정",
+      "section": "본문"
+    },
+    "O28gcg": {
+      "title": "거래가격을 산정함",
+      "level": 3.0,
+      "ref": "47~72",
+      "parent": "rD7ch9",
+      "children": [
+        "3q1lWH",
+        "Ag62GJ",
+        "ySAFHt",
+        "FJvsfz"
+      ],
+      "paras": [
+        "47",
+        "48",
+        "49"
+      ],
+      "path": "측정 > 거래가격을 산정함",
+      "section": "본문"
+    },
+    "3q1lWH": {
+      "title": "변동대가",
+      "level": 4.0,
+      "ref": "50~59",
+      "parent": "O28gcg",
+      "children": [
+        "2Tb1uu",
+        "lKmqLc",
+        "85VgUd"
+      ],
+      "paras": [
+        "50",
+        "51",
+        "52",
+        "53",
+        "54"
+      ],
+      "path": "측정 > 거래가격을 산정함 > 변동대가",
+      "section": "본문"
+    },
+    "2Tb1uu": {
+      "title": "환불부채",
+      "level": 5.0,
+      "ref": "55",
+      "parent": "3q1lWH",
+      "children": [],
+      "paras": [
+        "55"
+      ],
+      "path": "측정 > 거래가격을 산정함 > 변동대가 > 환불부채",
+      "section": "본문"
+    },
+    "lKmqLc": {
+      "title": "변동대가 추정치를 제약함",
+      "level": 5.0,
+      "ref": "56~58",
+      "parent": "3q1lWH",
+      "children": [],
+      "paras": [
+        "56",
+        "57",
+        "58"
+      ],
+      "path": "측정 > 거래가격을 산정함 > 변동대가 > 변동대가 추정치를 제약함",
+      "section": "본문"
+    },
+    "85VgUd": {
+      "title": "변동대가의 재검토",
+      "level": 5.0,
+      "ref": "59",
+      "parent": "3q1lWH",
+      "children": [],
+      "paras": [
+        "59"
+      ],
+      "path": "측정 > 거래가격을 산정함 > 변동대가 > 변동대가의 재검토",
+      "section": "본문"
+    },
+    "Ag62GJ": {
+      "title": "계약에 있는 유의적인 금융요소",
+      "level": 4.0,
+      "ref": "60~65",
+      "parent": "O28gcg",
+      "children": [],
+      "paras": [
+        "60",
+        "61",
+        "62",
+        "63",
+        "64",
+        "65"
+      ],
+      "path": "측정 > 거래가격을 산정함 > 계약에 있는 유의적인 금융요소",
+      "section": "본문"
+    },
+    "ySAFHt": {
+      "title": "비현금 대가",
+      "level": 4.0,
+      "ref": "66~69",
+      "parent": "O28gcg",
+      "children": [],
+      "paras": [
+        "66",
+        "67",
+        "68",
+        "69"
+      ],
+      "path": "측정 > 거래가격을 산정함 > 비현금 대가",
+      "section": "본문"
+    },
+    "FJvsfz": {
+      "title": "고객에게 지급할 대가",
+      "level": 4.0,
+      "ref": "70~72",
+      "parent": "O28gcg",
+      "children": [],
+      "paras": [
+        "70",
+        "71",
+        "72"
+      ],
+      "path": "측정 > 거래가격을 산정함 > 고객에게 지급할 대가",
+      "section": "본문"
+    },
+    "cTpTDN": {
+      "title": "거래가격을 수행의무에 배분함",
+      "level": 3.0,
+      "ref": "73~86",
+      "parent": "rD7ch9",
+      "children": [
+        "TtGOPn",
+        "7XbqhS",
+        "f9OXP2"
+      ],
+      "paras": [
+        "73",
+        "74",
+        "75"
+      ],
+      "path": "측정 > 거래가격을 수행의무에 배분함",
+      "section": "본문"
+    },
+    "TtGOPn": {
+      "title": "개별 판매가격에 기초한 배분",
+      "level": 4.0,
+      "ref": "76~80",
+      "parent": "cTpTDN",
+      "children": [],
+      "paras": [
+        "76",
+        "77",
+        "78",
+        "79",
+        "80"
+      ],
+      "path": "측정 > 거래가격을 수행의무에 배분함 > 개별 판매가격에 기초한 배분",
+      "section": "본문"
+    },
+    "7XbqhS": {
+      "title": "할인액의 배분",
+      "level": 4.0,
+      "ref": "81~83",
+      "parent": "cTpTDN",
+      "children": [],
+      "paras": [
+        "81",
+        "82",
+        "83"
+      ],
+      "path": "측정 > 거래가격을 수행의무에 배분함 > 할인액의 배분",
+      "section": "본문"
+    },
+    "f9OXP2": {
+      "title": "변동대가의 배분",
+      "level": 4.0,
+      "ref": "84~86",
+      "parent": "cTpTDN",
+      "children": [],
+      "paras": [
+        "84",
+        "85",
+        "86"
+      ],
+      "path": "측정 > 거래가격을 수행의무에 배분함 > 변동대가의 배분",
+      "section": "본문"
+    },
+    "Cpmvf4": {
+      "title": "거래가격의 변동",
+      "level": 3.0,
+      "ref": "87~90",
+      "parent": "rD7ch9",
+      "children": [],
+      "paras": [
+        "87",
+        "88",
+        "89",
+        "90"
+      ],
+      "path": "측정 > 거래가격의 변동",
+      "section": "본문"
+    },
+    "T51p4P": {
+      "title": "계약원가",
+      "level": 2.0,
+      "ref": "91~104",
+      "parent": "mtj1Wk",
+      "children": [
+        "Ks6E5m",
+        "TgRpnd",
+        "hyCSKL"
+      ],
+      "paras": [],
+      "path": "계약원가",
+      "section": "본문"
+    },
+    "Ks6E5m": {
+      "title": "계약체결 증분원가",
+      "level": 3.0,
+      "ref": "91~94",
+      "parent": "T51p4P",
+      "children": [],
+      "paras": [
+        "91",
+        "92",
+        "93",
+        "94"
+      ],
+      "path": "계약원가 > 계약체결 증분원가",
+      "section": "본문"
+    },
+    "TgRpnd": {
+      "title": "계약이행원가",
+      "level": 3.0,
+      "ref": "95~98",
+      "parent": "T51p4P",
+      "children": [],
+      "paras": [
+        "95",
+        "96",
+        "97",
+        "98"
+      ],
+      "path": "계약원가 > 계약이행원가",
+      "section": "본문"
+    },
+    "hyCSKL": {
+      "title": "상각과 손상",
+      "level": 3.0,
+      "ref": "99~104",
+      "parent": "T51p4P",
+      "children": [],
+      "paras": [
+        "99",
+        "100",
+        "101",
+        "102",
+        "103",
+        "104"
+      ],
+      "path": "계약원가 > 상각과 손상",
+      "section": "본문"
+    },
+    "W6Bh7o": {
+      "title": "표시",
+      "level": 2.0,
+      "ref": "105~109",
+      "parent": "mtj1Wk",
+      "children": [],
+      "paras": [
+        "105",
+        "106",
+        "107",
+        "108",
+        "109"
+      ],
+      "path": "표시",
+      "section": "본문"
+    },
+    "fMrvaF": {
+      "title": "공시",
+      "level": 2.0,
+      "ref": "110~한129.5",
+      "parent": "mtj1Wk",
+      "children": [
+        "1KOatJ",
+        "bzQL7S",
+        "LeIwTR",
+        "iIpmoR",
+        "uslBeH"
+      ],
+      "paras": [
+        "110",
+        "111",
+        "112"
+      ],
+      "path": "공시",
+      "section": "본문"
+    },
+    "1KOatJ": {
+      "title": "고객과의 계약",
+      "level": 3.0,
+      "ref": "113~122",
+      "parent": "fMrvaF",
+      "children": [
+        "CgFt7E",
+        "SMeYao",
+        "2IbOfX",
+        "ecpv5y"
+      ],
+      "paras": [
+        "113"
+      ],
+      "path": "공시 > 고객과의 계약",
+      "section": "본문"
+    },
+    "CgFt7E": {
+      "title": "수익의 구분",
+      "level": 4.0,
+      "ref": "114~115",
+      "parent": "1KOatJ",
+      "children": [],
+      "paras": [
+        "114",
+        "115"
+      ],
+      "path": "공시 > 고객과의 계약 > 수익의 구분",
+      "section": "본문"
+    },
+    "SMeYao": {
+      "title": "계약 잔액",
+      "level": 4.0,
+      "ref": "116~118",
+      "parent": "1KOatJ",
+      "children": [],
+      "paras": [
+        "116",
+        "117",
+        "118"
+      ],
+      "path": "공시 > 고객과의 계약 > 계약 잔액",
+      "section": "본문"
+    },
+    "2IbOfX": {
+      "title": "수행의무",
+      "level": 4.0,
+      "ref": "119",
+      "parent": "1KOatJ",
+      "children": [],
+      "paras": [
+        "119"
+      ],
+      "path": "공시 > 고객과의 계약 > 수행의무",
+      "section": "본문"
+    },
+    "ecpv5y": {
+      "title": "나머지 수행의무에 배분된 거래가격",
+      "level": 4.0,
+      "ref": "120~122",
+      "parent": "1KOatJ",
+      "children": [],
+      "paras": [
+        "120",
+        "121",
+        "122"
+      ],
+      "path": "공시 > 고객과의 계약 > 나머지 수행의무에 배분된 거래가격",
+      "section": "본문"
+    },
+    "bzQL7S": {
+      "title": "이 기준서를 적용하면서 내린 유의적인 판단",
+      "level": 3.0,
+      "ref": "123~126",
+      "parent": "fMrvaF",
+      "children": [
+        "0eXzQ4",
+        "CSXeaG"
+      ],
+      "paras": [
+        "123"
+      ],
+      "path": "공시 > 이 기준서를 적용하면서 내린 유의적인 판단",
+      "section": "본문"
+    },
+    "0eXzQ4": {
+      "title": "수행의무를 이행하는 시기를 판단함",
+      "level": 4.0,
+      "ref": "124~125",
+      "parent": "bzQL7S",
+      "children": [],
+      "paras": [
+        "124",
+        "125"
+      ],
+      "path": "공시 > 이 기준서를 적용하면서 내린 유의적인 판단 > 수행의무를 이행하는 시기를 판단함",
+      "section": "본문"
+    },
+    "CSXeaG": {
+      "title": "거래가격과 수행의무에 배분하는 금액을 산정함",
+      "level": 4.0,
+      "ref": "126",
+      "parent": "bzQL7S",
+      "children": [],
+      "paras": [
+        "126"
+      ],
+      "path": "공시 > 이 기준서를 적용하면서 내린 유의적인 판단 > 거래가격과 수행의무에 배분하는 금액을 산정함",
+      "section": "본문"
+    },
+    "LeIwTR": {
+      "title": "고객과의 계약을 체결하거나 이행하는 데 든 원가 중에서 인식한 자산",
+      "level": 3.0,
+      "ref": "127~128",
+      "parent": "fMrvaF",
+      "children": [],
+      "paras": [
+        "127",
+        "128"
+      ],
+      "path": "공시 > 고객과의 계약을 체결하거나 이행하는 데 든 원가 중에서 인식한 자산",
+      "section": "본문"
+    },
+    "iIpmoR": {
+      "title": "실무적 간편법",
+      "level": 3.0,
+      "ref": "129",
+      "parent": "fMrvaF",
+      "children": [],
+      "paras": [
+        "129"
+      ],
+      "path": "공시 > 실무적 간편법",
+      "section": "본문"
+    },
+    "uslBeH": {
+      "title": "원가 기준 투입법 적용 계약의 추가 공시",
+      "level": 3.0,
+      "ref": "한129.1~한129.5",
+      "parent": "fMrvaF",
+      "children": [],
+      "paras": [
+        "한129.1",
+        "한129.2",
+        "한129.3",
+        "한129.4",
+        "한129.5"
+      ],
+      "path": "공시 > 원가 기준 투입법 적용 계약의 추가 공시",
+      "section": "본문"
+    },
+    "fGwEsL": {
+      "title": "부록 A. 용어의 정의",
+      "level": 1.5,
+      "ref": "",
+      "parent": "mtj1Wk",
+      "children": [],
+      "paras": [
+        "웩5"
+      ],
+      "path": "부록 A. 용어의 정의",
+      "section": "부록A"
+    },
+    "OPNV6t": {
+      "title": "부록 B 적용지침",
+      "level": 1.5,
+      "ref": "B1~B89",
+      "parent": "mtj1Wk",
+      "children": [
+        "yyaySE",
+        "Qfm53M",
+        "1IdzfY",
+        "KaYPON",
+        "XLz6Gv",
+        "oHAy0O",
+        "Ruylm4",
+        "n94QVz",
+        "bxCGNy",
+        "vw8tzF",
+        "RPTMXY",
+        "PiNlZp",
+        "Ovyudt",
+        "YJYb7U"
+      ],
+      "paras": [
+        "B1",
+        "웩6"
+      ],
+      "path": "부록 B 적용지침",
+      "section": "부록B"
+    },
+    "yyaySE": {
+      "title": "기간에 걸쳐 이행하는 수행의무",
+      "level": 3.5,
+      "ref": "B2~B13",
+      "parent": "OPNV6t",
+      "children": [
+        "KMTj0R",
+        "VB6r1W",
+        "CBJ3sK",
+        "5xZWrk"
+      ],
+      "paras": [
+        "B2"
+      ],
+      "path": "부록 B 적용지침 > 기간에 걸쳐 이행하는 수행의무",
+      "section": "부록B"
+    },
+    "KMTj0R": {
+      "title": "기업의 수행에서 효익을 동시에 얻고 소비(문단 35⑴)",
+      "level": 4.5,
+      "ref": "B3~B4",
+      "parent": "yyaySE",
+      "children": [],
+      "paras": [
+        "B3",
+        "B4"
+      ],
+      "path": "부록 B 적용지침 > 기간에 걸쳐 이행하는 수행의무 > 기업의 수행에서 효익을 동시에 얻고 소비(문단 35⑴)",
+      "section": "부록B"
+    },
+    "VB6r1W": {
+      "title": "만들어지거나 가치가 높아지는 대로 고객이 통제하는 자산(문단 35⑵)",
+      "level": 4.5,
+      "ref": "B5",
+      "parent": "yyaySE",
+      "children": [],
+      "paras": [
+        "B5"
+      ],
+      "path": "부록 B 적용지침 > 기간에 걸쳐 이행하는 수행의무 > 만들어지거나 가치가 높아지는 대로 고객이 통제하는 자산(문단 35⑵)",
+      "section": "부록B"
+    },
+    "CBJ3sK": {
+      "title": "기업이 수행하여 대체 용도가 있는 자산을 만들지 않는다(문단 35⑶)",
+      "level": 4.5,
+      "ref": "B6~B8",
+      "parent": "yyaySE",
+      "children": [],
+      "paras": [
+        "B6",
+        "B7",
+        "B8"
+      ],
+      "path": "부록 B 적용지침 > 기간에 걸쳐 이행하는 수행의무 > 기업이 수행하여 대체 용도가 있는 자산을 만들지 않는다(문단 35⑶)",
+      "section": "부록B"
+    },
+    "5xZWrk": {
+      "title": "지금까지 수행을 완료한 부분에 대한 지급청구권",
+      "level": 4.5,
+      "ref": "B9~B13",
+      "parent": "yyaySE",
+      "children": [],
+      "paras": [
+        "B9",
+        "B10",
+        "B11",
+        "B12",
+        "B13"
+      ],
+      "path": "부록 B 적용지침 > 기간에 걸쳐 이행하는 수행의무 > 지금까지 수행을 완료한 부분에 대한 지급청구권",
+      "section": "부록B"
+    },
+    "Qfm53M": {
+      "title": "수행의무의 진행률 측정 방법",
+      "level": 3.5,
+      "ref": "B14~B19",
+      "parent": "OPNV6t",
+      "children": [
+        "BqPAS9",
+        "RF3mRJ"
+      ],
+      "paras": [
+        "B14"
+      ],
+      "path": "부록 B 적용지침 > 수행의무의 진행률 측정 방법",
+      "section": "부록B"
+    },
+    "BqPAS9": {
+      "title": "산출법",
+      "level": 4.5,
+      "ref": "B15~B17",
+      "parent": "Qfm53M",
+      "children": [],
+      "paras": [
+        "B15",
+        "B16",
+        "B17"
+      ],
+      "path": "부록 B 적용지침 > 수행의무의 진행률 측정 방법 > 산출법",
+      "section": "부록B"
+    },
+    "RF3mRJ": {
+      "title": "투입법",
+      "level": 4.5,
+      "ref": "B18~B19",
+      "parent": "Qfm53M",
+      "children": [],
+      "paras": [
+        "B18",
+        "B19"
+      ],
+      "path": "부록 B 적용지침 > 수행의무의 진행률 측정 방법 > 투입법",
+      "section": "부록B"
+    },
+    "1IdzfY": {
+      "title": "반품권이 있는 판매",
+      "level": 3.5,
+      "ref": "B20~B27",
+      "parent": "OPNV6t",
+      "children": [],
+      "paras": [
+        "B20",
+        "B21",
+        "B22",
+        "B23",
+        "B24",
+        "B25",
+        "B26",
+        "B27"
+      ],
+      "path": "부록 B 적용지침 > 반품권이 있는 판매",
+      "section": "부록B"
+    },
+    "KaYPON": {
+      "title": "보증",
+      "level": 3.5,
+      "ref": "B28~B33",
+      "parent": "OPNV6t",
+      "children": [],
+      "paras": [
+        "B28",
+        "B29",
+        "B30",
+        "B31",
+        "B32",
+        "B33"
+      ],
+      "path": "부록 B 적용지침 > 보증",
+      "section": "부록B"
+    },
+    "XLz6Gv": {
+      "title": "본인 대 대리인의 고려사항",
+      "level": 3.5,
+      "ref": "B34~B38",
+      "parent": "OPNV6t",
+      "children": [],
+      "paras": [
+        "B34",
+        "B34A",
+        "B35",
+        "B35A",
+        "B35B",
+        "B36",
+        "B37",
+        "B37A",
+        "B38"
+      ],
+      "path": "부록 B 적용지침 > 본인 대 대리인의 고려사항",
+      "section": "부록B"
+    },
+    "oHAy0O": {
+      "title": "추가 재화나 용역에 대한 고객의 선택권",
+      "level": 3.5,
+      "ref": "B39~B43",
+      "parent": "OPNV6t",
+      "children": [],
+      "paras": [
+        "B39",
+        "B40",
+        "B41",
+        "B42",
+        "B43"
+      ],
+      "path": "부록 B 적용지침 > 추가 재화나 용역에 대한 고객의 선택권",
+      "section": "부록B"
+    },
+    "Ruylm4": {
+      "title": "고객이 행사하지 아니한 권리",
+      "level": 3.5,
+      "ref": "B44~B47",
+      "parent": "OPNV6t",
+      "children": [],
+      "paras": [
+        "B44",
+        "B45",
+        "B46",
+        "B47"
+      ],
+      "path": "부록 B 적용지침 > 고객이 행사하지 아니한 권리",
+      "section": "부록B"
+    },
+    "n94QVz": {
+      "title": "환불되지 않는 선수수수료(와 일부 관련 원가)",
+      "level": 3.5,
+      "ref": "B48~B51",
+      "parent": "OPNV6t",
+      "children": [],
+      "paras": [
+        "B48",
+        "B49",
+        "B50",
+        "B51"
+      ],
+      "path": "부록 B 적용지침 > 환불되지 않는 선수수수료(와 일부 관련 원가)",
+      "section": "부록B"
+    },
+    "bxCGNy": {
+      "title": "라이선싱",
+      "level": 3.5,
+      "ref": "B52~B63B",
+      "parent": "OPNV6t",
+      "children": [
+        "PQHzk5",
+        "Y3rhox"
+      ],
+      "paras": [
+        "B52",
+        "B53",
+        "B54",
+        "B55",
+        "B56"
+      ],
+      "path": "부록 B 적용지침 > 라이선싱",
+      "section": "부록B"
+    },
+    "PQHzk5": {
+      "title": "기업 약속의 성격을 판단함",
+      "level": 4.5,
+      "ref": "B57~B62",
+      "parent": "bxCGNy",
+      "children": [],
+      "paras": [
+        "B57",
+        "B58",
+        "B59",
+        "B59A",
+        "B60",
+        "B61",
+        "B62"
+      ],
+      "path": "부록 B 적용지침 > 라이선싱 > 기업 약속의 성격을 판단함",
+      "section": "부록B"
+    },
+    "Y3rhox": {
+      "title": "판매기준 로열티나 사용기준 로열티",
+      "level": 4.5,
+      "ref": "B63~B63B",
+      "parent": "bxCGNy",
+      "children": [],
+      "paras": [
+        "B63",
+        "B63A",
+        "B63B"
+      ],
+      "path": "부록 B 적용지침 > 라이선싱 > 판매기준 로열티나 사용기준 로열티",
+      "section": "부록B"
+    },
+    "vw8tzF": {
+      "title": "재매입약정",
+      "level": 3.5,
+      "ref": "B64~B76",
+      "parent": "OPNV6t",
+      "children": [
+        "ha4Yp2",
+        "24pQtH"
+      ],
+      "paras": [
+        "B64",
+        "B65"
+      ],
+      "path": "부록 B 적용지침 > 재매입약정",
+      "section": "부록B"
+    },
+    "ha4Yp2": {
+      "title": "선도나 콜옵션",
+      "level": 4.5,
+      "ref": "B66~B69",
+      "parent": "vw8tzF",
+      "children": [],
+      "paras": [
+        "B66",
+        "B67",
+        "B68",
+        "B69"
+      ],
+      "path": "부록 B 적용지침 > 재매입약정 > 선도나 콜옵션",
+      "section": "부록B"
+    },
+    "24pQtH": {
+      "title": "풋옵션",
+      "level": 4.5,
+      "ref": "B70~B76",
+      "parent": "vw8tzF",
+      "children": [],
+      "paras": [
+        "B70",
+        "B71",
+        "B72",
+        "B73",
+        "B74",
+        "B75",
+        "B76"
+      ],
+      "path": "부록 B 적용지침 > 재매입약정 > 풋옵션",
+      "section": "부록B"
+    },
+    "RPTMXY": {
+      "title": "위탁약정",
+      "level": 3.5,
+      "ref": "B77~B78",
+      "parent": "OPNV6t",
+      "children": [],
+      "paras": [
+        "B77",
+        "B78"
+      ],
+      "path": "부록 B 적용지침 > 위탁약정",
+      "section": "부록B"
+    },
+    "PiNlZp": {
+      "title": "미인도청구약정",
+      "level": 3.5,
+      "ref": "B79~B82",
+      "parent": "OPNV6t",
+      "children": [],
+      "paras": [
+        "B79",
+        "B80",
+        "B81",
+        "B82"
+      ],
+      "path": "부록 B 적용지침 > 미인도청구약정",
+      "section": "부록B"
+    },
+    "Ovyudt": {
+      "title": "고객의 인수",
+      "level": 3.5,
+      "ref": "B83~B86",
+      "parent": "OPNV6t",
+      "children": [],
+      "paras": [
+        "B83",
+        "B84",
+        "B85",
+        "B86"
+      ],
+      "path": "부록 B 적용지침 > 고객의 인수",
+      "section": "부록B"
+    },
+    "YJYb7U": {
+      "title": "수익의 구분 공시",
+      "level": 3.5,
+      "ref": "B87~B89",
+      "parent": "OPNV6t",
+      "children": [],
+      "paras": [
+        "B87",
+        "B88",
+        "B89"
+      ],
+      "path": "부록 B 적용지침 > 수익의 구분 공시",
+      "section": "부록B"
+    },
+    "Et3hDA": {
+      "title": "부록 C. 시행일과 경과 규정",
+      "level": 1.5,
+      "ref": "C1~C10",
+      "parent": "mtj1Wk",
+      "children": [
+        "y0kqvd",
+        "1Kj78O",
+        "xR6Jtz"
+      ],
+      "paras": [
+        "웩7"
+      ],
+      "path": "부록 C. 시행일과 경과 규정",
+      "section": "부록C"
+    },
+    "y0kqvd": {
+      "title": "시행일",
+      "level": 2.5,
+      "ref": "C1~한C1.1",
+      "parent": "Et3hDA",
+      "children": [],
+      "paras": [
+        "C1",
+        "C1A",
+        "C1B",
+        "C1C",
+        "한C1.1"
+      ],
+      "path": "부록 C. 시행일과 경과 규정 > 시행일",
+      "section": "부록C"
+    },
+    "1Kj78O": {
+      "title": "경과 규정",
+      "level": 2.5,
+      "ref": "C2~C9",
+      "parent": "Et3hDA",
+      "children": [
+        "hVmPG4"
+      ],
+      "paras": [
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C7A",
+        "C8",
+        "C8A"
+      ],
+      "path": "부록 C. 시행일과 경과 규정 > 경과 규정",
+      "section": "부록C"
+    },
+    "hVmPG4": {
+      "title": "기업회계기준서 제1109호 참조",
+      "level": 3.5,
+      "ref": "C9",
+      "parent": "1Kj78O",
+      "children": [],
+      "paras": [
+        "C9"
+      ],
+      "path": "부록 C. 시행일과 경과 규정 > 경과 규정 > 기업회계기준서 제1109호 참조",
+      "section": "부록C"
+    },
+    "xR6Jtz": {
+      "title": "다른 기준서의 대체",
+      "level": 2.5,
+      "ref": "C10",
+      "parent": "Et3hDA",
+      "children": [],
+      "paras": [
+        "C10"
+      ],
+      "path": "부록 C. 시행일과 경과 규정 > 다른 기준서의 대체",
+      "section": "부록C"
+    }
+  },
+  "para_to_concept": {
+    "1": "3CKe2m",
+    "2": "kgsREp",
+    "3": "kgsREp",
+    "4": "kgsREp",
+    "한4.1": "jBozvF",
+    "5": "4aNSKr",
+    "6": "4aNSKr",
+    "7": "4aNSKr",
+    "8": "4aNSKr",
+    "9": "l3leA7",
+    "10": "l3leA7",
+    "11": "l3leA7",
+    "12": "l3leA7",
+    "13": "l3leA7",
+    "14": "l3leA7",
+    "15": "l3leA7",
+    "16": "l3leA7",
+    "17": "ds2v9B",
+    "18": "xYL1TP",
+    "19": "xYL1TP",
+    "20": "xYL1TP",
+    "21": "xYL1TP",
+    "22": "p1vJ25",
+    "23": "p1vJ25",
+    "24": "qNvjgx",
+    "25": "qNvjgx",
+    "26": "8P5E9V",
+    "27": "8P5E9V",
+    "28": "8P5E9V",
+    "29": "8P5E9V",
+    "30": "8P5E9V",
+    "31": "AQB8cb",
+    "32": "AQB8cb",
+    "33": "AQB8cb",
+    "34": "AQB8cb",
+    "35": "5HDlPF",
+    "36": "5HDlPF",
+    "37": "5HDlPF",
+    "38": "lIlmTb",
+    "39": "bz3jWR",
+    "40": "bz3jWR",
+    "41": "H8vY9D",
+    "42": "H8vY9D",
+    "43": "H8vY9D",
+    "44": "Hkislf",
+    "45": "Hkislf",
+    "46": "rD7ch9",
+    "47": "O28gcg",
+    "48": "O28gcg",
+    "49": "O28gcg",
+    "50": "3q1lWH",
+    "51": "3q1lWH",
+    "52": "3q1lWH",
+    "53": "3q1lWH",
+    "54": "3q1lWH",
+    "55": "2Tb1uu",
+    "56": "lKmqLc",
+    "57": "lKmqLc",
+    "58": "lKmqLc",
+    "59": "85VgUd",
+    "60": "Ag62GJ",
+    "61": "Ag62GJ",
+    "62": "Ag62GJ",
+    "63": "Ag62GJ",
+    "64": "Ag62GJ",
+    "65": "Ag62GJ",
+    "66": "ySAFHt",
+    "67": "ySAFHt",
+    "68": "ySAFHt",
+    "69": "ySAFHt",
+    "70": "FJvsfz",
+    "71": "FJvsfz",
+    "72": "FJvsfz",
+    "73": "cTpTDN",
+    "74": "cTpTDN",
+    "75": "cTpTDN",
+    "76": "TtGOPn",
+    "77": "TtGOPn",
+    "78": "TtGOPn",
+    "79": "TtGOPn",
+    "80": "TtGOPn",
+    "81": "7XbqhS",
+    "82": "7XbqhS",
+    "83": "7XbqhS",
+    "84": "f9OXP2",
+    "85": "f9OXP2",
+    "86": "f9OXP2",
+    "87": "Cpmvf4",
+    "88": "Cpmvf4",
+    "89": "Cpmvf4",
+    "90": "Cpmvf4",
+    "91": "Ks6E5m",
+    "92": "Ks6E5m",
+    "93": "Ks6E5m",
+    "94": "Ks6E5m",
+    "95": "TgRpnd",
+    "96": "TgRpnd",
+    "97": "TgRpnd",
+    "98": "TgRpnd",
+    "99": "hyCSKL",
+    "100": "hyCSKL",
+    "101": "hyCSKL",
+    "102": "hyCSKL",
+    "103": "hyCSKL",
+    "104": "hyCSKL",
+    "105": "W6Bh7o",
+    "106": "W6Bh7o",
+    "107": "W6Bh7o",
+    "108": "W6Bh7o",
+    "109": "W6Bh7o",
+    "110": "fMrvaF",
+    "111": "fMrvaF",
+    "112": "fMrvaF",
+    "113": "1KOatJ",
+    "114": "CgFt7E",
+    "115": "CgFt7E",
+    "116": "SMeYao",
+    "117": "SMeYao",
+    "118": "SMeYao",
+    "119": "2IbOfX",
+    "120": "ecpv5y",
+    "121": "ecpv5y",
+    "122": "ecpv5y",
+    "123": "bzQL7S",
+    "124": "0eXzQ4",
+    "125": "0eXzQ4",
+    "126": "CSXeaG",
+    "127": "LeIwTR",
+    "128": "LeIwTR",
+    "129": "iIpmoR",
+    "한129.1": "uslBeH",
+    "한129.2": "uslBeH",
+    "한129.3": "uslBeH",
+    "한129.4": "uslBeH",
+    "한129.5": "uslBeH",
+    "웩5": "fGwEsL",
+    "B1": "OPNV6t",
+    "웩6": "OPNV6t",
+    "B2": "yyaySE",
+    "B3": "KMTj0R",
+    "B4": "KMTj0R",
+    "B5": "VB6r1W",
+    "B6": "CBJ3sK",
+    "B7": "CBJ3sK",
+    "B8": "CBJ3sK",
+    "B9": "5xZWrk",
+    "B10": "5xZWrk",
+    "B11": "5xZWrk",
+    "B12": "5xZWrk",
+    "B13": "5xZWrk",
+    "B14": "Qfm53M",
+    "B15": "BqPAS9",
+    "B16": "BqPAS9",
+    "B17": "BqPAS9",
+    "B18": "RF3mRJ",
+    "B19": "RF3mRJ",
+    "B20": "1IdzfY",
+    "B21": "1IdzfY",
+    "B22": "1IdzfY",
+    "B23": "1IdzfY",
+    "B24": "1IdzfY",
+    "B25": "1IdzfY",
+    "B26": "1IdzfY",
+    "B27": "1IdzfY",
+    "B28": "KaYPON",
+    "B29": "KaYPON",
+    "B30": "KaYPON",
+    "B31": "KaYPON",
+    "B32": "KaYPON",
+    "B33": "KaYPON",
+    "B34": "XLz6Gv",
+    "B34A": "XLz6Gv",
+    "B35": "XLz6Gv",
+    "B35A": "XLz6Gv",
+    "B35B": "XLz6Gv",
+    "B36": "XLz6Gv",
+    "B37": "XLz6Gv",
+    "B37A": "XLz6Gv",
+    "B38": "XLz6Gv",
+    "B39": "oHAy0O",
+    "B40": "oHAy0O",
+    "B41": "oHAy0O",
+    "B42": "oHAy0O",
+    "B43": "oHAy0O",
+    "B44": "Ruylm4",
+    "B45": "Ruylm4",
+    "B46": "Ruylm4",
+    "B47": "Ruylm4",
+    "B48": "n94QVz",
+    "B49": "n94QVz",
+    "B50": "n94QVz",
+    "B51": "n94QVz",
+    "B52": "bxCGNy",
+    "B53": "bxCGNy",
+    "B54": "bxCGNy",
+    "B55": "bxCGNy",
+    "B56": "bxCGNy",
+    "B57": "PQHzk5",
+    "B58": "PQHzk5",
+    "B59": "PQHzk5",
+    "B59A": "PQHzk5",
+    "B60": "PQHzk5",
+    "B61": "PQHzk5",
+    "B62": "PQHzk5",
+    "B63": "Y3rhox",
+    "B63A": "Y3rhox",
+    "B63B": "Y3rhox",
+    "B64": "vw8tzF",
+    "B65": "vw8tzF",
+    "B66": "ha4Yp2",
+    "B67": "ha4Yp2",
+    "B68": "ha4Yp2",
+    "B69": "ha4Yp2",
+    "B70": "24pQtH",
+    "B71": "24pQtH",
+    "B72": "24pQtH",
+    "B73": "24pQtH",
+    "B74": "24pQtH",
+    "B75": "24pQtH",
+    "B76": "24pQtH",
+    "B77": "RPTMXY",
+    "B78": "RPTMXY",
+    "B79": "PiNlZp",
+    "B80": "PiNlZp",
+    "B81": "PiNlZp",
+    "B82": "PiNlZp",
+    "B83": "Ovyudt",
+    "B84": "Ovyudt",
+    "B85": "Ovyudt",
+    "B86": "Ovyudt",
+    "B87": "YJYb7U",
+    "B88": "YJYb7U",
+    "B89": "YJYb7U",
+    "웩7": "Et3hDA",
+    "C1": "y0kqvd",
+    "C1A": "y0kqvd",
+    "C1B": "y0kqvd",
+    "C1C": "y0kqvd",
+    "한C1.1": "y0kqvd",
+    "C2": "1Kj78O",
+    "C3": "1Kj78O",
+    "C4": "1Kj78O",
+    "C5": "1Kj78O",
+    "C6": "1Kj78O",
+    "C7": "1Kj78O",
+    "C7A": "1Kj78O",
+    "C8": "1Kj78O",
+    "C8A": "1Kj78O",
+    "C9": "hVmPG4",
+    "C10": "xR6Jtz"
+  }
+}

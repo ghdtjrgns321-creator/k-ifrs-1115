@@ -3,8 +3,9 @@
 __pycache__/
 *.pyc
 
-# 데이터 (런타임에 불필요 — 외부 DB 사용)
-data/
+# 데이터 — 원본은 외부 DB. 단 온톨로지 그래프 런타임 데이터는 이미지에 포함
+data/*
+!data/ontology
 
 # 전처리/테스트 (런타임에 불필요)
 app/preprocessing/
