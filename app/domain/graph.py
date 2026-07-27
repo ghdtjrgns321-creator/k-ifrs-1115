@@ -1,13 +1,15 @@
 """온톨로지 지식그래프 — 질문 진입(resolve) + 탐색(traverse). 순수 로직, DB 무관.
 
-STEP 5-1 (05-pipeline.md §3). 임베딩 유사도 없이 개념 노드로 진입하고
-그래프 간선을 따라 결정적으로 문단·사례·BC를 수집한다.
+STEP 5-1 (05-pipeline.md §3). 용어사전 글자 매칭으로 개념 노드에 진입하고
+그래프 간선을 따라 결정적으로 문단·사례·BC를 수집한다. 유사도는 진입 후보 맨 뒤에
+붙는 안전망으로만 쓴다(resolve_by_vector) — 순회 구간에는 유사도가 없다.
 DB 원문 조회는 graph_fetch.py가 담당.
 """
 
 from __future__ import annotations
 
 import json
+import math
 import re
 from dataclasses import dataclass, field
 from functools import lru_cache
@@ -20,6 +22,13 @@ _ONT = Path(__file__).resolve().parents[2] / "data" / "ontology"
 
 def _norm(s: str) -> str:
     return re.sub(r"\s+", "", s)
+
+
+def _cosine(a: list[float], b: list[float]) -> float:
+    dot = sum(x * y for x, y in zip(a, b))
+    na = math.sqrt(sum(x * x for x in a))
+    nb = math.sqrt(sum(y * y for y in b))
+    return dot / (na * nb) if na and nb else 0.0
 
 
 @dataclass
@@ -57,6 +66,11 @@ class Graph:
         self.judgment_trees: dict = json.loads(
             (d / "judgment_trees.json").read_text("utf-8")
         )["trees"]
+        # 개념 임베딩 — 보조 진입 전용. 없으면 보조 진입만 비활성(나머지 경로 무영향).
+        emb = d / "concept_embeddings.json"
+        self.concept_emb: dict[str, list[float]] = (
+            json.loads(emb.read_text("utf-8")) if emb.exists() else {}
+        )
 
     def _build_indexes(self) -> None:
         # 용어 인덱스: 등재 용어(개념·사례 목적지 보유)만. norm(term) → 행
@@ -115,6 +129,22 @@ class Graph:
                     if c not in cases:
                         cases.append(c)
         return {"concept_ids": concept_ids, "cases": cases, "matched_terms": matched}
+
+    def resolve_by_vector(self, qvec: list[float], top_k: int) -> list[str]:
+        """질의 벡터 → 코사인 상위 개념. 보조 진입 전용(용어사전 뒤 후순위 병합).
+
+        Why(존재 이유): 용어사전은 글자 매칭이라 등재되지 않은 말로 물으면 진입이 비고,
+        topic_hints는 회차마다 흔들린다(3회 동일 11/57). ADR-23이 같은 진단으로 임베딩을
+        보완 신호로 두었다가 온톨로지 전환 때 tree_matcher와 함께 사라진 자리다.
+
+        Why(임계·가중 없음): ADR-23 원형은 임계 0.28·가중 10.0을 썼고 근거가 없었다.
+        여기서는 점수를 순위 결정에만 쓰고 값 자체를 다른 신호와 섞지 않는다. top_k는
+        exp_decision.md에서 3·5·7이 같은 결과(56/57)여서 최소값을 취한 것이다.
+        """
+        if not self.concept_emb or not qvec:
+            return []
+        sims = ((_cosine(qvec, v), cid) for cid, v in self.concept_emb.items())
+        return [cid for _, cid in sorted(sims, reverse=True)[:top_k]]
 
     def match_judgment_tree(
         self, concept_ids: list[str], via_topic: list[str] | None = None
@@ -186,10 +216,11 @@ class Graph:
         self,
         text: str,
         topic_hints: list[str] | None = None,
+        query_vec: list[float] | None = None,
     ) -> dict:
-        """질문 진입 통합 — LLM 지목 토픽(우선) + 용어사전(보조).
+        """질문 진입 통합 — LLM 지목 토픽(1순위) + 용어사전(2순위) + 코사인(안전망).
 
-        임베딩 유사도 없이 개념 후보를 산출. tree_matcher(match_topics) 대체.
+        tree_matcher(match_topics) 대체. query_vec이 없으면 코사인 단계는 건너뛴다.
         topic_hint(LLM 주제 지목) 개념을 앞에 배치 → 용어사전(배경어) 개념은 뒤로.
         Why(07-retrieval-priority): 배경어(계약·수행의무)가 진입 앞자리를 뺏어 질문 주제
         문단이 generate 상한에 밀리는 문제. traverse는 개념 순서대로 문단을 넣으므로
@@ -212,11 +243,19 @@ class Graph:
         for cid in r["concept_ids"]:
             if cid not in cids:
                 cids.append(cid)
+        # 보조 진입(코사인) — 맨 뒤. 앞 순위를 건드리지 않아 문단 우선순위 손실이 없다.
+        via_embed: list[str] = []
+        if query_vec:
+            for cid in self.resolve_by_vector(query_vec, settings.entry_embed_top_k):
+                if cid not in cids:
+                    cids.append(cid)
+                    via_embed.append(cid)
         return {
             "concept_ids": cids,
             "cases": r["cases"],
             "matched_terms": r["matched_terms"],
             "via_topic": via_topic,
+            "via_embed": via_embed,
         }
 
     def traverse(
@@ -224,6 +263,7 @@ class Graph:
         concept_ids: list[str],
         hops: int = 1,
         via_topic: list[str] | None = None,
+        via_embed: list[str] | None = None,
     ) -> TraverseResult:
         """개념 → 관할 문단·사례·BC·관련 개념 수집. hops=1이면 문단 e3 이웃 1홉 확장.
 
@@ -235,6 +275,7 @@ class Graph:
         (match_judgment_tree와 동일 폴백).
         """
         case_set = set(via_topic or concept_ids)
+        embed_set = set(via_embed or [])
         r = TraverseResult(concept_ids=list(concept_ids))
         seen_p, seen_c, seen_ie, seen_bc, seen_rc = set(), set(), set(), set(), set()
 
@@ -247,7 +288,8 @@ class Graph:
             node = self.concepts.get(cid)
             if not node:
                 continue
-            r.path.append(f"개념[{node['title']}]")
+            mark = " · 유사도 진입" if cid in embed_set else ""
+            r.path.append(f"개념[{node['title']}{mark}]")
             for p in node["paras"]:
                 add_para(p)
             if cid in case_set:

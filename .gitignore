@@ -23,6 +23,8 @@ data/ontology/*
 !data/ontology/aliases.json
 !data/ontology/topic_concept_map.json
 !data/ontology/judgment_trees.json
+# 보조 진입(코사인) 개념 벡터 80개 — 6.6MB. 없으면 보조 진입만 비활성되고 나머지는 정상 동작
+!data/ontology/concept_embeddings.json
 
 # ── 테스트 결과 (JSON) ────────────────────────────────────────────
 app/test/**/results/*.json
@@ -57,3 +59,6 @@ app/domain/trees_plan.md
 # main(포트폴리오)에서 제외 — dev 브랜치에만 유지
 legacy/
 usage-data-collecting/
+
+# 실험용 질의 벡터 캐시 (재생성 가능, 4.7MB)
+app/test/qna_holdout/exp_aux_qvec.json

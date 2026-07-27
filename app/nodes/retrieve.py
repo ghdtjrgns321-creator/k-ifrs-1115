@@ -24,7 +24,12 @@ async def retrieve_docs(state: dict) -> dict:
 
     graph = get_graph()
     # 케이스·IE는 via_topic(LLM 지목 주제) 직결로만 — subtree 확장 플러드 차단
-    traverse = graph.traverse(concept_ids, via_topic=state.get("via_topic", []))
+    # via_embed는 근거 경로 표시용 — 케이스 수집 대상이 아니다(안전망은 문단까지만).
+    traverse = graph.traverse(
+        concept_ids,
+        via_topic=state.get("via_topic", []),
+        via_embed=state.get("via_embed", []),
+    )
 
     # DB 조회는 blocking → 스레드로
     docs = await asyncio.to_thread(fetch_documents, traverse, entry_cases)
