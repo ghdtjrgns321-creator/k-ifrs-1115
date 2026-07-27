@@ -22,6 +22,9 @@ class Settings(BaseSettings):
     # 계산 폴백: 산술 정확도 100% + 최저 비용
     llm_calc_model: str = "gpt-4.1-mini"
     llm_temperature: float = 0.0
+    # temperature 0은 결정성을 보장하지 않는다(같은 질문에 진입 개념이 달라지는
+    # 현상 관측). OpenAI seed로 best-effort 재현성을 건다 — Gemini 경로는 미지원.
+    llm_seed: int = 1115
     # API 응답 대기 최대 시간(초)
     llm_timeout: int = 90
     # HyDE 가상 문서 생성 전용 타임아웃 — 3-5문장만 생성하므로 15초로 충분

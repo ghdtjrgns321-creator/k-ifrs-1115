@@ -218,14 +218,20 @@ analyze_agent = Agent(
     output_type=AnalyzeResult,
     retries=2,
     system_prompt=ANALYZE_PROMPT,
-    model_settings={"temperature": settings.llm_temperature},
+    model_settings={
+        "temperature": settings.llm_temperature,
+        "seed": settings.llm_seed,
+    },
 )
 
 grade_agent = Agent(
     _front_model(),
     output_type=GradeResult,
     retries=2,
-    model_settings={"temperature": settings.llm_temperature},
+    model_settings={
+        "temperature": settings.llm_temperature,
+        "seed": settings.llm_seed,
+    },
 )
 
 generate_agent = Agent(
@@ -261,14 +267,20 @@ rewrite_agent = Agent(
     _front_model(),
     output_type=str,
     retries=2,
-    model_settings={"temperature": settings.llm_temperature},
+    model_settings={
+        "temperature": settings.llm_temperature,
+        "seed": settings.llm_seed,
+    },
 )
 
 hyde_agent = Agent(
     _front_model(),
     output_type=str,
     retries=1,
-    model_settings={"temperature": settings.llm_temperature},
+    model_settings={
+        "temperature": settings.llm_temperature,
+        "seed": settings.llm_seed,
+    },
 )
 
 # search_service._extract_keywords_llm 등 범용 텍스트 호출용
@@ -276,7 +288,10 @@ text_agent = Agent(
     _front_model(),
     output_type=str,
     retries=1,
-    model_settings={"temperature": settings.llm_temperature},
+    model_settings={
+        "temperature": settings.llm_temperature,
+        "seed": settings.llm_seed,
+    },
 )
 
 
