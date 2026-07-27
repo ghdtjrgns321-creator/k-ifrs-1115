@@ -147,17 +147,29 @@ class Graph:
                 return cids
         return []
 
-    def _subtree(self, cid: str, acc: set | None = None) -> set:
-        """개념 하위 트리(자신 포함)."""
+    def _subtree(
+        self, cid: str, acc: list | None = None, seen: set | None = None
+    ) -> list:
+        """개념 하위 트리(자신 포함) — 기준서 목차 순서로 반환.
+
+        Why(순서): 반환 순서가 resolve_question의 개념 순서 → traverse의 문단
+        우선순위로 그대로 이어진다. set으로 모으면 문자열 해시가 프로세스마다
+        달라 재시작 후 우선순위가 바뀐다(결정적 순회라는 설계와 모순). children
+        선언 순서를 따르는 리스트로 모아 원문 위계 순서를 우선순위로 삼는다.
+        """
         if acc is None:
-            acc = set()
-        acc.add(cid)
+            acc = []
+        if seen is None:
+            seen = set()
+        if cid in seen:
+            return acc
+        seen.add(cid)
+        acc.append(cid)
         for ch in self.concepts.get(cid, {}).get("children", []):
-            if ch not in acc:
-                self._subtree(ch, acc)
+            self._subtree(ch, acc, seen)
         return acc
 
-    def _adaptive_subtree(self, cid: str) -> set:
+    def _adaptive_subtree(self, cid: str) -> list:
         """개념의 주제군 확장 — 부모 subtree가 작으면 형제 포함, 크면 자기 하위만.
 
         Why(07 gap): topic_map이 말단 개념 1개만 가리켜 형제(같은 주제군)를 놓친다.
