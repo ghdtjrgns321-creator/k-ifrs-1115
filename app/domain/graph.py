@@ -109,6 +109,11 @@ class Graph:
         self.e3_index: dict[str, list] = {}
         for e in self.edges.get("e3_cross_refs", []):
             self.e3_index.setdefault(e["from"], []).extend(e["to"])
+        # 개념 → 판단 트리 역인덱스 (트리거는 41개 중 40개가 개념 1개, timing-35만 6개)
+        self.tree_by_concept: dict[str, list[str]] = {}
+        for tid, t in self.judgment_trees.items():
+            for cid in t["trigger_concepts"]:
+                self.tree_by_concept.setdefault(cid, []).append(tid)
         # 개념 선행판단(e2): from → [to...] 양방향
         self.e2_index: dict[str, list] = {}
         for e in self.edges.get("e2_five_step", []):
@@ -146,26 +151,28 @@ class Graph:
         sims = ((_cosine(qvec, v), cid) for cid, v in self.concept_emb.items())
         return [cid for _, cid in sorted(sims, reverse=True)[:top_k]]
 
-    def match_judgment_tree(
-        self, concept_ids: list[str], via_topic: list[str] | None = None
-    ) -> str:
-        """진입 개념에 걸린 판단 트리를 전부 이어붙여 반환(트리거에 걸린 것 모두).
+    def match_judgment_tree(self, concept_ids: list[str]) -> str:
+        """진입 개념에 걸린 판단 트리를 개념 순서대로 이어붙여 반환.
 
         본문에서 추출한 조건-분기(예: 기간에 걸쳐 vs 한 시점)를 generate에 주입해,
         LLM이 흩어진 문단에서 판단 순서를 스스로 조립하는 부담을 없앤다.
 
-        Why(트리 오선택): via_topic(LLM 지목 주제 개념)이 있으면 그것만으로 매칭한다.
-        concept_ids 전체는 subtree 확장으로 딸려온 배경 개념을 포함해, 투표수로 주제
-        트리를 이기는 오선택(측정 14/27)과 신규 트리 미주입(17/18)을 유발했다.
-        단일 best-1 선택 폐기: 질문 하나가 여러 개념에 걸치면 걸린 판단 절차를 모두 넣는다
-        (트리 개당 ~500자, 문단 상한 제거와 동일 논리). via_topic 없으면 concept_ids로 폴백.
+        Why(문단과 같은 문턱): 트리는 그 개념 관할 문단의 조건-분기를 접어놓은 것이다
+        (judgment_trees.json _meta "기준서 본문 원문 추출 · AI 창작 아님"). 문단이
+        들어오는데 트리만 빠질 이유가 없어 via_topic 한정을 폐기했다. 한정의 근거였던
+        "투표수로 주제 트리를 이기는 오선택 14/27"은 겹침 최다 1개만 고르던 시절 수치이며,
+        걸린 트리를 전부 주입하는 지금 구조에서는 성립하지 않는다(ADR-37).
+
+        Why(순서): concept_ids 순서가 곧 진입 우선순위(주제지목→위계→용어사전→코사인)이고
+        traverse의 문단 우선순위도 같은 순서다. 트리도 같은 순서를 따라 주제 트리가 앞에 온다.
         """
-        match_set = set(via_topic or concept_ids)
-        texts = [
-            t["text"]
-            for t in self.judgment_trees.values()
-            if match_set & set(t["trigger_concepts"])
-        ]
+        seen: set[str] = set()
+        texts: list[str] = []
+        for cid in concept_ids:
+            for tid in self.tree_by_concept.get(cid, []):
+                if tid not in seen:
+                    seen.add(tid)
+                    texts.append(self.judgment_trees[tid]["text"])
         return "\n\n".join(texts)
 
     def _resolve_topic_hint(self, th: str) -> list[str]:
@@ -271,8 +278,7 @@ class Graph:
         플러드(실측 IE 19건 중 노이즈 다수)가 되고, 그래프엔 질문 적합도 축이 없어
         표시단 슬롯 상한(매직넘버)으로 가릴 수밖에 없었다. 케이스·IE만 via_topic
         (LLM 지목 주제 개념 — 결정적 신호)으로 한정한다. 문단·BC·관련개념은
-        기준서 맥락이므로 전체 유지. via_topic 없으면 기존대로 전체 수집
-        (match_judgment_tree와 동일 폴백).
+        기준서 맥락이므로 전체 유지. via_topic 없으면 기존대로 전체 수집.
         """
         case_set = set(via_topic or concept_ids)
         embed_set = set(via_embed or [])

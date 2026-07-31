@@ -96,9 +96,7 @@ def _inject_prefix(state: dict, context: str) -> str:
     concept_hint = _format_concept_hint(state.get("concept_path", []))
     if concept_hint:
         context = f"[관련 개념] {concept_hint}\n\n---\n\n{context}"
-    tree = g.match_judgment_tree(
-        state.get("concept_ids", []), state.get("via_topic", [])
-    )
+    tree = g.match_judgment_tree(state.get("concept_ids", []))
     if tree:
         context = f"[판단 절차 — 기준서 본문]\n{tree}\n\n---\n\n{context}"
     return context
