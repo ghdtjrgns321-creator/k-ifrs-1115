@@ -385,8 +385,9 @@ graph TD
 ## 3-3. 기술 설명 : 의사결정 트리
 
 > **실제 구현**
-> - 매칭 : [`match_judgment_tree`](app/domain/graph.py#L154) — 진입 개념 순서대로 이어붙여 [`generate.py`](app/nodes/generate.py#L99)에 주입
-> - 데이터 : [`judgment_trees.json`](data/ontology/judgment_trees.json) — 트리 41개
+> - 매칭 : [`graph.py`](app/domain/graph.py) — [`match_judgment_tree`](app/domain/graph.py#L154)
+> - 주입 : [`generate.py`](app/nodes/generate.py#L99)
+> - 데이터 : [`judgment_trees.json`](data/ontology/judgment_trees.json)
 
 ```
   기준서 문단을 근거로 분기 생성 
@@ -525,7 +526,7 @@ async def _validate(ctx, result: ClarifyOutput) -> ClarifyOutput:
 
 - **1115호 관할 범위 초과 (2)** — `202003D`(IAS38 문단69) · `35565`(1038호 문단69)
   - 정답이 1115호 밖이라 정답 도달 불가(범위 한계)
-  - 1115호 안에서 답할 수 있는 부분(계약이행원가 문단 95~99, 고객에게 지급할 대가 문단 70~72)까지는 제시 성공
+  - 1115호 안에서 답할 수 있는 부분(계약이행원가 문단 95\~99, 고객에게 지급할 대가 문단 70\~72)까지는 제시 성공
 
 - **라우팅 거부 (2)**
   - `KQA006-Q2`(우선매수협상권·통제 이전) — 판매후리스(1116호)가 중심 내용이라 범위 밖 판정 - 라우팅 성공
