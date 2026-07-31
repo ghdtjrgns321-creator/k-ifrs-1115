@@ -307,9 +307,9 @@ graph LR
 기준서의 위계 관계를 노드·간선으로 옮긴 지식그래프
 
 > **실제 구현**
-> - 순회 : [`graph.py`](app/domain/graph.py) — [`resolve_question`](app/domain/graph.py#L222) · [`traverse`](app/domain/graph.py#L268)
-> - 빌드 : [`14~20-ontology-*.py`](app/preprocessing)
-> - 데이터 : [`data/ontology/`](data/ontology)
+> - 탐색 코드 : [`graph.py`](app/domain/graph.py) — [`resolve_question`](app/domain/graph.py#L222) · [`traverse`](app/domain/graph.py#L268)
+> - 빌드 스크립트 : [`14~20-ontology-*.py`](app/preprocessing)
+> - 산출 데이터 : [`data/ontology/`](data/ontology)
 
 ```mermaid
 graph TD
@@ -385,9 +385,9 @@ graph TD
 ## 3-3. 기술 설명 : 의사결정 트리
 
 > **실제 구현**
-> - 매칭 : [`graph.py`](app/domain/graph.py) — [`match_judgment_tree`](app/domain/graph.py#L154)
-> - 주입 : [`generate.py`](app/nodes/generate.py#L99)
-> - 데이터 : [`judgment_trees.json`](data/ontology/judgment_trees.json)
+> - 매칭 코드 : [`graph.py`](app/domain/graph.py) — [`match_judgment_tree`](app/domain/graph.py#L154)
+> - 주입 지점 : [`generate.py`](app/nodes/generate.py#L99)
+> - 원천 데이터 : [`judgment_trees.json`](data/ontology/judgment_trees.json)
 
 ```
   기준서 문단을 근거로 분기 생성 
