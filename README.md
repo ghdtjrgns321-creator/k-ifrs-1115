@@ -78,7 +78,7 @@ flowchart LR
 #### 3-1. 지식그래프 기반 데이터 구조화
 
 ```mermaid
-graph LR
+flowchart LR
     R["제1115호<br/>고객과의 계약에서 생기는 수익"]
     R -->|포함| T3["인식"]
     R -->|포함| T4["측정"]
@@ -92,6 +92,11 @@ graph LR
     M3 -->|관할| P["문단 56, 57, 58"]
     P -.->|상호참조| P2["문단 53, B63"]
     S["질의회신과 감리사례 14건"] -.->|인용| P
+
+    classDef step fill:none,stroke:#9aa0a6,stroke-width:1px
+    classDef port fill:none,stroke:#5f6368,stroke-width:1.5px
+    class T3,T4,T5,T8,ETC,M1,M2,M3,P,P2,S step
+    class R port
 ```
 **기준서 본문 및 사례 구조화** (자세한 설명 : [3-2. RAG — 지식그래프](#3-2-기술-설명--rag--지식그래프))
 - 기준서 목차를 80개의 핵심 개념으로 구조화 (최상위 1, 중간 분류 20, 말단 개념 59)
@@ -267,13 +272,18 @@ graph LR
 > **실제 구현** — [`analyze.py`](app/nodes/analyze.py), [`graph.py`](app/domain/graph.py)
 
 ```mermaid
-graph LR
-    Q["사용자 질의"] --> A["질의 분석<br/>gpt-4.1-mini 1회"]
+flowchart LR
+    Q(["사용자 질의"]) --> A["질의 분석<br/>gpt-4.1-mini 1회"]
     A --> G{"1115호 범위?<br/>routing, scope guard"}
-    G -->|아니오| STOP["거절 후 종료"]
+    G -->|아니오| STOP(["거절 후 종료"])
     G -->|예| E["개념 진입 4단계<br/>토픽 지목 → 계층 확장<br/>→ 사전 조회 → 코사인"]
     E --> M["진입 개념 확정<br/>순서대로 병합, 중복 제거"]
-    M --> R["지식그래프 탐색"]
+    M --> R(["지식그래프 탐색"])
+
+    classDef step fill:none,stroke:#9aa0a6,stroke-width:1px
+    classDef port fill:none,stroke:#5f6368,stroke-width:1.5px
+    class A,G,E,M step
+    class Q,STOP,R port
 ```
 
 ### 질의 분석 계층 
@@ -324,7 +334,7 @@ graph LR
 > - 산출 데이터 : [`data/ontology/`](data/ontology)
 
 ```mermaid
-graph TD
+flowchart TD
     P["거래가격을 산정함"]
     B["유의적인 금융요소, 비현금 대가<br/>고객에게 지급할 대가"]
     V["변동대가"]
@@ -338,6 +348,11 @@ graph TD
     CP -.->|상호참조| X["문단 53, B63"]
     S["질의회신과 감리사례"] -.->|인용| V
     BC["배경 BC — '왜 변동대가를 제약하나'"] -.->|배경| V
+
+    classDef step fill:none,stroke:#9aa0a6,stroke-width:1px
+    classDef port fill:none,stroke:#5f6368,stroke-width:1.5px
+    class B,VP,C1,C2,C3,CP,X,S,BC step
+    class P,V port
 ```
 - 구성 방법
   - 기준서 원문의 목차 및 소제목 계층 구조 차용
