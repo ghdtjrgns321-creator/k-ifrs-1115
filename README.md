@@ -10,6 +10,26 @@
 
 K-IFRS 제1115호(고객과의 계약에서 생기는 수익) 질의응답을 위한 AI 챗봇
 
+```mermaid
+flowchart LR
+    Q(["사용자 질의"]) --> KG
+
+    subgraph CORE["핵심 설계"]
+        direction TB
+        KG["지식그래프"] --> DT["의사결정 트리"]
+    end
+
+    DOC["수록 문서<br/>기준서 원문, 사례 123건"] --> KG
+    DT --> OUT["답변 출력 제어"]
+    OUT --> ANS(["근거 문서 + 구조화된 답변"])
+
+    classDef step fill:none,stroke:#9aa0a6,stroke-width:1px
+    classDef port fill:none,stroke:#5f6368,stroke-width:1.5px
+    class DOC,KG,DT,OUT step
+    class Q,ANS port
+    style CORE fill:none,stroke:#c8cdd2,stroke-dasharray:5 4
+```
+
 - 수록 문서 ([전체 목록](#데이터-구성))
   - 기준서 원문 : 규정 250문단, 결론도출근거(BC) 652문단, 적용사례(IE) 65건
   - 사례 123건 : 질의회신 101건, 감리지적사례 22건
