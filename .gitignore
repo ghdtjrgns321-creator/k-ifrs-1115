@@ -26,6 +26,16 @@ data/ontology/*
 # 보조 진입(코사인) 개념 벡터 80개 — 6.6MB. 없으면 보조 진입만 비활성되고 나머지는 정상 동작
 !data/ontology/concept_embeddings.json
 
+# ── 홀드아웃 gold 라벨 (eval-v2) ──────────────────────────────────
+# 검증의 정답지다. 커밋으로 동결해야 "결과를 보고 라벨을 고쳤다"는 의심이 성립하지 않는다.
+# 문단 번호 · 짧은 인용구 · 판정 근거만 담긴다.
+!data/testdata/
+data/testdata/*
+!data/testdata/gold_extract/
+# 단, 회신문 전문(question·answer_gold)이 통째로 들어간 입력 스냅샷은 제외
+data/testdata/gold_extract/input/
+data/testdata/gold_extract/step2_input/
+
 # ── 테스트 결과 (JSON) ────────────────────────────────────────────
 app/test/**/results/*.json
 test-results/
@@ -44,6 +54,8 @@ done/
 # ── 내부 작업 문서·스크래치 (공개 저장소 제외, 로컬 보존) ─────────
 # docs/ 전체는 내부 작업/컨텍스트 문서 (공개 설명은 README로 일원화)
 docs/
+# dev/ 는 세션 인계용 기계 판독 메모 (docs/와 같은 취급)
+dev/
 FINAL-REPORT/
 app/domain/context_findings.md
 app/domain/context_main_text.md
