@@ -16,7 +16,26 @@ from pathlib import Path
 CONCEPTS_PATH = Path("data/ontology/concepts.json")
 SOURCE_PATH = Path("data/web/kifrs-1115-all.json")
 OUTPUT_PATH = Path("data/ontology/edges.json")
+# 14-ontology-concepts.py와 같은 범위. 부록C 문단은 원본에서 sectionTitle="본문"으로도
+# 실려 있어 함께 수집된다 — 의도된 포함이다(gold 문단 2개가 부록C에 있다).
 SCOPE_SECTIONS = {"본문", "부록 B 적용지침"}
+
+# 문단 번호가 '내용 참조'가 아니라 '행정적 나열'인 문단 — 상호참조로 잡지 않는다.
+# 사람이 원문을 하나씩 읽고 확정한 목록이다. "N개 이상 가리키면 목차" 같은 개수
+# 임계로 자동 판별하지 않는다 — 근거 없는 임계를 만들지 않는다(ADR-36).
+#
+# 왜 문제인가: 이 6개가 e3 대상 문단 266개를 만든다(전체 대상의 절반 이상).
+# 부모 방향으로 개념을 넓히면 `부록 B 적용지침`이 붙고 그 관할 문단 웩6·B1이
+# 부록 전체를 끌어와, 질문 하나에 기준서 문단의 77%가 딸려온다.
+# 근거·측정: dev/entry-traverse/results-traverse.md §12.
+TOC_PARAS = {
+    "웩6": "부록B 머리말 — '이 부록은 문단 1~129를 적용하는 방법을 기술하며'",
+    "B1": "부록B 목차 — '(1) 기간에 걸쳐 이행하는 수행의무(문단 B2~B13) …' 14항목",
+    "C1B": "개정 연혁 — '2016년 12월 개정에 따라 문단 26, 27, … 을 개정하였고'",
+    "C1A": "개정 연혁 — '제1116호 리스에 따라 문단 5, 97, B66, B70을 개정하였다'",
+    "C1C": "개정 연혁 — '제1117호에 따라 문단 5를 개정하였다'",
+    "한C1.1": "개정 연혁 — '2018년 12월 개정에 따라 …'",
+}
 
 # 문단 번호 토큰: 한C1.1, B63A, 129 등 (14-ontology-concepts.py와 동일 문법)
 _TOKEN = r"한?[BC]?[\d.]+[A-Z]?"
@@ -89,7 +108,11 @@ def main():
     # 회계 항등식: 언급 N = 내부해소 M + 타기준서 K + 미해소 U
     e3_edges, external, unresolved = [], [], []
     n_mentions = 0
+    skipped_toc = []
     for pnum, text in para_text.items():
+        if pnum in TOC_PARAS:
+            skipped_toc.append(pnum)
+            continue
         for m in MENTION_RE.finditer(text):
             tokens = [m.group(1)]
             # 나열 연속 토큰 수집 ("문단 60과 65")
@@ -108,6 +131,10 @@ def main():
                 else:
                     unresolved.append({"from": pnum, "raw": tk})
     m_resolved = len(e3_edges)
+    print(
+        f"목차·연혁 문단 제외: {len(skipped_toc)}개 {skipped_toc} "
+        f"(스코프에 있으나 언급을 세지 않음)"
+    )
     print(
         f"E3 항등식: 언급 {n_mentions} = 내부해소 {m_resolved} + 타기준서 {len(external)} + 미해소 {len(unresolved)}"
     )
