@@ -1,9 +1,13 @@
 # app/services/usage_logger.py
-# 실사용 데이터를 MongoDB usage_logs 컬렉션에 저장 + 규칙 기반 자동 채점.
+# 실사용 데이터를 MongoDB usage_logs 컬렉션에 저장. 채점은 하지 않는다.
 #
 # 호출 지점: chat_service.py — done 이벤트 직후
 # 실패해도 답변 흐름에 영향 없도록 예외를 삼킴.
-# 규칙 기반 채점은 메모리 내 if/else (~1ms)라 UX 영향 없음.
+#
+# Why(채점 제거): 규칙 기반 4메트릭 가중 채점(response_time 0.20 / citation 0.35 /
+# topic 0.20 / conclusion 0.25)을 폐기했다. 가중치·구간이 전부 임의값이고, 총점이
+# 생기면 루프가 "총점을 올리는 방향"으로 최적화되는데 그 방향이 품질 방향이라는
+# 보장이 없다. 채점은 오프라인 배치에서 층별로 따로 한다(docs/quality-loop/02).
 
 import logging
 from datetime import datetime, timezone
@@ -16,118 +20,24 @@ logger = logging.getLogger(__name__)
 _client: MongoClient | None = None
 _COLLECTION_NAME = "usage_logs"
 
+# 스키마 버전 — 채점 배치가 구버전 로그(진입 흔적 없음)를 제외하는 기준
+SCHEMA_VER = 1
+
+# 답변 저장 상한. 초과분은 잘리므로 인용 판정이 불완전해진다(answer_len으로 표시).
+_ANSWER_MAX = 2000
+
 
 def _get_collection():
     """usage_logs 컬렉션을 반환합니다. 첫 호출 시 클라이언트 생성."""
     global _client
-    if _client is None:
-        from app.config import settings
-
-        _client = MongoClient(settings.mongo_uri, serverSelectionTimeoutMS=3000)
     from app.config import settings
 
-    return _client[settings.mongo_db_name][_COLLECTION_NAME]
-
-
-# ── 규칙 기반 자동 채점 (메모리 내 연산, API 호출 없음) ────────────────
-
-
-def _score_response_time(ms: int) -> float:
-    """응답 시간 점수. 빠를수록 높다."""
-    if ms <= 15_000:
-        return 1.0
-    if ms <= 25_000:
-        return 0.7
-    if ms <= 40_000:
-        return 0.4
-    return 0.1
-
-
-def _score_citation_coverage(cited: list[str], answer: str) -> float:
-    """인용 커버리지. 근거 문단을 충분히 가져왔는가."""
-    n = len(cited)
-    if n >= 4:
-        base = 1.0
-    elif n >= 2:
-        base = 0.7
-    elif n >= 1:
-        base = 0.4
-    else:
-        return 0.0
-    # 답변에서 "문단"을 실제로 언급했는지 보너스
-    if answer.count("문단") >= 3:
-        base = min(base + 0.1, 1.0)
-    return base
-
-
-def _score_topic_match(topics: list[str], is_situation: bool) -> float:
-    """토픽 매칭 적절성."""
-    # 개념 질문은 토픽 매칭 대상이 아니므로 고정 baseline
-    if not is_situation:
-        return 0.8
-    if not topics:
-        return 0.2
-    return 1.0 if len(topics) >= 2 else 0.7
-
-
-def _score_conclusion_safety(
-    is_situation: bool,
-    is_conclusion: bool,
-    branches: list[str],
-    answer: str,
-) -> float:
-    """결론 신중성. 성급하게 결론 내리지 않았는가."""
-    if not is_situation:
-        return 1.0
-    if is_conclusion and branches:
-        return 1.0
-    if is_conclusion and not branches:
-        caution = ["추가 정보", "확인이 필요", "판단이 필요", "고려해야"]
-        return 0.7 if any(kw in answer for kw in caution) else 0.4
-    return 0.9
-
-
-# 가중치 (규칙 기반 4개, 총합 1.0으로 정규화)
-_WEIGHTS = {
-    "response_time": 0.20,
-    "citation_coverage": 0.35,
-    "topic_match": 0.20,
-    "conclusion_safety": 0.25,
-}
-
-
-def _auto_score(
-    *,
-    answer: str,
-    cited: list[str],
-    topics: list[str],
-    is_situation: bool,
-    is_conclusion: bool,
-    branches: list[str],
-    response_time_ms: int,
-) -> dict:
-    """규칙 기반 4개 메트릭 채점 + 가중 평균 산출."""
-    metrics = {
-        "response_time": _score_response_time(response_time_ms),
-        "citation_coverage": _score_citation_coverage(cited, answer),
-        "topic_match": _score_topic_match(topics, is_situation),
-        "conclusion_safety": _score_conclusion_safety(
-            is_situation,
-            is_conclusion,
-            branches,
-            answer,
-        ),
-    }
-    total = sum(metrics[k] * _WEIGHTS[k] for k in metrics) / sum(_WEIGHTS.values())
-    return {
-        "metrics": metrics,
-        "total": round(total, 3),
-        "mode": "rule",
-        "scored_at": datetime.now(timezone.utc),
-    }
-
-
-# ── 로깅 + 채점 ─────────────────────────────────────────────────────
+    client = _client
+    if client is None:
+        client = _client = MongoClient(
+            settings.mongo_uri, serverSelectionTimeoutMS=3000
+        )
+    return client[settings.mongo_db_name][_COLLECTION_NAME]
 
 
 def log_chat_response(
@@ -135,6 +45,7 @@ def log_chat_response(
     session_id: str,
     question: str,
     answer: str,
+    flow: str = "full",
     matched_topics: list[str] | None = None,
     cited_paragraphs: list[str] | None = None,
     is_situation: bool = False,
@@ -142,54 +53,124 @@ def log_chat_response(
     is_conclusion: bool = False,
     selected_branches: list[str] | None = None,
     response_time_ms: int = 0,
+    concept_ids: list[str] | None = None,
+    via_llm: list[str] | None = None,
+    via_embed: list[str] | None = None,
+    matched_terms: list[str] | None = None,
+    matched_terms_raw: list[str] | None = None,
+    term_hints: list[str] | None = None,
+    unknown_terms: list[str] | None = None,
+    entry_cases: list | None = None,
+    candidate_paras: list[str] | None = None,
+    context_paras: list[str] | None = None,
+    concept_path: list[str] | None = None,
+    doc_count: int = 0,
 ) -> str | None:
-    """채팅 응답 로그 저장 + 규칙 기반 자동 채점.
+    """채팅 응답 로그 저장.
+
+    flow: 이 응답이 어느 경로로 나왔는지. 진입 흔적이 없는 경로를 채점에서
+        제외하는 데 쓴다 — 없으면 전부 "진입 실패"로 오탐된다.
+        full / fast_path(되묻기 후속) / pre_retrieved(이전 검색 재사용) / rejected(범위 밖)
 
     Returns:
         str: 저장된 문서의 _id (피드백 연결용). 실패 시 None.
     """
     try:
-        cited = cited_paragraphs or []
-        topics = matched_topics or []
-        branches = selected_branches or []
-        truncated_answer = answer[:2000]
-
-        # 규칙 기반 자동 채점 (~1ms, UX 영향 없음)
-        auto_scores = _auto_score(
-            answer=truncated_answer,
-            cited=cited,
-            topics=topics,
-            is_situation=is_situation,
-            is_conclusion=is_conclusion,
-            branches=branches,
-            response_time_ms=response_time_ms,
-        )
-
         doc = {
+            "schema_ver": SCHEMA_VER,
             "session_id": session_id,
+            # outcome: 답변이 끝까지 나왔나. 실패 질의는 log_chat_error가 error로 남긴다.
+            "outcome": "ok",
+            "flow": flow,
             "question": question,
-            "answer": truncated_answer,
-            "matched_topics": topics,
-            "cited_paragraphs": cited,
+            "answer": answer[:_ANSWER_MAX],
+            "answer_len": len(answer),
+            "matched_topics": matched_topics or [],
+            "cited_paragraphs": cited_paragraphs or [],
             "is_situation": is_situation,
             "needs_calculation": needs_calculation,
             "is_conclusion": is_conclusion,
-            "selected_branches": branches,
+            "selected_branches": selected_branches or [],
             "response_time_ms": response_time_ms,
+            "entry": {
+                "concept_ids": concept_ids or [],
+                "via_llm": via_llm or [],
+                "via_embed": via_embed or [],
+                # matched_terms: 재작성문(standalone_query) 기준 — 실제 진입에 쓰인 매칭
+                "matched_terms": matched_terms or [],
+                # matched_terms_raw: 사용자 원문 기준 — 용어사전 보강 판단용
+                "matched_terms_raw": matched_terms_raw or [],
+                # term_hints: LLM이 고른 용어 원본. via_llm이 비었을 때
+                # 지시문 문제인지 사전 문제인지 가른다.
+                "term_hints": term_hints or [],
+                # unknown_terms: LLM이 댔지만 사전에 없던 말 — 사전 보강 대상
+                "unknown_terms": unknown_terms or [],
+                "cases": entry_cases or [],
+            },
+            "retrieval": {
+                # paras: 그래프가 찾아낸 문단 후보 전량 (검색이 무엇을 건져왔나)
+                "paras": candidate_paras or [],
+                # context_paras: generate가 실제로 LLM에 넣은 문단
+                # Why: 인용 판정의 기준은 후보가 아니라 LLM이 본 것이다. 계산 질문은
+                # IE 적용사례를 컨텍스트에서 제외하므로 두 집합이 어긋난다.
+                "context_paras": context_paras or [],
+                "concept_path": concept_path or [],
+                "doc_count": doc_count,
+            },
             "feedback": None,
             "feedback_at": None,
-            "auto_scores": auto_scores,
             "timestamp": datetime.now(timezone.utc),
         }
         result = _get_collection().insert_one(doc)
         logger.info(
-            "usage_log saved: %s (score: %.2f)",
+            "usage_log saved: %s (flow=%s, concepts=%d, paras=%d)",
             result.inserted_id,
-            auto_scores["total"],
+            flow,
+            len(doc["entry"]["concept_ids"]),
+            len(doc["retrieval"]["paras"]),
         )
         return str(result.inserted_id)
     except Exception as exc:
         logger.warning("usage_log 저장 실패: %s", exc)
+        return None
+
+
+def log_chat_error(
+    *,
+    session_id: str,
+    question: str,
+    error_type: str,
+    error_message: str = "",
+    response_time_ms: int = 0,
+) -> str | None:
+    """실패한 질의를 남긴다.
+
+    Why: 로그가 done 이벤트에만 붙어 있으면 타임아웃·예외로 끝난 질의는 흔적이
+    사라지고, 남은 로그는 전부 성공 사례가 된다. 성공한 것만 보고 품질을 논하는
+    표본 편향을 막으려면 실패도 같은 컬렉션에 남아야 한다.
+
+    진입·검색 흔적은 담지 않는다 — 실패 지점이 어디였는지 모르므로 채점 대상이
+    아니고, outcome != "ok" 인 로그는 채점 배치가 건너뛴다.
+    """
+    try:
+        doc = {
+            "schema_ver": SCHEMA_VER,
+            "session_id": session_id,
+            "outcome": "error",
+            "flow": "error",
+            "question": question,
+            "answer": "",
+            "answer_len": 0,
+            "error_type": error_type,
+            "error_message": (error_message or "")[:500],
+            "response_time_ms": response_time_ms,
+            "timestamp": datetime.now(timezone.utc),
+        }
+        result = _get_collection().insert_one(doc)
+        logger.info("usage_log(error) saved: %s (%s)", result.inserted_id, error_type)
+        return str(result.inserted_id)
+    except Exception as exc:
+        logger.warning("usage_log(error) 저장 실패: %s", exc)
         return None
 
 
