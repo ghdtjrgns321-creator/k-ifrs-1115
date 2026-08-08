@@ -20,8 +20,9 @@ from pydantic_ai.providers.google import GoogleProvider
 from pydantic_ai.providers.openai import OpenAIProvider
 
 from app.config import settings
+from app.domain.graph import get_graph
 from app.prompts import (
-    ANALYZE_PROMPT,
+    ANALYZE_TEMPLATE,
     CALC_CLARIFY_SYSTEM,
     CLARIFY_SYSTEM,
     GENERATE_SYSTEM,
@@ -86,12 +87,13 @@ class AnalyzeResult(BaseModel):
         "'~하나요/뭐야/어떻게/원칙이 적용되나요' = false. "
         "'산정하면 어떤 원칙이?' = false (원칙을 묻는 것), '산정해주세요' = true (결과를 요구)",
     )
-    topic_hints: list[str] = Field(
+    term_hints: list[str] = Field(
         default_factory=list,
-        description="질문의 거래 구조상 쟁점이 되는 K-IFRS 1115호 토픽. "
-        "반드시 [토픽 목록]에서만 선택, 최대 3개. "
-        "키워드가 직접 언급되지 않아도 거래 실질상 해당 토픽이 쟁점이면 포함. "
-        "예: 재판매 구조 → '본인 vs 대리인', 소프트웨어 라이선스 → '라이선싱'",
+        description="질문의 거래에 해당하는 용어. 반드시 [용어 목록]에 글자 그대로 "
+        "있는 값만 사용하고, 없는 말은 지어내지 않는다. 개수 제한 없음. "
+        "글자가 직접 언급되지 않아도 거래 실질상 해당하면 포함. "
+        "예: 재판매 구조 → ['총판', '순액'], 선적 후 운임 부담 → ['CIF']. "
+        "용어가 어느 회계 개념에 연결되는지는 판단하지 않는다 — 용어만 고른다.",
     )
 
 
@@ -212,6 +214,10 @@ class ClarifyDeps:
 
 
 # ── Agent 정의 ─────────────────────────────────────────────────────────────────
+
+# 용어 목록은 aliases.json이 정본이므로 프롬프트에 하드코딩하지 않고 여기서 채운다.
+# get_graph()는 프로세스 단위 싱글턴이라 import 시 온톨로지를 한 번만 읽는다.
+ANALYZE_PROMPT = ANALYZE_TEMPLATE.format(term_list=get_graph().term_list_for_prompt())
 
 analyze_agent = Agent(
     _front_model(),

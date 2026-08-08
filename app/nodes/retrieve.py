@@ -23,11 +23,11 @@ async def retrieve_docs(state: dict) -> dict:
     entry_cases = state.get("entry_cases", [])
 
     graph = get_graph()
-    # 케이스·IE는 via_topic(LLM 지목 주제) 직결로만 — subtree 확장 플러드 차단
-    # via_embed는 근거 경로 표시용 — 케이스 수집 대상이 아니다(안전망은 문단까지만).
+    # 케이스·IE는 via_llm(LLM이 고른 용어의 개념)으로만 — 사례 플러드 차단(임시 조치).
+    # via_embed는 근거 경로 표시용 — 케이스 수집 대상이 아니다.
     traverse = graph.traverse(
         concept_ids,
-        via_topic=state.get("via_topic", []),
+        via_llm=state.get("via_llm", []),
         via_embed=state.get("via_embed", []),
     )
 
@@ -43,4 +43,10 @@ async def retrieve_docs(state: dict) -> dict:
         len(docs),
     )
 
-    return {"retrieved_docs": docs, "concept_path": traverse.path}
+    # candidate_paras: 그래프가 준 문단 후보 전량. 파이프라인은 안 쓰고 품질 로그만 쓴다.
+    # Why: 답변이 인용한 문단이 이 집합 밖이면 환각 인용(docs/quality-loop/02 CITATION_OUT).
+    return {
+        "retrieved_docs": docs,
+        "concept_path": traverse.path,
+        "candidate_paras": traverse.paras,
+    }
