@@ -1,0 +1,2540 @@
+{
+  "_meta": {
+    "generated_by": "app/preprocessing/21-ontology-case-topics.py",
+    "model": "gemini-3-flash-preview",
+    "prompt": "app/prompts.py CASE_TOPIC_SYSTEM/USER (게이트 통과본, 수정 금지)",
+    "gate": "홀드아웃 72건 · 제목만 94.4% · 전문 100% · 자동방식 83.3%",
+    "ie": "IE는 AI 판정을 쓰지 않는다 — 기준서 목차 편성이 1차 자료",
+    "stats": {
+      "auto": 0,
+      "llm": 0,
+      "ie_group": 65,
+      "empty": 0,
+      "skip": 0,
+      "cached": 123
+    }
+  },
+  "topics": {
+    "QNA-202504C": {
+      "kind": "qna",
+      "title": "수업료 수익의 인식",
+      "topics": [
+        "bz3jWR"
+      ],
+      "fence": [
+        "5HDlPF",
+        "bz3jWR"
+      ],
+      "method": "llm",
+      "reason": "수업료 수익을 기간에 걸쳐 인식하는 상황에서 방학 기간을 포함하여 진행률을 어떻게 측정(10개월 vs 12개월 등)할 것인지가 핵심 쟁점입니다."
+    },
+    "QNA-221109A": {
+      "kind": "qna",
+      "title": "본인 대 대리인: 소프트웨어 재판매자",
+      "topics": [
+        "XLz6Gv"
+      ],
+      "fence": [
+        "2IbOfX",
+        "8P5E9V",
+        "AQB8cb",
+        "XLz6Gv",
+        "bzQL7S",
+        "qNvjgx"
+      ],
+      "method": "llm",
+      "reason": "소프트웨어 재판매자가 고객에게 라이선스를 제공하는 계약에서, 해당 라이선스가 고객에게 이전되기 전 재판매자가 이를 통제하는지를 분석하여 본인인지 대리인인지를 판단하는 것이 핵심이기 때문입니다."
+    },
+    "QNA-202003D": {
+      "kind": "qna",
+      "title": "계약을 이행하는 데 드는 교육훈련원가",
+      "topics": [
+        "TgRpnd"
+      ],
+      "fence": [
+        "TgRpnd"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-201909A": {
+      "kind": "qna",
+      "title": "연착이나 취소에 대한 보상",
+      "topics": [
+        "3q1lWH",
+        "O28gcg"
+      ],
+      "fence": [
+        "2Tb1uu",
+        "3q1lWH",
+        "85VgUd",
+        "KaYPON",
+        "O28gcg",
+        "lKmqLc"
+      ],
+      "method": "llm",
+      "reason": "항공기 연착이나 취소에 따른 보상금이 IFRS 15상 변동대가에 해당하여 거래가격 산정 시 고려해야 하는 요소인지가 핵심 쟁점입니다."
+    },
+    "QNA-201906D": {
+      "kind": "qna",
+      "title": "계약을 이행하는 데 드는 원가",
+      "topics": [
+        "TgRpnd",
+        "BqPAS9"
+      ],
+      "fence": [
+        "5HDlPF",
+        "BqPAS9",
+        "H8vY9D",
+        "TgRpnd",
+        "bz3jWR"
+      ],
+      "method": "llm",
+      "reason": "산출법을 사용하여 진행률을 측정할 때 발생한 원가를 계약이행원가(자산)로 인식할 수 있는지 아니면 발생 시 비용으로 인식해야 하는지가 핵심 쟁점입니다."
+    },
+    "QNA-201903G": {
+      "kind": "qna",
+      "title": "건설되는 재화의 기간에 걸친 이전",
+      "topics": [
+        "5HDlPF"
+      ],
+      "fence": [
+        "5HDlPF"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-201903F": {
+      "kind": "qna",
+      "title": "공동영업자의 산출물 판매",
+      "topics": [
+        "AQB8cb"
+      ],
+      "fence": [
+        "AQB8cb"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-201901B": {
+      "kind": "qna",
+      "title": "약속한 재화나 용역의 검토",
+      "topics": [
+        "n94QVz",
+        "p1vJ25"
+      ],
+      "fence": [
+        "n94QVz",
+        "p1vJ25",
+        "qNvjgx"
+      ],
+      "method": "llm",
+      "reason": "환불되지 않는 선수수수료를 수취하는 계약에서 초기 활동이 고객에게 용역을 이전하는 '약속'인지 아니면 '이행 활동'인지를 구분하여 수행의무를 식별하는 문제이기 때문입니다."
+    },
+    "QNA-201803D": {
+      "kind": "qna",
+      "title": "지금까지 수행을 완료한 부분에 대한 지급청구권",
+      "topics": [
+        "5HDlPF",
+        "5xZWrk"
+      ],
+      "fence": [
+        "5HDlPF",
+        "5xZWrk",
+        "8P5E9V",
+        "AQB8cb",
+        "lIlmTb",
+        "p1vJ25",
+        "qNvjgx"
+      ],
+      "method": "llm",
+      "reason": "부동산 분양 계약에서 수익을 기간에 걸쳐 인식하기 위한 요건 중 하나인 '지금까지 수행을 완료한 부분에 대한 집행 가능한 지급청구권'의 존재 여부를 판단하는 것이 핵심 쟁점입니다."
+    },
+    "QNA-201803B": {
+      "kind": "qna",
+      "title": "부동산 계약의 수익 인식",
+      "topics": [
+        "5HDlPF",
+        "5xZWrk"
+      ],
+      "fence": [
+        "5HDlPF",
+        "5xZWrk",
+        "8P5E9V",
+        "AQB8cb",
+        "l3leA7",
+        "lIlmTb",
+        "p1vJ25",
+        "qNvjgx"
+      ],
+      "method": "llm",
+      "reason": "부동산 분양 계약 시 수익을 기간에 걸쳐 인식하기 위한 요건(문단 35)을 충족하는지, 특히 수행 완료 부분에 대한 집행 가능한 지급청구권이 존재하는지를 판단하는 것이 핵심입니다."
+    },
+    "QNA-201803A": {
+      "kind": "qna",
+      "title": "토지 이전을 포함하는 부동산 계약의 수익 인식",
+      "topics": [
+        "p1vJ25",
+        "AQB8cb"
+      ],
+      "fence": [
+        "5HDlPF",
+        "8P5E9V",
+        "AQB8cb",
+        "l3leA7",
+        "lIlmTb",
+        "p1vJ25",
+        "qNvjgx"
+      ],
+      "method": "llm",
+      "reason": "토지와 건물을 별개의 수행의무로 식별할 수 있는지와 각 수행의무를 이행(수익 인식)하는 시점(기간에 걸쳐 혹은 한 시점에)을 결정하는 것이 핵심이기 때문입니다."
+    },
+    "QNA-201607A": {
+      "kind": "qna",
+      "title": "민간투자사업에서 사업시행자가 사업허가자에게 지급하는 금액",
+      "topics": [
+        "FJvsfz"
+      ],
+      "fence": [
+        "FJvsfz"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-2024-I-KQA007": {
+      "kind": "qna",
+      "title": "실제와 예상 발생사고 수의 차이에 의한 이행현금흐름 변동의 회계처리와 보험수익 인식방법",
+      "topics": [
+        "4aNSKr"
+      ],
+      "fence": [
+        "4aNSKr"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-2024-I-KQA005": {
+      "kind": "qna",
+      "title": "인센티브 수취의 수익 인식시기",
+      "topics": [
+        "Y3rhox",
+        "lKmqLc"
+      ],
+      "fence": [
+        "2Tb1uu",
+        "3q1lWH",
+        "Y3rhox",
+        "lKmqLc"
+      ],
+      "method": "llm",
+      "reason": "지적재산 라이선스 대가인 인센티브가 판매·사용기준 로열티에 해당하는지, 아니면 일반 변동대가로서 추정치 제약 원칙을 적용받는지에 따라 수익 인식 시점이 달라지기 때문입니다."
+    },
+    "QNA-2022-I-KQA015": {
+      "kind": "qna",
+      "title": "(별도재무제표) 선박에 대한 통제 이전 여부",
+      "topics": [
+        "4aNSKr",
+        "lIlmTb"
+      ],
+      "fence": [
+        "4aNSKr",
+        "8P5E9V",
+        "AQB8cb",
+        "lIlmTb"
+      ],
+      "method": "llm",
+      "reason": "거래 상대방이 수익기준서상 고객에 해당하는지(적용범위)와 선박에 대한 실질적인 통제가 이전되어 한 시점에 수익을 인식할 수 있는 요건을 갖추었는지가 핵심 쟁점입니다."
+    },
+    "QNA-2022-I-KQA014": {
+      "kind": "qna",
+      "title": "상품 매입 시 공급자에게서 받는  물류 관련 수수료의 회계처리",
+      "topics": [
+        "4aNSKr"
+      ],
+      "fence": [
+        "4aNSKr",
+        "XLz6Gv"
+      ],
+      "method": "llm",
+      "reason": "공급자로부터 받는 수수료가 K-IFRS 1115호의 수익인지 아니면 K-IFRS 1002호에 따른 매입원가의 차감 항목인지를 결정하는 적용범위의 문제이기 때문입니다."
+    },
+    "QNA-2022-I-KQA007": {
+      "kind": "qna",
+      "title": "수입 자동차에 부과되는 개별소비세의 회계처리",
+      "topics": [
+        "O28gcg"
+      ],
+      "fence": [
+        "O28gcg"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-2021-I-KQA008": {
+      "kind": "qna",
+      "title": "현금을 수취하고 암호자산을  이전하기로 한 거래",
+      "topics": [
+        "4aNSKr",
+        "qNvjgx",
+        "8P5E9V"
+      ],
+      "fence": [
+        "4aNSKr",
+        "5HDlPF",
+        "8P5E9V",
+        "AQB8cb",
+        "qNvjgx"
+      ],
+      "method": "llm",
+      "reason": "투자자가 '고객' 정의를 충족하여 기준서의 적용범위에 해당하는지, 백서상의 공표가 계약상 약속에 포함되는지, 그리고 그 약속들이 구별되는 재화나 용역인지를 판단하는 사례입니다."
+    },
+    "QNA-2021-I-KQA007": {
+      "kind": "qna",
+      "title": "고객이 포함된 연결실체 내 다른 기업에  회사가 신주인수권 부여 시 회계처리",
+      "topics": [
+        "FJvsfz",
+        "l3leA7"
+      ],
+      "fence": [
+        "2Tb1uu",
+        "3q1lWH",
+        "4aNSKr",
+        "5HDlPF",
+        "85VgUd",
+        "Ag62GJ",
+        "FJvsfz",
+        "hyCSKL",
+        "l3leA7",
+        "lKmqLc",
+        "ySAFHt"
+      ],
+      "method": "llm",
+      "reason": "고객의 계열사(B사)를 고객으로 볼 수 있는지(계약 식별)와 해당 계열사에 부여한 신주인수권을 '고객에게 지급할 대가'로 보아 수익에서 차감할지를 판단하는 사례입니다."
+    },
+    "QNA-2020-I-KQA018": {
+      "kind": "qna",
+      "title": "(별도재무제표) 종속기업 투자주식을 신설종속기업에 매각 후 콜옵션 보유 시 회계처리",
+      "topics": [
+        "AQB8cb",
+        "ha4Yp2"
+      ],
+      "fence": [
+        "AQB8cb",
+        "ha4Yp2"
+      ],
+      "method": "llm",
+      "reason": "종속기업 투자주식 매각 후 콜옵션을 보유한 경우, K-IFRS 제1115호의 통제 이전(수행의무의 이행) 요건 및 재매입약정(콜옵션) 규정을 준용하여 자산의 제거 여부를 판단해야 하기 때문입니다."
+    },
+    "QNA-2020-I-KQA010": {
+      "kind": "qna",
+      "title": "손실부담계약 평가 시 재고자산 원가에 배부되지 않을 것으로 예상되는 고정제조간접원가의 포함 여부",
+      "topics": [
+        "TgRpnd"
+      ],
+      "fence": [
+        "TgRpnd"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-2020-I-KQA006": {
+      "kind": "qna",
+      "title": "우선매수협상권과 통제 이전의 관계",
+      "topics": [
+        "ha4Yp2",
+        "vw8tzF"
+      ],
+      "fence": [
+        "24pQtH",
+        "AQB8cb",
+        "ha4Yp2",
+        "lIlmTb",
+        "vw8tzF"
+      ],
+      "method": "llm",
+      "reason": "판매자가 보유한 우선매수협상권이 K-IFRS 1115호상 재매입약정(콜옵션)에 해당하여 자산의 통제 이전을 저해하는지가 핵심 쟁점입니다."
+    },
+    "QNA-2020-I-KQA003": {
+      "kind": "qna",
+      "title": "지급청구권의 집행 가능성",
+      "topics": [
+        "5HDlPF",
+        "5xZWrk"
+      ],
+      "fence": [
+        "5HDlPF",
+        "5xZWrk",
+        "l3leA7"
+      ],
+      "method": "llm",
+      "reason": "수행의무를 기간에 걸쳐 이행하는지 판단하기 위해, 기업의 실제 행사 의도와 상관없이 법적으로 '지금까지 수행을 완료한 부분에 대한 지급청구권'이 존재하는지를 다루고 있습니다."
+    },
+    "QNA-2019-I-KQA009": {
+      "kind": "qna",
+      "title": "외화 계약자산의 적용환율 결정과 화폐성자산 여부",
+      "topics": [
+        "5HDlPF",
+        "lKmqLc"
+      ],
+      "fence": [
+        "5HDlPF",
+        "AQB8cb",
+        "Hkislf",
+        "W6Bh7o",
+        "bz3jWR",
+        "lKmqLc"
+      ],
+      "method": "llm",
+      "reason": "기간에 걸쳐 수익을 인식하는 상황에서의 환율 적용 시점과, 변동대가의 제약 원칙을 준용하여 계약자산의 화폐성 자산 여부를 판단하고 있기 때문입니다."
+    },
+    "QNA-2019-I-KQA003": {
+      "kind": "qna",
+      "title": "수취한 회원권 입회보증금의 최초 인식 시 회계처리",
+      "topics": [
+        "p1vJ25",
+        "AQB8cb"
+      ],
+      "fence": [
+        "5HDlPF",
+        "5xZWrk",
+        "AQB8cb",
+        "CBJ3sK",
+        "KMTj0R",
+        "VB6r1W",
+        "bz3jWR",
+        "lIlmTb",
+        "p1vJ25",
+        "yyaySE"
+      ],
+      "method": "llm",
+      "reason": "입회보증금의 현재가치 차액이 회원에게 제공할 용역에 대한 대가인지 판단하기 위해 수행의무를 식별하고, 그 의무의 이행에 따라 수익을 인식하는 원칙을 다루고 있기 때문입니다."
+    },
+    "QNA-2018-I-KQA009": {
+      "kind": "qna",
+      "title": "의약품 수탁생산계약의 수행의무 구별",
+      "topics": [
+        "p1vJ25",
+        "8P5E9V",
+        "5HDlPF"
+      ],
+      "fence": [
+        "5HDlPF",
+        "8P5E9V",
+        "TgRpnd",
+        "bz3jWR",
+        "hyCSKL",
+        "p1vJ25",
+        "qNvjgx"
+      ],
+      "method": "llm",
+      "reason": "의약품 수탁생산의 각 단계가 구별되는 수행의무에 해당하는지(수행의무 식별)와 이를 기간에 걸쳐 이행하는 수행의무로 볼 수 있는지를 판단하는 사례입니다."
+    },
+    "QNA-2018-I-KQA004": {
+      "kind": "qna",
+      "title": "완료된 계약에서 변동대가 미확정 시 실무적 간편법 적용",
+      "topics": [
+        "1Kj78O"
+      ],
+      "fence": [
+        "1Kj78O",
+        "3q1lWH",
+        "85VgUd"
+      ],
+      "method": "llm",
+      "reason": "K-IFRS 1115호 최초 도입 시 소급 적용 과정에서 완료된 계약에 대한 실무적 간편법(문단 C5(2))을 적용할 때 사후 정보를 활용할 수 있는지 여부가 핵심 쟁점입니다."
+    },
+    "QNA-2018-I-KQA002": {
+      "kind": "qna",
+      "title": "고객의 계약종료권과 제작물의 폐기 요구권이 기업의 지급청구권 보유여부에 영향을 미치는가?",
+      "topics": [
+        "5xZWrk"
+      ],
+      "fence": [
+        "5HDlPF",
+        "5xZWrk"
+      ],
+      "method": "llm",
+      "reason": "고객의 일방적인 계약 종료권이 있음에도 불구하고, 기업이 수행 완료분에 대해 원가와 적정 이윤을 보상받을 수 있는 법적 권리(지급청구권)를 보유하는지가 핵심 쟁점입니다."
+    },
+    "QNA-2017-I-KAQ015": {
+      "kind": "qna",
+      "title": "자체 분양공사에 대한 기업의 지급청구권 보유 여부",
+      "topics": [
+        "5HDlPF",
+        "5xZWrk",
+        "l3leA7"
+      ],
+      "fence": [
+        "5HDlPF",
+        "5xZWrk",
+        "AQB8cb",
+        "l3leA7"
+      ],
+      "method": "llm",
+      "reason": "아파트 분양계약 시 진행기준 적용을 위한 '지급청구권' 보유 여부(문단 35(3))와 대가 회수가능성에 따른 '계약의 식별'(문단 9) 요건 충족 여부를 다루고 있습니다."
+    },
+    "QNA-2017-I-KQA014": {
+      "kind": "qna",
+      "title": "고객의 채무불이행에 따른 계약 종료 시 기업의 지급청구권 보유 여부",
+      "topics": [
+        "5HDlPF",
+        "5xZWrk"
+      ],
+      "fence": [
+        "5HDlPF",
+        "5xZWrk",
+        "AQB8cb"
+      ],
+      "method": "llm",
+      "reason": "선박 건조계약이 기간에 걸쳐 이행하는 수행의무에 해당하는지를 판단하기 위해, 고객의 채무불이행 시 기업이 보유한 지급청구권의 성격과 집행가능성을 검토하고 있기 때문입니다."
+    },
+    "QNA-SSI-202511020": {
+      "kind": "qna",
+      "title": "판매장려금 인식시기",
+      "topics": [
+        "3q1lWH",
+        "FJvsfz",
+        "lKmqLc"
+      ],
+      "fence": [
+        "3q1lWH",
+        "FJvsfz",
+        "lKmqLc"
+      ],
+      "method": "llm",
+      "reason": "고객에게 지급할 판매장려금을 거래가격에서 차감하는 시기를 결정하기 위해 고객에게 지급할 대가, 변동대가 추정 및 제약 원칙을 모두 적용해야 하기 때문입니다."
+    },
+    "QNA-SSI-202511018": {
+      "kind": "qna",
+      "title": "계약체결 증분원가의 인식시기",
+      "topics": [
+        "Ks6E5m"
+      ],
+      "fence": [
+        "Ks6E5m"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-202511019": {
+      "kind": "qna",
+      "title": "수취채권과 계약자산의 구분",
+      "topics": [
+        "W6Bh7o"
+      ],
+      "fence": [
+        "5xZWrk",
+        "W6Bh7o"
+      ],
+      "method": "llm",
+      "reason": "수익 인식 후 발생한 자산에 대해 무조건적인 대가 수취 권리가 있는지를 판단하여 수취채권과 계약자산 중 어떤 항목으로 표시할지를 다루는 사례입니다."
+    },
+    "QNA-SSI-202506004": {
+      "kind": "qna",
+      "title": "정부보조금 수령 시 원가기준 투입법의 진행률 산정",
+      "topics": [
+        "RF3mRJ",
+        "bz3jWR"
+      ],
+      "fence": [
+        "RF3mRJ",
+        "bz3jWR"
+      ],
+      "method": "llm",
+      "reason": "원가기준 투입법을 사용하여 수행의무의 진행률을 측정할 때, 진행률 산정의 기초가 되는 발생원가에 정부보조금 차감 여부를 결정하는 것이 핵심이기 때문입니다."
+    },
+    "QNA-SSI-202503008": {
+      "kind": "qna",
+      "title": "계약 해지로 지급하는 위약금의 회계처리",
+      "topics": [
+        "Cpmvf4"
+      ],
+      "fence": [
+        "Cpmvf4"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-202412042": {
+      "kind": "qna",
+      "title": "고객에게 풋옵션이 부여된 판매",
+      "topics": [
+        "24pQtH"
+      ],
+      "fence": [
+        "24pQtH",
+        "ha4Yp2"
+      ],
+      "method": "llm",
+      "reason": "고객이 자산을 다시 팔 수 있는 권리(풋옵션)를 가진 상황에서 재매입가격에 따른 회계처리를 판단하는 사례입니다."
+    },
+    "QNA-SSI-202412045": {
+      "kind": "qna",
+      "title": "유상사급 회계처리",
+      "topics": [
+        "vw8tzF",
+        "ha4Yp2"
+      ],
+      "fence": [
+        "AQB8cb",
+        "ha4Yp2",
+        "vw8tzF"
+      ],
+      "method": "llm",
+      "reason": "유상사급 거래에서 원재료 공급자가 가공품을 다시 사야 하는 재매입약정(선도나 콜옵션)이 존재하는 경우 자산의 통제가 이전되지 않은 것으로 보아 수익을 인식할 수 없음을 설명하고 있습니다."
+    },
+    "QNA-SSI-202412044": {
+      "kind": "qna",
+      "title": "제품 독점판매권의 회계처리",
+      "topics": [
+        "AQB8cb"
+      ],
+      "fence": [
+        "AQB8cb"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-202412003": {
+      "kind": "qna",
+      "title": "고객에게 추가로 제공하는 제품",
+      "topics": [
+        "AQB8cb",
+        "lIlmTb"
+      ],
+      "fence": [
+        "AQB8cb",
+        "lIlmTb"
+      ],
+      "method": "llm",
+      "reason": "추가로 제공하는 제품을 포함하여 재고자산의 통제가 고객에게 이전되는 시점에 수익과 관련 비용을 인식해야 하므로 수행의무의 이행 시점 판단이 핵심입니다."
+    },
+    "QNA-SSI-202412046": {
+      "kind": "qna",
+      "title": "투입법에 따른 진행률로 매출을 인식하는 계약의 변경",
+      "topics": [
+        "xYL1TP",
+        "bz3jWR"
+      ],
+      "fence": [
+        "85VgUd",
+        "H8vY9D",
+        "bz3jWR",
+        "xYL1TP"
+      ],
+      "method": "llm",
+      "reason": "계약금액의 증액이 계약변경의 승인 요건을 충족하는지 여부와 보고기간 말의 원가 변동을 진행률 측정에 어떻게 반영할 것인지가 핵심 쟁점입니다."
+    },
+    "QNA-SSI-202412041": {
+      "kind": "qna",
+      "title": "각종 부담금의 진행률 산입 여부",
+      "topics": [
+        "RF3mRJ",
+        "TgRpnd"
+      ],
+      "fence": [
+        "RF3mRJ",
+        "TgRpnd",
+        "hyCSKL"
+      ],
+      "method": "llm",
+      "reason": "부담금이 원가기준 투입법(진행률) 산정 시 포함되는지와 계약이행원가로서 자산 인식 대상인지가 주요 판단 사항입니다."
+    },
+    "QNA-SSI-202412043": {
+      "kind": "qna",
+      "title": "녹화가 완료된 강의의 평생수강권 판매 수익 인식시기",
+      "topics": [
+        "8P5E9V",
+        "5HDlPF",
+        "bxCGNy"
+      ],
+      "fence": [
+        "5HDlPF",
+        "8P5E9V",
+        "bxCGNy"
+      ],
+      "method": "llm",
+      "reason": "강의 콘텐츠(라이선스)와 홈페이지 유지관리 용역이 구별되는 수행의무인지와 그에 따른 기간별 수익 인식 여부를 판단해야 하기 때문입니다."
+    },
+    "QNA-SSI-38676": {
+      "kind": "qna",
+      "title": "대행사에 지급한 수수료의 비용 인식시점",
+      "topics": [
+        "Ks6E5m",
+        "hyCSKL"
+      ],
+      "fence": [
+        "Ks6E5m",
+        "hyCSKL"
+      ],
+      "method": "llm",
+      "reason": "대행 수수료가 계약체결 증분원가에 해당하는지 여부와 이를 자산으로 인식한 후 상각(비용화)하는 방법 및 기간을 판단하는 사례입니다."
+    },
+    "QNA-SSI-202312057": {
+      "kind": "qna",
+      "title": "유형자산 처분대가로 대출채권을 수령한 경우",
+      "topics": [
+        "ySAFHt"
+      ],
+      "fence": [
+        "ySAFHt"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-202312051": {
+      "kind": "qna",
+      "title": "면세점 판매수수료",
+      "topics": [
+        "O28gcg",
+        "XLz6Gv"
+      ],
+      "fence": [
+        "O28gcg",
+        "XLz6Gv"
+      ],
+      "method": "llm",
+      "reason": "면세점이 대리인인 경우 본인인 회사가 인식할 수익(거래가격)을 고객에게서 받을 대가인 판매수수료 차감 전 총액으로 산정해야 함을 다루고 있기 때문입니다."
+    },
+    "QNA-SSI-202312058": {
+      "kind": "qna",
+      "title": "고객이 원재료 매입금액의 일부를 보전하는 경우",
+      "topics": [
+        "3q1lWH",
+        "O28gcg"
+      ],
+      "fence": [
+        "3q1lWH",
+        "O28gcg"
+      ],
+      "method": "llm",
+      "reason": "고객으로부터 받는 원재료 보전금이 수익(거래가격)의 구성요소인지 여부와 그 금액의 가변성(변동대가)을 판단하는 사례입니다."
+    },
+    "QNA-SSI-202312052": {
+      "kind": "qna",
+      "title": "수익 인식시기",
+      "topics": [
+        "5HDlPF",
+        "AQB8cb",
+        "lIlmTb"
+      ],
+      "fence": [
+        "5HDlPF",
+        "AQB8cb",
+        "lIlmTb"
+      ],
+      "method": "llm",
+      "reason": "수익 인식 시기는 세금계산서 발행과 무관하게 수행의무가 이행(통제 이전)되는 시점이며, 계약 조건에 따라 기간에 걸쳐 이행하는 것인지 또는 한 시점에 이행하는 것인지 판단해야 하기 때문입니다."
+    },
+    "QNA-SSI-202312048": {
+      "kind": "qna",
+      "title": "매출 환급 회계처리",
+      "topics": [
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "fence": [
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "method": "llm",
+      "reason": "강의료 환급 조건이 변동대가에 해당하는지 여부와 그 금액을 추정할 때 수익 인식의 제약 원칙을 적용해야 하는지가 핵심 쟁점입니다."
+    },
+    "QNA-SSI-202312049": {
+      "kind": "qna",
+      "title": "포인트 제공 회계처리",
+      "topics": [
+        "FJvsfz"
+      ],
+      "fence": [
+        "FJvsfz"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-202312053": {
+      "kind": "qna",
+      "title": "모바일 게임 플랫폼 수수료",
+      "topics": [
+        "XLz6Gv"
+      ],
+      "fence": [
+        "O28gcg",
+        "XLz6Gv"
+      ],
+      "method": "llm",
+      "reason": "게임사가 게임 서비스 제공의 본인으로서 유저가 결제한 총액을 수익으로 인식할지, 수수료를 제외한 순액을 인식할지를 결정하는 본인 대 대리인 판단에 관한 사안입니다."
+    },
+    "QNA-SSI-202312050": {
+      "kind": "qna",
+      "title": "판매기준 로열티 수익인식",
+      "topics": [
+        "Y3rhox"
+      ],
+      "fence": [
+        "Y3rhox"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-38680": {
+      "kind": "qna",
+      "title": "매출 연동 지급수수료 회계처리",
+      "topics": [
+        "4aNSKr"
+      ],
+      "fence": [
+        "4aNSKr"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-38679": {
+      "kind": "qna",
+      "title": "재화에 대한 고객의 인수 절차가 있는 경우 수익인식 시점 판단",
+      "topics": [
+        "Ovyudt",
+        "lIlmTb"
+      ],
+      "fence": [
+        "Ovyudt",
+        "lIlmTb"
+      ],
+      "method": "llm",
+      "reason": "고객의 인수 절차가 수익 인식에 미치는 실질적인 영향을 분석하여 한 시점에 이행하는 수행의무의 통제 이전 시점을 판단하는 사례입니다."
+    },
+    "QNA-SSI-38677": {
+      "kind": "qna",
+      "title": "변경에 합의하였으나 변경계약서를 작성하지 않은 경우, 수익 인식",
+      "topics": [
+        "xYL1TP",
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "fence": [
+        "3q1lWH",
+        "lKmqLc",
+        "xYL1TP"
+      ],
+      "method": "llm",
+      "reason": "서면 계약서가 없더라도 실질적인 합의가 있는 경우 계약변경으로 볼 수 있는지와 가격이 확정되지 않은 변경사항에 대한 변동대가 추정 및 제약 원칙 적용을 다루고 있습니다."
+    },
+    "QNA-SSI-38485": {
+      "kind": "qna",
+      "title": "반품관련 비용",
+      "topics": [
+        "1IdzfY"
+      ],
+      "fence": [
+        "1IdzfY"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-38675": {
+      "kind": "qna",
+      "title": "모바일 상품권을 할인 발행한 경우 회계처리",
+      "topics": [
+        "FJvsfz"
+      ],
+      "fence": [
+        "FJvsfz"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-38674": {
+      "kind": "qna",
+      "title": "지급 능력이 낮은 고객과의 계약에서 회수 가능성 판단",
+      "topics": [
+        "l3leA7"
+      ],
+      "fence": [
+        "3q1lWH",
+        "l3leA7"
+      ],
+      "method": "llm",
+      "reason": "지급 능력이 낮은 고객과의 거래가 수익 인식의 첫 번째 단계인 계약 식별 요건(문단 9⑸ 회수 가능성)을 충족하는지 판단하는 사례입니다."
+    },
+    "QNA-SSI-38673": {
+      "kind": "qna",
+      "title": "고객에 대한 환불부채의 분류",
+      "topics": [
+        "2Tb1uu"
+      ],
+      "fence": [
+        "1IdzfY",
+        "2Tb1uu"
+      ],
+      "method": "llm",
+      "reason": "환불부채가 금융부채나 충당부채가 아닌 K-IFRS 제1115호의 적용대상임을 명확히 하는 사례이므로 환불부채의 정의와 분류가 핵심 쟁점입니다."
+    },
+    "QNA-SSI-38672": {
+      "kind": "qna",
+      "title": "계약 변경 시 제공한 가격할인",
+      "topics": [
+        "xYL1TP"
+      ],
+      "fence": [
+        "xYL1TP"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-38671": {
+      "kind": "qna",
+      "title": "출시 전 재화가 포함된 수행의무에 대한 거래가격 배분",
+      "topics": [
+        "TtGOPn"
+      ],
+      "fence": [
+        "TtGOPn"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-36993": {
+      "kind": "qna",
+      "title": "대금의 회수 가능성이 낮을 경우에, 제1115호 적용 여부",
+      "topics": [
+        "l3leA7"
+      ],
+      "fence": [
+        "l3leA7"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-36991": {
+      "kind": "qna",
+      "title": "매출계약에 포함된 유의적인 금융요소 관련 할인율",
+      "topics": [
+        "Ag62GJ"
+      ],
+      "fence": [
+        "Ag62GJ"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-36990": {
+      "kind": "qna",
+      "title": "고객의 신용도가 변경되면 유의적인 금융요소 관련 할인율을 변경해야 하는지",
+      "topics": [
+        "Ag62GJ"
+      ],
+      "fence": [
+        "Ag62GJ"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-36987": {
+      "kind": "qna",
+      "title": "재화의 제공과 운송용역을 같이 제공하는 경우, 수행의무의 식별",
+      "topics": [
+        "p1vJ25"
+      ],
+      "fence": [
+        "p1vJ25"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-36975": {
+      "kind": "qna",
+      "title": "납기지연으로 고객에게 지급할 대가",
+      "topics": [
+        "3q1lWH",
+        "O28gcg"
+      ],
+      "fence": [
+        "3q1lWH",
+        "Cpmvf4",
+        "O28gcg",
+        "lKmqLc",
+        "rD7ch9"
+      ],
+      "method": "llm",
+      "reason": "납기 지연으로 인해 발생하는 위약금이 거래가격을 산정할 때 고려해야 하는 변동대가에 해당하는지를 판단하는 사례입니다."
+    },
+    "QNA-SSI-36965": {
+      "kind": "qna",
+      "title": "납품수량 증가에 따른 추가 대가의 수익인식",
+      "topics": [
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "fence": [
+        "3q1lWH",
+        "Cpmvf4",
+        "O28gcg",
+        "lKmqLc",
+        "rD7ch9"
+      ],
+      "method": "llm",
+      "reason": "특정 납품 수량 달성 시 추가로 받는 보너스를 변동대가로 보고, 수익 인식 시 변동대가 추정치의 제약 요건을 검토해야 하기 때문입니다."
+    },
+    "QNA-SSI-36964": {
+      "kind": "qna",
+      "title": "고객이 운송용역을 대신 제공하는 경우의 수익인식",
+      "topics": [
+        "FJvsfz"
+      ],
+      "fence": [
+        "2Tb1uu",
+        "3q1lWH",
+        "8P5E9V",
+        "FJvsfz",
+        "lKmqLc"
+      ],
+      "method": "llm",
+      "reason": "고객이 운송을 직접 수행함에 따라 기업이 지급하는 금액이 '고객에게 지급할 대가'에 해당하여 수익에서 차감해야 하는지를 판단하는 사례입니다."
+    },
+    "QNA-SSI-36959": {
+      "kind": "qna",
+      "title": "임대차계약에 제1115호를 적용할 수 있는지",
+      "topics": [
+        "4aNSKr"
+      ],
+      "fence": [
+        "4aNSKr"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-36958": {
+      "kind": "qna",
+      "title": "토지 등기 이전 시 제거 여부",
+      "topics": [
+        "AQB8cb",
+        "lIlmTb"
+      ],
+      "fence": [
+        "5HDlPF",
+        "AQB8cb",
+        "lIlmTb"
+      ],
+      "method": "llm",
+      "reason": "토지 등기 이전이 실질적인 통제 이전(수행의무의 이행)에 해당하여 자산을 제거할 수 있는지를 한 시점의 통제 이전 지표를 통해 판단하는 사례입니다."
+    },
+    "QNA-SSI-36951": {
+      "kind": "qna",
+      "title": "고객에게 판매한 제품을 재매입 후 다른 고객에게 판매",
+      "topics": [
+        "ha4Yp2"
+      ],
+      "fence": [
+        "ha4Yp2"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-36949": {
+      "kind": "qna",
+      "title": "고객 요청에 따라 재화를 인도하지 않는 경우의 수익",
+      "topics": [
+        "PiNlZp",
+        "lIlmTb"
+      ],
+      "fence": [
+        "24pQtH",
+        "5HDlPF",
+        "7XbqhS",
+        "8P5E9V",
+        "AQB8cb",
+        "Ovyudt",
+        "PiNlZp",
+        "RPTMXY",
+        "TtGOPn",
+        "cTpTDN",
+        "f9OXP2",
+        "ha4Yp2",
+        "lIlmTb",
+        "p1vJ25",
+        "qNvjgx",
+        "vw8tzF"
+      ],
+      "method": "llm",
+      "reason": "재화를 물리적으로 인도하기 전이라도 미인도청구약정 요건을 충족할 경우 한 시점에 통제가 이전된 것으로 보아 수익을 인식할 수 있는지 판단하는 사례입니다."
+    },
+    "QNA-SSI-36948": {
+      "kind": "qna",
+      "title": "상품권 수익인식",
+      "topics": [
+        "AQB8cb"
+      ],
+      "fence": [
+        "AQB8cb",
+        "W6Bh7o"
+      ],
+      "method": "llm",
+      "reason": "상품권 판매 시점이 아닌 실제 용역을 제공하여 수행의무를 이행하는 시점에 수익을 인식해야 함을 다루고 있습니다."
+    },
+    "QNA-SSI-36946": {
+      "kind": "qna",
+      "title": "신탁 부동산의 회계처리",
+      "topics": [
+        "AQB8cb"
+      ],
+      "fence": [
+        "AQB8cb"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-36941": {
+      "kind": "qna",
+      "title": "유상사급 거래의 수익 인식(총액 vs 순액)",
+      "topics": [
+        "lIlmTb"
+      ],
+      "fence": [
+        "5HDlPF",
+        "AQB8cb",
+        "lIlmTb"
+      ],
+      "method": "llm",
+      "reason": "유상사급 거래에서 원자재에 대한 통제권 이전 여부를 판단하여 수익을 한 시점에 총액으로 인식할지 아니면 순액으로 인식할지를 결정하는 사례입니다."
+    },
+    "QNA-SSI-36920": {
+      "kind": "qna",
+      "title": "외화 계약자산 및 계약부채의 화폐성 항목 해당 여부",
+      "topics": [
+        "W6Bh7o"
+      ],
+      "fence": [
+        "W6Bh7o"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-36917": {
+      "kind": "qna",
+      "title": "구두계약으로 계약서가 없는 경우의 수익인식",
+      "topics": [
+        "l3leA7"
+      ],
+      "fence": [
+        "3q1lWH",
+        "l3leA7"
+      ],
+      "method": "llm",
+      "reason": "별도의 서면 계약서 없이 구두로 이루어진 합의가 K-IFRS 제1115호 문단 9에 따른 '계약의 식별' 요건을 충족할 수 있는지 여부를 다루는 사례입니다."
+    },
+    "QNA-SSI-36904": {
+      "kind": "qna",
+      "title": "용역제공 시 진행기준 적용 여부",
+      "topics": [
+        "5HDlPF"
+      ],
+      "fence": [
+        "5HDlPF"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-36898": {
+      "kind": "qna",
+      "title": "부가가치세의 수익 포함 여부",
+      "topics": [
+        "O28gcg"
+      ],
+      "fence": [
+        "O28gcg"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-35617": {
+      "kind": "qna",
+      "title": "상품할인이벤트 지원금의 회계처리",
+      "topics": [
+        "FJvsfz"
+      ],
+      "fence": [
+        "2Tb1uu",
+        "3q1lWH",
+        "8P5E9V",
+        "FJvsfz",
+        "lKmqLc"
+      ],
+      "method": "llm",
+      "reason": "유통채널(고객)의 상품 할인 금액을 지원하는 것이 '고객에게 지급할 대가'에 해당하여 수익에서 차감해야 하는지가 핵심 쟁점입니다."
+    },
+    "QNA-SSI-35565": {
+      "kind": "qna",
+      "title": "판매촉진 목적으로 제공한 시상품의 회계처리",
+      "topics": [
+        "l3leA7"
+      ],
+      "fence": [
+        "AQB8cb",
+        "l3leA7",
+        "p1vJ25"
+      ],
+      "method": "llm",
+      "reason": "판매촉진용 시상품 제공이 K-IFRS 제1115호의 적용을 받는 '고객과의 계약'의 일부인지, 아니면 별도의 광고선전비인지를 판단하기 위해 계약 식별 요건을 검토해야 하기 때문입니다."
+    },
+    "QNA-SSI-35609": {
+      "kind": "qna",
+      "title": "장기 무상수리를 별도 수행의무로 보아야 하는지",
+      "topics": [
+        "KaYPON",
+        "p1vJ25"
+      ],
+      "fence": [
+        "7XbqhS",
+        "8P5E9V",
+        "KaYPON",
+        "TtGOPn",
+        "cTpTDN",
+        "f9OXP2",
+        "p1vJ25",
+        "qNvjgx"
+      ],
+      "method": "llm",
+      "reason": "장기 무상수리가 확신 유형인지 용역 유형인지에 따라 별도의 수행의무로 식별할지를 판단하는 보증에 관한 쟁점입니다."
+    },
+    "QNA-SSI-35599": {
+      "kind": "qna",
+      "title": "계약이행원가에 대한 적용 기준서",
+      "topics": [
+        "TgRpnd"
+      ],
+      "fence": [
+        "TgRpnd"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-35584": {
+      "kind": "qna",
+      "title": "계약입찰을 위한 설계원가의 회계처리",
+      "topics": [
+        "Ks6E5m"
+      ],
+      "fence": [
+        "Ks6E5m"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-35579": {
+      "kind": "qna",
+      "title": "숙박권 판매에 따른 수익인식",
+      "topics": [
+        "AQB8cb"
+      ],
+      "fence": [
+        "5HDlPF",
+        "AQB8cb",
+        "KMTj0R",
+        "Ruylm4",
+        "VB6r1W",
+        "W6Bh7o"
+      ],
+      "method": "llm",
+      "reason": "대가를 미리 받았더라도 실제 숙박 용역이라는 수행의무를 이행하는 시점에 수익을 인식해야 함을 설명하고 있기 때문입니다."
+    },
+    "QNA-SSI-35578": {
+      "kind": "qna",
+      "title": "고객 주문에 따라 상품 구매 후 판매 시 수익 인식(순액 vs 총액)",
+      "topics": [
+        "XLz6Gv"
+      ],
+      "fence": [
+        "XLz6Gv"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-35568": {
+      "kind": "qna",
+      "title": "소프트웨어와 용역을 함께 제공하는 계약의 수행의무 구별",
+      "topics": [
+        "8P5E9V"
+      ],
+      "fence": [
+        "8P5E9V"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-35567": {
+      "kind": "qna",
+      "title": "반품조건부 판매의 회계처리",
+      "topics": [
+        "1IdzfY",
+        "lKmqLc"
+      ],
+      "fence": [
+        "1IdzfY",
+        "2Tb1uu",
+        "3q1lWH",
+        "85VgUd",
+        "Ag62GJ",
+        "FJvsfz",
+        "O28gcg",
+        "lKmqLc",
+        "ySAFHt"
+      ],
+      "method": "llm",
+      "reason": "반품권이 부여된 판매 계약에서 수익을 인식할 때, 변동대가 추정치의 제약 원칙을 적용하여 환불부채를 제외한 금액을 측정해야 함을 다루고 있습니다."
+    },
+    "QNA-SSI-38700": {
+      "kind": "qna",
+      "title": "장기할부판매",
+      "topics": [
+        "lIlmTb"
+      ],
+      "fence": [
+        "Ag62GJ",
+        "lIlmTb"
+      ],
+      "method": "llm",
+      "reason": "장기할부판매 시 수익인식 시점이 대금 수취 기간(할부 기간)에 걸쳐 발생하는지 아니면 제품 인도 시점인지(한 시점에 이행하는 수행의무인지)를 판단하는 사례입니다."
+    },
+    "QNA-SSI-38699": {
+      "kind": "qna",
+      "title": "위탁판매 수익 인식시점",
+      "topics": [
+        "AQB8cb",
+        "lIlmTb"
+      ],
+      "fence": [
+        "5HDlPF",
+        "AQB8cb",
+        "lIlmTb"
+      ],
+      "method": "llm",
+      "reason": "위탁판매 시 고객에게 통제가 이전되어 수행의무가 완료되는 구체적인 시점을 판단하는 사례이므로 수행의무의 이행 및 한 시점에 이행하는 수행의무가 쟁점이 됩니다."
+    },
+    "QNA-SSI-38698": {
+      "kind": "qna",
+      "title": "공사사고 보상비와 진행률 산정",
+      "topics": [
+        "RF3mRJ"
+      ],
+      "fence": [
+        "RF3mRJ"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-38476": {
+      "kind": "qna",
+      "title": "재고자산의 인식 여부",
+      "topics": [
+        "AQB8cb"
+      ],
+      "fence": [
+        "AQB8cb"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-38697": {
+      "kind": "qna",
+      "title": "반품금액 추정이 불가능한 반품조건부 판매",
+      "topics": [
+        "lKmqLc"
+      ],
+      "fence": [
+        "lKmqLc"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-38695": {
+      "kind": "qna",
+      "title": "반품의 회계처리",
+      "topics": [
+        "1IdzfY",
+        "XLz6Gv"
+      ],
+      "fence": [
+        "1IdzfY",
+        "XLz6Gv"
+      ],
+      "method": "llm",
+      "reason": "회사가 본인으로서 책임을 부담하는지 여부를 확인하고, 그에 따라 발생한 반품에 대해 수익을 차감하는 회계처리를 결정해야 하기 때문입니다."
+    },
+    "QNA-SSI-38690": {
+      "kind": "qna",
+      "title": "계약변경과 수익인식",
+      "topics": [
+        "xYL1TP"
+      ],
+      "fence": [
+        "xYL1TP"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-38648": {
+      "kind": "qna",
+      "title": "성과보상 인센티브와 변동대가",
+      "topics": [
+        "3q1lWH"
+      ],
+      "fence": [
+        "3q1lWH"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-38612": {
+      "kind": "qna",
+      "title": "백화점 입점업체의 수익인식",
+      "topics": [
+        "lIlmTb"
+      ],
+      "fence": [
+        "lIlmTb"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-38611": {
+      "kind": "qna",
+      "title": "수익인식 시점 및 계약자산 손상",
+      "topics": [
+        "l3leA7"
+      ],
+      "fence": [
+        "l3leA7"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-38703": {
+      "kind": "qna",
+      "title": "판매장려 목적의 할인",
+      "topics": [
+        "3q1lWH"
+      ],
+      "fence": [
+        "1IdzfY",
+        "2Tb1uu",
+        "3q1lWH",
+        "lKmqLc"
+      ],
+      "method": "llm",
+      "reason": "매출 목표 달성 시 사후적으로 제공되는 가격 할인은 변동대가에 해당하므로 이를 추정하여 수익에서 차감해야 함을 설명하고 있습니다."
+    },
+    "QNA-SSI-38702": {
+      "kind": "qna",
+      "title": "거래처별 다른 워런티",
+      "topics": [
+        "p1vJ25",
+        "KaYPON"
+      ],
+      "fence": [
+        "7XbqhS",
+        "8P5E9V",
+        "KaYPON",
+        "TtGOPn",
+        "cTpTDN",
+        "f9OXP2",
+        "p1vJ25",
+        "qNvjgx"
+      ],
+      "method": "llm",
+      "reason": "제품 판매 시 제공되는 워런티가 확신유형인지 용역유형인지에 따라 별도의 수행의무로 식별해야 하는지를 판단하는 사례입니다."
+    },
+    "QNA-SSI-38701": {
+      "kind": "qna",
+      "title": "제품 판매 후 재매입",
+      "topics": [
+        "vw8tzF"
+      ],
+      "fence": [
+        "vw8tzF"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "QNA-SSI-38465": {
+      "kind": "qna",
+      "title": "매출 시 지급한 지체상금의 회계처리",
+      "topics": [
+        "3q1lWH"
+      ],
+      "fence": [
+        "3q1lWH",
+        "KaYPON"
+      ],
+      "method": "llm",
+      "reason": "재화 이전 지연으로 인해 발생하는 지체상금을 수익에서 차감하는 변동대가로 볼 것인지가 핵심 쟁점입니다."
+    },
+    "FSS-CASE-2022-2311-02": {
+      "kind": "findings",
+      "title": "매출 조기인식을 통한 매출액 과대계상",
+      "topics": [
+        "l3leA7",
+        "AQB8cb"
+      ],
+      "fence": [
+        "AQB8cb",
+        "l3leA7"
+      ],
+      "method": "llm",
+      "reason": "최종 소비자가 없는 상태에서 협력업체와 담합하여 발주서를 제출한 것은 계약의 식별 요건(회수가능성, 결합 등)을 충족하지 못하며, 실제 자산의 이전(수행의무 이행) 없이 수익을 인식했기 때문입니다."
+    },
+    "FSS-CASE-2022-2311-03": {
+      "kind": "findings",
+      "title": "유상사급 관련 매출액 과대계상",
+      "topics": [
+        "AQB8cb",
+        "ha4Yp2"
+      ],
+      "fence": [
+        "AQB8cb",
+        "ha4Yp2"
+      ],
+      "method": "llm",
+      "reason": "유상사급 거래가 실질적으로 재매입 약정(선도나 콜옵션)에 해당하여 원·부자재 공급 시 자산의 통제가 고객에게 이전되지 않았음에도 수익을 인식한 것이 쟁점입니다."
+    },
+    "FSS-CASE-2023-2405-01": {
+      "kind": "findings",
+      "title": "미지급장려금 과소계상에 따른 매출 과대계상",
+      "topics": [
+        "3q1lWH"
+      ],
+      "fence": [
+        "3q1lWH"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "FSS-CASE-2023-2405-04": {
+      "kind": "findings",
+      "title": "매출 및 매출원가 허위계상",
+      "topics": [
+        "l3leA7"
+      ],
+      "fence": [
+        "AQB8cb",
+        "l3leA7"
+      ],
+      "method": "llm",
+      "reason": "실제 사업 활동이나 상업적 실질이 없는 가공의 거래를 통해 매출을 계상한 것은 수익 인식의 첫 번째 단계인 계약의 식별 요건을 충족하지 못한 것이 핵심 쟁점입니다."
+    },
+    "FSS-CASE-2023-2405-05": {
+      "kind": "findings",
+      "title": "수익인식기준 적용 오류",
+      "topics": [
+        "lIlmTb"
+      ],
+      "fence": [
+        "lIlmTb"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "FSS-CASE-2023-2405-06": {
+      "kind": "findings",
+      "title": "매출 기간 귀속오류",
+      "topics": [
+        "8P5E9V",
+        "AQB8cb"
+      ],
+      "fence": [
+        "8P5E9V",
+        "AQB8cb"
+      ],
+      "method": "llm",
+      "reason": "납품과 설치 용역을 별개의 수행의무로 식별할 수 있는지(구별되는 재화나 용역)와 그에 따른 수익 인식 시점(수행의무의 이행)이 적절한지가 핵심 쟁점입니다."
+    },
+    "FSS-CASE-2024-2409-01": {
+      "kind": "findings",
+      "title": "매출 및 매출원가 허위계상",
+      "topics": [
+        "AQB8cb"
+      ],
+      "fence": [
+        "AQB8cb"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "FSS-CASE-2024-2409-02": {
+      "kind": "findings",
+      "title": "종속회사의 밀어내기 매출을 통한 매출(연결) 허위 계상 및 상품매출 총액 인식 오류",
+      "topics": [
+        "BqPAS9"
+      ],
+      "fence": [
+        "BqPAS9"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "FSS-CASE-2024-2505-02": {
+      "kind": "findings",
+      "title": "매출 허위계상",
+      "topics": [
+        "AQB8cb",
+        "l3leA7"
+      ],
+      "fence": [
+        "AQB8cb",
+        "l3leA7"
+      ],
+      "method": "llm",
+      "reason": "실제가 없는 가공의 매출을 계상한 것은 계약 식별 요건(문단 9)을 충족하지 못하며, 재화나 용역의 통제가 이전되는 수행의무의 이행(문단 31)도 이루어지지 않았기 때문입니다."
+    },
+    "FSS-CASE-2024-2505-03": {
+      "kind": "findings",
+      "title": "매출 및 매출원가 과대계상",
+      "topics": [
+        "XLz6Gv"
+      ],
+      "fence": [
+        "AQB8cb",
+        "XLz6Gv"
+      ],
+      "method": "llm",
+      "reason": "회사가 3자 거래 구조에서 재화에 대한 통제권을 직접 보유하지 않은 대리인임에도 불구하고 매출을 총액으로 인식하여 본인 대 대리인 판단의 적절성이 핵심 쟁점이 되었습니다."
+    },
+    "FSS-CASE-2024-2505-04": {
+      "kind": "findings",
+      "title": "매출 기간귀속 오류",
+      "topics": [
+        "7XbqhS",
+        "cTpTDN"
+      ],
+      "fence": [
+        "7XbqhS",
+        "Cpmvf4",
+        "TtGOPn",
+        "cTpTDN",
+        "f9OXP2"
+      ],
+      "method": "llm",
+      "reason": "계약상 개별 판매가격의 합계보다 낮은 대가를 받은 경우 발생하는 할인액을 모든 수행의무에 비례하여 배분하지 않고 특정 수익에서만 차감하여 수익 인식 시점이 왜곡된 사례이기 때문입니다."
+    },
+    "FSS-CASE-2025-2512-01": {
+      "kind": "findings",
+      "title": "매출 및 매출원가 허위계상",
+      "topics": [
+        "AQB8cb"
+      ],
+      "fence": [
+        "AQB8cb"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "FSS-CASE-2025-2512-02": {
+      "kind": "findings",
+      "title": "종속기업의 라이선스 수익 인식 오류",
+      "topics": [
+        "bxCGNy",
+        "PQHzk5"
+      ],
+      "fence": [
+        "PQHzk5",
+        "bxCGNy"
+      ],
+      "method": "llm",
+      "reason": "이 사례는 라이선스 수익 인식 시점을 결정하기 위해 라이선스를 부여하는 약속의 성격(접근권 vs 사용권)을 판단하는 것이 핵심 쟁점입니다."
+    },
+    "KICPA-CASE-2021-12": {
+      "kind": "findings",
+      "title": "매출 및 매입 과대계상",
+      "topics": [
+        "AQB8cb",
+        "lIlmTb"
+      ],
+      "fence": [
+        "AQB8cb",
+        "lIlmTb"
+      ],
+      "method": "llm",
+      "reason": "유상사급 거래에서 원자재에 대한 통제가 이전되지 않았음에도 총액 매출을 인식한 사례로, 자산의 통제 이전을 통한 수행의무의 이행 여부와 그 시점(한 시점)에 관한 판단이 핵심입니다."
+    },
+    "KICPA-CASE-2024-04": {
+      "kind": "findings",
+      "title": "매출 및 매출채권 과대계상",
+      "topics": [
+        "l3leA7"
+      ],
+      "fence": [
+        "l3leA7"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "KICPA-CASE-2024-28": {
+      "kind": "findings",
+      "title": "매출 및 지급수수료 과대계상",
+      "topics": [
+        "FJvsfz"
+      ],
+      "fence": [
+        "FJvsfz"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "KICPA-CASE-2025-07": {
+      "kind": "findings",
+      "title": "수익·비용의 기간귀속 오류(용역)",
+      "topics": [
+        "5HDlPF"
+      ],
+      "fence": [
+        "5HDlPF"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "KICPA-CASE-2025-33": {
+      "kind": "findings",
+      "title": "매출채권 및 선수금 과대계상",
+      "topics": [
+        "W6Bh7o"
+      ],
+      "fence": [
+        "W6Bh7o"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "FSS-CASE-2021-2206-02": {
+      "kind": "findings",
+      "title": "대리점 임의반출을 통한 매출액 및 매출원가 과대계상",
+      "topics": [
+        "RPTMXY"
+      ],
+      "fence": [
+        "AQB8cb",
+        "RPTMXY"
+      ],
+      "method": "llm",
+      "reason": "대리점에 대한 제품 인도가 수익 인식 요건을 충족하는 통제의 이전인지, 아니면 실질적으로 회사가 위험과 통제를 유지하는 위탁약정에 해당하는지가 핵심 쟁점입니다."
+    },
+    "FSS-CASE-2025-2606-01": {
+      "kind": "findings",
+      "title": "영업수익 및 영업비용 과대계상",
+      "topics": [
+        "XLz6Gv"
+      ],
+      "fence": [
+        "8P5E9V",
+        "XLz6Gv",
+        "p1vJ25"
+      ],
+      "method": "llm",
+      "reason": "회사가 광고주와 라이브 스트리머 사이에서 용역을 주선하며 수익을 총액(본인)으로 인식했으나, 실질적으로는 용역을 통제하지 못하는 대리인에 해당하여 순액으로 인식해야 한다는 본인 대 대리인 판단이 핵심 쟁점입니다."
+    },
+    "FSS-CASE-2025-2606-02": {
+      "kind": "findings",
+      "title": "도급공사 진행률 산정 오류",
+      "topics": [
+        "xYL1TP"
+      ],
+      "fence": [
+        "xYL1TP"
+      ],
+      "method": "auto",
+      "reason": "(울타리 1개 · 자동)"
+    },
+    "FSS-CASE-2025-2606-03": {
+      "kind": "findings",
+      "title": "유상사급 관련 매출 및 매출원가 과대계상",
+      "topics": [
+        "AQB8cb",
+        "lIlmTb"
+      ],
+      "fence": [
+        "AQB8cb",
+        "lIlmTb"
+      ],
+      "method": "llm",
+      "reason": "유상사급재에 대한 통제권 보유 여부를 판단하기 위해 수행의무 이행의 정의와 한 시점에 이행하는 수행의무의 통제 이전 지표를 검토하였기 때문입니다."
+    },
+    "G1Tn3g": {
+      "kind": "ie",
+      "title": "사례 1: 대가의 회수 가능성",
+      "topics": [
+        "l3leA7"
+      ],
+      "fence": [
+        "l3leA7"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약의 식별' 절 (사용자 승인 21/21)"
+    },
+    "Auvtz1": {
+      "kind": "ie",
+      "title": "사례 2: 대가가 표시된 가격이 아니다 - 암묵적 가격할인 (price concession)",
+      "topics": [
+        "l3leA7"
+      ],
+      "fence": [
+        "l3leA7"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약의 식별' 절 (사용자 승인 21/21)"
+    },
+    "yvFBSg": {
+      "kind": "ie",
+      "title": "사례 3: 암묵적 가격할인(price concession)",
+      "topics": [
+        "l3leA7"
+      ],
+      "fence": [
+        "l3leA7"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약의 식별' 절 (사용자 승인 21/21)"
+    },
+    "YhLPbg": {
+      "kind": "ie",
+      "title": "사례 4: 계약 식별 기준의 재검토",
+      "topics": [
+        "l3leA7"
+      ],
+      "fence": [
+        "l3leA7"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약의 식별' 절 (사용자 승인 21/21)"
+    },
+    "GsGmoa": {
+      "kind": "ie",
+      "title": "사례 5: 계약변경―재화",
+      "topics": [
+        "xYL1TP"
+      ],
+      "fence": [
+        "xYL1TP"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약변경' 절 (사용자 승인 21/21)"
+    },
+    "Va8pTO": {
+      "kind": "ie",
+      "title": "사례 6: 계약변경 후 거래가격의 변경",
+      "topics": [
+        "xYL1TP"
+      ],
+      "fence": [
+        "xYL1TP"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약변경' 절 (사용자 승인 21/21)"
+    },
+    "Fu52x3": {
+      "kind": "ie",
+      "title": "사례 7: 계약변경―용역",
+      "topics": [
+        "xYL1TP"
+      ],
+      "fence": [
+        "xYL1TP"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약변경' 절 (사용자 승인 21/21)"
+    },
+    "p1jfmd": {
+      "kind": "ie",
+      "title": "사례 8: 변경에 따른 수익의 누적효과 일괄조정",
+      "topics": [
+        "xYL1TP"
+      ],
+      "fence": [
+        "xYL1TP"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약변경' 절 (사용자 승인 21/21)"
+    },
+    "vJs3Oi": {
+      "kind": "ie",
+      "title": "사례 9: 승인되지 않은 범위 및 가격 변경",
+      "topics": [
+        "xYL1TP"
+      ],
+      "fence": [
+        "xYL1TP"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약변경' 절 (사용자 승인 21/21)"
+    },
+    "Unl14N": {
+      "kind": "ie",
+      "title": "사례 10: 재화와 용역이 구별되지 않는다.",
+      "topics": [
+        "p1vJ25"
+      ],
+      "fence": [
+        "p1vJ25"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '수행의무의 식별' 절 (사용자 승인 21/21)"
+    },
+    "2PBgdu": {
+      "kind": "ie",
+      "title": "사례 11: 재화나 용역이 구별되는지를 판단함",
+      "topics": [
+        "p1vJ25"
+      ],
+      "fence": [
+        "p1vJ25"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '수행의무의 식별' 절 (사용자 승인 21/21)"
+    },
+    "IaulE4": {
+      "kind": "ie",
+      "title": "사례 12: 계약에 명시된 약속과 암묵적 약속",
+      "topics": [
+        "p1vJ25"
+      ],
+      "fence": [
+        "p1vJ25"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '수행의무의 식별' 절 (사용자 승인 21/21)"
+    },
+    "YujOCN": {
+      "kind": "ie",
+      "title": "사례 13: 고객이 효익을 동시에 얻고 소비한다",
+      "topics": [
+        "5HDlPF"
+      ],
+      "fence": [
+        "5HDlPF"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '기간에 걸쳐 이행하는 수행의무' 절 (사용자 승인 21/21)"
+    },
+    "aNuast": {
+      "kind": "ie",
+      "title": "사례 14: 대체 용도 및 지급청구권 검토",
+      "topics": [
+        "5HDlPF"
+      ],
+      "fence": [
+        "5HDlPF"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '기간에 걸쳐 이행하는 수행의무' 절 (사용자 승인 21/21)"
+    },
+    "6uii7Z": {
+      "kind": "ie",
+      "title": "사례 15: 자산이 기업에 대체 용도가 없다",
+      "topics": [
+        "5HDlPF"
+      ],
+      "fence": [
+        "5HDlPF"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '기간에 걸쳐 이행하는 수행의무' 절 (사용자 승인 21/21)"
+    },
+    "O2rMYe": {
+      "kind": "ie",
+      "title": "사례 16: 지금까지 수행을 완료한 부분에 대해 집행 가능한 지급청구권",
+      "topics": [
+        "5HDlPF"
+      ],
+      "fence": [
+        "5HDlPF"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '기간에 걸쳐 이행하는 수행의무' 절 (사용자 승인 21/21)"
+    },
+    "qGfMeX": {
+      "kind": "ie",
+      "title": "사례 17: 수행의무가 한 시점에 이행되는지 또는 기간에 걸쳐 이행되는지 판단",
+      "topics": [
+        "5HDlPF"
+      ],
+      "fence": [
+        "5HDlPF"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '기간에 걸쳐 이행하는 수행의무' 절 (사용자 승인 21/21)"
+    },
+    "KodCx6": {
+      "kind": "ie",
+      "title": "사례 18: 재화나 용역을 사용할 수 있게 하는 경우의 진행률 측정",
+      "topics": [
+        "bz3jWR"
+      ],
+      "fence": [
+        "bz3jWR"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '수행의무의 진행률 측정' 절 (사용자 승인 21/21)"
+    },
+    "abfbAl": {
+      "kind": "ie",
+      "title": "사례 19: 미설치 설비",
+      "topics": [
+        "bz3jWR"
+      ],
+      "fence": [
+        "bz3jWR"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '수행의무의 진행률 측정' 절 (사용자 승인 21/21)"
+    },
+    "Xs4GmR": {
+      "kind": "ie",
+      "title": "사례 20: 변동대가를 유발하는 위약금",
+      "topics": [
+        "3q1lWH"
+      ],
+      "fence": [
+        "3q1lWH"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '변동대가' 절 (사용자 승인 21/21)"
+    },
+    "R2Zngs": {
+      "kind": "ie",
+      "title": "사례 21: 변동대가 추정",
+      "topics": [
+        "3q1lWH"
+      ],
+      "fence": [
+        "3q1lWH"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '변동대가' 절 (사용자 승인 21/21)"
+    },
+    "tqZE3l": {
+      "kind": "ie",
+      "title": "사례 22: 반품권",
+      "topics": [
+        "lKmqLc"
+      ],
+      "fence": [
+        "lKmqLc"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '변동대가 추정치의 제약' 절 (사용자 승인 21/21)"
+    },
+    "c5z4EV": {
+      "kind": "ie",
+      "title": "사례 23: 가격할인(price concessions)",
+      "topics": [
+        "lKmqLc"
+      ],
+      "fence": [
+        "lKmqLc"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '변동대가 추정치의 제약' 절 (사용자 승인 21/21)"
+    },
+    "k2xQzu": {
+      "kind": "ie",
+      "title": "사례 24: 대량 할인 장려금",
+      "topics": [
+        "lKmqLc"
+      ],
+      "fence": [
+        "lKmqLc"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '변동대가 추정치의 제약' 절 (사용자 승인 21/21)"
+    },
+    "sfJcy5": {
+      "kind": "ie",
+      "title": "사례 25: 제약 대상 관리수수료",
+      "topics": [
+        "lKmqLc"
+      ],
+      "fence": [
+        "lKmqLc"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '변동대가 추정치의 제약' 절 (사용자 승인 21/21)"
+    },
+    "ZtcuFN": {
+      "kind": "ie",
+      "title": "사례 26: 유의적인 금융요소와 반품권",
+      "topics": [
+        "Ag62GJ"
+      ],
+      "fence": [
+        "Ag62GJ"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약에 있는 유의적인 금융요소' 절 (사용자 승인 21/21)"
+    },
+    "RGOwoZ": {
+      "kind": "ie",
+      "title": "사례 27: 장기 계약에 대한 지급청구권 보류",
+      "topics": [
+        "Ag62GJ"
+      ],
+      "fence": [
+        "Ag62GJ"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약에 있는 유의적인 금융요소' 절 (사용자 승인 21/21)"
+    },
+    "L2sXve": {
+      "kind": "ie",
+      "title": "사례 28: 할인율 산정",
+      "topics": [
+        "Ag62GJ"
+      ],
+      "fence": [
+        "Ag62GJ"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약에 있는 유의적인 금융요소' 절 (사용자 승인 21/21)"
+    },
+    "2CErok": {
+      "kind": "ie",
+      "title": "사례 29: 선수금과 할인율 평가",
+      "topics": [
+        "Ag62GJ"
+      ],
+      "fence": [
+        "Ag62GJ"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약에 있는 유의적인 금융요소' 절 (사용자 승인 21/21)"
+    },
+    "yBecDH": {
+      "kind": "ie",
+      "title": "사례 30: 선수금",
+      "topics": [
+        "Ag62GJ"
+      ],
+      "fence": [
+        "Ag62GJ"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약에 있는 유의적인 금융요소' 절 (사용자 승인 21/21)"
+    },
+    "iY6Ko7": {
+      "kind": "ie",
+      "title": "사례 31: 비현금 대가를 받을 권리",
+      "topics": [
+        "ySAFHt"
+      ],
+      "fence": [
+        "ySAFHt"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '비현금 대가' 절 (사용자 승인 21/21)"
+    },
+    "TOu3Ls": {
+      "kind": "ie",
+      "title": "사례 32: 고객에게 지급할 대가",
+      "topics": [
+        "FJvsfz"
+      ],
+      "fence": [
+        "FJvsfz"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '고객에게 지급할 대가' 절 (사용자 승인 21/21)"
+    },
+    "cKKYtt": {
+      "kind": "ie",
+      "title": "사례 33: 배분 방법론",
+      "topics": [
+        "cTpTDN"
+      ],
+      "fence": [
+        "cTpTDN"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '거래가격을 수행의무에 배분' 절 (사용자 승인 21/21)"
+    },
+    "4bRWLS": {
+      "kind": "ie",
+      "title": "사례 34: 할인액의 배분",
+      "topics": [
+        "cTpTDN"
+      ],
+      "fence": [
+        "cTpTDN"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '거래가격을 수행의무에 배분' 절 (사용자 승인 21/21)"
+    },
+    "hEnOKE": {
+      "kind": "ie",
+      "title": "사례 35: 변동대가의 배분",
+      "topics": [
+        "cTpTDN"
+      ],
+      "fence": [
+        "cTpTDN"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '거래가격을 수행의무에 배분' 절 (사용자 승인 21/21)"
+    },
+    "KAJ4Bs": {
+      "kind": "ie",
+      "title": "사례 36: 계약체결 증분원가",
+      "topics": [
+        "T51p4P"
+      ],
+      "fence": [
+        "T51p4P"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약원가' 절 (사용자 승인 21/21)"
+    },
+    "z4Rp37": {
+      "kind": "ie",
+      "title": "사례 37: 자산이 되는 원가",
+      "topics": [
+        "T51p4P"
+      ],
+      "fence": [
+        "T51p4P"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '계약원가' 절 (사용자 승인 21/21)"
+    },
+    "ajJynp": {
+      "kind": "ie",
+      "title": "사례 40: 기업의 수행 정도에 대해 인식하는 수취채권",
+      "topics": [
+        "W6Bh7o"
+      ],
+      "fence": [
+        "W6Bh7o"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '표시' 절 (사용자 승인 21/21)"
+    },
+    "kXY80h": {
+      "kind": "ie",
+      "title": "사례 41: 수익 구분—양적 공시",
+      "topics": [
+        "fMrvaF"
+      ],
+      "fence": [
+        "fMrvaF"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '공시' 절 (사용자 승인 21/21)"
+    },
+    "0pnbgn": {
+      "kind": "ie",
+      "title": "사례 42: 나머지 수행의무에 배분된 거래가격의 공시",
+      "topics": [
+        "fMrvaF"
+      ],
+      "fence": [
+        "fMrvaF"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '공시' 절 (사용자 승인 21/21)"
+    },
+    "KJy4j8": {
+      "kind": "ie",
+      "title": "사례 43: 나머지 수행의무에 배분된 거래가격 공시—질적 공시",
+      "topics": [
+        "fMrvaF"
+      ],
+      "fence": [
+        "fMrvaF"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '공시' 절 (사용자 승인 21/21)"
+    },
+    "VcqslY": {
+      "kind": "ie",
+      "title": "사례 44: 보증",
+      "topics": [
+        "KaYPON"
+      ],
+      "fence": [
+        "KaYPON"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '보증' 절 (사용자 승인 21/21)"
+    },
+    "lA2ryj": {
+      "kind": "ie",
+      "title": "사례 45: 재화나 용역 제공을 주선함(기업이 대리인이다)",
+      "topics": [
+        "XLz6Gv"
+      ],
+      "fence": [
+        "XLz6Gv"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '본인 대 대리인의 고려사항' 절 (사용자 승인 21/21)"
+    },
+    "sFxuXx": {
+      "kind": "ie",
+      "title": "사례 46: 재화나 용역을 제공하기로 하는 약속(기업이 본인이다)",
+      "topics": [
+        "XLz6Gv"
+      ],
+      "fence": [
+        "XLz6Gv"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '본인 대 대리인의 고려사항' 절 (사용자 승인 21/21)"
+    },
+    "0RNEGX": {
+      "kind": "ie",
+      "title": "사례 46A: 재화나 용역을 제공하기로 하는 약속(기업이 본인이다)",
+      "topics": [
+        "XLz6Gv"
+      ],
+      "fence": [
+        "XLz6Gv"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '본인 대 대리인의 고려사항' 절 (사용자 승인 21/21)"
+    },
+    "dfw7dF": {
+      "kind": "ie",
+      "title": "사례 47: 재화나 용역을 제공하기로 하는 약속(기업이 본인이다)",
+      "topics": [
+        "XLz6Gv"
+      ],
+      "fence": [
+        "XLz6Gv"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '본인 대 대리인의 고려사항' 절 (사용자 승인 21/21)"
+    },
+    "MiNQrf": {
+      "kind": "ie",
+      "title": "사례 48: 재화나 용역 제공을 주선함(기업이 대리인이다)",
+      "topics": [
+        "XLz6Gv"
+      ],
+      "fence": [
+        "XLz6Gv"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '본인 대 대리인의 고려사항' 절 (사용자 승인 21/21)"
+    },
+    "5pzjcN": {
+      "kind": "ie",
+      "title": "사례 48A: 기업은 같은 계약에서 본인이자 대리인이다.",
+      "topics": [
+        "XLz6Gv"
+      ],
+      "fence": [
+        "XLz6Gv"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '본인 대 대리인의 고려사항' 절 (사용자 승인 21/21)"
+    },
+    "djrZKU": {
+      "kind": "ie",
+      "title": "사례 49: 고객에게 중요한 권리를 제공하는 선택권(할인권)",
+      "topics": [
+        "oHAy0O"
+      ],
+      "fence": [
+        "oHAy0O"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '추가 재화나 용역에 대한 고객의 선택권' 절 (사용자 승인 21/21)"
+    },
+    "Hdmqqi": {
+      "kind": "ie",
+      "title": "사례 50: 고객에게 중요한 권리를 제공하지 않는 선택권(추가 재화나 용역)",
+      "topics": [
+        "oHAy0O"
+      ],
+      "fence": [
+        "oHAy0O"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '추가 재화나 용역에 대한 고객의 선택권' 절 (사용자 승인 21/21)"
+    },
+    "ldgGzv": {
+      "kind": "ie",
+      "title": "사례 51: 고객에게 중요한 권리를 제공하는 선택권(갱신 선택권)",
+      "topics": [
+        "oHAy0O"
+      ],
+      "fence": [
+        "oHAy0O"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '추가 재화나 용역에 대한 고객의 선택권' 절 (사용자 승인 21/21)"
+    },
+    "DGoE8D": {
+      "kind": "ie",
+      "title": "사례 52: 고객충성제도",
+      "topics": [
+        "oHAy0O"
+      ],
+      "fence": [
+        "oHAy0O"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '추가 재화나 용역에 대한 고객의 선택권' 절 (사용자 승인 21/21)"
+    },
+    "Y87b5Z": {
+      "kind": "ie",
+      "title": "사례 53: 환불되지 않는 선수수수료",
+      "topics": [
+        "n94QVz"
+      ],
+      "fence": [
+        "n94QVz"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '환불되지 않는 선수수수료' 절 (사용자 승인 21/21)"
+    },
+    "WiWPbq": {
+      "kind": "ie",
+      "title": "사례 54: 지적재산 사용권",
+      "topics": [
+        "bxCGNy"
+      ],
+      "fence": [
+        "bxCGNy"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '라이선싱' 절 (사용자 승인 21/21)"
+    },
+    "cyL2sE": {
+      "kind": "ie",
+      "title": "사례 55: 지적재산의 라이선스",
+      "topics": [
+        "bxCGNy"
+      ],
+      "fence": [
+        "bxCGNy"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '라이선싱' 절 (사용자 승인 21/21)"
+    },
+    "E4vXmv": {
+      "kind": "ie",
+      "title": "사례 56: 구별되는 라이선스를 식별함",
+      "topics": [
+        "bxCGNy"
+      ],
+      "fence": [
+        "bxCGNy"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '라이선싱' 절 (사용자 승인 21/21)"
+    },
+    "Z29t2W": {
+      "kind": "ie",
+      "title": "사례 57: 프랜차이즈 권리",
+      "topics": [
+        "bxCGNy"
+      ],
+      "fence": [
+        "bxCGNy"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '라이선싱' 절 (사용자 승인 21/21)"
+    },
+    "XJekZu": {
+      "kind": "ie",
+      "title": "사례 58: 지적재산에 접근",
+      "topics": [
+        "bxCGNy"
+      ],
+      "fence": [
+        "bxCGNy"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '라이선싱' 절 (사용자 승인 21/21)"
+    },
+    "DU006h": {
+      "kind": "ie",
+      "title": "사례 59: 지적재산 사용권",
+      "topics": [
+        "bxCGNy"
+      ],
+      "fence": [
+        "bxCGNy"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '라이선싱' 절 (사용자 승인 21/21)"
+    },
+    "W6muip": {
+      "kind": "ie",
+      "title": "사례 60: 지적재산 라이선스에 대한 판매기준 로열티",
+      "topics": [
+        "bxCGNy"
+      ],
+      "fence": [
+        "bxCGNy"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '라이선싱' 절 (사용자 승인 21/21)"
+    },
+    "nxwxV4": {
+      "kind": "ie",
+      "title": "사례 61: 지적재산에 접근",
+      "topics": [
+        "bxCGNy"
+      ],
+      "fence": [
+        "bxCGNy"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '라이선싱' 절 (사용자 승인 21/21)"
+    },
+    "JoGkOm": {
+      "kind": "ie",
+      "title": "사례 62: 재매입약정",
+      "topics": [
+        "vw8tzF"
+      ],
+      "fence": [
+        "vw8tzF"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '재매입약정' 절 (사용자 승인 21/21)"
+    },
+    "ifUuDJ": {
+      "kind": "ie",
+      "title": "사례 63: 미인도청구약정",
+      "topics": [
+        "PiNlZp"
+      ],
+      "fence": [
+        "PiNlZp"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '미인도청구약정' 절 (사용자 승인 21/21)"
+    },
+    "HZdlLJ": {
+      "kind": "ie",
+      "title": "사례 38: 계약부채와 수취채권",
+      "topics": [
+        "W6Bh7o"
+      ],
+      "fence": [
+        "W6Bh7o"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '표시' 절 (사용자 승인 21/21)"
+    },
+    "oy9zV2": {
+      "kind": "ie",
+      "title": "사례 39: 기업의 수행 정도에 대해 인식하는 계약자산",
+      "topics": [
+        "W6Bh7o"
+      ],
+      "fence": [
+        "W6Bh7o"
+      ],
+      "method": "ie_group",
+      "reason": "기준서 IE 목차 '표시' 절 (사용자 승인 21/21)"
+    }
+  }
+}

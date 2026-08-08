@@ -32,6 +32,9 @@ class DocResult(BaseModel):
 
     source: str  # "본문", "적용지침B", "질의회신", "감리사례", ...
     hierarchy: str  # breadcrumb (예: "[문단 59] 변동대가")
+    # 1115호 문단 번호 원본("37", "B9", "BC55"). 사례 문서는 "".
+    # Why: 회수율 채점이 hierarchy 문자열을 정규식으로 긁지 않게 한다(gold 라벨 오염 재발 방지).
+    para_num: str = ""
     title: str = ""  # LLM 생성 제목 (08-generate-titles.py 마이그레이션). 없으면 "" → 프론트가 hierarchy로 폴백
     content: str  # 자식 청크 미리보기 (아코디언 헤더에 표시)
     full_content: str  # 부모 원문 전체 (아코디언 펼침 시 표시)
@@ -54,6 +57,7 @@ def to_doc_result(doc: dict) -> DocResult:
     return DocResult(
         source=doc.get("source", "본문"),
         hierarchy=doc.get("hierarchy", ""),
+        para_num=doc.get("paraNum", ""),
         title=doc.get("title", ""),
         content=doc.get("content", ""),
         full_content=full,
@@ -94,6 +98,8 @@ class SSEEvent(BaseModel):
     is_situation: bool = False
     # 계산 경로(gpt-4.1-mini) 사용 여부 — 테스트 라우팅 진단용
     needs_calculation: bool = False
+    # analyze 라우팅 판정("IN" | 그 외는 범위 밖 거절) — 홀드아웃 진입 지표용
+    routing: str | None = None
     # 매칭된 체크리스트 토픽 키 목록 — 핀포인트 패널용
     matched_topic_keys: list[str] | None = None
     # clarify가 결론을 내렸는지 여부 — UI에서 추가 질문 표시 분기용

@@ -180,6 +180,7 @@ def _done_event(state: dict) -> SSEEvent:
         follow_up_questions=follow_up if follow_up else None,
         is_situation=state.get("is_situation", False),
         needs_calculation=state.get("needs_calculation", False),
+        routing=state.get("routing"),
         retrieved_docs=retrieved_docs,
         matched_topic_keys=topic_keys if topic_keys else None,
         is_conclusion=state.get("is_conclusion", False),

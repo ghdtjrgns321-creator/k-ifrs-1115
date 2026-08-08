@@ -1,0 +1,742 @@
+{
+ "a_file": "run_none.json",
+ "b_file": "run_kin1.json",
+ "map": {
+  "36767eda4537": {
+   "id": "QNA-2017-I-KAQ015-Q1",
+   "cond": "A"
+  },
+  "ab178460af40": {
+   "id": "QNA-2017-I-KAQ015-Q1",
+   "cond": "B"
+  },
+  "530ae3740bbe": {
+   "id": "QNA-2017-I-KAQ015-Q2",
+   "cond": "A"
+  },
+  "369238a1cb4e": {
+   "id": "QNA-2017-I-KAQ015-Q2",
+   "cond": "B"
+  },
+  "f68977c6d655": {
+   "id": "QNA-2017-I-KQA014",
+   "cond": "A"
+  },
+  "a70eb4e1cda6": {
+   "id": "QNA-2017-I-KQA014",
+   "cond": "B"
+  },
+  "148d486f67d1": {
+   "id": "QNA-2018-I-KQA002",
+   "cond": "A"
+  },
+  "18dd9ede3855": {
+   "id": "QNA-2018-I-KQA002",
+   "cond": "B"
+  },
+  "eb5f66c40e4e": {
+   "id": "QNA-2018-I-KQA004",
+   "cond": "A"
+  },
+  "b97ce38b609f": {
+   "id": "QNA-2018-I-KQA004",
+   "cond": "B"
+  },
+  "15b2a8a9165a": {
+   "id": "QNA-2018-I-KQA009-Q1",
+   "cond": "A"
+  },
+  "e052146e52d4": {
+   "id": "QNA-2018-I-KQA009-Q1",
+   "cond": "B"
+  },
+  "a6c6506217b2": {
+   "id": "QNA-2018-I-KQA009-Q2",
+   "cond": "A"
+  },
+  "1a01001c7905": {
+   "id": "QNA-2018-I-KQA009-Q2",
+   "cond": "B"
+  },
+  "051f4f0bc4b3": {
+   "id": "QNA-201803A",
+   "cond": "A"
+  },
+  "36901908c1a0": {
+   "id": "QNA-201803A",
+   "cond": "B"
+  },
+  "114d87e48c03": {
+   "id": "QNA-201803B",
+   "cond": "A"
+  },
+  "d152a0b1aa3a": {
+   "id": "QNA-201803B",
+   "cond": "B"
+  },
+  "848d40e96f14": {
+   "id": "QNA-201803D",
+   "cond": "A"
+  },
+  "4a4e1b3787fb": {
+   "id": "QNA-201803D",
+   "cond": "B"
+  },
+  "349baf749aee": {
+   "id": "QNA-2019-I-KQA003",
+   "cond": "A"
+  },
+  "c3a4165f3dfe": {
+   "id": "QNA-2019-I-KQA003",
+   "cond": "B"
+  },
+  "2c91b5cef144": {
+   "id": "QNA-2019-I-KQA009-Q1",
+   "cond": "A"
+  },
+  "13061cfd1d8f": {
+   "id": "QNA-2019-I-KQA009-Q1",
+   "cond": "B"
+  },
+  "1f1c0077b25b": {
+   "id": "QNA-2019-I-KQA009-Q2",
+   "cond": "A"
+  },
+  "abcb37fb3646": {
+   "id": "QNA-2019-I-KQA009-Q2",
+   "cond": "B"
+  },
+  "5fe48cff491d": {
+   "id": "QNA-201901B",
+   "cond": "A"
+  },
+  "bf7ebb673706": {
+   "id": "QNA-201901B",
+   "cond": "B"
+  },
+  "7c4e0db5aea8": {
+   "id": "QNA-201906D",
+   "cond": "A"
+  },
+  "80269f3f698a": {
+   "id": "QNA-201906D",
+   "cond": "B"
+  },
+  "038a071299d6": {
+   "id": "QNA-201909A",
+   "cond": "A"
+  },
+  "22ffc4cc78ce": {
+   "id": "QNA-201909A",
+   "cond": "B"
+  },
+  "bb3b714f1b11": {
+   "id": "QNA-2020-I-KQA003",
+   "cond": "A"
+  },
+  "0726fa8cf674": {
+   "id": "QNA-2020-I-KQA003",
+   "cond": "B"
+  },
+  "212aa9d3f6ed": {
+   "id": "QNA-2020-I-KQA006-Q1",
+   "cond": "A"
+  },
+  "08770acc01f3": {
+   "id": "QNA-2020-I-KQA006-Q1",
+   "cond": "B"
+  },
+  "c954d9e1d5c5": {
+   "id": "QNA-2020-I-KQA006-Q2",
+   "cond": "A"
+  },
+  "d0899aeb110d": {
+   "id": "QNA-2020-I-KQA006-Q2",
+   "cond": "B"
+  },
+  "854b1eed005c": {
+   "id": "QNA-202003D",
+   "cond": "A"
+  },
+  "af29e81870ae": {
+   "id": "QNA-202003D",
+   "cond": "B"
+  },
+  "a16d5e515a85": {
+   "id": "QNA-2021-I-KQA008",
+   "cond": "A"
+  },
+  "388ed0ad6d16": {
+   "id": "QNA-2021-I-KQA008",
+   "cond": "B"
+  },
+  "cc6a6005b930": {
+   "id": "QNA-2022-I-KQA007",
+   "cond": "A"
+  },
+  "673bcc3636a6": {
+   "id": "QNA-2022-I-KQA007",
+   "cond": "B"
+  },
+  "b7dedfc94902": {
+   "id": "QNA-2022-I-KQA015",
+   "cond": "A"
+  },
+  "a3c134c0ae13": {
+   "id": "QNA-2022-I-KQA015",
+   "cond": "B"
+  },
+  "1c209d1096f1": {
+   "id": "QNA-2024-I-KQA005",
+   "cond": "A"
+  },
+  "2011c0fb0a29": {
+   "id": "QNA-2024-I-KQA005",
+   "cond": "B"
+  },
+  "4bcd6c4896b2": {
+   "id": "QNA-202504C",
+   "cond": "A"
+  },
+  "137c580d7341": {
+   "id": "QNA-202504C",
+   "cond": "B"
+  },
+  "1bdc7df02bd9": {
+   "id": "QNA-221109A",
+   "cond": "A"
+  },
+  "803ce1b03485": {
+   "id": "QNA-221109A",
+   "cond": "B"
+  },
+  "04e723f6dc2e": {
+   "id": "QNA-SSI-202312048",
+   "cond": "A"
+  },
+  "ae41bebbc7a7": {
+   "id": "QNA-SSI-202312048",
+   "cond": "B"
+  },
+  "685d24fe3e3c": {
+   "id": "QNA-SSI-202312049",
+   "cond": "A"
+  },
+  "f31a7d463a6b": {
+   "id": "QNA-SSI-202312049",
+   "cond": "B"
+  },
+  "93f8491e143b": {
+   "id": "QNA-SSI-202312050",
+   "cond": "A"
+  },
+  "73e0edc2e3f0": {
+   "id": "QNA-SSI-202312050",
+   "cond": "B"
+  },
+  "73d7a76ae289": {
+   "id": "QNA-SSI-202312051",
+   "cond": "A"
+  },
+  "6ec7bf85e054": {
+   "id": "QNA-SSI-202312051",
+   "cond": "B"
+  },
+  "b713fdbd992f": {
+   "id": "QNA-SSI-202312052",
+   "cond": "A"
+  },
+  "2b5dd31bf5a5": {
+   "id": "QNA-SSI-202312052",
+   "cond": "B"
+  },
+  "3dadf8886d19": {
+   "id": "QNA-SSI-202312053",
+   "cond": "A"
+  },
+  "27e5427882a9": {
+   "id": "QNA-SSI-202312053",
+   "cond": "B"
+  },
+  "e825bbecb3bb": {
+   "id": "QNA-SSI-202312058",
+   "cond": "A"
+  },
+  "f2f0d279cb49": {
+   "id": "QNA-SSI-202312058",
+   "cond": "B"
+  },
+  "5c3267d58a09": {
+   "id": "QNA-SSI-202412003",
+   "cond": "A"
+  },
+  "a227ff7c7b80": {
+   "id": "QNA-SSI-202412003",
+   "cond": "B"
+  },
+  "193a731e5623": {
+   "id": "QNA-SSI-202412041",
+   "cond": "A"
+  },
+  "a1de990225c0": {
+   "id": "QNA-SSI-202412041",
+   "cond": "B"
+  },
+  "c9ada7a0aac5": {
+   "id": "QNA-SSI-202412042",
+   "cond": "A"
+  },
+  "8e1ccea08385": {
+   "id": "QNA-SSI-202412042",
+   "cond": "B"
+  },
+  "23fe37dafb02": {
+   "id": "QNA-SSI-202412043",
+   "cond": "A"
+  },
+  "784764c3f809": {
+   "id": "QNA-SSI-202412043",
+   "cond": "B"
+  },
+  "3eb9712db2c1": {
+   "id": "QNA-SSI-202412044",
+   "cond": "A"
+  },
+  "729b366a12a7": {
+   "id": "QNA-SSI-202412044",
+   "cond": "B"
+  },
+  "9a1d56c60481": {
+   "id": "QNA-SSI-202412045",
+   "cond": "A"
+  },
+  "255a9ecdac75": {
+   "id": "QNA-SSI-202412045",
+   "cond": "B"
+  },
+  "4af50e0432a9": {
+   "id": "QNA-SSI-202412046",
+   "cond": "A"
+  },
+  "b1b2e031bf62": {
+   "id": "QNA-SSI-202412046",
+   "cond": "B"
+  },
+  "5aa2da6117d9": {
+   "id": "QNA-SSI-202503008",
+   "cond": "A"
+  },
+  "f8421c12e66f": {
+   "id": "QNA-SSI-202503008",
+   "cond": "B"
+  },
+  "9ec05cada2dd": {
+   "id": "QNA-SSI-202506004",
+   "cond": "A"
+  },
+  "f6443a5fbefb": {
+   "id": "QNA-SSI-202506004",
+   "cond": "B"
+  },
+  "ea2231ce3b8c": {
+   "id": "QNA-SSI-202511018",
+   "cond": "A"
+  },
+  "14c454738bac": {
+   "id": "QNA-SSI-202511018",
+   "cond": "B"
+  },
+  "c38a2b1f4b46": {
+   "id": "QNA-SSI-202511019",
+   "cond": "A"
+  },
+  "12bc1873e1f5": {
+   "id": "QNA-SSI-202511019",
+   "cond": "B"
+  },
+  "d1cf90a641fa": {
+   "id": "QNA-SSI-202511020",
+   "cond": "A"
+  },
+  "61d9900c092c": {
+   "id": "QNA-SSI-202511020",
+   "cond": "B"
+  },
+  "367a87c916c6": {
+   "id": "QNA-SSI-35565",
+   "cond": "A"
+  },
+  "cae9fd3fdc99": {
+   "id": "QNA-SSI-35565",
+   "cond": "B"
+  },
+  "57f2b7d3abb1": {
+   "id": "QNA-SSI-35567",
+   "cond": "A"
+  },
+  "24d902dd5fab": {
+   "id": "QNA-SSI-35567",
+   "cond": "B"
+  },
+  "d1c68ca3535f": {
+   "id": "QNA-SSI-35568",
+   "cond": "A"
+  },
+  "bf4c4c770e86": {
+   "id": "QNA-SSI-35568",
+   "cond": "B"
+  },
+  "8e5dd14a206a": {
+   "id": "QNA-SSI-35578",
+   "cond": "A"
+  },
+  "ac8eeda50d6c": {
+   "id": "QNA-SSI-35578",
+   "cond": "B"
+  },
+  "f4446c3d130f": {
+   "id": "QNA-SSI-35579",
+   "cond": "A"
+  },
+  "66ed9797ec63": {
+   "id": "QNA-SSI-35579",
+   "cond": "B"
+  },
+  "03e0dfae1601": {
+   "id": "QNA-SSI-35584",
+   "cond": "A"
+  },
+  "2edc70494758": {
+   "id": "QNA-SSI-35584",
+   "cond": "B"
+  },
+  "c9215ac2c4f8": {
+   "id": "QNA-SSI-35599",
+   "cond": "A"
+  },
+  "d7b00722c487": {
+   "id": "QNA-SSI-35599",
+   "cond": "B"
+  },
+  "7a0df5870ac8": {
+   "id": "QNA-SSI-35609",
+   "cond": "A"
+  },
+  "515f1f7f51d6": {
+   "id": "QNA-SSI-35609",
+   "cond": "B"
+  },
+  "de54a9d29749": {
+   "id": "QNA-SSI-35617",
+   "cond": "A"
+  },
+  "c6c88640f36b": {
+   "id": "QNA-SSI-35617",
+   "cond": "B"
+  },
+  "3a13da7eeaf5": {
+   "id": "QNA-SSI-36898",
+   "cond": "A"
+  },
+  "138032b7c7a9": {
+   "id": "QNA-SSI-36898",
+   "cond": "B"
+  },
+  "5a389d40825a": {
+   "id": "QNA-SSI-36904",
+   "cond": "A"
+  },
+  "5e340f542587": {
+   "id": "QNA-SSI-36904",
+   "cond": "B"
+  },
+  "196eaddceaba": {
+   "id": "QNA-SSI-36917",
+   "cond": "A"
+  },
+  "a7c2980b0e01": {
+   "id": "QNA-SSI-36917",
+   "cond": "B"
+  },
+  "9bd52c4fcb90": {
+   "id": "QNA-SSI-36941",
+   "cond": "A"
+  },
+  "db10234d9365": {
+   "id": "QNA-SSI-36941",
+   "cond": "B"
+  },
+  "f99abf4f92d7": {
+   "id": "QNA-SSI-36948",
+   "cond": "A"
+  },
+  "50fb54645cda": {
+   "id": "QNA-SSI-36948",
+   "cond": "B"
+  },
+  "6826525a2f56": {
+   "id": "QNA-SSI-36949",
+   "cond": "A"
+  },
+  "6e25d5b32c8b": {
+   "id": "QNA-SSI-36949",
+   "cond": "B"
+  },
+  "f7c2d5ce1678": {
+   "id": "QNA-SSI-36951",
+   "cond": "A"
+  },
+  "de6f7600124f": {
+   "id": "QNA-SSI-36951",
+   "cond": "B"
+  },
+  "4b58123d6880": {
+   "id": "QNA-SSI-36959",
+   "cond": "A"
+  },
+  "50911a7fa351": {
+   "id": "QNA-SSI-36959",
+   "cond": "B"
+  },
+  "a3cc80b84b80": {
+   "id": "QNA-SSI-36964",
+   "cond": "A"
+  },
+  "ea6a11e4d469": {
+   "id": "QNA-SSI-36964",
+   "cond": "B"
+  },
+  "5f20763286d3": {
+   "id": "QNA-SSI-36965",
+   "cond": "A"
+  },
+  "9cfb16cb2ec2": {
+   "id": "QNA-SSI-36965",
+   "cond": "B"
+  },
+  "dd302ce9640d": {
+   "id": "QNA-SSI-36975",
+   "cond": "A"
+  },
+  "86d5e5dd5831": {
+   "id": "QNA-SSI-36975",
+   "cond": "B"
+  },
+  "75d6051d757e": {
+   "id": "QNA-SSI-36987",
+   "cond": "A"
+  },
+  "0629d01581da": {
+   "id": "QNA-SSI-36987",
+   "cond": "B"
+  },
+  "bc8ee893402b": {
+   "id": "QNA-SSI-36990",
+   "cond": "A"
+  },
+  "d191801bcd96": {
+   "id": "QNA-SSI-36990",
+   "cond": "B"
+  },
+  "f32d2b93a3db": {
+   "id": "QNA-SSI-36991",
+   "cond": "A"
+  },
+  "2085aa2a2f5a": {
+   "id": "QNA-SSI-36991",
+   "cond": "B"
+  },
+  "31ac172a2c24": {
+   "id": "QNA-SSI-36993",
+   "cond": "A"
+  },
+  "c97015cb75d0": {
+   "id": "QNA-SSI-36993",
+   "cond": "B"
+  },
+  "13a6bb24c331": {
+   "id": "QNA-SSI-38465",
+   "cond": "A"
+  },
+  "9f8eb3b657a5": {
+   "id": "QNA-SSI-38465",
+   "cond": "B"
+  },
+  "c27e535acac0": {
+   "id": "QNA-SSI-38485",
+   "cond": "A"
+  },
+  "7cd7f9f19c8a": {
+   "id": "QNA-SSI-38485",
+   "cond": "B"
+  },
+  "6cf33da1cb87": {
+   "id": "QNA-SSI-38611",
+   "cond": "A"
+  },
+  "bd8c79505f34": {
+   "id": "QNA-SSI-38611",
+   "cond": "B"
+  },
+  "f4c0b8c06ca8": {
+   "id": "QNA-SSI-38612",
+   "cond": "A"
+  },
+  "02c1e102859f": {
+   "id": "QNA-SSI-38612",
+   "cond": "B"
+  },
+  "e2ac5cd0cd2b": {
+   "id": "QNA-SSI-38648",
+   "cond": "A"
+  },
+  "73d50d1d9995": {
+   "id": "QNA-SSI-38648",
+   "cond": "B"
+  },
+  "c4f2feb2235d": {
+   "id": "QNA-SSI-38671",
+   "cond": "A"
+  },
+  "2befc4193bcf": {
+   "id": "QNA-SSI-38671",
+   "cond": "B"
+  },
+  "49a23513faff": {
+   "id": "QNA-SSI-38672",
+   "cond": "A"
+  },
+  "9351faeccf08": {
+   "id": "QNA-SSI-38672",
+   "cond": "B"
+  },
+  "ac72dc17caa2": {
+   "id": "QNA-SSI-38673",
+   "cond": "A"
+  },
+  "5edca22ff95a": {
+   "id": "QNA-SSI-38673",
+   "cond": "B"
+  },
+  "c864f0573baf": {
+   "id": "QNA-SSI-38674",
+   "cond": "A"
+  },
+  "abc90c1acb08": {
+   "id": "QNA-SSI-38674",
+   "cond": "B"
+  },
+  "5a535fb69ef5": {
+   "id": "QNA-SSI-38675",
+   "cond": "A"
+  },
+  "0c3b4d17ab78": {
+   "id": "QNA-SSI-38675",
+   "cond": "B"
+  },
+  "66f1c8a2097f": {
+   "id": "QNA-SSI-38676",
+   "cond": "A"
+  },
+  "93de9cce0aa9": {
+   "id": "QNA-SSI-38676",
+   "cond": "B"
+  },
+  "5a221f1345bd": {
+   "id": "QNA-SSI-38677",
+   "cond": "A"
+  },
+  "12ca9eac35e1": {
+   "id": "QNA-SSI-38677",
+   "cond": "B"
+  },
+  "06ceca56f96c": {
+   "id": "QNA-SSI-38679",
+   "cond": "A"
+  },
+  "a7bf2c46c42d": {
+   "id": "QNA-SSI-38679",
+   "cond": "B"
+  },
+  "eb706cc1183f": {
+   "id": "QNA-SSI-38680",
+   "cond": "A"
+  },
+  "354f080c855b": {
+   "id": "QNA-SSI-38680",
+   "cond": "B"
+  },
+  "a658b298b87f": {
+   "id": "QNA-SSI-38690",
+   "cond": "A"
+  },
+  "d424e200cf4c": {
+   "id": "QNA-SSI-38690",
+   "cond": "B"
+  },
+  "22bf0d3f1669": {
+   "id": "QNA-SSI-38695",
+   "cond": "A"
+  },
+  "77540ecd5ce4": {
+   "id": "QNA-SSI-38695",
+   "cond": "B"
+  },
+  "479dc6cda9ee": {
+   "id": "QNA-SSI-38697",
+   "cond": "A"
+  },
+  "bf482d67c567": {
+   "id": "QNA-SSI-38697",
+   "cond": "B"
+  },
+  "19e46383b112": {
+   "id": "QNA-SSI-38698",
+   "cond": "A"
+  },
+  "951bcbcfdf97": {
+   "id": "QNA-SSI-38698",
+   "cond": "B"
+  },
+  "2ed6004566e0": {
+   "id": "QNA-SSI-38699",
+   "cond": "A"
+  },
+  "feda585538e8": {
+   "id": "QNA-SSI-38699",
+   "cond": "B"
+  },
+  "fb6a3427924f": {
+   "id": "QNA-SSI-38700",
+   "cond": "A"
+  },
+  "8f5a1c21c7a8": {
+   "id": "QNA-SSI-38700",
+   "cond": "B"
+  },
+  "b2c91063430a": {
+   "id": "QNA-SSI-38701",
+   "cond": "A"
+  },
+  "70e1e13a9341": {
+   "id": "QNA-SSI-38701",
+   "cond": "B"
+  },
+  "5eeeeb8ff8e3": {
+   "id": "QNA-SSI-38702",
+   "cond": "A"
+  },
+  "18ee743c6c6c": {
+   "id": "QNA-SSI-38702",
+   "cond": "B"
+  },
+  "3814d1e8e2a6": {
+   "id": "QNA-SSI-38703",
+   "cond": "A"
+  },
+  "5fa5b9dc5691": {
+   "id": "QNA-SSI-38703",
+   "cond": "B"
+  }
+ }
+}

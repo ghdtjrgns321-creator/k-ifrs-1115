@@ -25,6 +25,20 @@ EXCLUDE_TITLES = {
     "기업회계기준서 제1115호의 제·개정 등에 대한 회계기준위원회의 의결",
 }
 
+# 규범 내용이 없는 목차·머리말 문단 — 개념의 관할 문단으로 삼지 않는다.
+# 사람이 원문을 읽고 확정한 목록이다(길이·개수 임계로 자동 판별하지 않는다).
+#
+# 왜 빼는가: 부모 방향으로 개념을 넓히면 `부록 B 적용지침`이 붙고 이 문단들이
+# 따라온다. 실측으로 216개 질문 중 166개(77%)에 목차 텍스트가 들어왔다.
+# 근거·측정: dev/entry-traverse/results-traverse.md §16.
+#
+# `웩5`(부록A)는 남긴다 — 머리말 한 줄 뒤에 용어 정의 본문 996자가 이어진다.
+EXCLUDE_PARAS = {
+    "B1": "부록B 목차 — '(1) 기간에 걸쳐 이행하는 수행의무(문단 B2~B13)' 14항목 나열",
+    "웩6": "부록B 머리말 — '이 부록은 문단 1~129를 적용하는 방법을 기술하며' (106자)",
+    "웩7": "부록C 머리말 — '이 부록은 이 기준서의 일부를 구성하고' (78자)",
+}
+
 
 def clean_title(raw: str) -> str:
     """HTML 태그(<sup>주석 등)를 제거하고 공백을 정리합니다."""
@@ -207,19 +221,27 @@ def main():
 
     # 3) 계층 트리 구축 + 문단 배정 (documentId 연결)
     concepts = build_tree(titles)
-    unassigned = []
-    for key, p in paras.items():
+    unassigned, excluded = [], []
+    for p in paras.values():
         para_num = p.get("paraNum", "")
-        if p["documentId"] in concepts:
+        if para_num in EXCLUDE_PARAS:
+            excluded.append(para_num)
+        elif p["documentId"] in concepts:
             concepts[p["documentId"]]["paras"].append(para_num)
         else:
             unassigned.append(para_num)
     for c in concepts.values():
         c["paras"].sort(key=para_sort_key)
-    assigned = len(paras) - len(unassigned)
+    assigned = len(paras) - len(unassigned) - len(excluded)
     print(
         f"문단 배정: {assigned}/{len(paras)} (미배정 {len(unassigned)}: {unassigned})"
     )
+    print(
+        f"  목차·머리말 제외 {len(excluded)}/{len(EXCLUDE_PARAS)}: {sorted(excluded)}"
+    )
+    if len(excluded) != len(EXCLUDE_PARAS):
+        miss = sorted(set(EXCLUDE_PARAS) - set(excluded))
+        raise SystemExit(f"❌ 제외 목록에 있으나 원본에 없는 문단: {miss}")
 
     # 4) ref 교차 검증 — documentId 배정과 목차 ref 범위의 일치 여부
     # 분모 명시: ref가 파싱 가능한 개념만 검증 대상 (ref 없음/복합 표기는 제외)

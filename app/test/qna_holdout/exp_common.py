@@ -12,6 +12,7 @@ from pathlib import Path
 _HERE = Path(__file__).parent
 _ROOT = Path(__file__).resolve().parents[3]
 TESTSET = _ROOT / "data" / "testdata" / "qna_testset.json"
+GOLD = _ROOT / "data" / "testdata" / "gold_extract" / "gold_paragraphs.json"
 CONCEPTS = _ROOT / "data" / "ontology" / "concepts.json"
 CHUNKS = _ROOT / "data" / "web" / "kifrs-1115-chunks.json"
 TOPICMAP = _ROOT / "data" / "ontology" / "topic_concept_map.json"
@@ -60,6 +61,35 @@ def dev_gold_cases() -> list[tuple[str, dict, set]]:
         if gc:
             out.append((cid, c, gc))
     return out
+
+
+# ── eval-v2 gold 라벨 (gold_paragraphs.json) ──────────────────────────────────
+# 구 라벨(qna_testset.json의 cited_paragraphs, 정규식 산출 285문단)은 폐기됐다.
+# docs/eval-v2/00-PLAN.md §1-1 A: 기준서 구분 없이 긁어 타 기준서 문단이 섞였다.
+
+
+def gold_cases() -> dict[str, list[dict]]:
+    """케이스 → 1115호 gold 문단 레코드. 제외 2건·타 기준서 문단은 뺀다.
+
+    타 기준서(1038·1002·1116·1008 10문단)를 빼는 이유: 코퍼스 밖이라 회수 자체가
+    불가능하다. 분모에 남기면 회수율 상한이 100% 미만이 되어 지표가 흐려진다.
+    """
+    out = {}
+    for x in load_json(GOLD):
+        if x.get("scope") or x.get("exclude_reason"):
+            continue
+        paras = [p for p in x["paragraphs"] if p.get("standard") == "1115"]
+        if paras:
+            out[x["id"]] = paras
+    return out
+
+
+def gold_paras(essential_only: bool = True) -> dict[str, set[str]]:
+    """케이스 → gold 문단 번호 집합. 기본은 필수(essential) 173문단."""
+    return {
+        k: {str(p["para"]) for p in v if p.get("essential") or not essential_only}
+        for k, v in gold_cases().items()
+    }
 
 
 def build_concept_texts() -> dict[str, str]:

@@ -124,9 +124,9 @@ async def generate_answer(state: dict) -> dict:
     else:
         docs = all_docs
 
-    # 유형별 슬롯 상한(매직넘버 3·2·3) 제거 — 관련성 축소는 retrieve의 via_topic
-    # 한정(케이스·IE를 LLM 지목 주제 직결로만 수집)이 담당한다. 상한은 근거 없는
-    # 임의값이었고, via_topic으로 정제된 사례까지 등록순으로 잘라내는 부작용만 남았다.
+    # 유형별 슬롯 상한(매직넘버 3·2·3) 제거 — 관련성 축소는 그래프의 주제 간선
+    # (case_topics.json)이 담당한다. 상한은 근거 없는 임의값이었고, 이미 정제된
+    # 사례까지 등록순으로 잘라내는 부작용만 남았다.
 
     is_situation = state.get("is_situation", False)
     force_conclusion = state.get("force_conclusion", False)
@@ -251,9 +251,10 @@ async def generate_answer(state: dict) -> dict:
     return {
         "answer": answer,
         "cited_sources": cited_sources,
-        # 좌측 근거 패널은 LLM이 실제 읽은 컨텍스트를 그대로 노출한다.
-        # (via_topic 한정으로 케이스·IE가 주제 직결만 수집됨 — 플러드 없음)
-        "context_docs": docs,
+        # 좌측 근거 패널 = LLM이 읽은 컨텍스트 + BC.
+        # BC는 context_str에 안 들어가므로 LLM은 못 읽고 사람만 읽는다
+        # (graph_fetch.fetch_bc 주석). UI는 "결론도출근거(BC)" 아코디언으로 받는다.
+        "context_docs": docs + (state.get("bc_docs") or []),
         "follow_up_questions": follow_up_questions,
         "is_situation": is_situation,
         "is_conclusion": is_conclusion,

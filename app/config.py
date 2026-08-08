@@ -49,16 +49,19 @@ class Settings(BaseSettings):
     #      자기 답 자기 참조(순환)가 된다. 본문+판단트리만으로 재현되는지 격리 측정.
     exclude_qna: bool = False
 
-    # topic_hint 개념의 주제군 계층 확장 임계 (07-retrieval-priority gap).
-    # Why: topic_map이 말단 개념 1개만 가리켜 형제(같은 주제군)를 놓친다. 부모 subtree가
-    #      이 값 이하면 형제를 포함, 초과(부록B 24개 등)하면 폭발 방지로 자기 하위만.
-    #      값은 진입 개념 폭발 억제(예산)용이며 골든셋 커버리지 튜닝값이 아니다.
-    subtree_expand_max: int = 8
-
-    # 보조 진입(코사인) 개수 — 용어사전 뒤 후순위로 병합. 0이면 보조 진입 비활성.
+    # 임베딩 진입 개수. 0이면 이 통로 비활성.
     # Why(값): exp_decision.md에서 3·5·7이 모두 같은 결과(56/57)라 최소값을 취했다.
     #          임계값·가중치는 두지 않는다 — 점수는 순위 결정에만 쓰고 다른 신호와 섞지 않는다.
     entry_embed_top_k: int = 3
+
+    # 순회에서 개념을 넓히는 규칙. "none" | "kin1"
+    #   none — 진입 개념 그 자리에서만 걷는다 (현행)
+    #   kin1 — 부모 1홉 + 자식 1홉까지 넓혀서 걷는다
+    # Why(선택지가 둘뿐): 홀드아웃 실측에서 깊이는 값을 못 했고(자식 전체 vs 1홉 +1),
+    #   5단계 이웃은 이득 0, 형제까지 열면 기준서 문단의 70%가 들어온다.
+    #   회수만 보면 항상 넓은 쪽이 이기므로 답 품질 채점으로 가른다(A/B).
+    #   근거: dev/entry-traverse/results-traverse.md §13·§16
+    traverse_expand: str = "none"
 
     # 7. 인프라 설정
     # CORS: Streamlit(:8501) → FastAPI(:8002) 교차 요청 허용 목록

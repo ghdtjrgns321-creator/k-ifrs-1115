@@ -68,11 +68,11 @@ async def analyze_query(state: dict) -> dict:
             logger.info("scope guard: OUT 강제 전환 (hard_out=%s)", user_text[:50])
             data.routing = "OUT"
 
-    # 온톨로지 개념 진입 — LLM 지목 토픽(1순위) + 용어사전(2순위) + 코사인(안전망, 후순위)
+    # 온톨로지 개념 진입 — 용어사전 경유(LLM 지목 + 글자매칭) + 임베딩.
     # 개념 질문/상황 질문 모두 적용(그래프 탐색이 후보 축소).
     entry = get_graph().resolve_question(
         data.standalone_query or user_text,
-        data.topic_hints,
+        data.term_hints,
         query_vec=await _entry_vector(user_text),
     )
 
@@ -81,11 +81,20 @@ async def analyze_query(state: dict) -> dict:
         "standalone_query": data.standalone_query,
         "is_situation": data.is_situation,
         "concept_ids": entry["concept_ids"],
-        # via_topic: LLM 지목 주제 직속 개념(subtree 확장 전). 트리 매칭 오선택 차단용.
-        "via_topic": entry["via_topic"],
-        # via_embed: 코사인 안전망으로만 들어온 개념. 근거 경로에 진입 방식을 표시한다.
+        # via_llm: LLM이 지목한 용어에서 나온 개념. 파이프라인은 안 쓰고 품질 로그만
+        # 쓴다 — 진입이 빌 때 원인을 가르는 신호다(사례 수집 한정은 폐기됨).
+        "via_llm": entry["via_llm"],
+        # via_embed: 임베딩으로만 들어온 개념. 근거 경로에 진입 방식을 표시한다.
         "via_embed": entry["via_embed"],
-        "entry_cases": entry["cases"],
+        # matched_terms: 글자매칭으로 걸린 말. 파이프라인은 안 쓰고 품질 로그만 쓴다.
+        # Why: 진입이 비었을 때 "사전 미등재" 때문인지 구분하는 유일한 신호(docs/quality-loop/01).
+        "matched_terms": entry["matched_terms"],
+        # term_hints: LLM이 고른 용어 원본. 파이프라인은 안 쓰고 품질 로그만 쓴다.
+        # Why: 진입이 비었을 때 "LLM이 용어를 안 댔다"와 "댔는데 사전에 없는 말이었다"를
+        # 가르는 유일한 신호다. 둘은 고칠 대상이 다르다(지시문 vs 사전).
+        "term_hints": data.term_hints or [],
+        # unknown_terms: LLM이 댔지만 사전에 없던 말 — 사전 보강 대상 목록.
+        "unknown_terms": entry["unknown_terms"],
         # matched_topics: 하위 노드 호환용 — 5-3/5-4에서 그래프 탐색으로 정리
         "matched_topics": [],
         "confusion_point": data.confusion_point,

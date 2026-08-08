@@ -6,7 +6,8 @@
 Why: BC는 "규정을 왜 이렇게 만들었나"의 근거층. 간선 등록부(06-graph-audit.md §2)에
      사전 등록된 3종만 생성 —
      E-BC1 BC문단→본문문단(원문 인용, 항등식), E-BC2 BC그룹→개념(목차 괄호 표기),
-     E-BC3 사례→BC(감사본 예약 활성화). 데이터는 문단 단위(DB 조회 정합),
+     E-BC3 사례→BC(감사본 예약 활성화), E-BC4 BC문단→본문문단(목차 괄호표기 최심).
+     E-BC4는 등록부에 없던 4번째다 — E-BC1이 678개 중 190개만 덮어서 추가했다. 데이터는 문단 단위(DB 조회 정합),
      그래프 표시는 그룹 단위로 축약(05-bc.md에 명시).
 """
 
@@ -184,14 +185,22 @@ def main():
     #      있음 — 감사에서 그룹 단위 매핑이 내용과 어긋난 원인. 깊은 표기가 정답.
     annotated.sort(key=lambda a: a["level"])  # 얕은 것 먼저 → 깊은 것이 덮어씀
     anno_cache = {a["title"]: covering_concept(a["anno"]) for a in annotated}
+    # E-BC4: 같은 소제목에서 **문단 자체**도 뽑는다. 개념까지 올리면 "이 개념 소관 BC"가
+    # 되어 개념 하나에 55개까지 붙지만, 문단 단위면 "이 문단을 논의한 BC"가 된다.
+    # 근거·측정: dev/entry-traverse/results-traverse.md §18.
+    anno_paras = {a["title"]: resolve_range(a["anno"], para_keys) for a in annotated}
     bc_to_concept: dict[str, dict] = {}
+    bc_to_para_anno: dict[str, list[str]] = {}
     for a in annotated:
         cid = anno_cache[a["title"]]
-        if not cid:
-            continue
+        ps = anno_paras[a["title"]]
         for pn in bc_paras:
             m = re.match(r"^BC(\d+)", pn)
-            if m and a["lo"] <= int(m.group(1)) <= a["hi"]:
+            if not (m and a["lo"] <= int(m.group(1)) <= a["hi"]):
+                continue
+            if ps:
+                bc_to_para_anno[pn] = ps
+            if cid:
                 bc_to_concept[pn] = {
                     "concept": cid,
                     "via": a["title"],
@@ -296,6 +305,19 @@ def main():
         f"E-BC1: 인용 보유 BC {len(e_bc1)}/{len(bc_paras)} → 본문 역인덱스 {len(para_to_bc)}개 문단"
     )
 
+    # ── E-BC4 역인덱스: 본문 문단 → 그 문단을 논의한 BC ──────────────────
+    # E-BC1(BC 본문이 "문단 N"이라 쓴 것)은 678개 중 190개만 걸린다. 목차 소제목의
+    # 괄호표기는 그보다 넓게 덮으면서도 "이 절은 문단 N을 논의한다"는 저자 편성이다.
+    para_to_bc_anno: dict[str, list[str]] = {}
+    for bc, paras in bc_to_para_anno.items():
+        for p in paras:
+            para_to_bc_anno.setdefault(p, []).append(bc)
+    print(
+        f"E-BC4 목차 괄호표기: BC {len(bc_to_para_anno)}/{len(bc_paras)} "
+        f"→ 문단 {len(para_to_bc_anno)}개 · 문단당 BC 평균 "
+        f"{sum(len(v) for v in para_to_bc_anno.values()) / max(1, len(para_to_bc_anno)):.1f}"
+    )
+
     # ── E-BC3: 사례 → BC (감사본 예약 활성화) ───────────────────────
     e_bc3, missing = [], []
     for path, prefix in [(QNA_PATH, "QNA-"), (FINDINGS_PATH, "")]:
@@ -317,12 +339,19 @@ def main():
             "groups": len(bc_groups),
             "e_bc1": st | {"unresolved_raw": sorted(set(st["unresolved_raw"]))},
             "e_bc3": {"activated": len(e_bc3), "missing": len(missing)},
+            "e_bc4": {
+                "bc": len(bc_to_para_anno),
+                "paras": len(para_to_bc_anno),
+                "note": "목차 소제목 괄호표기(최심 레벨) → 그 BC가 논의하는 본문 문단",
+            },
         },
         "groups": bc_groups,
         "bc_to_concept": bc_to_concept,
         "bc_group_of": {pn: v["group"] for pn, v in bc_paras.items()},
         "e_bc1_bc_to_para": e_bc1,
         "para_to_bc": {p: sorted(v) for p, v in para_to_bc.items()},
+        "e_bc4_bc_to_para_anno": bc_to_para_anno,
+        "para_to_bc_anno": {p: sorted(v) for p, v in para_to_bc_anno.items()},
         "e_bc3_case_to_bc": e_bc3,
     }
     OUTPUT_PATH.write_text(

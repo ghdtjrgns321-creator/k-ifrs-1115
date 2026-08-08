@@ -10,7 +10,7 @@ import time
 from app.api.schemas import SSEEvent
 from app.pipeline import run_rag_pipeline
 from app.services.session_store import SessionStore
-from app.services.usage_logger import log_chat_response
+from app.services.usage_logger import log_chat_error, log_chat_response
 
 
 def _build_initial_state(
@@ -67,6 +67,51 @@ def _build_initial_state(
     return state
 
 
+def _raw_terms(question: str) -> list[str]:
+    """사용자 **원문**이 용어사전에 걸리는지. 품질 로그 전용, 파이프라인 무영향.
+
+    Why: 진입은 analyze가 재작성한 문장(standalone_query)으로 돈다(analyze.py:73).
+    구어로 물어도 재작성문이 "수행의무" 같은 정식 용어로 바뀌어 사전에 걸리므로,
+    matched_terms만 보면 사전 공백이 가려진다. 사전을 보강할지 판단하려면 사용자가
+    실제로 쓴 말 기준의 매칭이 필요하다. 글자 매칭이라 API 호출·지연이 없다.
+    """
+    try:
+        from app.domain.graph import get_graph
+
+        return get_graph().resolve_terms(question or "")["matched_terms"]
+    except Exception:
+        return []
+
+
+def _log_error(
+    session_id: str, question: str, err_type: str, err_msg: str, start: float
+) -> None:
+    """실패 질의를 usage_logs에 남긴다. 저장 실패는 삼킨다(응답 흐름 우선)."""
+    log_chat_error(
+        session_id=session_id,
+        question=question,
+        error_type=err_type,
+        error_message=err_msg,
+        response_time_ms=int((time.perf_counter() - start) * 1000),
+    )
+
+
+def _flow_of(state: dict) -> str:
+    """이 응답이 어느 경로로 나왔는지. 품질 로그 전용.
+
+    Why: fast-path·범위밖 거절·이전검색 재사용은 analyze/retrieve를 건너뛰어
+    진입 흔적이 원래 없다. 이 구분이 없으면 채점 배치가 전부 "진입 실패"로
+    오탐한다(docs/quality-loop/01).
+    """
+    if state.get("is_clarify_followup"):
+        return "fast_path"
+    if state.get("routing") != "IN":
+        return "rejected"
+    if state.get("pre_retrieved_docs") is not None:
+        return "pre_retrieved"
+    return "full"
+
+
 async def run_graph_stream(
     session_id: str,
     message: str,
@@ -121,6 +166,7 @@ async def run_graph_stream(
                     session_id=session_id,
                     question=message,
                     answer=final_state.get("answer", ""),
+                    flow=_flow_of(final_state),
                     matched_topics=topics,
                     cited_paragraphs=final_state.get("cited_paragraphs"),
                     is_situation=final_state.get("is_situation", False),
@@ -128,6 +174,21 @@ async def run_graph_stream(
                     is_conclusion=final_state.get("is_conclusion", False),
                     selected_branches=final_state.get("selected_branches"),
                     response_time_ms=elapsed_ms,
+                    concept_ids=final_state.get("concept_ids"),
+                    via_llm=final_state.get("via_llm"),
+                    via_embed=final_state.get("via_embed"),
+                    matched_terms=final_state.get("matched_terms"),
+                    matched_terms_raw=_raw_terms(message),
+                    term_hints=final_state.get("term_hints"),
+                    unknown_terms=final_state.get("unknown_terms"),
+                    candidate_paras=final_state.get("candidate_paras"),
+                    context_paras=[
+                        p
+                        for d in (final_state.get("context_docs") or [])
+                        if (p := d.get("paraNum"))
+                    ],
+                    concept_path=final_state.get("concept_path"),
+                    doc_count=len(final_state.get("relevant_docs") or []),
                 )
                 if log_id:
                     event.log_id = log_id
@@ -135,12 +196,14 @@ async def run_graph_stream(
             yield event
 
     except TimeoutError:
+        _log_error(session_id, message, "TimeoutError", "", _start_time)
         yield SSEEvent(
             type="error",
             message="죄송합니다, 답변 생성에 시간이 너무 오래 걸렸어요. 다시 한번 시도해 주시겠어요?",
         )
         return
     except Exception as exc:
+        _log_error(session_id, message, type(exc).__name__, str(exc), _start_time)
         yield SSEEvent(type="error", message=f"처리 중 오류가 발생했습니다: {exc}")
         return
 

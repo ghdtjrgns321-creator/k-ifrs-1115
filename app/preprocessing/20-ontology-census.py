@@ -33,6 +33,13 @@ CONT_RE = re.compile(rf"^[⑴-⒇①-⑳\s]*(?:과|와|,|및|또는)\s*({_RANGE}
 # 비교'로 결론도출근거(BC)에 속한 논평이라 규범 스코프 밖 → 앵커에서 자동 배제.
 NORM_ANCHOR = re.compile(r"^한?[BC]?[\d.]+[A-Z]?$")
 
+# 15-ontology-edges.py가 상호참조에서 의도적으로 뺀 문단(목차·머리말·개정 연혁).
+# **여기 목록은 저쪽에서 import하지 않고 따로 적는다** — census의 존재 이유가
+# 파이프라인의 스코프 판단을 믿지 않는 것이라 공유하면 검사가 무의미해진다.
+# 대신 아래에서 "빠진 쌍의 출발 문단이 정확히 이 집합인가"를 검사한다.
+# 목록이 어긋나면(저쪽이 더 빼거나 덜 빼면) 그 순간 FAIL이 난다.
+TOC_PARAS = {"웩6", "B1", "C1A", "C1B", "C1C", "한C1.1"}
+
 
 def extract_pairs(para_text: dict) -> set:
     """{paraNum: fullContent} → {(from, raw_token)} 전체 언급쌍 (dedup)."""
@@ -72,17 +79,29 @@ def main() -> int:
     for key in ("e3_cross_refs", "e3_external", "e3_unresolved"):
         for e in edges.get(key, []):
             done.add((e["from"], e["raw"].replace(" ", "")))
-    missing = sorted(population - done)
+    gap = sorted(population - done)
+    # 의도적 제외(목차·연혁)와 진짜 누락을 가른다. 제외가 그 문단들에서만
+    # 일어났는지, 그리고 그 문단들이 통째로 빠졌는지 양방향으로 본다.
+    excluded = [x for x in gap if x[0] in TOC_PARAS]
+    missing = [x for x in gap if x[0] not in TOC_PARAS]
+    leaked = sorted({f for f, _ in done if f in TOC_PARAS})
     print("── STEP A: 상호참조 완전성 (전 규범 스코프 독립 재추출) ──")
     print(f"  규범 문단(본문+부록B+부록C): {len(para_text)}")
     print(f"  재추출 언급쌍(분모): {len(population)}")
     print(f"  edges.json 포착쌍(e3+external+unresolved): {len(done)}")
+    print(
+        f"  의도적 제외(목차·머리말·개정연혁 {len(TOC_PARAS)}문단): {len(excluded)}쌍"
+    )
     print(f"  규범 참조 누락(차집합): {len(missing)}")
     if missing:
         fail = 1
         for f, r in missing[:30]:
             print(f"    ❌ 문단 {f} → '문단 {r}' (edges.json에 없음)")
-    print(f"  {'✅ PASS' if not missing else '❌ FAIL'}\n")
+    if leaked:
+        fail = 1
+        print(f"    ❌ 제외 대상인데 edges.json에 남아 있음: {leaked}")
+    ok_a = not missing and not leaked
+    print(f"  {'✅ PASS' if ok_a else '❌ FAIL'}\n")
 
     # ── STEP B: 참조 도달성 (e3 목적지 문단이 개념 진입점 보유) ───────
     e3_targets = {t for e in edges.get("e3_cross_refs", []) for t in e["to"]}

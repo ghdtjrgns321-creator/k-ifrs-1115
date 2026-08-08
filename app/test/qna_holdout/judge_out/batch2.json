@@ -1,0 +1,52 @@
+[
+ {
+  "id": "QNA-SSI-35599",
+  "A_direction": 1,
+  "A_evidence": "제1115호가 아닌 제1038호를 우선 적용하여 회계처리해야 합니다",
+  "B_criterion": null,
+  "B_evidence": "",
+  "C_no_misassertion": 1,
+  "C_evidence": "",
+  "note": "질문 전제(양 요건 모두 충족)에 대해 확정 결론으로 답함. 말미에 '1038호 요건 미충족 시' 대안 시나리오를 덧붙였으나 이는 질문 범위 밖 보충 설명이라 분기로 보지 않음(B=null)."
+ },
+ {
+  "id": "QNA-SSI-36951",
+  "A_direction": 1,
+  "A_evidence": "이전되었다면 수익을 인식하며, 1년 후의 재매입은 별도의 자산 취득 거래이므로 기존 A고객에 대한 수익을 차감하지 않습니다",
+  "B_criterion": 1,
+  "B_evidence": "재매입 약정의 존재 여부에 따라 판단하며, 이에 따라 애초에 수익 인식 가능 여부가 결정됩니다",
+  "C_no_misassertion": 1,
+  "C_evidence": "",
+  "note": "확인 질문(최초 판매 시 재매입 약정 유무)으로 사용자가 자기 상황을 대입할 기준을 먼저 제시한 뒤 Case1~3으로 분기. 정답 방향은 Case1로 포함되어 있고, 오답 방향(Case2,3)도 조건부로만 제시해 단정하지 않음."
+ },
+ {
+  "id": "QNA-SSI-38465",
+  "A_direction": 1,
+  "A_evidence": "이를 별도의 비용으로 처리하는 것이 아니라 수익(거래가격)에서 차감하여 인식해야 합니다",
+  "B_criterion": null,
+  "B_evidence": "",
+  "C_no_misassertion": 1,
+  "C_evidence": "",
+  "note": ""
+ },
+ {
+  "id": "QNA-SSI-38673",
+  "A_direction": 0,
+  "A_evidence": "",
+  "B_criterion": null,
+  "B_evidence": "",
+  "C_no_misassertion": 1,
+  "C_evidence": "",
+  "note": "답변이 '저는 K-IFRS 1115호 관련 질문에만 답변할 수 있습니다'로 전면 거절함. 질문은 실제로 1115호 범위 내(환불부채) 질문인데 가드레일이 오작동해 아예 답변을 생성하지 않은 것으로 보임. 방향 제시도 오답 단정도 없어 A=0, C=1."
+ },
+ {
+  "id": "QNA-SSI-38690",
+  "A_direction": 1,
+  "A_evidence": "계약변경일에 수익을 **누적효과 일괄조정(Cumulative catch-up)** 방식으로 즉시 조정하여 인식해야 합니다",
+  "B_criterion": null,
+  "B_evidence": "",
+  "C_no_misassertion": 1,
+  "C_evidence": "",
+  "note": "결론·근거 모두 정답(누적효과 일괄조정, 소급 미수정)과 일치. 다만 근거 말미에 등장하는 '[FSS-CASE-2025-2606-02]' 감리 사례 인용은 실재 확인 불가한 형식으로, 채점 대상은 아니나 별도 확인이 필요해 보임."
+ }
+]
