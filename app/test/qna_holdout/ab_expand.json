@@ -1,0 +1,3092 @@
+{
+  "_meta": {
+    "generated_by": "app/test/qna_holdout/exp_ab_expand.py",
+    "gold": "gold_paragraphs.json 필수(essential) 1115호 문단",
+    "note": "회수 지표만. 규칙 확정은 judge_binary.py 답 품질 채점이 한다",
+    "bc": "BC 문단은 LLM이 안 읽으므로 run.py가 문단 회수에서 제외",
+    "caveat": "두 회차는 진입까지 새로 돈다. 진입 LLM이 결정적이지 않아 케이스별 gold 회수 감소는 넓히기 탓이 아닐 수 있다. 진입을 고정한 비교는 expand.json(exp_expand.py)에 있다"
+  },
+  "conditions": {
+    "none": {
+      "source": "runs/run_none.json",
+      "summary": {
+        "n": 92,
+        "routing_in": 90,
+        "errors": 0,
+        "gold_hit": 151,
+        "gold_total": 173,
+        "paras_avg": 133.6,
+        "paras_std_avg": 67.1,
+        "paras_ie_avg": 65.8,
+        "answer_chars_avg": 1280,
+        "docs_avg": {
+          "본문": 43.4,
+          "적용지침B": 23.7,
+          "적용사례IE": 65.8,
+          "감리사례": 8.4,
+          "결론도출근거": 227.8
+        }
+      },
+      "cases": {
+        "QNA-SSI-38677": {
+          "routing": "IN",
+          "error": null,
+          "paras": 176,
+          "gold_hit": 6,
+          "gold_total": 6,
+          "gold_missed": [],
+          "answer_chars": 1525,
+          "sources": {
+            "본문": 63,
+            "적용지침B": 13,
+            "적용사례IE": 100,
+            "감리사례": 11,
+            "결론도출근거": 261
+          }
+        },
+        "QNA-2017-I-KAQ015-Q1": {
+          "routing": "IN",
+          "error": null,
+          "paras": 101,
+          "gold_hit": 4,
+          "gold_total": 4,
+          "gold_missed": [],
+          "answer_chars": 1477,
+          "sources": {
+            "본문": 19,
+            "적용지침B": 12,
+            "적용사례IE": 70,
+            "감리사례": 6,
+            "결론도출근거": 182
+          }
+        },
+        "QNA-2017-I-KAQ015-Q2": {
+          "routing": "IN",
+          "error": null,
+          "paras": 62,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1517,
+          "sources": {
+            "본문": 12,
+            "적용지침B": 11,
+            "적용사례IE": 39,
+            "감리사례": 5,
+            "결론도출근거": 127
+          }
+        },
+        "QNA-2017-I-KQA014": {
+          "routing": "IN",
+          "error": null,
+          "paras": 259,
+          "gold_hit": 6,
+          "gold_total": 6,
+          "gold_missed": [],
+          "answer_chars": 1753,
+          "sources": {
+            "본문": 63,
+            "적용지침B": 25,
+            "적용사례IE": 171,
+            "감리사례": 14,
+            "결론도출근거": 319
+          }
+        },
+        "QNA-2018-I-KQA002": {
+          "routing": "IN",
+          "error": null,
+          "paras": 186,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1074,
+          "sources": {
+            "본문": 51,
+            "적용지침B": 28,
+            "적용사례IE": 107,
+            "감리사례": 12,
+            "결론도출근거": 257
+          }
+        },
+        "QNA-2018-I-KQA004": {
+          "routing": "IN",
+          "error": null,
+          "paras": 106,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 830,
+          "sources": {
+            "본문": 47,
+            "적용사례IE": 45,
+            "감리사례": 5,
+            "결론도출근거": 223
+          }
+        },
+        "QNA-2018-I-KQA009-Q1": {
+          "routing": "IN",
+          "error": null,
+          "paras": 181,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1799,
+          "sources": {
+            "본문": 39,
+            "적용지침B": 49,
+            "적용사례IE": 93,
+            "감리사례": 13,
+            "결론도출근거": 301
+          }
+        },
+        "QNA-2018-I-KQA009-Q2": {
+          "routing": "IN",
+          "error": null,
+          "paras": 158,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1813,
+          "sources": {
+            "본문": 38,
+            "적용지침B": 27,
+            "적용사례IE": 93,
+            "감리사례": 13,
+            "결론도출근거": 291
+          }
+        },
+        "QNA-201803A": {
+          "routing": "IN",
+          "error": null,
+          "paras": 115,
+          "gold_hit": 4,
+          "gold_total": 4,
+          "gold_missed": [],
+          "answer_chars": 1704,
+          "sources": {
+            "본문": 33,
+            "적용지침B": 21,
+            "적용사례IE": 61,
+            "감리사례": 10,
+            "결론도출근거": 208
+          }
+        },
+        "QNA-201803B": {
+          "routing": "IN",
+          "error": null,
+          "paras": 143,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1488,
+          "sources": {
+            "본문": 32,
+            "적용지침B": 35,
+            "적용사례IE": 76,
+            "감리사례": 12,
+            "결론도출근거": 203
+          }
+        },
+        "QNA-201803D": {
+          "routing": "IN",
+          "error": null,
+          "paras": 62,
+          "gold_hit": 1,
+          "gold_total": 2,
+          "gold_missed": [
+            "38"
+          ],
+          "answer_chars": 1357,
+          "sources": {
+            "본문": 12,
+            "적용지침B": 11,
+            "적용사례IE": 39,
+            "감리사례": 5,
+            "결론도출근거": 127
+          }
+        },
+        "QNA-2019-I-KQA003": {
+          "routing": "IN",
+          "error": null,
+          "paras": 140,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1419,
+          "sources": {
+            "본문": 59,
+            "적용지침B": 18,
+            "적용사례IE": 63,
+            "감리사례": 7,
+            "결론도출근거": 213
+          }
+        },
+        "QNA-2019-I-KQA009-Q1": {
+          "routing": "IN",
+          "error": null,
+          "paras": 283,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 884,
+          "sources": {
+            "본문": 100,
+            "적용지침B": 40,
+            "적용사례IE": 143,
+            "감리사례": 13,
+            "결론도출근거": 335
+          }
+        },
+        "QNA-2019-I-KQA009-Q2": {
+          "routing": "IN",
+          "error": null,
+          "paras": 238,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 887,
+          "sources": {
+            "본문": 95,
+            "적용지침B": 33,
+            "적용사례IE": 110,
+            "감리사례": 12,
+            "결론도출근거": 335
+          }
+        },
+        "QNA-201901B": {
+          "routing": "IN",
+          "error": null,
+          "paras": 165,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1475,
+          "sources": {
+            "본문": 37,
+            "적용지침B": 32,
+            "적용사례IE": 96,
+            "감리사례": 12,
+            "결론도출근거": 279
+          }
+        },
+        "QNA-201906D": {
+          "routing": "IN",
+          "error": null,
+          "paras": 177,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1399,
+          "sources": {
+            "본문": 45,
+            "적용지침B": 39,
+            "적용사례IE": 93,
+            "감리사례": 12,
+            "결론도출근거": 250
+          }
+        },
+        "QNA-201909A": {
+          "routing": "IN",
+          "error": null,
+          "paras": 146,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1268,
+          "sources": {
+            "본문": 67,
+            "적용지침B": 15,
+            "적용사례IE": 64,
+            "감리사례": 6,
+            "결론도출근거": 269
+          }
+        },
+        "QNA-2020-I-KQA003": {
+          "routing": "IN",
+          "error": null,
+          "paras": 178,
+          "gold_hit": 4,
+          "gold_total": 5,
+          "gold_missed": [
+            "BC32"
+          ],
+          "answer_chars": 1150,
+          "sources": {
+            "본문": 47,
+            "적용지침B": 24,
+            "적용사례IE": 107,
+            "감리사례": 12,
+            "결론도출근거": 239
+          }
+        },
+        "QNA-2020-I-KQA006-Q1": {
+          "routing": "IN",
+          "error": null,
+          "paras": 52,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1515,
+          "sources": {
+            "본문": 9,
+            "적용지침B": 21,
+            "적용사례IE": 22,
+            "감리사례": 5,
+            "결론도출근거": 85
+          }
+        },
+        "QNA-2020-I-KQA006-Q2": {
+          "routing": "OUT",
+          "error": null,
+          "paras": 0,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 59,
+          "sources": {}
+        },
+        "QNA-202003D": {
+          "routing": "IN",
+          "error": null,
+          "paras": 59,
+          "gold_hit": 1,
+          "gold_total": 2,
+          "gold_missed": [
+            "BC307"
+          ],
+          "answer_chars": 1404,
+          "sources": {
+            "본문": 29,
+            "적용지침B": 6,
+            "적용사례IE": 24,
+            "감리사례": 4,
+            "결론도출근거": 156
+          }
+        },
+        "QNA-2021-I-KQA008": {
+          "routing": "IN",
+          "error": null,
+          "paras": 216,
+          "gold_hit": 4,
+          "gold_total": 6,
+          "gold_missed": [
+            "BC55",
+            "BC56"
+          ],
+          "answer_chars": 1645,
+          "sources": {
+            "본문": 67,
+            "적용지침B": 48,
+            "적용사례IE": 91,
+            "감리사례": 14,
+            "결론도출근거": 430
+          }
+        },
+        "QNA-2022-I-KQA007": {
+          "routing": "IN",
+          "error": null,
+          "paras": 70,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1074,
+          "sources": {
+            "본문": 40,
+            "적용지침B": 14,
+            "적용사례IE": 15,
+            "감리사례": 4,
+            "결론도출근거": 137
+          }
+        },
+        "QNA-2022-I-KQA015": {
+          "routing": "IN",
+          "error": null,
+          "paras": 176,
+          "gold_hit": 0,
+          "gold_total": 1,
+          "gold_missed": [
+            "6"
+          ],
+          "answer_chars": 1643,
+          "sources": {
+            "본문": 46,
+            "적용지침B": 32,
+            "적용사례IE": 98,
+            "감리사례": 14,
+            "결론도출근거": 264
+          }
+        },
+        "QNA-2024-I-KQA005": {
+          "routing": "IN",
+          "error": null,
+          "paras": 193,
+          "gold_hit": 7,
+          "gold_total": 7,
+          "gold_missed": [],
+          "answer_chars": 1416,
+          "sources": {
+            "본문": 42,
+            "적용지침B": 28,
+            "적용사례IE": 123,
+            "감리사례": 12,
+            "결론도출근거": 247
+          }
+        },
+        "QNA-202504C": {
+          "routing": "IN",
+          "error": null,
+          "paras": 108,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 886,
+          "sources": {
+            "본문": 45,
+            "적용지침B": 19,
+            "적용사례IE": 44,
+            "감리사례": 10,
+            "결론도출근거": 227
+          }
+        },
+        "QNA-221109A": {
+          "routing": "IN",
+          "error": null,
+          "paras": 144,
+          "gold_hit": 4,
+          "gold_total": 4,
+          "gold_missed": [],
+          "answer_chars": 1654,
+          "sources": {
+            "본문": 34,
+            "적용지침B": 29,
+            "적용사례IE": 81,
+            "감리사례": 4,
+            "결론도출근거": 274
+          }
+        },
+        "QNA-SSI-202312048": {
+          "routing": "IN",
+          "error": null,
+          "paras": 82,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1355,
+          "sources": {
+            "본문": 44,
+            "적용지침B": 20,
+            "적용사례IE": 18,
+            "감리사례": 4,
+            "결론도출근거": 186
+          }
+        },
+        "QNA-SSI-202312049": {
+          "routing": "IN",
+          "error": null,
+          "paras": 256,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1217,
+          "sources": {
+            "본문": 64,
+            "적용지침B": 47,
+            "적용사례IE": 145,
+            "감리사례": 14,
+            "결론도출근거": 329
+          }
+        },
+        "QNA-SSI-202312050": {
+          "routing": "IN",
+          "error": null,
+          "paras": 136,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1118,
+          "sources": {
+            "본문": 42,
+            "적용지침B": 15,
+            "적용사례IE": 79,
+            "감리사례": 5,
+            "결론도출근거": 235
+          }
+        },
+        "QNA-SSI-202312051": {
+          "routing": "IN",
+          "error": null,
+          "paras": 251,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1208,
+          "sources": {
+            "본문": 67,
+            "적용지침B": 58,
+            "적용사례IE": 126,
+            "감리사례": 16,
+            "결론도출근거": 326
+          }
+        },
+        "QNA-SSI-202312052": {
+          "routing": "IN",
+          "error": null,
+          "paras": 54,
+          "gold_hit": 0,
+          "gold_total": 3,
+          "gold_missed": [
+            "31",
+            "35",
+            "38"
+          ],
+          "answer_chars": 1637,
+          "sources": {
+            "본문": 16,
+            "적용지침B": 3,
+            "적용사례IE": 35,
+            "감리사례": 5,
+            "결론도출근거": 97
+          }
+        },
+        "QNA-SSI-202312053": {
+          "routing": "IN",
+          "error": null,
+          "paras": 110,
+          "gold_hit": 1,
+          "gold_total": 2,
+          "gold_missed": [
+            "47"
+          ],
+          "answer_chars": 1446,
+          "sources": {
+            "본문": 31,
+            "적용지침B": 17,
+            "적용사례IE": 62,
+            "감리사례": 8,
+            "결론도출근거": 199
+          }
+        },
+        "QNA-SSI-202312058": {
+          "routing": "IN",
+          "error": null,
+          "paras": 103,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1354,
+          "sources": {
+            "본문": 57,
+            "적용지침B": 14,
+            "적용사례IE": 32,
+            "감리사례": 6,
+            "결론도출근거": 194
+          }
+        },
+        "QNA-SSI-202412003": {
+          "routing": "IN",
+          "error": null,
+          "paras": 176,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1423,
+          "sources": {
+            "본문": 63,
+            "적용지침B": 32,
+            "적용사례IE": 81,
+            "감리사례": 10,
+            "결론도출근거": 290
+          }
+        },
+        "QNA-SSI-202412041": {
+          "routing": "IN",
+          "error": null,
+          "paras": 120,
+          "gold_hit": 6,
+          "gold_total": 6,
+          "gold_missed": [],
+          "answer_chars": 1383,
+          "sources": {
+            "본문": 46,
+            "적용지침B": 28,
+            "적용사례IE": 46,
+            "감리사례": 8,
+            "결론도출근거": 256
+          }
+        },
+        "QNA-SSI-202412042": {
+          "routing": "IN",
+          "error": null,
+          "paras": 70,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 820,
+          "sources": {
+            "본문": 28,
+            "적용지침B": 35,
+            "적용사례IE": 7,
+            "감리사례": 1,
+            "결론도출근거": 185
+          }
+        },
+        "QNA-SSI-202412043": {
+          "routing": "IN",
+          "error": null,
+          "paras": 202,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1338,
+          "sources": {
+            "본문": 33,
+            "적용지침B": 53,
+            "적용사례IE": 116,
+            "감리사례": 12,
+            "결론도출근거": 301
+          }
+        },
+        "QNA-SSI-202412044": {
+          "routing": "IN",
+          "error": null,
+          "paras": 112,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1663,
+          "sources": {
+            "본문": 42,
+            "적용지침B": 15,
+            "적용사례IE": 55,
+            "감리사례": 5,
+            "결론도출근거": 235
+          }
+        },
+        "QNA-SSI-202412045": {
+          "routing": "IN",
+          "error": null,
+          "paras": 155,
+          "gold_hit": 4,
+          "gold_total": 4,
+          "gold_missed": [],
+          "answer_chars": 1493,
+          "sources": {
+            "본문": 36,
+            "적용지침B": 34,
+            "적용사례IE": 84,
+            "감리사례": 12,
+            "결론도출근거": 247
+          }
+        },
+        "QNA-SSI-202412046": {
+          "routing": "IN",
+          "error": null,
+          "paras": 139,
+          "gold_hit": 4,
+          "gold_total": 4,
+          "gold_missed": [],
+          "answer_chars": 1066,
+          "sources": {
+            "본문": 61,
+            "적용지침B": 29,
+            "적용사례IE": 49,
+            "감리사례": 5,
+            "결론도출근거": 274
+          }
+        },
+        "QNA-SSI-202503008": {
+          "routing": "IN",
+          "error": null,
+          "paras": 195,
+          "gold_hit": 0,
+          "gold_total": 1,
+          "gold_missed": [
+            "88"
+          ],
+          "answer_chars": 1033,
+          "sources": {
+            "본문": 40,
+            "적용지침B": 28,
+            "적용사례IE": 127,
+            "감리사례": 14,
+            "결론도출근거": 290
+          }
+        },
+        "QNA-SSI-202506004": {
+          "routing": "IN",
+          "error": null,
+          "paras": 106,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 920,
+          "sources": {
+            "본문": 32,
+            "적용지침B": 28,
+            "적용사례IE": 46,
+            "감리사례": 9,
+            "결론도출근거": 196
+          }
+        },
+        "QNA-SSI-202511018": {
+          "routing": "IN",
+          "error": null,
+          "paras": 45,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 757,
+          "sources": {
+            "본문": 19,
+            "적용사례IE": 26,
+            "감리사례": 5,
+            "결론도출근거": 99
+          }
+        },
+        "QNA-SSI-202511019": {
+          "routing": "IN",
+          "error": null,
+          "paras": 147,
+          "gold_hit": 2,
+          "gold_total": 4,
+          "gold_missed": [
+            "BC323",
+            "BC325"
+          ],
+          "answer_chars": 1070,
+          "sources": {
+            "본문": 47,
+            "적용지침B": 17,
+            "적용사례IE": 83,
+            "감리사례": 11,
+            "결론도출근거": 245
+          }
+        },
+        "QNA-SSI-202511020": {
+          "routing": "IN",
+          "error": null,
+          "paras": 69,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1171,
+          "sources": {
+            "본문": 31,
+            "적용사례IE": 38,
+            "감리사례": 5,
+            "결론도출근거": 127
+          }
+        },
+        "QNA-SSI-35565": {
+          "routing": "IN",
+          "error": null,
+          "paras": 99,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1323,
+          "sources": {
+            "본문": 40,
+            "적용지침B": 19,
+            "적용사례IE": 39,
+            "감리사례": 5,
+            "결론도출근거": 179
+          }
+        },
+        "QNA-SSI-35567": {
+          "routing": "IN",
+          "error": null,
+          "paras": 240,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1313,
+          "sources": {
+            "본문": 55,
+            "적용지침B": 72,
+            "적용사례IE": 113,
+            "감리사례": 15,
+            "결론도출근거": 352
+          }
+        },
+        "QNA-SSI-35568": {
+          "routing": "IN",
+          "error": null,
+          "paras": 225,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1679,
+          "sources": {
+            "본문": 63,
+            "적용지침B": 54,
+            "적용사례IE": 108,
+            "감리사례": 12,
+            "결론도출근거": 334
+          }
+        },
+        "QNA-SSI-35578": {
+          "routing": "IN",
+          "error": null,
+          "paras": 181,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1446,
+          "sources": {
+            "본문": 53,
+            "적용지침B": 29,
+            "적용사례IE": 99,
+            "감리사례": 9,
+            "결론도출근거": 283
+          }
+        },
+        "QNA-SSI-35579": {
+          "routing": "IN",
+          "error": null,
+          "paras": 166,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1377,
+          "sources": {
+            "본문": 43,
+            "적용지침B": 36,
+            "적용사례IE": 87,
+            "감리사례": 13,
+            "결론도출근거": 273
+          }
+        },
+        "QNA-SSI-35599": {
+          "routing": "IN",
+          "error": null,
+          "paras": 152,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 926,
+          "sources": {
+            "본문": 74,
+            "적용지침B": 15,
+            "적용사례IE": 63,
+            "감리사례": 5,
+            "결론도출근거": 290
+          }
+        },
+        "QNA-SSI-35609": {
+          "routing": "IN",
+          "error": null,
+          "paras": 143,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1551,
+          "sources": {
+            "본문": 65,
+            "적용지침B": 19,
+            "적용사례IE": 59,
+            "감리사례": 10,
+            "결론도출근거": 269
+          }
+        },
+        "QNA-SSI-35617": {
+          "routing": "IN",
+          "error": null,
+          "paras": 165,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1408,
+          "sources": {
+            "본문": 39,
+            "적용지침B": 38,
+            "적용사례IE": 88,
+            "감리사례": 15,
+            "결론도출근거": 266
+          }
+        },
+        "QNA-SSI-36898": {
+          "routing": "IN",
+          "error": null,
+          "paras": 35,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 618,
+          "sources": {
+            "본문": 31,
+            "적용사례IE": 3,
+            "감리사례": 1,
+            "결론도출근거": 138
+          }
+        },
+        "QNA-SSI-36904": {
+          "routing": "IN",
+          "error": null,
+          "paras": 166,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1038,
+          "sources": {
+            "본문": 41,
+            "적용지침B": 40,
+            "적용사례IE": 85,
+            "감리사례": 12,
+            "결론도출근거": 240
+          }
+        },
+        "QNA-SSI-36917": {
+          "routing": "IN",
+          "error": null,
+          "paras": 62,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 983,
+          "sources": {
+            "본문": 42,
+            "적용사례IE": 15,
+            "감리사례": 4,
+            "결론도출근거": 150
+          }
+        },
+        "QNA-SSI-36941": {
+          "routing": "IN",
+          "error": null,
+          "paras": 146,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1650,
+          "sources": {
+            "본문": 34,
+            "적용지침B": 40,
+            "적용사례IE": 71,
+            "감리사례": 13,
+            "결론도출근거": 236
+          }
+        },
+        "QNA-SSI-36948": {
+          "routing": "IN",
+          "error": null,
+          "paras": 142,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1651,
+          "sources": {
+            "본문": 56,
+            "적용지침B": 31,
+            "적용사례IE": 55,
+            "감리사례": 11,
+            "결론도출근거": 269
+          }
+        },
+        "QNA-SSI-36949": {
+          "routing": "IN",
+          "error": null,
+          "paras": 77,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1640,
+          "sources": {
+            "본문": 40,
+            "적용지침B": 17,
+            "적용사례IE": 20,
+            "감리사례": 10,
+            "결론도출근거": 220
+          }
+        },
+        "QNA-SSI-36951": {
+          "routing": "IN",
+          "error": null,
+          "paras": 60,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1635,
+          "sources": {
+            "본문": 26,
+            "적용지침B": 27,
+            "적용사례IE": 7,
+            "감리사례": 1,
+            "결론도출근거": 126
+          }
+        },
+        "QNA-SSI-36959": {
+          "routing": "IN",
+          "error": null,
+          "paras": 182,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 923,
+          "sources": {
+            "본문": 65,
+            "적용지침B": 32,
+            "적용사례IE": 71,
+            "감리사례": 15,
+            "결론도출근거": 355
+          }
+        },
+        "QNA-SSI-36964": {
+          "routing": "IN",
+          "error": null,
+          "paras": 161,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1446,
+          "sources": {
+            "본문": 60,
+            "적용지침B": 29,
+            "적용사례IE": 71,
+            "감리사례": 7,
+            "결론도출근거": 275
+          }
+        },
+        "QNA-SSI-36965": {
+          "routing": "IN",
+          "error": null,
+          "paras": 100,
+          "gold_hit": 4,
+          "gold_total": 6,
+          "gold_missed": [
+            "46",
+            "88"
+          ],
+          "answer_chars": 1347,
+          "sources": {
+            "본문": 61,
+            "적용지침B": 6,
+            "적용사례IE": 33,
+            "감리사례": 5,
+            "결론도출근거": 199
+          }
+        },
+        "QNA-SSI-36975": {
+          "routing": "IN",
+          "error": null,
+          "paras": 119,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1173,
+          "sources": {
+            "본문": 45,
+            "적용지침B": 5,
+            "적용사례IE": 69,
+            "감리사례": 5,
+            "결론도출근거": 216
+          }
+        },
+        "QNA-SSI-36987": {
+          "routing": "IN",
+          "error": null,
+          "paras": 183,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1779,
+          "sources": {
+            "본문": 33,
+            "적용지침B": 48,
+            "적용사례IE": 102,
+            "감리사례": 12,
+            "결론도출근거": 290
+          }
+        },
+        "QNA-SSI-36990": {
+          "routing": "IN",
+          "error": null,
+          "paras": 66,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1059,
+          "sources": {
+            "본문": 15,
+            "적용지침B": 16,
+            "적용사례IE": 35,
+            "감리사례": 4,
+            "결론도출근거": 104
+          }
+        },
+        "QNA-SSI-36991": {
+          "routing": "IN",
+          "error": null,
+          "paras": 61,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 818,
+          "sources": {
+            "본문": 19,
+            "적용사례IE": 42,
+            "감리사례": 5,
+            "결론도출근거": 86
+          }
+        },
+        "QNA-SSI-36993": {
+          "routing": "IN",
+          "error": null,
+          "paras": 62,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1606,
+          "sources": {
+            "본문": 42,
+            "적용사례IE": 15,
+            "감리사례": 4,
+            "결론도출근거": 150
+          }
+        },
+        "QNA-SSI-38465": {
+          "routing": "IN",
+          "error": null,
+          "paras": 153,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1321,
+          "sources": {
+            "본문": 49,
+            "적용지침B": 24,
+            "적용사례IE": 80,
+            "감리사례": 14,
+            "결론도출근거": 286
+          }
+        },
+        "QNA-SSI-38485": {
+          "routing": "IN",
+          "error": null,
+          "paras": 136,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1760,
+          "sources": {
+            "본문": 32,
+            "적용지침B": 32,
+            "적용사례IE": 72,
+            "감리사례": 3,
+            "결론도출근거": 285
+          }
+        },
+        "QNA-SSI-38611": {
+          "routing": "IN",
+          "error": null,
+          "paras": 83,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1337,
+          "sources": {
+            "본문": 40,
+            "적용지침B": 23,
+            "적용사례IE": 20,
+            "감리사례": 11,
+            "결론도출근거": 220
+          }
+        },
+        "QNA-SSI-38612": {
+          "routing": "IN",
+          "error": null,
+          "paras": 119,
+          "gold_hit": 0,
+          "gold_total": 1,
+          "gold_missed": [
+            "38"
+          ],
+          "answer_chars": 1448,
+          "sources": {
+            "본문": 40,
+            "적용지침B": 23,
+            "적용사례IE": 56,
+            "감리사례": 6,
+            "결론도출근거": 222
+          }
+        },
+        "QNA-SSI-38648": {
+          "routing": "IN",
+          "error": null,
+          "paras": 128,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1334,
+          "sources": {
+            "본문": 28,
+            "적용지침B": 16,
+            "적용사례IE": 84,
+            "감리사례": 4,
+            "결론도출근거": 252
+          }
+        },
+        "QNA-SSI-38671": {
+          "routing": "IN",
+          "error": null,
+          "paras": 218,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1573,
+          "sources": {
+            "본문": 76,
+            "적용지침B": 42,
+            "적용사례IE": 100,
+            "감리사례": 11,
+            "결론도출근거": 371
+          }
+        },
+        "QNA-SSI-38672": {
+          "routing": "IN",
+          "error": null,
+          "paras": 216,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1034,
+          "sources": {
+            "본문": 50,
+            "적용지침B": 27,
+            "적용사례IE": 139,
+            "감리사례": 14,
+            "결론도출근거": 280
+          }
+        },
+        "QNA-SSI-38673": {
+          "routing": "OUT",
+          "error": null,
+          "paras": 0,
+          "gold_hit": 0,
+          "gold_total": 1,
+          "gold_missed": [
+            "55"
+          ],
+          "answer_chars": 59,
+          "sources": {}
+        },
+        "QNA-SSI-38674": {
+          "routing": "IN",
+          "error": null,
+          "paras": 62,
+          "gold_hit": 1,
+          "gold_total": 4,
+          "gold_missed": [
+            "BC43",
+            "BC46D",
+            "BC46E"
+          ],
+          "answer_chars": 1442,
+          "sources": {
+            "본문": 20,
+            "적용사례IE": 42,
+            "감리사례": 5,
+            "결론도출근거": 96
+          }
+        },
+        "QNA-SSI-38675": {
+          "routing": "IN",
+          "error": null,
+          "paras": 155,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 949,
+          "sources": {
+            "본문": 59,
+            "적용지침B": 33,
+            "적용사례IE": 58,
+            "감리사례": 6,
+            "결론도출근거": 319
+          }
+        },
+        "QNA-SSI-38676": {
+          "routing": "IN",
+          "error": null,
+          "paras": 169,
+          "gold_hit": 3,
+          "gold_total": 4,
+          "gold_missed": [
+            "99"
+          ],
+          "answer_chars": 1059,
+          "sources": {
+            "본문": 75,
+            "적용지침B": 20,
+            "적용사례IE": 74,
+            "감리사례": 8,
+            "결론도출근거": 298
+          }
+        },
+        "QNA-SSI-38679": {
+          "routing": "IN",
+          "error": null,
+          "paras": 107,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1412,
+          "sources": {
+            "본문": 32,
+            "적용지침B": 23,
+            "적용사례IE": 52,
+            "감리사례": 11,
+            "결론도출근거": 203
+          }
+        },
+        "QNA-SSI-38680": {
+          "routing": "IN",
+          "error": null,
+          "paras": 128,
+          "gold_hit": 0,
+          "gold_total": 1,
+          "gold_missed": [
+            "6"
+          ],
+          "answer_chars": 1063,
+          "sources": {
+            "본문": 50,
+            "적용지침B": 15,
+            "적용사례IE": 62,
+            "감리사례": 6,
+            "결론도출근거": 250
+          }
+        },
+        "QNA-SSI-38690": {
+          "routing": "IN",
+          "error": null,
+          "paras": 209,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1040,
+          "sources": {
+            "본문": 74,
+            "적용지침B": 31,
+            "적용사례IE": 104,
+            "감리사례": 13,
+            "결론도출근거": 262
+          }
+        },
+        "QNA-SSI-38695": {
+          "routing": "IN",
+          "error": null,
+          "paras": 68,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1656,
+          "sources": {
+            "본문": 35,
+            "적용지침B": 18,
+            "적용사례IE": 15,
+            "감리사례": 4,
+            "결론도출근거": 134
+          }
+        },
+        "QNA-SSI-38697": {
+          "routing": "IN",
+          "error": null,
+          "paras": 83,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 978,
+          "sources": {
+            "본문": 26,
+            "적용지침B": 26,
+            "적용사례IE": 31,
+            "감리사례": 2,
+            "결론도출근거": 181
+          }
+        },
+        "QNA-SSI-38698": {
+          "routing": "IN",
+          "error": null,
+          "paras": 115,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 981,
+          "sources": {
+            "본문": 39,
+            "적용지침B": 24,
+            "적용사례IE": 52,
+            "감리사례": 10,
+            "결론도출근거": 207
+          }
+        },
+        "QNA-SSI-38699": {
+          "routing": "IN",
+          "error": null,
+          "paras": 133,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1161,
+          "sources": {
+            "본문": 23,
+            "적용지침B": 32,
+            "적용사례IE": 78,
+            "감리사례": 12,
+            "결론도출근거": 232
+          }
+        },
+        "QNA-SSI-38700": {
+          "routing": "IN",
+          "error": null,
+          "paras": 132,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1066,
+          "sources": {
+            "본문": 28,
+            "적용지침B": 19,
+            "적용사례IE": 85,
+            "감리사례": 11,
+            "결론도출근거": 192
+          }
+        },
+        "QNA-SSI-38701": {
+          "routing": "IN",
+          "error": null,
+          "paras": 164,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1166,
+          "sources": {
+            "본문": 50,
+            "적용지침B": 42,
+            "적용사례IE": 72,
+            "감리사례": 7,
+            "결론도출근거": 263
+          }
+        },
+        "QNA-SSI-38702": {
+          "routing": "IN",
+          "error": null,
+          "paras": 143,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1466,
+          "sources": {
+            "본문": 65,
+            "적용지침B": 19,
+            "적용사례IE": 59,
+            "감리사례": 10,
+            "결론도출근거": 269
+          }
+        },
+        "QNA-SSI-38703": {
+          "routing": "IN",
+          "error": null,
+          "paras": 114,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1579,
+          "sources": {
+            "본문": 65,
+            "적용지침B": 14,
+            "적용사례IE": 35,
+            "감리사례": 6,
+            "결론도출근거": 202
+          }
+        },
+        "QNA-SSI-35584": {
+          "routing": "IN",
+          "error": null,
+          "paras": 41,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 862,
+          "sources": {
+            "본문": 26,
+            "적용사례IE": 15,
+            "감리사례": 4,
+            "결론도출근거": 87
+          }
+        }
+      }
+    },
+    "kin1": {
+      "source": "runs/run_kin1.json",
+      "summary": {
+        "n": 92,
+        "routing_in": 90,
+        "errors": 0,
+        "gold_hit": 154,
+        "gold_total": 173,
+        "paras_avg": 213.2,
+        "paras_std_avg": 103.2,
+        "paras_ie_avg": 109.4,
+        "answer_chars_avg": 1349,
+        "docs_avg": {
+          "본문": 59.9,
+          "적용지침B": 43.3,
+          "적용사례IE": 109.4,
+          "감리사례": 11.3,
+          "결론도출근거": 294.8
+        }
+      },
+      "cases": {
+        "QNA-SSI-38677": {
+          "routing": "IN",
+          "error": null,
+          "paras": 268,
+          "gold_hit": 6,
+          "gold_total": 6,
+          "gold_missed": [],
+          "answer_chars": 1170,
+          "sources": {
+            "본문": 67,
+            "적용지침B": 58,
+            "적용사례IE": 143,
+            "감리사례": 15,
+            "결론도출근거": 359
+          }
+        },
+        "QNA-2017-I-KAQ015-Q1": {
+          "routing": "IN",
+          "error": null,
+          "paras": 178,
+          "gold_hit": 4,
+          "gold_total": 4,
+          "gold_missed": [],
+          "answer_chars": 1672,
+          "sources": {
+            "본문": 75,
+            "적용지침B": 25,
+            "적용사례IE": 78,
+            "감리사례": 12,
+            "결론도출근거": 274
+          }
+        },
+        "QNA-2017-I-KAQ015-Q2": {
+          "routing": "IN",
+          "error": null,
+          "paras": 90,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1344,
+          "sources": {
+            "본문": 26,
+            "적용지침B": 25,
+            "적용사례IE": 39,
+            "감리사례": 11,
+            "결론도출근거": 192
+          }
+        },
+        "QNA-2017-I-KQA014": {
+          "routing": "IN",
+          "error": null,
+          "paras": 287,
+          "gold_hit": 6,
+          "gold_total": 6,
+          "gold_missed": [],
+          "answer_chars": 1808,
+          "sources": {
+            "본문": 68,
+            "적용지침B": 78,
+            "적용사례IE": 141,
+            "감리사례": 15,
+            "결론도출근거": 348
+          }
+        },
+        "QNA-2018-I-KQA002": {
+          "routing": "IN",
+          "error": null,
+          "paras": 162,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1399,
+          "sources": {
+            "본문": 57,
+            "적용지침B": 29,
+            "적용사례IE": 76,
+            "감리사례": 12,
+            "결론도출근거": 247
+          }
+        },
+        "QNA-2018-I-KQA004": {
+          "routing": "IN",
+          "error": null,
+          "paras": 180,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 962,
+          "sources": {
+            "본문": 72,
+            "적용지침B": 9,
+            "적용사례IE": 84,
+            "감리사례": 6,
+            "결론도출근거": 325
+          }
+        },
+        "QNA-2018-I-KQA009-Q1": {
+          "routing": "IN",
+          "error": null,
+          "paras": 305,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1800,
+          "sources": {
+            "본문": 59,
+            "적용지침B": 68,
+            "적용사례IE": 178,
+            "감리사례": 16,
+            "결론도출근거": 337
+          }
+        },
+        "QNA-2018-I-KQA009-Q2": {
+          "routing": "IN",
+          "error": null,
+          "paras": 295,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1553,
+          "sources": {
+            "본문": 46,
+            "적용지침B": 58,
+            "적용사례IE": 191,
+            "감리사례": 17,
+            "결론도출근거": 314
+          }
+        },
+        "QNA-201803A": {
+          "routing": "IN",
+          "error": null,
+          "paras": 266,
+          "gold_hit": 4,
+          "gold_total": 4,
+          "gold_missed": [],
+          "answer_chars": 1877,
+          "sources": {
+            "본문": 45,
+            "적용지침B": 70,
+            "적용사례IE": 151,
+            "감리사례": 15,
+            "결론도출근거": 303
+          }
+        },
+        "QNA-201803B": {
+          "routing": "IN",
+          "error": null,
+          "paras": 179,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1712,
+          "sources": {
+            "본문": 30,
+            "적용지침B": 64,
+            "적용사례IE": 85,
+            "감리사례": 12,
+            "결론도출근거": 290
+          }
+        },
+        "QNA-201803D": {
+          "routing": "IN",
+          "error": null,
+          "paras": 184,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1481,
+          "sources": {
+            "본문": 35,
+            "적용지침B": 64,
+            "적용사례IE": 85,
+            "감리사례": 12,
+            "결론도출근거": 301
+          }
+        },
+        "QNA-2019-I-KQA003": {
+          "routing": "IN",
+          "error": null,
+          "paras": 177,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 975,
+          "sources": {
+            "본문": 71,
+            "적용지침B": 19,
+            "적용사례IE": 87,
+            "감리사례": 7,
+            "결론도출근거": 283
+          }
+        },
+        "QNA-2019-I-KQA009-Q1": {
+          "routing": "IN",
+          "error": null,
+          "paras": 341,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1188,
+          "sources": {
+            "본문": 112,
+            "적용지침B": 64,
+            "적용사례IE": 165,
+            "감리사례": 16,
+            "결론도출근거": 422
+          }
+        },
+        "QNA-2019-I-KQA009-Q2": {
+          "routing": "IN",
+          "error": null,
+          "paras": 344,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1566,
+          "sources": {
+            "본문": 109,
+            "적용지침B": 70,
+            "적용사례IE": 165,
+            "감리사례": 16,
+            "결론도출근거": 422
+          }
+        },
+        "QNA-201901B": {
+          "routing": "IN",
+          "error": null,
+          "paras": 378,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1669,
+          "sources": {
+            "본문": 74,
+            "적용지침B": 95,
+            "적용사례IE": 209,
+            "감리사례": 16,
+            "결론도출근거": 411
+          }
+        },
+        "QNA-201906D": {
+          "routing": "IN",
+          "error": null,
+          "paras": 252,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1258,
+          "sources": {
+            "본문": 77,
+            "적용지침B": 70,
+            "적용사례IE": 105,
+            "감리사례": 13,
+            "결론도출근거": 360
+          }
+        },
+        "QNA-201909A": {
+          "routing": "IN",
+          "error": null,
+          "paras": 313,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1424,
+          "sources": {
+            "본문": 81,
+            "적용지침B": 72,
+            "적용사례IE": 160,
+            "감리사례": 15,
+            "결론도출근거": 389
+          }
+        },
+        "QNA-2020-I-KQA003": {
+          "routing": "IN",
+          "error": null,
+          "paras": 227,
+          "gold_hit": 4,
+          "gold_total": 5,
+          "gold_missed": [
+            "BC32"
+          ],
+          "answer_chars": 1348,
+          "sources": {
+            "본문": 47,
+            "적용지침B": 70,
+            "적용사례IE": 110,
+            "감리사례": 14,
+            "결론도출근거": 314
+          }
+        },
+        "QNA-2020-I-KQA006-Q1": {
+          "routing": "IN",
+          "error": null,
+          "paras": 108,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1365,
+          "sources": {
+            "본문": 15,
+            "적용지침B": 30,
+            "적용사례IE": 63,
+            "감리사례": 7,
+            "결론도출근거": 189
+          }
+        },
+        "QNA-2020-I-KQA006-Q2": {
+          "routing": "OUT",
+          "error": null,
+          "paras": 0,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 59,
+          "sources": {}
+        },
+        "QNA-202003D": {
+          "routing": "IN",
+          "error": null,
+          "paras": 132,
+          "gold_hit": 1,
+          "gold_total": 2,
+          "gold_missed": [
+            "BC307"
+          ],
+          "answer_chars": 1614,
+          "sources": {
+            "본문": 60,
+            "적용지침B": 28,
+            "적용사례IE": 44,
+            "감리사례": 11,
+            "결론도출근거": 277
+          }
+        },
+        "QNA-2021-I-KQA008": {
+          "routing": "IN",
+          "error": null,
+          "paras": 277,
+          "gold_hit": 4,
+          "gold_total": 6,
+          "gold_missed": [
+            "BC55",
+            "BC56"
+          ],
+          "answer_chars": 1451,
+          "sources": {
+            "본문": 71,
+            "적용지침B": 58,
+            "적용사례IE": 137,
+            "감리사례": 15,
+            "결론도출근거": 430
+          }
+        },
+        "QNA-2022-I-KQA007": {
+          "routing": "IN",
+          "error": null,
+          "paras": 235,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1203,
+          "sources": {
+            "본문": 73,
+            "적용지침B": 27,
+            "적용사례IE": 134,
+            "감리사례": 14,
+            "결론도출근거": 283
+          }
+        },
+        "QNA-2022-I-KQA015": {
+          "routing": "IN",
+          "error": null,
+          "paras": 253,
+          "gold_hit": 0,
+          "gold_total": 1,
+          "gold_missed": [
+            "6"
+          ],
+          "answer_chars": 1668,
+          "sources": {
+            "본문": 79,
+            "적용지침B": 42,
+            "적용사례IE": 132,
+            "감리사례": 16,
+            "결론도출근거": 321
+          }
+        },
+        "QNA-2024-I-KQA005": {
+          "routing": "IN",
+          "error": null,
+          "paras": 314,
+          "gold_hit": 7,
+          "gold_total": 7,
+          "gold_missed": [],
+          "answer_chars": 1899,
+          "sources": {
+            "본문": 67,
+            "적용지침B": 66,
+            "적용사례IE": 181,
+            "감리사례": 15,
+            "결론도출근거": 342
+          }
+        },
+        "QNA-202504C": {
+          "routing": "IN",
+          "error": null,
+          "paras": 111,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1249,
+          "sources": {
+            "본문": 54,
+            "적용지침B": 28,
+            "적용사례IE": 29,
+            "감리사례": 9,
+            "결론도출근거": 271
+          }
+        },
+        "QNA-221109A": {
+          "routing": "IN",
+          "error": null,
+          "paras": 181,
+          "gold_hit": 4,
+          "gold_total": 4,
+          "gold_missed": [],
+          "answer_chars": 1546,
+          "sources": {
+            "본문": 34,
+            "적용지침B": 29,
+            "적용사례IE": 118,
+            "감리사례": 4,
+            "결론도출근거": 274
+          }
+        },
+        "QNA-SSI-202312048": {
+          "routing": "IN",
+          "error": null,
+          "paras": 208,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 858,
+          "sources": {
+            "본문": 63,
+            "적용지침B": 34,
+            "적용사례IE": 111,
+            "감리사례": 12,
+            "결론도출근거": 330
+          }
+        },
+        "QNA-SSI-202312049": {
+          "routing": "IN",
+          "error": null,
+          "paras": 320,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1732,
+          "sources": {
+            "본문": 66,
+            "적용지침B": 76,
+            "적용사례IE": 178,
+            "감리사례": 16,
+            "결론도출근거": 384
+          }
+        },
+        "QNA-SSI-202312050": {
+          "routing": "IN",
+          "error": null,
+          "paras": 143,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1335,
+          "sources": {
+            "본문": 42,
+            "적용지침B": 15,
+            "적용사례IE": 86,
+            "감리사례": 6,
+            "결론도출근거": 235
+          }
+        },
+        "QNA-SSI-202312051": {
+          "routing": "IN",
+          "error": null,
+          "paras": 150,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1162,
+          "sources": {
+            "본문": 49,
+            "적용지침B": 31,
+            "적용사례IE": 70,
+            "감리사례": 8,
+            "결론도출근거": 256
+          }
+        },
+        "QNA-SSI-202312052": {
+          "routing": "IN",
+          "error": null,
+          "paras": 193,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1309,
+          "sources": {
+            "본문": 64,
+            "적용지침B": 19,
+            "적용사례IE": 110,
+            "감리사례": 14,
+            "결론도출근거": 255
+          }
+        },
+        "QNA-SSI-202312053": {
+          "routing": "IN",
+          "error": null,
+          "paras": 320,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1590,
+          "sources": {
+            "본문": 64,
+            "적용지침B": 59,
+            "적용사례IE": 197,
+            "감리사례": 18,
+            "결론도출근거": 347
+          }
+        },
+        "QNA-SSI-202312058": {
+          "routing": "IN",
+          "error": null,
+          "paras": 196,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1127,
+          "sources": {
+            "본문": 86,
+            "적용지침B": 19,
+            "적용사례IE": 91,
+            "감리사례": 6,
+            "결론도출근거": 304
+          }
+        },
+        "QNA-SSI-202412003": {
+          "routing": "IN",
+          "error": null,
+          "paras": 251,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1312,
+          "sources": {
+            "본문": 62,
+            "적용지침B": 72,
+            "적용사례IE": 117,
+            "감리사례": 12,
+            "결론도출근거": 373
+          }
+        },
+        "QNA-SSI-202412041": {
+          "routing": "IN",
+          "error": null,
+          "paras": 246,
+          "gold_hit": 6,
+          "gold_total": 6,
+          "gold_missed": [],
+          "answer_chars": 1693,
+          "sources": {
+            "본문": 77,
+            "적용지침B": 64,
+            "적용사례IE": 105,
+            "감리사례": 13,
+            "결론도출근거": 360
+          }
+        },
+        "QNA-SSI-202412042": {
+          "routing": "IN",
+          "error": null,
+          "paras": 181,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 992,
+          "sources": {
+            "본문": 58,
+            "적용지침B": 39,
+            "적용사례IE": 84,
+            "감리사례": 11,
+            "결론도출근거": 255
+          }
+        },
+        "QNA-SSI-202412043": {
+          "routing": "IN",
+          "error": null,
+          "paras": 242,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1610,
+          "sources": {
+            "본문": 47,
+            "적용지침B": 54,
+            "적용사례IE": 141,
+            "감리사례": 13,
+            "결론도출근거": 303
+          }
+        },
+        "QNA-SSI-202412044": {
+          "routing": "IN",
+          "error": null,
+          "paras": 112,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1792,
+          "sources": {
+            "본문": 42,
+            "적용지침B": 15,
+            "적용사례IE": 55,
+            "감리사례": 5,
+            "결론도출근거": 235
+          }
+        },
+        "QNA-SSI-202412045": {
+          "routing": "IN",
+          "error": null,
+          "paras": 122,
+          "gold_hit": 1,
+          "gold_total": 4,
+          "gold_missed": [
+            "31",
+            "B64",
+            "B66"
+          ],
+          "answer_chars": 1342,
+          "sources": {
+            "본문": 44,
+            "적용지침B": 15,
+            "적용사례IE": 62,
+            "감리사례": 7,
+            "결론도출근거": 235
+          }
+        },
+        "QNA-SSI-202412046": {
+          "routing": "IN",
+          "error": null,
+          "paras": 198,
+          "gold_hit": 3,
+          "gold_total": 4,
+          "gold_missed": [
+            "59"
+          ],
+          "answer_chars": 1695,
+          "sources": {
+            "본문": 72,
+            "적용지침B": 28,
+            "적용사례IE": 98,
+            "감리사례": 12,
+            "결론도출근거": 295
+          }
+        },
+        "QNA-SSI-202503008": {
+          "routing": "IN",
+          "error": null,
+          "paras": 327,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1098,
+          "sources": {
+            "본문": 79,
+            "적용지침B": 76,
+            "적용사례IE": 172,
+            "감리사례": 16,
+            "결론도출근거": 376
+          }
+        },
+        "QNA-SSI-202506004": {
+          "routing": "IN",
+          "error": null,
+          "paras": 222,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1191,
+          "sources": {
+            "본문": 68,
+            "적용지침B": 64,
+            "적용사례IE": 90,
+            "감리사례": 11,
+            "결론도출근거": 356
+          }
+        },
+        "QNA-SSI-202511018": {
+          "routing": "IN",
+          "error": null,
+          "paras": 90,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 787,
+          "sources": {
+            "본문": 40,
+            "적용지침B": 4,
+            "적용사례IE": 46,
+            "감리사례": 5,
+            "결론도출근거": 125
+          }
+        },
+        "QNA-SSI-202511019": {
+          "routing": "IN",
+          "error": null,
+          "paras": 274,
+          "gold_hit": 2,
+          "gold_total": 4,
+          "gold_missed": [
+            "BC323",
+            "BC325"
+          ],
+          "answer_chars": 1307,
+          "sources": {
+            "본문": 80,
+            "적용지침B": 66,
+            "적용사례IE": 128,
+            "감리사례": 13,
+            "결론도출근거": 387
+          }
+        },
+        "QNA-SSI-202511020": {
+          "routing": "IN",
+          "error": null,
+          "paras": 77,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1062,
+          "sources": {
+            "본문": 39,
+            "적용사례IE": 38,
+            "감리사례": 5,
+            "결론도출근거": 142
+          }
+        },
+        "QNA-SSI-35565": {
+          "routing": "IN",
+          "error": null,
+          "paras": 76,
+          "gold_hit": 0,
+          "gold_total": 1,
+          "gold_missed": [
+            "9"
+          ],
+          "answer_chars": 1286,
+          "sources": {
+            "본문": 32,
+            "적용지침B": 19,
+            "적용사례IE": 24,
+            "감리사례": 1,
+            "결론도출근거": 175
+          }
+        },
+        "QNA-SSI-35567": {
+          "routing": "IN",
+          "error": null,
+          "paras": 312,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1427,
+          "sources": {
+            "본문": 66,
+            "적용지침B": 72,
+            "적용사례IE": 174,
+            "감리사례": 15,
+            "결론도출근거": 352
+          }
+        },
+        "QNA-SSI-35568": {
+          "routing": "IN",
+          "error": null,
+          "paras": 297,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1428,
+          "sources": {
+            "본문": 83,
+            "적용지침B": 70,
+            "적용사례IE": 144,
+            "감리사례": 14,
+            "결론도출근거": 381
+          }
+        },
+        "QNA-SSI-35578": {
+          "routing": "IN",
+          "error": null,
+          "paras": 305,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1446,
+          "sources": {
+            "본문": 89,
+            "적용지침B": 43,
+            "적용사례IE": 173,
+            "감리사례": 16,
+            "결론도출근거": 384
+          }
+        },
+        "QNA-SSI-35579": {
+          "routing": "IN",
+          "error": null,
+          "paras": 279,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1455,
+          "sources": {
+            "본문": 50,
+            "적용지침B": 68,
+            "적용사례IE": 161,
+            "감리사례": 15,
+            "결론도출근거": 329
+          }
+        },
+        "QNA-SSI-35584": {
+          "routing": "IN",
+          "error": null,
+          "paras": 49,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1541,
+          "sources": {
+            "본문": 26,
+            "적용사례IE": 23,
+            "감리사례": 4,
+            "결론도출근거": 87
+          }
+        },
+        "QNA-SSI-35599": {
+          "routing": "IN",
+          "error": null,
+          "paras": 152,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1052,
+          "sources": {
+            "본문": 74,
+            "적용지침B": 15,
+            "적용사례IE": 63,
+            "감리사례": 5,
+            "결론도출근거": 290
+          }
+        },
+        "QNA-SSI-35609": {
+          "routing": "IN",
+          "error": null,
+          "paras": 256,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1225,
+          "sources": {
+            "본문": 84,
+            "적용지침B": 68,
+            "적용사례IE": 104,
+            "감리사례": 12,
+            "결론도출근거": 391
+          }
+        },
+        "QNA-SSI-35617": {
+          "routing": "IN",
+          "error": null,
+          "paras": 190,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1691,
+          "sources": {
+            "본문": 51,
+            "적용지침B": 20,
+            "적용사례IE": 119,
+            "감리사례": 6,
+            "결론도출근거": 290
+          }
+        },
+        "QNA-SSI-36898": {
+          "routing": "IN",
+          "error": null,
+          "paras": 89,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 659,
+          "sources": {
+            "본문": 40,
+            "적용사례IE": 48,
+            "감리사례": 6,
+            "결론도출근거": 142
+          }
+        },
+        "QNA-SSI-36904": {
+          "routing": "IN",
+          "error": null,
+          "paras": 225,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1051,
+          "sources": {
+            "본문": 64,
+            "적용지침B": 64,
+            "적용사례IE": 97,
+            "감리사례": 13,
+            "결론도출근거": 352
+          }
+        },
+        "QNA-SSI-36917": {
+          "routing": "IN",
+          "error": null,
+          "paras": 99,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1123,
+          "sources": {
+            "본문": 63,
+            "적용지침B": 4,
+            "적용사례IE": 27,
+            "감리사례": 4,
+            "결론도출근거": 176
+          }
+        },
+        "QNA-SSI-36941": {
+          "routing": "IN",
+          "error": null,
+          "paras": 172,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1701,
+          "sources": {
+            "본문": 47,
+            "적용지침B": 44,
+            "적용사례IE": 80,
+            "감리사례": 13,
+            "결론도출근거": 255
+          }
+        },
+        "QNA-SSI-36948": {
+          "routing": "IN",
+          "error": null,
+          "paras": 286,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1768,
+          "sources": {
+            "본문": 81,
+            "적용지침B": 80,
+            "적용사례IE": 125,
+            "감리사례": 14,
+            "결론도출근거": 416
+          }
+        },
+        "QNA-SSI-36949": {
+          "routing": "IN",
+          "error": null,
+          "paras": 200,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1585,
+          "sources": {
+            "본문": 56,
+            "적용지침B": 29,
+            "적용사례IE": 115,
+            "감리사례": 13,
+            "결론도출근거": 233
+          }
+        },
+        "QNA-SSI-36951": {
+          "routing": "IN",
+          "error": null,
+          "paras": 60,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1661,
+          "sources": {
+            "본문": 26,
+            "적용지침B": 27,
+            "적용사례IE": 7,
+            "감리사례": 1,
+            "결론도출근거": 126
+          }
+        },
+        "QNA-SSI-36959": {
+          "routing": "IN",
+          "error": null,
+          "paras": 349,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1338,
+          "sources": {
+            "본문": 97,
+            "적용지침B": 47,
+            "적용사례IE": 190,
+            "감리사례": 17,
+            "결론도출근거": 454
+          }
+        },
+        "QNA-SSI-36964": {
+          "routing": "IN",
+          "error": null,
+          "paras": 179,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1334,
+          "sources": {
+            "본문": 58,
+            "적용지침B": 52,
+            "적용사례IE": 68,
+            "감리사례": 15,
+            "결론도출근거": 275
+          }
+        },
+        "QNA-SSI-36965": {
+          "routing": "IN",
+          "error": null,
+          "paras": 327,
+          "gold_hit": 6,
+          "gold_total": 6,
+          "gold_missed": [],
+          "answer_chars": 1535,
+          "sources": {
+            "본문": 81,
+            "적용지침B": 72,
+            "적용사례IE": 174,
+            "감리사례": 15,
+            "결론도출근거": 392
+          }
+        },
+        "QNA-SSI-36975": {
+          "routing": "IN",
+          "error": null,
+          "paras": 165,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1306,
+          "sources": {
+            "본문": 53,
+            "적용지침B": 13,
+            "적용사례IE": 99,
+            "감리사례": 6,
+            "결론도출근거": 239
+          }
+        },
+        "QNA-SSI-36987": {
+          "routing": "IN",
+          "error": null,
+          "paras": 223,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1308,
+          "sources": {
+            "본문": 33,
+            "적용지침B": 64,
+            "적용사례IE": 126,
+            "감리사례": 15,
+            "결론도출근거": 290
+          }
+        },
+        "QNA-SSI-36990": {
+          "routing": "IN",
+          "error": null,
+          "paras": 94,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1364,
+          "sources": {
+            "본문": 34,
+            "적용지침B": 18,
+            "적용사례IE": 42,
+            "감리사례": 4,
+            "결론도출근거": 119
+          }
+        },
+        "QNA-SSI-36991": {
+          "routing": "IN",
+          "error": null,
+          "paras": 113,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1184,
+          "sources": {
+            "본문": 38,
+            "적용지침B": 9,
+            "적용사례IE": 66,
+            "감리사례": 5,
+            "결론도출근거": 162
+          }
+        },
+        "QNA-SSI-36993": {
+          "routing": "IN",
+          "error": null,
+          "paras": 99,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1066,
+          "sources": {
+            "본문": 63,
+            "적용지침B": 4,
+            "적용사례IE": 27,
+            "감리사례": 4,
+            "결론도출근거": 176
+          }
+        },
+        "QNA-SSI-38465": {
+          "routing": "IN",
+          "error": null,
+          "paras": 232,
+          "gold_hit": 2,
+          "gold_total": 2,
+          "gold_missed": [],
+          "answer_chars": 1226,
+          "sources": {
+            "본문": 68,
+            "적용지침B": 22,
+            "적용사례IE": 142,
+            "감리사례": 14,
+            "결론도출근거": 319
+          }
+        },
+        "QNA-SSI-38485": {
+          "routing": "IN",
+          "error": null,
+          "paras": 255,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1493,
+          "sources": {
+            "본문": 62,
+            "적용지침B": 37,
+            "적용사례IE": 156,
+            "감리사례": 14,
+            "결론도출근거": 343
+          }
+        },
+        "QNA-SSI-38611": {
+          "routing": "IN",
+          "error": null,
+          "paras": 256,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1312,
+          "sources": {
+            "본문": 79,
+            "적용지침B": 29,
+            "적용사례IE": 148,
+            "감리사례": 15,
+            "결론도출근거": 267
+          }
+        },
+        "QNA-SSI-38612": {
+          "routing": "IN",
+          "error": null,
+          "paras": 119,
+          "gold_hit": 0,
+          "gold_total": 1,
+          "gold_missed": [
+            "38"
+          ],
+          "answer_chars": 1514,
+          "sources": {
+            "본문": 40,
+            "적용지침B": 23,
+            "적용사례IE": 56,
+            "감리사례": 6,
+            "결론도출근거": 222
+          }
+        },
+        "QNA-SSI-38648": {
+          "routing": "IN",
+          "error": null,
+          "paras": 175,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1116,
+          "sources": {
+            "본문": 54,
+            "적용지침B": 37,
+            "적용사례IE": 84,
+            "감리사례": 13,
+            "결론도출근거": 315
+          }
+        },
+        "QNA-SSI-38671": {
+          "routing": "IN",
+          "error": null,
+          "paras": 301,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1592,
+          "sources": {
+            "본문": 80,
+            "적용지침B": 58,
+            "적용사례IE": 163,
+            "감리사례": 15,
+            "결론도출근거": 371
+          }
+        },
+        "QNA-SSI-38672": {
+          "routing": "IN",
+          "error": null,
+          "paras": 356,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1056,
+          "sources": {
+            "본문": 78,
+            "적용지침B": 66,
+            "적용사례IE": 212,
+            "감리사례": 16,
+            "결론도출근거": 365
+          }
+        },
+        "QNA-SSI-38673": {
+          "routing": "OUT",
+          "error": null,
+          "paras": 0,
+          "gold_hit": 0,
+          "gold_total": 1,
+          "gold_missed": [
+            "55"
+          ],
+          "answer_chars": 59,
+          "sources": {}
+        },
+        "QNA-SSI-38674": {
+          "routing": "IN",
+          "error": null,
+          "paras": 149,
+          "gold_hit": 1,
+          "gold_total": 4,
+          "gold_missed": [
+            "BC43",
+            "BC46D",
+            "BC46E"
+          ],
+          "answer_chars": 1624,
+          "sources": {
+            "본문": 58,
+            "적용지침B": 13,
+            "적용사례IE": 78,
+            "감리사례": 5,
+            "결론도출근거": 209
+          }
+        },
+        "QNA-SSI-38675": {
+          "routing": "IN",
+          "error": null,
+          "paras": 235,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 898,
+          "sources": {
+            "본문": 64,
+            "적용지침B": 46,
+            "적용사례IE": 120,
+            "감리사례": 13,
+            "결론도출근거": 344
+          }
+        },
+        "QNA-SSI-38676": {
+          "routing": "IN",
+          "error": null,
+          "paras": 253,
+          "gold_hit": 3,
+          "gold_total": 4,
+          "gold_missed": [
+            "99"
+          ],
+          "answer_chars": 1312,
+          "sources": {
+            "본문": 99,
+            "적용지침B": 33,
+            "적용사례IE": 121,
+            "감리사례": 15,
+            "결론도출근거": 350
+          }
+        },
+        "QNA-SSI-38679": {
+          "routing": "IN",
+          "error": null,
+          "paras": 212,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1606,
+          "sources": {
+            "본문": 44,
+            "적용지침B": 58,
+            "적용사례IE": 110,
+            "감리사례": 13,
+            "결론도출근거": 314
+          }
+        },
+        "QNA-SSI-38680": {
+          "routing": "IN",
+          "error": null,
+          "paras": 153,
+          "gold_hit": 0,
+          "gold_total": 1,
+          "gold_missed": [
+            "6"
+          ],
+          "answer_chars": 1622,
+          "sources": {
+            "본문": 70,
+            "적용지침B": 15,
+            "적용사례IE": 67,
+            "감리사례": 5,
+            "결론도출근거": 297
+          }
+        },
+        "QNA-SSI-38690": {
+          "routing": "IN",
+          "error": null,
+          "paras": 318,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1134,
+          "sources": {
+            "본문": 81,
+            "적용지침B": 70,
+            "적용사례IE": 167,
+            "감리사례": 16,
+            "결론도출근거": 360
+          }
+        },
+        "QNA-SSI-38695": {
+          "routing": "IN",
+          "error": null,
+          "paras": 224,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1883,
+          "sources": {
+            "본문": 56,
+            "적용지침B": 76,
+            "적용사례IE": 92,
+            "감리사례": 13,
+            "결론도출근거": 356
+          }
+        },
+        "QNA-SSI-38697": {
+          "routing": "IN",
+          "error": null,
+          "paras": 205,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1167,
+          "sources": {
+            "본문": 62,
+            "적용지침B": 28,
+            "적용사례IE": 115,
+            "감리사례": 12,
+            "결론도출근거": 310
+          }
+        },
+        "QNA-SSI-38698": {
+          "routing": "IN",
+          "error": null,
+          "paras": 228,
+          "gold_hit": 1,
+          "gold_total": 1,
+          "gold_missed": [],
+          "answer_chars": 1107,
+          "sources": {
+            "본문": 61,
+            "적용지침B": 70,
+            "적용사례IE": 97,
+            "감리사례": 12,
+            "결론도출근거": 352
+          }
+        },
+        "QNA-SSI-38699": {
+          "routing": "IN",
+          "error": null,
+          "paras": 253,
+          "gold_hit": 3,
+          "gold_total": 3,
+          "gold_missed": [],
+          "answer_chars": 1154,
+          "sources": {
+            "본문": 44,
+            "적용지침B": 58,
+            "적용사례IE": 151,
+            "감리사례": 16,
+            "결론도출근거": 314
+          }
+        },
+        "QNA-SSI-38700": {
+          "routing": "IN",
+          "error": null,
+          "paras": 219,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 983,
+          "sources": {
+            "본문": 45,
+            "적용지침B": 64,
+            "적용사례IE": 110,
+            "감리사례": 13,
+            "결론도출근거": 303
+          }
+        },
+        "QNA-SSI-38701": {
+          "routing": "IN",
+          "error": null,
+          "paras": 239,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1213,
+          "sources": {
+            "본문": 63,
+            "적용지침B": 42,
+            "적용사례IE": 134,
+            "감리사례": 14,
+            "결론도출근거": 288
+          }
+        },
+        "QNA-SSI-38702": {
+          "routing": "IN",
+          "error": null,
+          "paras": 393,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1592,
+          "sources": {
+            "본문": 89,
+            "적용지침B": 95,
+            "적용사례IE": 209,
+            "감리사례": 16,
+            "결론도출근거": 427
+          }
+        },
+        "QNA-SSI-38703": {
+          "routing": "IN",
+          "error": null,
+          "paras": 339,
+          "gold_hit": 0,
+          "gold_total": 0,
+          "gold_missed": [],
+          "answer_chars": 1632,
+          "sources": {
+            "본문": 78,
+            "적용지침B": 72,
+            "적용사례IE": 189,
+            "감리사례": 15,
+            "결론도출근거": 376
+          }
+        }
+      }
+    }
+  },
+  "gold_delta_by_case": [
+    {
+      "id": "QNA-201803D",
+      "gold_total": 2,
+      "none": 1,
+      "kin1": 2,
+      "delta": 1
+    },
+    {
+      "id": "QNA-SSI-202312052",
+      "gold_total": 3,
+      "none": 0,
+      "kin1": 3,
+      "delta": 3
+    },
+    {
+      "id": "QNA-SSI-202312053",
+      "gold_total": 2,
+      "none": 1,
+      "kin1": 2,
+      "delta": 1
+    },
+    {
+      "id": "QNA-SSI-202412045",
+      "gold_total": 4,
+      "none": 4,
+      "kin1": 1,
+      "delta": -3
+    },
+    {
+      "id": "QNA-SSI-202412046",
+      "gold_total": 4,
+      "none": 4,
+      "kin1": 3,
+      "delta": -1
+    },
+    {
+      "id": "QNA-SSI-202503008",
+      "gold_total": 1,
+      "none": 0,
+      "kin1": 1,
+      "delta": 1
+    },
+    {
+      "id": "QNA-SSI-35565",
+      "gold_total": 1,
+      "none": 1,
+      "kin1": 0,
+      "delta": -1
+    },
+    {
+      "id": "QNA-SSI-36965",
+      "gold_total": 6,
+      "none": 4,
+      "kin1": 6,
+      "delta": 2
+    }
+  ]
+}

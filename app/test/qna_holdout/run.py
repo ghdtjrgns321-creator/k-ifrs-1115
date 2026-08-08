@@ -26,7 +26,7 @@ import json
 from pathlib import Path
 
 from app.test.qna_holdout.sse_client import call_chat
-from app.ui.constants import SRC_QNA, SRC_QNA_SHORT
+from app.ui.constants import SRC_BC, SRC_QNA, SRC_QNA_SHORT
 
 _HERE = Path(__file__).parent
 _ROOT = Path(__file__).resolve().parents[3]
@@ -58,9 +58,14 @@ def _paras(docs: list[dict] | None) -> list[str]:
     """LLM 컨텍스트에 들어온 1115호 문단 번호. 사례 문서는 para_num이 ""라 자동 제외.
 
     hierarchy 문자열을 정규식으로 긁지 않는다 — 문단 번호는 API가 para_num으로 그대로 준다.
+
+    **BC는 뺀다.** BC 문단은 근거 패널에만 실리고 LLM 컨텍스트(context_str)에는 안
+    들어간다. 여기 세면 "읽지도 않은 문단을 회수했다"가 되어 지표가 거짓말이 된다.
     """
     seen: list[str] = []
     for d in docs or []:
+        if str(d.get("source", "")) == SRC_BC:
+            continue
         p = str(d.get("para_num", "")).strip()
         if p and p not in seen:
             seen.append(p)
