@@ -19,6 +19,8 @@ data/ontology/*
 !data/ontology/concepts.json
 !data/ontology/edges.json
 !data/ontology/case_links.json
+# 사례 주제 간선 — case_links(인용 간선)와 파일을 나눈다. 순회는 이쪽만 탄다.
+!data/ontology/case_topics.json
 !data/ontology/bc_links.json
 !data/ontology/aliases.json
 !data/ontology/topic_concept_map.json
