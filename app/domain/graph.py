@@ -40,7 +40,8 @@ class TraverseResult:
     cases: list[dict] = field(default_factory=list)  # QNA·감리 {db_parent_id, title}
     ie_cases: list[dict] = field(default_factory=list)  # IE {id, title, group}
     bc_groups: list[str] = field(default_factory=list)
-    related_concepts: list[str] = field(default_factory=list)
+    # 회수한 문단을 논의한 BC 문단. **LLM에게 주지 않는다** — 근거 표시 전용이다.
+    bc_paras: list[str] = field(default_factory=list)
     path: list[str] = field(default_factory=list)  # 사람이 읽는 근거 경로
 
 
@@ -58,6 +59,11 @@ class Graph:
         )["para_to_concept"]
         self.edges: dict = json.loads((d / "edges.json").read_text("utf-8"))
         self.cases: dict = json.loads((d / "case_links.json").read_text("utf-8"))
+        # 사례 주제 간선 — 21-ontology-case-topics.py 산출. case_links.json의 인용
+        # 간선과 파일을 나눈다(16-ontology-cases.py가 저쪽을 통째로 덮어쓴다).
+        self.case_topics: dict = json.loads(
+            (d / "case_topics.json").read_text("utf-8")
+        )["topics"]
         self.bc: dict = json.loads((d / "bc_links.json").read_text("utf-8"))
         self.terms: list = json.loads((d / "aliases.json").read_text("utf-8"))["terms"]
         self.judgment_trees: dict = json.loads(
@@ -70,11 +76,13 @@ class Graph:
         )
 
     def _build_indexes(self) -> None:
-        # 용어 인덱스: 등재 용어(개념·사례 목적지 보유)만. norm(term) → 행
+        # 용어 인덱스: **개념을 주는 행만**. norm(term) → 행
+        # Why(사례 제목 행 115개 제외): 그 행들은 개념 없이 사례만 가리켜, 제목이
+        # 질문에 글자로 있으면 사례를 순회 밖에서 곧바로 꽂아 넣었다. 그건 "제목이
+        # 겹치면 같은 쟁점"이라는 가정이고, 인용을 쟁점으로 쓰던 것과 같은 오류다.
+        # 사례는 주제 간선(case_topics.json)으로만 걷는다. 실측 기여는 72건 중 2건.
         self.term_index = [
-            t
-            for t in self.terms
-            if (t.get("concept_ids") or t.get("cases")) and len(_norm(t["term"])) >= 2
+            t for t in self.terms if t.get("concept_ids") and len(_norm(t["term"])) >= 2
         ]
         # 진입 용어 목록 + 용어→개념 번역표. 두 출처를 합친다.
         #  ① 용어사전에서 개념이 걸린 행 — 실무어(CIF·SaaS·마일리지). 사례 제목만
@@ -104,27 +112,38 @@ class Graph:
         for cid, node in self.concepts.items():
             if node.get("paras"):
                 _link(node["title"], [cid])
-        # 개념 → 사례 역인덱스 (문단 경유 + 직결 concepts 필드 + IE concept)
+        # 개념 → 사례 역인덱스 — **주제 간선만** 탄다.
+        # Why: case_links.json의 링크는 "이 사례가 이 문단을 인용했다"는 출처 표시다.
+        # 그걸 주제로 쓰면 문단 하나를 스친 사례까지 딸려온다 — 링크 323개 중 54%가
+        # 문단 1개 근거였고 사례당 배정 개념이 2.94개(실제 쟁점 1.68개)였다.
+        # case_topics.json은 그 인용 개념을 울타리로 두고 쟁점만 남긴 것이라 항상
+        # 부분집합이다(560 → 283). dev/entry-traverse/results-traverse.md.
         self.case_by_concept: dict[str, list] = {}
-        for kind in ("qna", "findings"):
-            for c in self.cases[kind]:
-                hit = {
-                    self.para_to_concept[p]
-                    for p in c.get("paras", [])
-                    if p in self.para_to_concept
-                }
-                hit |= set(c.get("concepts", []))  # 문단 인용 0인 직결 6건
-                for cid in hit:
+        self.ie_by_concept: dict[str, list] = {}
+        meta = {
+            (c.get("db_parent_id") or c["id"]): (kind, c)
+            for kind in ("qna", "findings", "ie")
+            for c in self.cases[kind]
+        }
+        for key, row in self.case_topics.items():
+            kind, c = meta.get(key, (None, None))
+            if not c:
+                continue
+            for cid in row["topics"]:
+                if kind == "ie":
+                    self.ie_by_concept.setdefault(cid, []).append(
+                        {
+                            "id": c["id"],
+                            "title": c["title"],
+                            "group": c.get("group", ""),
+                        }
+                    )
+                else:
                     self.case_by_concept.setdefault(cid, []).append(
                         {"db_parent_id": c["db_parent_id"], "title": c["title"]}
                     )
-        self.ie_by_concept: dict[str, list] = {}
-        for c in self.cases["ie"]:
-            cid = c.get("concept")
-            if cid:
-                self.ie_by_concept.setdefault(cid, []).append(
-                    {"id": c["id"], "title": c["title"], "group": c.get("group", "")}
-                )
+        # 문단 → 그 문단을 논의한 BC (E-BC4, 목차 괄호표기 최심). 없으면 빈 인덱스.
+        self.para_to_bc: dict[str, list[str]] = self.bc.get("para_to_bc_anno", {})
         # 개념 → BC 그룹 역인덱스
         self.bc_by_concept: dict[str, list] = {}
         for g in self.bc["groups"]:
@@ -139,7 +158,9 @@ class Graph:
         for tid, t in self.judgment_trees.items():
             for cid in t["trigger_concepts"]:
                 self.tree_by_concept.setdefault(cid, []).append(tid)
-        # 개념 선행판단(e2): from → [to...] 양방향
+        # 개념 선행판단(e2): from → [to...] 양방향.
+        # **순회는 타지 않는다** — 넓히기 실측에서 이득 0이었고 사례만 늘렸다(ADR-45).
+        # 실험 스크립트(exp_expand·exp_rank_compare)가 규칙 후보를 재려고 읽는다.
         self.e2_index: dict[str, list] = {}
         for e in self.edges.get("e2_five_step", []):
             self.e2_index.setdefault(e["from"], []).append(e["to"])
@@ -178,19 +199,16 @@ class Graph:
         return cids, unknown
 
     def resolve_terms(self, text: str) -> dict:
-        """질문 텍스트 → 개념 후보 + 직접 걸린 사례. 용어사전 substring 매칭(결정적)."""
+        """질문 텍스트 → 개념 후보. 용어사전 substring 매칭(결정적)."""
         tn = _norm(text)
-        matched, concept_ids, cases = [], [], []
+        matched, concept_ids = [], []
         for t in self.term_index:
             if _norm(t["term"]) in tn:
                 matched.append(t["term"])
-                for cid in t.get("concept_ids", []):
+                for cid in t["concept_ids"]:
                     if cid not in concept_ids:
                         concept_ids.append(cid)
-                for c in t.get("cases", []):
-                    if c not in cases:
-                        cases.append(c)
-        return {"concept_ids": concept_ids, "cases": cases, "matched_terms": matched}
+        return {"concept_ids": concept_ids, "matched_terms": matched}
 
     def resolve_by_vector(self, qvec: list[float], top_k: int) -> list[str]:
         """질의 벡터 → 코사인 상위 개념. 보조 진입 전용(용어사전 뒤 후순위 병합).
@@ -293,7 +311,6 @@ class Graph:
                     via_embed.append(cid)
         return {
             "concept_ids": cids,
-            "cases": r["cases"],
             "matched_terms": r["matched_terms"],
             "via_llm": via_llm,
             "via_embed": via_embed,
@@ -302,31 +319,61 @@ class Graph:
             "unknown_terms": unknown_terms,
         }
 
+    def expand_concepts(self, concept_ids: list[str], mode: str) -> list[str]:
+        """진입 개념을 위계로 넓힌다. "none"이면 그대로, "kin1"이면 부모·자식 1홉.
+
+        Why(순회의 몫): 어디서 시작하나는 진입이 정하고, 그 자리에서 얼마나 볼지는
+        순회가 정한다. 옛 구조는 진입 단계에서 하위를 넓히면서 `subtree_expand_max=8`
+        이라는 근거 없는 상한을 달고 있었다 — 그 상한은 옮기지 않았다(ADR-36).
+
+        Why(1홉·부모+자식): 홀드아웃 실측에서 깊이는 값을 못 했고(자식 전체는 1홉
+        대비 gold +1), 5단계 이웃(e2)은 이득 0이며, 형제까지 열면 기준서 문단의
+        70%가 들어온다. results-traverse.md §16.
+        """
+        if mode == "none":
+            return list(concept_ids)
+        if mode != "kin1":
+            raise ValueError(f"알 수 없는 traverse_expand: {mode!r} (none|kin1)")
+        out: list[str] = []
+        for cid in concept_ids:
+            node = self.concepts.get(cid)
+            if not node:
+                continue
+            for x in [
+                cid,
+                *(node["children"]),
+                *([node["parent"]] if node["parent"] else []),
+            ]:
+                if x not in out:
+                    out.append(x)
+        return out
+
     def traverse(
         self,
         concept_ids: list[str],
         hops: int = 1,
-        via_llm: list[str] | None = None,
         via_embed: list[str] | None = None,
+        expand: str | None = None,
     ) -> TraverseResult:
         """개념 → 관할 문단·사례·BC·관련 개념 수집. hops=1이면 문단 e3 이웃 1홉 확장.
 
-        Why(사례만 한정): 개념 하나에 사례가 최대 37건 매달려 있고 상위 10개 개념이
-        전체 사례연결의 52%를 쥔다. 링크가 "이 사례가 이 문단을 인용했다"는 뜻이라
-        흔한 문단을 스치기만 해도 사례가 쏟아지기 때문이다. 지금은 LLM이 직접 지목한
-        용어에서 나온 개념(via_llm)으로 사례·IE를 한정해 막아둔다. **임시 조치다** —
-        링크를 쟁점 기준으로 다시 걸면 한정할 이유가 없어진다(tasks 2-1 → 2-2).
+        Why(사례 한정을 폐기함): 예전엔 LLM이 지목한 용어에서 나온 개념(via_llm)에서만
+        사례를 걷었다. 링크가 인용 유래라 흔한 문단을 스치기만 해도 사례가 쏟아지던
+        시절의 응급조치다. 두 가지 이유로 없앴다. ① 원인을 고쳤다 — 사례는 이제
+        주제 간선(case_topics.json)으로만 걸린다. ② 애초에 근거가 없었다. 같은 개념인데
+        문단은 세 통로 전부에서 걷고 사례만 한 통로로 제한할 이유가 없고, 하필 그 통로가
+        문단 회수 기여도 3위였다(단독 회수 임베딩 122 · 글자매칭 105 · LLM용어 93).
+        결과로 72건 중 7건이 사례를 하나도 못 받고 있었다.
 
-        Why(빈 리스트와 미지정을 가른다): 예전엔 `via_llm or concept_ids`라 **빈
-        리스트도 미지정으로 취급**해 전량 수집으로 되돌아갔다. LLM 지목이 사전에
-        없어 via가 비는 실제 케이스에서 컨텍스트가 11~20배로 터졌다(72건 중 3건,
-        3회 재현). 한정하려고 만든 규칙이 한정 실패 시 정반대로 동작한 셈이다.
-        None(미지정, 분석 스크립트)만 전량, []는 한정 유지로 가른다.
+        expand는 개념 넓히기 규칙(none|kin1). None이면 설정값을 따른다 —
+        실험 스크립트만 인자로 덮어쓴다.
         """
-        case_set = set(concept_ids if via_llm is None else via_llm)
+        concept_ids = self.expand_concepts(
+            concept_ids, expand if expand is not None else settings.traverse_expand
+        )
         embed_set = set(via_embed or [])
         r = TraverseResult(concept_ids=list(concept_ids))
-        seen_p, seen_c, seen_ie, seen_bc, seen_rc = set(), set(), set(), set(), set()
+        seen_p, seen_c, seen_ie, seen_bc = set(), set(), set(), set()
 
         def add_para(p):
             if p not in seen_p:
@@ -341,32 +388,30 @@ class Graph:
             r.path.append(f"개념[{node['title']}{mark}]")
             for p in node["paras"]:
                 add_para(p)
-            if cid in case_set:
-                for c in self.case_by_concept.get(cid, []):
-                    if c["db_parent_id"] not in seen_c:
-                        seen_c.add(c["db_parent_id"])
-                        r.cases.append(c)
-                for c in self.ie_by_concept.get(cid, []):
-                    if c["id"] not in seen_ie:
-                        seen_ie.add(c["id"])
-                        r.ie_cases.append(c)
+            for c in self.case_by_concept.get(cid, []):
+                if c["db_parent_id"] not in seen_c:
+                    seen_c.add(c["db_parent_id"])
+                    r.cases.append(c)
+            for c in self.ie_by_concept.get(cid, []):
+                if c["id"] not in seen_ie:
+                    seen_ie.add(c["id"])
+                    r.ie_cases.append(c)
             for g in self.bc_by_concept.get(cid, []):
                 if g not in seen_bc:
                     seen_bc.add(g)
                     r.bc_groups.append(g)
-            for rel in (
-                ([node["parent"]] if node["parent"] else [])
-                + node["children"]
-                + self.e2_index.get(cid, [])
-            ):
-                if rel and rel not in seen_rc:
-                    seen_rc.add(rel)
-                    r.related_concepts.append(rel)
         # e3 인용 이웃 확장
         if hops >= 1:
             for p in list(r.paras):
                 for q in self.e3_index.get(p, []):
                     add_para(q)
+        # 회수한 문단을 논의한 BC — 근거 표시용. 문단 순서를 따른다.
+        seen_bcp: set[str] = set()
+        for p in r.paras:
+            for bc in self.para_to_bc.get(p, []):
+                if bc not in seen_bcp:
+                    seen_bcp.add(bc)
+                    r.bc_paras.append(bc)
         return r
 
 

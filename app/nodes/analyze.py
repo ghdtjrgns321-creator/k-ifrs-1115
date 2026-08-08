@@ -81,11 +81,11 @@ async def analyze_query(state: dict) -> dict:
         "standalone_query": data.standalone_query,
         "is_situation": data.is_situation,
         "concept_ids": entry["concept_ids"],
-        # via_llm: LLM이 지목한 용어에서 나온 개념. 사례·IE 수집 한정에 쓴다(임시).
+        # via_llm: LLM이 지목한 용어에서 나온 개념. 파이프라인은 안 쓰고 품질 로그만
+        # 쓴다 — 진입이 빌 때 원인을 가르는 신호다(사례 수집 한정은 폐기됨).
         "via_llm": entry["via_llm"],
         # via_embed: 임베딩으로만 들어온 개념. 근거 경로에 진입 방식을 표시한다.
         "via_embed": entry["via_embed"],
-        "entry_cases": entry["cases"],
         # matched_terms: 글자매칭으로 걸린 말. 파이프라인은 안 쓰고 품질 로그만 쓴다.
         # Why: 진입이 비었을 때 "사전 미등재" 때문인지 구분하는 유일한 신호(docs/quality-loop/01).
         "matched_terms": entry["matched_terms"],

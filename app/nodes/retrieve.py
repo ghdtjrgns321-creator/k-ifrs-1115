@@ -8,7 +8,7 @@ import asyncio
 import logging
 
 from app.domain.graph import get_graph
-from app.domain.graph_fetch import fetch_documents
+from app.domain.graph_fetch import fetch_bc, fetch_documents
 
 logger = logging.getLogger(__name__)
 
@@ -16,23 +16,20 @@ logger = logging.getLogger(__name__)
 async def retrieve_docs(state: dict) -> dict:
     """개념 진입 → 그래프 탐색 → 원문 조회. 결정적, 유사도 계산 없음.
 
-    입력: state["concept_ids"](analyze 5-2), state["entry_cases"](용어 진입 사례)
+    입력: state["concept_ids"](analyze 5-2)
     출력: retrieved_docs(정규화 문서), concept_path(근거 경로)
     """
     concept_ids = state.get("concept_ids", [])
-    entry_cases = state.get("entry_cases", [])
 
     graph = get_graph()
-    # 케이스·IE는 via_llm(LLM이 고른 용어의 개념)으로만 — 사례 플러드 차단(임시 조치).
-    # via_embed는 근거 경로 표시용 — 케이스 수집 대상이 아니다.
-    traverse = graph.traverse(
-        concept_ids,
-        via_llm=state.get("via_llm", []),
-        via_embed=state.get("via_embed", []),
-    )
+    # via_embed는 근거 경로 표시용 — 수집 대상을 가르지 않는다. 사례를 via_llm으로
+    # 한정하던 임시 조치는 폐기됐다(graph.traverse 주석).
+    traverse = graph.traverse(concept_ids, via_embed=state.get("via_embed", []))
 
     # DB 조회는 blocking → 스레드로
-    docs = await asyncio.to_thread(fetch_documents, traverse, entry_cases)
+    docs = await asyncio.to_thread(fetch_documents, traverse)
+    # BC는 LLM 컨텍스트가 아니라 근거 패널로만 간다(graph_fetch.fetch_bc 주석).
+    bc_docs = await asyncio.to_thread(fetch_bc, traverse.bc_paras)
 
     logger.info(
         "graph retrieve: concepts=%d, paras=%d, cases=%d, ie=%d → docs=%d",
@@ -42,11 +39,13 @@ async def retrieve_docs(state: dict) -> dict:
         len(traverse.ie_cases),
         len(docs),
     )
+    logger.info("graph retrieve: bc=%d (근거 표시 전용, LLM 미열람)", len(bc_docs))
 
     # candidate_paras: 그래프가 준 문단 후보 전량. 파이프라인은 안 쓰고 품질 로그만 쓴다.
     # Why: 답변이 인용한 문단이 이 집합 밖이면 환각 인용(docs/quality-loop/02 CITATION_OUT).
     return {
         "retrieved_docs": docs,
+        "bc_docs": bc_docs,
         "concept_path": traverse.path,
         "candidate_paras": traverse.paras,
     }

@@ -116,8 +116,26 @@ def _norm_case(d: dict) -> dict:
     }
 
 
-def fetch_documents(tr, entry_cases: list | None = None) -> list[dict]:
-    """TraverseResult + 진입 사례 → 정규화 문서 리스트 (05-pipeline §3 fetch_documents).
+def fetch_bc(paras: list[str]) -> list[dict]:
+    """BC 문단 → 정규화 문서. **LLM 컨텍스트에 넣지 않는다** — 근거 패널 전용.
+
+    Why(따로 두는 이유): BC는 652문단·평균 539자로 본문의 5배다. 회수 문단 하나당
+    평균 21개가 달려 있어 컨텍스트에 넣으면 질문당 12만자가 붙는다(현재 전체 11만자).
+    반면 "왜 이렇게 정해졌나"를 사람이 읽는 값은 크다. 그래서 LLM은 안 읽고 사람만
+    읽는 자리에 놓는다. UI는 source="결론도출근거" 아코디언으로 이미 받는다.
+    """
+    if not paras:
+        return []
+    coll = _db()[_MAIN]
+    found = {
+        d.get("paraNum"): d
+        for d in coll.find({"paraNum": {"$in": paras}}, {"embedding": 0})
+    }
+    return [_norm_para(found[p]) for p in paras if p in found]
+
+
+def fetch_documents(tr) -> list[dict]:
+    """TraverseResult → 정규화 문서 리스트 (05-pipeline §3 fetch_documents).
 
     문단은 paraNum 배치 조회, 사례는 parent 컬렉션, IE는 메인.
     순서 = 유형 묶음(문단 → 사례 → IE), 문단 안은 기준서 번호순.
@@ -140,10 +158,10 @@ def fetch_documents(tr, entry_cases: list | None = None) -> list[dict]:
             if d:
                 docs.append(_norm_para(d))
 
-    # 2) 사례 — QNA·감리 parent (traverse + 용어 진입 사례 합집합, 중복 제거)
+    # 2) 사례 — QNA·감리 parent (주제 간선으로 걷은 것만)
     # STEP 6: exclude_qna면 QNA("QNA-" 접두)를 스킵(감리는 유지) — 순환 격리
     seen: set[str] = set()
-    case_ids = [c["db_parent_id"] for c in tr.cases] + list(entry_cases or [])
+    case_ids = [c["db_parent_id"] for c in tr.cases]
     for cid in case_ids:
         if cid in seen:
             continue

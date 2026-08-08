@@ -20,8 +20,12 @@ logger = logging.getLogger(__name__)
 _client: MongoClient | None = None
 _COLLECTION_NAME = "usage_logs"
 
-# 스키마 버전 — 채점 배치가 구버전 로그(진입 흔적 없음)를 제외하는 기준
-SCHEMA_VER = 1
+# 스키마 버전 — 채점 배치가 호환되지 않는 로그를 제외하는 기준
+#   1: 진입 흔적 최초 기록 (via_topic·topic_hints — 주제 지목 시절)
+#   2: 진입부 재편 반영 (via_llm·term_hints·unknown_terms — 용어사전 경유)
+# Why(올린 이유): 필드 이름만 바뀐 게 아니라 통로 자체가 달라졌다. v1 로그를 v2 판정에
+# 넣으면 via_llm이 항상 비어 "사전 통로 실패"로 오탐한다.
+SCHEMA_VER = 2
 
 # 답변 저장 상한. 초과분은 잘리므로 인용 판정이 불완전해진다(answer_len으로 표시).
 _ANSWER_MAX = 2000
@@ -60,7 +64,6 @@ def log_chat_response(
     matched_terms_raw: list[str] | None = None,
     term_hints: list[str] | None = None,
     unknown_terms: list[str] | None = None,
-    entry_cases: list | None = None,
     candidate_paras: list[str] | None = None,
     context_paras: list[str] | None = None,
     concept_path: list[str] | None = None,
@@ -105,7 +108,6 @@ def log_chat_response(
                 "term_hints": term_hints or [],
                 # unknown_terms: LLM이 댔지만 사전에 없던 말 — 사전 보강 대상
                 "unknown_terms": unknown_terms or [],
-                "cases": entry_cases or [],
             },
             "retrieval": {
                 # paras: 그래프가 찾아낸 문단 후보 전량 (검색이 무엇을 건져왔나)

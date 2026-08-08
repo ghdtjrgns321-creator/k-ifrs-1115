@@ -181,7 +181,6 @@ async def run_graph_stream(
                     matched_terms_raw=_raw_terms(message),
                     term_hints=final_state.get("term_hints"),
                     unknown_terms=final_state.get("unknown_terms"),
-                    entry_cases=final_state.get("entry_cases"),
                     candidate_paras=final_state.get("candidate_paras"),
                     context_paras=[
                         p

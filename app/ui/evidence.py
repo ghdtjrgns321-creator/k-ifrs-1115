@@ -179,7 +179,7 @@ def _get_cited_standard_docs() -> list[dict]:
 def _prepare_ai_answer_docs(docs: list[dict]) -> list[dict]:
     """ai_answer 페이지: LLM이 실제 읽은 컨텍스트를 좌측에 노출.
 
-    docs = context_docs(via_llm 한정 — 케이스·IE는 LLM 지목 용어의 개념만, 플러드 없음).
+    docs = context_docs(케이스·IE는 주제 간선으로만 수집 — 인용 유래 플러드 없음).
       - QNA/감리/IE: 컨텍스트 그대로 노출 (그래프가 개념 직결로 고른 관련 근거)
       - 문단: 개념 관할 문단이 많아 answer가 인용한 것만 (_get_cited_standard_docs)
     답변이 실제 인용한 것은 렌더러가 cited_ids/cited_case_nums로 📌 강조한다.

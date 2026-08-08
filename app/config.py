@@ -54,6 +54,15 @@ class Settings(BaseSettings):
     #          임계값·가중치는 두지 않는다 — 점수는 순위 결정에만 쓰고 다른 신호와 섞지 않는다.
     entry_embed_top_k: int = 3
 
+    # 순회에서 개념을 넓히는 규칙. "none" | "kin1"
+    #   none — 진입 개념 그 자리에서만 걷는다 (현행)
+    #   kin1 — 부모 1홉 + 자식 1홉까지 넓혀서 걷는다
+    # Why(선택지가 둘뿐): 홀드아웃 실측에서 깊이는 값을 못 했고(자식 전체 vs 1홉 +1),
+    #   5단계 이웃은 이득 0, 형제까지 열면 기준서 문단의 70%가 들어온다.
+    #   회수만 보면 항상 넓은 쪽이 이기므로 답 품질 채점으로 가른다(A/B).
+    #   근거: dev/entry-traverse/results-traverse.md §13·§16
+    traverse_expand: str = "none"
+
     # 7. 인프라 설정
     # CORS: Streamlit(:8501) → FastAPI(:8002) 교차 요청 허용 목록
     # Why: Docker 내부(http://frontend:8501)와 외부 접속(http://공인IP:8501) 모두 허용 필요
