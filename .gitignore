@@ -39,6 +39,8 @@ data/testdata/gold_extract/step2_input/
 # ── 테스트 결과 (JSON) ────────────────────────────────────────────
 app/test/**/results/*.json
 test-results/
+# 질의 임베딩 캐시 6MB — 홀드아웃 질문 72건의 벡터. 스크립트가 없으면 다시 만든다.
+app/test/qna_holdout/entry_qvec.json
 
 # ── Claude Code 임시 파일 ─────────────────────────────────────────
 *.tmp.*
