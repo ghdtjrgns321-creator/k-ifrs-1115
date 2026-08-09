@@ -37,7 +37,7 @@ RUNS_DIR = _HERE / "runs"
 _QNA_SOURCES = {SRC_QNA, SRC_QNA_SHORT}
 
 
-def run_path(n: int) -> Path:
+def run_path(n: str) -> Path:
     return RUNS_DIR / f"run{n}.json"
 
 
@@ -80,7 +80,7 @@ def _qna_leak(docs: list[dict] | None) -> list[str]:
     ]
 
 
-def run(n: int, case_ids: list[str] | None = None) -> None:
+def run(n: str, case_ids: list[str] | None = None) -> None:
     path = run_path(n)
     cases = load_cases()
     if case_ids:
@@ -144,7 +144,8 @@ def run(n: int, case_ids: list[str] | None = None) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--run", type=int, required=True, help="회차 번호 (1,2,3)")
+    # str — 조건명을 붙일 수 있게 한다. `--run _none2` → runs/run_none2.json
+    ap.add_argument("--run", type=str, required=True, help="회차 라벨 (1 / _none2 …)")
     ap.add_argument("--cases", type=str, default="", help="쉼표구분 id (기본 전체)")
     args = ap.parse_args()
     ids = [x.strip() for x in args.cases.split(",") if x.strip()] or None

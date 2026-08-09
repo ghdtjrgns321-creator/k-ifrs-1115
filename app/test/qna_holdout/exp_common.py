@@ -69,23 +69,29 @@ def dev_gold_cases() -> list[tuple[str, dict, set]]:
 
 
 def gold_cases() -> dict[str, list[dict]]:
-    """케이스 → 1115호 gold 문단 레코드. 제외 2건·타 기준서 문단은 뺀다.
+    """케이스 → 1115호 gold 문단 레코드. 분모 밖 항목은 전부 뺀다.
 
-    타 기준서(1038·1002·1116·1008 10문단)를 빼는 이유: 코퍼스 밖이라 회수 자체가
-    불가능하다. 분모에 남기면 회수율 상한이 100% 미만이 되어 지표가 흐려진다.
+    `scope`가 붙은 건 이 지표가 잴 수 없는 것들이다:
+      other_standard     타 기준서(1038·1002·1116·1008) — 코퍼스 밖이라 회수 불가
+      bc_not_in_context  BC — 답변 생성에 미투입(README 한계 8)이라 컨텍스트에 안 들어옴
+    분모에 남기면 회수율 상한이 100% 미만이 되어 지표가 흐려진다.
     """
     out = {}
     for x in load_json(GOLD):
         if x.get("scope") or x.get("exclude_reason"):
             continue
-        paras = [p for p in x["paragraphs"] if p.get("standard") == "1115"]
+        paras = [
+            p
+            for p in x["paragraphs"]
+            if p.get("standard") == "1115" and not p.get("scope")
+        ]
         if paras:
             out[x["id"]] = paras
     return out
 
 
 def gold_paras(essential_only: bool = True) -> dict[str, set[str]]:
-    """케이스 → gold 문단 번호 집합. 기본은 필수(essential) 173문단."""
+    """케이스 → gold 문단 번호 집합. 기본은 필수(essential) 164문단."""
     return {
         k: {str(p["para"]) for p in v if p.get("essential") or not essential_only}
         for k, v in gold_cases().items()
