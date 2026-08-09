@@ -17,7 +17,7 @@ class ChatRequest(BaseModel):
     # 세션 ID: 없으면 서버가 UUID를 신규 발급합니다.
     session_id: str | None = None
     message: str
-    # search_id가 있으면 /search 캐시에서 docs를 꺼내 retrieve/rerank 단계를 스킵합니다.
+    # search_id가 있으면 /search 캐시에서 docs를 꺼내 retrieve 단계를 스킵합니다.
     search_id: str | None = None
 
 

@@ -5,7 +5,7 @@
 # 각 노드 함수는 async def로, 부분 dict를 반환하여 state.update()로 병합합니다.
 #
 # 흐름:
-#   analyze → retrieve → rerank → generate → format
+#   analyze → retrieve → generate → format
 import asyncio
 import logging
 import time
@@ -84,7 +84,7 @@ async def run_rag_pipeline(state: dict) -> AsyncGenerator[SSEEvent, None]:
     deadline = pipeline_start + settings.pipeline_timeout
 
     # ── Fast-path: clarify 후속 턴 ──────────────────────────────────────────────
-    # analyze/retrieve/rerank 전체 스킵 → clarify LLM 1회만 실행
+    # analyze/retrieve 전체 스킵 → clarify LLM 1회만 실행
     if state.get("is_clarify_followup"):
         yield SSEEvent(
             type="status",

@@ -35,7 +35,7 @@ async def chat(
       1. status 이벤트 — RAG 파이프라인 각 단계 진행 알림
       2. done 이벤트   — 최종 답변 + 출처 + 꼬리 질문 3개
 
-    search_id가 있으면 캐시된 docs를 주입해 retrieve/rerank를 스킵합니다.
+    search_id가 있으면 캐시된 docs를 주입해 retrieve를 스킵합니다.
     """
     session_id = request.session_id or str(uuid4())
 

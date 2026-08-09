@@ -98,14 +98,10 @@ ACCORDION_GROUPS: dict[str, list[str]] = {
 }
 
 # ── RAG 노드 → 진행률 매핑 ──────────────────────────────────────────────────────
-# pre_retrieved 분기 시 retrieve/rerank 노드가 건너뛰어져 진행률이 빠르게 올라갑니다.
+# pre_retrieved 분기 시 retrieve 노드가 건너뛰어져 진행률이 빠르게 올라갑니다.
 _STEP_PROGRESS: dict[str, int] = {
     "analyze": 15,
     "retrieve": 35,
-    "rerank": 55,
-    "grade": 70,
-    "rewrite": 75,
-    "hyde": 78,
     "generate": 85,
     "format": 95,
 }
@@ -115,10 +111,6 @@ _STEP_PROGRESS: dict[str, int] = {
 _STEP_LABELS: dict[str, str] = {
     "analyze": "질문을 분석하고 있어요",
     "retrieve": "관련 조항을 검색하고 있어요",
-    "rerank": "가장 관련성 높은 조항을 선별하고 있어요",
-    "grade": "검색 결과 품질을 평가하고 있어요",
-    "rewrite": "더 나은 검색을 위해 질문을 재구성하고 있어요",
-    "hyde": "가상 문서를 생성하여 재검색하고 있어요",
     "generate": "AI가 답변을 생성하고 있어요 (약 15~20초 소요)",
     "format": "답변을 정리하고 있어요",
 }
