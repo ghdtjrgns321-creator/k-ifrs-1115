@@ -30,8 +30,9 @@ EXPECT = {
     "conclusion_cases": 90,
     "recall_cases": 72,
     "no_para_cases": 18,
-    "essential_paras": 173,
-    "cited_paras": 240,
+    "essential_paras": 164,
+    "cited_paras": 229,
+    "bc_paras": 11,
 }
 
 _WS = re.compile(r"\s+")
@@ -62,10 +63,16 @@ def main() -> None:
     scored = [c for c in gold if c.get("scope") != "excluded"]
     ex = [c for c in gold if c.get("scope") == "excluded"]
     no_para = [c for c in scored if not c["paragraphs"]]
+
+    # 회수율 분모 = 1115호이고 LLM 컨텍스트에 들어갈 수 있는 문단.
+    # BC는 답변 생성에 미투입(README 한계 8)이라 이 지표의 사정거리 밖이다.
+    def in_scope(p):
+        return p["standard"] == "1115" and p.get("scope") != "bc_not_in_context"
+
     recall = [
         c
         for c in scored
-        if any(p["standard"] == "1115" and p.get("essential") for p in c["paragraphs"])
+        if any(in_scope(p) and p.get("essential") for p in c["paragraphs"])
     ]
     got = {
         "excluded_cases": len(ex),
@@ -73,10 +80,17 @@ def main() -> None:
         "recall_cases": len(recall),
         "no_para_cases": len(no_para),
         "essential_paras": sum(
-            1 for c in scored for p in c["paragraphs"] if p.get("essential") is True
+            1
+            for c in scored
+            for p in c["paragraphs"]
+            if in_scope(p) and p.get("essential") is True
         ),
-        "cited_paras": sum(
-            1 for c in scored for p in c["paragraphs"] if p["standard"] == "1115"
+        "cited_paras": sum(1 for c in scored for p in c["paragraphs"] if in_scope(p)),
+        "bc_paras": sum(
+            1
+            for c in scored
+            for p in c["paragraphs"]
+            if p.get("scope") == "bc_not_in_context"
         ),
     }
     for k, v in got.items():
@@ -129,7 +143,10 @@ def main() -> None:
     print(
         f"  전체 {len(gold)} · 제외 {len(ex)} · 결론 재현 {len(scored)} · 회수율 {len(recall)}"
     )
-    print(f"  필수 문단 {got['essential_paras']} · 전사 문단 {got['cited_paras']}")
+    print(
+        f"  필수 문단 {got['essential_paras']} · 전사 문단 {got['cited_paras']}"
+        f" · BC 분모밖 {got['bc_paras']}"
+    )
     print("  quote 실재 · 문단 실재 · 미확정 0 — 전부 통과")
 
 

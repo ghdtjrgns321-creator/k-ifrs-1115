@@ -1,0 +1,459 @@
+{
+ "conds": [
+  "run_none",
+  "run_none2",
+  "run_none3"
+ ],
+ "scores": {
+  "QNA-2017-I-KAQ015-Q1": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-2017-I-KAQ015-Q2": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-2017-I-KQA014": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-2018-I-KQA002": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-2018-I-KQA004": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-2018-I-KQA009-Q1": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-2018-I-KQA009-Q2": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-201803A": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-201803B": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-201803D": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-2019-I-KQA009-Q1": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-2019-I-KQA009-Q2": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-201901B": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-201906D": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-201909A": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 0
+  },
+  "QNA-2020-I-KQA003": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-2020-I-KQA006-Q1": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-202003D": {
+   "run_none": 0,
+   "run_none2": 1,
+   "run_none3": 0
+  },
+  "QNA-2021-I-KQA008": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-2022-I-KQA007": {
+   "run_none": 0,
+   "run_none2": 0,
+   "run_none3": 0
+  },
+  "QNA-2022-I-KQA015": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-2024-I-KQA005": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-202504C": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-221109A": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202312048": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202312049": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202312050": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202312051": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202312052": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202312053": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202312058": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202412003": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202412041": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202412042": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202412043": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202412044": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202412045": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202412046": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202503008": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202506004": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202511018": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-202511019": {
+   "run_none": 1,
+   "run_none2": 0,
+   "run_none3": 1
+  },
+  "QNA-SSI-202511020": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-35565": {
+   "run_none": 0,
+   "run_none2": 0,
+   "run_none3": 0
+  },
+  "QNA-SSI-35567": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-35568": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-35578": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-35579": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-35584": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-35599": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-35609": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-35617": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-36898": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-36904": {
+   "run_none": 1,
+   "run_none2": 0,
+   "run_none3": 1
+  },
+  "QNA-SSI-36917": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-36941": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-36948": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-36949": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-36951": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-36959": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-36964": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-36965": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-36975": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-36987": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-36990": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-36991": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-36993": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38465": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38485": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38611": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38612": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38648": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38671": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38672": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38673": {
+   "run_none": 0,
+   "run_none2": 0,
+   "run_none3": 0
+  },
+  "QNA-SSI-38674": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38675": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38676": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38677": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38679": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38680": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38690": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38695": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38697": {
+   "run_none": 1,
+   "run_none2": 0,
+   "run_none3": 0
+  },
+  "QNA-SSI-38698": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38699": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38700": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38701": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38702": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  },
+  "QNA-SSI-38703": {
+   "run_none": 1,
+   "run_none2": 1,
+   "run_none3": 1
+  }
+ }
+}

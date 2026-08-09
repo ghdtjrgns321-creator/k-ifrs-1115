@@ -25,19 +25,19 @@ def _build_initial_state(
 
     멀티턴 핵심 규칙:
       - messages: 이전 대화 히스토리 + 새 질문 누적
-      - retrieved/reranked/relevant_docs: 매 턴 반드시 [] 초기화
+      - retrieved/relevant_docs: 매 턴 반드시 [] 초기화
       - checklist_state: 세션에서 로드하여 주입 (후속 턴 추적용)
       - pre_retrieved_docs: 후속 턴에서 cached_relevant_docs가 있으면 주입
     """
     # 후속 턴에서 cached_relevant_docs가 있으면 pre_retrieved_docs로 주입
-    # → retrieve/rerank 스킵하고 바로 grade로 점프
+    # → retrieve를 스킵하고 캐시된 문서를 그대로 근거로 쓴다
     effective_pre = pre_retrieved_docs
     if effective_pre is None and cached_relevant_docs is not None:
         effective_pre = cached_relevant_docs
 
     # fast-path 진입 조건: 체크리스트 + 캐시 문서가 모두 있는 후속 턴
     # Why: analyze(~2초) 스킵 — checklist_state에 matched_topics가 이미 있고,
-    # cached_relevant_docs로 retrieve/rerank도 불필요
+    # cached_relevant_docs로 retrieve도 불필요
     is_followup = checklist_state is not None and cached_relevant_docs is not None
 
     state = {
@@ -45,9 +45,7 @@ def _build_initial_state(
         "messages": prev_messages + [("human", new_message)],
         "routing": "IN" if is_followup else "",  # fast-path는 라우팅 검증 스킵
         "standalone_query": "",
-        "retry_count": 0,
         "retrieved_docs": [],
-        "reranked_docs": [],
         "relevant_docs": cached_relevant_docs if is_followup else [],
         "answer": "",
         "cited_sources": [],

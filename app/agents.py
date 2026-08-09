@@ -1,15 +1,12 @@
 # app/agents.py
 # PydanticAI Agent 정의 — 듀얼트랙 generate (Gemini Flash high + gpt-4.1-mini calc)
 #
-# 7개 LLM 호출 포인트를 PydanticAI Agent로 통일합니다:
-#   analyze_agent  — 질문 분석/라우팅 (gpt-4.1-mini, structured output)
-#   grade_agent    — 문서 품질 평가 (gpt-4.1-mini, structured output)
-#   generate_agent — 일반 답변 생성 (Gemini Flash thinking=high, structured output)
-#   clarify_agent  — 거래 상황 분석 + 결론 (Gemini Flash thinking=high, 동적 system prompt)
-#   rewrite_agent  — 질문 재작성 (gpt-4.1-mini, plain text)
-#   hyde_agent     — HyDE 가상 문서 (gpt-4.1-mini, plain text)
-#   text_agent     — search_service LLM 키워드 추출용 (gpt-4.1-mini, plain text)
-#   calc_fallback  — 계산 질문 폴백 (gpt-4.1-mini, 산술 정확도 100%)
+# LLM 호출 포인트를 PydanticAI Agent로 통일합니다:
+#   analyze_agent      — 질문 분석/라우팅 (gpt-4.1-mini, structured output)
+#   generate_agent     — 일반 답변 생성 (Gemini Flash thinking=medium, structured output)
+#   clarify_agent      — 거래 상황 분석 + 결론 (Gemini Flash thinking=medium, 동적 system prompt)
+#   calc_clarify_agent — 계산 질문 전용 clarify (gpt-4.1-mini, non-reasoning 스키마)
+#   calc_fallback      — 계산 질문 폴백 모델 (gpt-4.1-mini, 산술 정확도 100%)
 from dataclasses import dataclass, field
 
 from pydantic import BaseModel, Field
@@ -36,7 +33,7 @@ _google_provider = GoogleProvider(api_key=settings.google_api_key)
 
 
 def _front_model() -> OpenAIModel:
-    """analyze / grade / rewrite / hyde 용 경량 모델."""
+    """analyze 용 경량 모델."""
     return OpenAIModel(settings.llm_front_model, provider=_openai_provider)
 
 
@@ -95,17 +92,6 @@ class AnalyzeResult(BaseModel):
         "예: 재판매 구조 → ['총판', '순액'], 선적 후 운임 부담 → ['CIF']. "
         "용어가 어느 회계 개념에 연결되는지는 판단하지 않는다 — 용어만 고른다.",
     )
-
-
-class DocGrade(BaseModel):
-    chunk_id: str = Field(description="평가한 문서의 chunk_id")
-    is_relevant: bool = Field(
-        description="질문에 대한 답변으로 유효한지 여부 (True/False)"
-    )
-
-
-class GradeResult(BaseModel):
-    results: list[DocGrade]
 
 
 class GenerateOutput(BaseModel):
@@ -230,16 +216,6 @@ analyze_agent = Agent(
     },
 )
 
-grade_agent = Agent(
-    _front_model(),
-    output_type=GradeResult,
-    retries=2,
-    model_settings={
-        "temperature": settings.llm_temperature,
-        "seed": settings.llm_seed,
-    },
-)
-
 generate_agent = Agent(
     _generate_model(),
     output_type=GenerateOutput,
@@ -267,37 +243,6 @@ calc_clarify_agent = Agent(
     output_type=CalcClarifyOutput,
     retries=4,
     system_prompt=CALC_CLARIFY_SYSTEM,
-)
-
-rewrite_agent = Agent(
-    _front_model(),
-    output_type=str,
-    retries=2,
-    model_settings={
-        "temperature": settings.llm_temperature,
-        "seed": settings.llm_seed,
-    },
-)
-
-hyde_agent = Agent(
-    _front_model(),
-    output_type=str,
-    retries=1,
-    model_settings={
-        "temperature": settings.llm_temperature,
-        "seed": settings.llm_seed,
-    },
-)
-
-# search_service._extract_keywords_llm 등 범용 텍스트 호출용
-text_agent = Agent(
-    _front_model(),
-    output_type=str,
-    retries=1,
-    model_settings={
-        "temperature": settings.llm_temperature,
-        "seed": settings.llm_seed,
-    },
 )
 
 

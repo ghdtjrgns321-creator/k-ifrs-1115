@@ -11,7 +11,6 @@ class Settings(BaseSettings):
     # 2. API 키 (필수)
     upstage_api_key: str  # 임베딩 전용
     openai_api_key: str  # LLM 전용
-    cohere_api_key: str  # Reranker 전용 (rerank-multilingual-v3.0)
     google_api_key: str  # Gemini API
 
     # 3. LLM 모델 설정
@@ -27,9 +26,6 @@ class Settings(BaseSettings):
     llm_seed: int = 1115
     # API 응답 대기 최대 시간(초)
     llm_timeout: int = 90
-    # HyDE 가상 문서 생성 전용 타임아웃 — 3-5문장만 생성하므로 15초로 충분
-    # 초과 시 원본 쿼리로 즉시 폴백하여 전체 파이프라인 지연 방지
-    llm_hyde_timeout: int = 15
 
     # 5. 임베딩 모델 (passage/query 혼용 시 검색 품질 급락 — 혼용 금지)
     # passage: 문서를 DB에 저장(적재)할 때 사용
@@ -39,8 +35,6 @@ class Settings(BaseSettings):
     embed_batch_size: int = 100  # API 과부하 방지용 배치 단위
 
     # 6. 외부 API 타임아웃
-    # Why: Cohere Reranker가 간헐적으로 응답 지연 → 무한 대기 방지
-    reranker_timeout: int = 30
     # Why: 전체 파이프라인 무한 대기 방지 (SECTION-4 미인도청구약정 46초+ 케이스)
     pipeline_timeout: int = 100
 

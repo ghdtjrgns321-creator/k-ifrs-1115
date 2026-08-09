@@ -385,7 +385,8 @@
         "para": "BC32",
         "quote": "기업회계기준서 제1115호 문단 10[4]과 BC32[5]에서는 계약상 권리와",
         "essential": true,
-        "source": "human/07"
+        "source": "human/07",
+        "scope": "bc_not_in_context"
       }
     ]
   },
@@ -450,7 +451,8 @@
         "para": "BC307",
         "quote": "적용되지 않는다(다른 기준서 적용범위면 배제, 문단 BC307)",
         "essential": true,
-        "source": "cross"
+        "source": "cross",
+        "scope": "bc_not_in_context"
       }
     ]
   },
@@ -511,14 +513,16 @@
         "para": "BC55",
         "quote": "기업회계기준서 제1115호 문단 BC55에 따르면 협력자나 동업자와의 계약도",
         "essential": true,
-        "source": "human/04"
+        "source": "human/04",
+        "scope": "bc_not_in_context"
       },
       {
         "standard": "1115",
         "para": "BC56",
         "quote": "12기업회계기준서 제1115호 문단 BC56에 따르면 기업회계기준서 제1008호에 따라",
         "essential": true,
-        "source": "human/04"
+        "source": "human/04",
+        "scope": "bc_not_in_context"
       }
     ]
   },
@@ -1087,28 +1091,32 @@
         "para": "BC322",
         "quote": "무조건적인 권리를 보유하므로(제1115호 문단 BC322~BC325)",
         "essential": false,
-        "source": "human/07"
+        "source": "human/07",
+        "scope": "bc_not_in_context"
       },
       {
         "standard": "1115",
         "para": "BC323",
         "quote": "무조건적인 권리를 보유하므로(제1115호 문단 BC322~BC325)",
         "essential": true,
-        "source": "human/04"
+        "source": "human/04",
+        "scope": "bc_not_in_context"
       },
       {
         "standard": "1115",
         "para": "BC324",
         "quote": "무조건적인 권리를 보유하므로(제1115호 문단 BC322~BC325)",
         "essential": false,
-        "source": "human/04"
+        "source": "human/04",
+        "scope": "bc_not_in_context"
       },
       {
         "standard": "1115",
         "para": "BC325",
         "quote": "무조건적인 권리를 보유하므로(제1115호 문단 BC322~BC325)",
         "essential": true,
-        "source": "human/04"
+        "source": "human/04",
+        "scope": "bc_not_in_context"
       }
     ]
   },
@@ -1887,21 +1895,24 @@
         "para": "BC43",
         "quote": "기업은 일반적으로 대가를 회수할 가능성이 높은 경우에만 계약을 체결하므로, 기업이 고객과의 계약을 체결하게 된 사실과 상황을 고려하여 해당 요건을 충족하는지 판단할 필요",
         "essential": true,
-        "source": "cross"
+        "source": "cross",
+        "scope": "bc_not_in_context"
       },
       {
         "standard": "1115",
         "para": "BC46D",
         "quote": "기업이 계약에서 당초 약속한 재화 100개에 대한 대가 총 1,000원의 회수 가능성을 고려하기보다는, 고객에게 실제 이전될 재화에 대하여 계약에서 약속된 대가의 회수 가능성을 평가해야 함",
         "essential": true,
-        "source": "cross"
+        "source": "cross",
+        "scope": "bc_not_in_context"
       },
       {
         "standard": "1115",
         "para": "BC46E",
         "quote": "기업은 일반적으로 대가를 회수할 가능성이 높은 경우에만 계약을 체결하므로, 기업이 고객과의 계약을 체결하게 된 사실과 상황을 고려하여 해당 요건을 충족하는지 판단할 필요",
         "essential": true,
-        "source": "cross"
+        "source": "cross",
+        "scope": "bc_not_in_context"
       }
     ]
   },

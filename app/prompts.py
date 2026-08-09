@@ -13,9 +13,6 @@
 #                      {term_list}에 용어사전 목록을 채워 agents.py가 완성한다.
 #                      목록을 여기 하드코딩하지 않는 이유: aliases.json이 정본이고,
 #                      사전이 바뀌면 프롬프트가 자동으로 따라가야 한다.
-#   GRADE_PROMPT    — grade_agent user message template (gpt-4.1-mini용)
-#   REWRITE_PROMPT  — rewrite_agent user message template (gpt-4.1-mini용)
-#   HYDE_PROMPT     — hyde_agent user message template (gpt-4.1-mini용)
 #   CLARIFY_SYSTEM  — clarify_agent system prompt (gpt-5-mini용, reasoning)
 #   CLARIFY_USER    — clarify_agent user message template
 #   GENERATE_SYSTEM — generate_agent system prompt (gpt-5-mini용, reasoning)
@@ -116,36 +113,7 @@ false = 개념/조항/키워드/일반 인식 시점 질문
 [용어 목록]
 {term_list}"""
 
-# ── 2. 문서 품질 평가 (CRAG) ─────────────────────────────────────────────────
-GRADE_PROMPT = """당신은 회계 감사인입니다.
-아래 제공된 [문서]가 사용자의 [질문]에 답변하는 데 조금이라도 관련이 있고 유용한 정보인지 평가하세요.
-회계 기준서 특성상 간접적인 원칙이나 적용지침이라도 답변의 근거가 될 수 있다면 '관련 있음(True)'으로 평가해야 합니다.
-
-[질문]: {question}
-[문서]: {context}"""
-
-# ── 3. 질문 재작성 ───────────────────────────────────────────────────────────
-REWRITE_PROMPT = """사용자의 질문에 대해 DB 검색을 수행했으나 적절한 K-IFRS 1115호 문서를 찾지 못했습니다.
-벡터 검색엔진이 문서를 더 잘 찾을 수 있도록 질문을 회계 전문 용어 및 핵심 키워드 위주로 재작성하세요.
-
-[원본 질문]: {question}
-
-출력은 재작성된 질문 텍스트만 반환하세요."""
-
-# ── 4. HyDE 가상 문서 생성 ───────────────────────────────────────────────────
-HYDE_PROMPT = """\
-당신은 K-IFRS 제1115호 전문가입니다.
-아래 질문에 답변하는 데 필요한 기준서 조항의 내용을 작성하세요.
-
-규칙:
-- 실제 문단 번호(예: 문단 31, 문단 B58)와 회계 전문 용어를 반드시 포함하세요.
-- 기준서 본문 스타일로 3~5문장 이내로 간결하게 작성하세요.
-
-질문: {query}
-
-조항 내용:"""
-
-# ── 5. 꼬리질문 모드 (is_situation=True) — gpt-5-mini reasoning 최적화 ────────
+# ── 2. 꼬리질문 모드 (is_situation=True) — gpt-5-mini reasoning 최적화 ────────
 # Output Contract + Citation Locking 중심 구조
 # 체크리스트는 agents.py에서 동적 주입
 CLARIFY_SYSTEM = """\
@@ -297,7 +265,7 @@ CLARIFY_USER = """[참고 문서] — 나열 순서는 중요도·우선순위�
 [분석된 질문 (K-IFRS 공식 용어)]
 {question}"""
 
-# ── 6. 답변 생성 (개념 질문 + 최종 답변) — gpt-5-mini reasoning 최적화 ──────
+# ── 3. 답변 생성 (개념 질문 + 최종 답변) — gpt-5-mini reasoning 최적화 ──────
 # Output Contract + Citation Locking 중심 구조
 GENERATE_SYSTEM = """\
 당신은 K-IFRS 1115호(고객과의 계약에서 생기는 수익) 최고 전문가(CPA)입니다.
@@ -421,7 +389,7 @@ GENERATE_USER = """[질문 복잡도]
 {question}"""
 
 
-# ── 6. calc 전용 clarify 프롬프트 ─────────────────────────────────────────────
+# ── 4. calc 전용 clarify 프롬프트 ─────────────────────────────────────────────
 # Why: gpt-4.1-mini(non-reasoning)는 Gemini thinking용 CLARIFY_SYSTEM의
 # selected_branches 필수 + output_validator 재시도에 취약.
 # non-reasoning에 최적화된 간결한 프롬프트로 산술 정확도와 포맷 안정성 확보.
@@ -497,7 +465,7 @@ TYPE 2: 확실 → 확정 결론 (is_conclusion=True)
 follow_up_questions: [] (빈 배열)"""
 
 
-# ── 7. 사례 주제 간선 판정 (오프라인 · 온톨로지 구축 전용) ───────────────────
+# ── 5. 사례 주제 간선 판정 (오프라인 · 온톨로지 구축 전용) ───────────────────
 # 홀드아웃 72건 게이트를 통과한 프롬프트다(제목만 94.4% · 전문 100% vs 자동 83.3%,
 # dev/entry-traverse/results-traverse.md). **점수를 보고 고치면 그 홀드아웃으로 재는
 # 것이 무의미해지므로 수정 금지.** 바꾸려면 새 이름으로 만들고 다시 재야 한다.

@@ -41,7 +41,8 @@ def split_finding_to_children(
 
     Why: 원문 5부 구조(회사의 회계처리/위반/지적근거/감사절차/시사점)와
     구 Q·A·S 양식(배경 및 질의/회신/참고자료)을 모두 지원한다.
-    chunk_type(question/answer/supplementary)은 reranker 가중치(A>S>Q)와 직결되므로 보존.
+    chunk_type(question/answer/supplementary)은 청크 출처를 가리는 메타이므로 보존.
+    (초기 reranker 가중치 A>S>Q에 쓰였으나 리랭커 폐기 후에도 UI 식별용으로 남는다.)
     매핑 — Q(사실관계, 답 아님)=회사처리+위반, A(핵심 판단)=지적근거, S(보충)=감사절차+시사점.
     """
     # 서두 변환: "레퍼런스 [ID] 제목..." → "**[ID]** 제목..."

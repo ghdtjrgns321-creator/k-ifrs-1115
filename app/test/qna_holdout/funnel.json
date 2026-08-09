@@ -1,0 +1,59 @@
+{
+ "runs": [
+  "run_none",
+  "run_none2",
+  "run_none3"
+ ],
+ "denominator": {
+  "conclusion_cases": 90,
+  "recall_cases": 72,
+  "essential_paras": 164
+ },
+ "per_run": {
+  "routing": [
+   89,
+   89,
+   89
+  ],
+  "recall": [
+   151,
+   149,
+   151
+  ],
+  "concl": [
+   86,
+   84,
+   84
+  ]
+ },
+ "always_rejected": [
+  "QNA-SSI-38673"
+ ],
+ "always_wrong": [
+  "QNA-2022-I-KQA007",
+  "QNA-SSI-35565",
+  "QNA-SSI-38673"
+ ],
+ "unstable": [
+  "QNA-201909A",
+  "QNA-202003D",
+  "QNA-SSI-202511019",
+  "QNA-SSI-36904",
+  "QNA-SSI-38697"
+ ],
+ "never_retrieved_paras": [
+  "QNA-201803D:38",
+  "QNA-2022-I-KQA015:6",
+  "QNA-SSI-202312052:31",
+  "QNA-SSI-202312052:35",
+  "QNA-SSI-202312052:38",
+  "QNA-SSI-202312053:47",
+  "QNA-SSI-202503008:88",
+  "QNA-SSI-36965:46",
+  "QNA-SSI-36965:88",
+  "QNA-SSI-38612:38",
+  "QNA-SSI-38673:55",
+  "QNA-SSI-38676:99",
+  "QNA-SSI-38680:6"
+ ]
+}
