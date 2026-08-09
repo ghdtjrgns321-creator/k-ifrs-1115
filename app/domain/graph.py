@@ -18,6 +18,8 @@ from pathlib import Path
 from app.config import settings
 
 _ONT = Path(__file__).resolve().parents[2] / "data" / "ontology"
+# 기준서 목차에서 온 행의 출처값 (17e-aliases-entry.py가 부여). 글자 매칭에서 뺀다.
+_SOURCE_TOC = "기준서목차"
 
 
 def _norm(s: str) -> str:
@@ -76,42 +78,22 @@ class Graph:
         )
 
     def _build_indexes(self) -> None:
-        # 용어 인덱스: **개념을 주는 행만**. norm(term) → 행
-        # Why(사례 제목 행 115개 제외): 그 행들은 개념 없이 사례만 가리켜, 제목이
-        # 질문에 글자로 있으면 사례를 순회 밖에서 곧바로 꽂아 넣었다. 그건 "제목이
-        # 겹치면 같은 쟁점"이라는 가정이고, 인용을 쟁점으로 쓰던 것과 같은 오류다.
-        # 사례는 주제 간선(case_topics.json)으로만 걷는다. 실측 기여는 72건 중 2건.
+        # 진입 어휘 = aliases.json 전행. 파일이 곧 LLM에게 보여주는 목록이다
+        # (17e-aliases-entry.py가 개념 없는 행을 걷어내고 목차 제목을 등재해 맞춰 둔다).
+        self.concept_terms = self.terms
+        self.entry_terms = [t["term"] for t in self.terms]
+        self.concepts_by_term: dict[str, list[str]] = {
+            _norm(t["term"]): list(t["concept_ids"]) for t in self.terms
+        }
+        # 글자 매칭 인덱스: **목차 전용 행 제외**.
+        # Why: 목차 제목은 "적용"·"목적"·"측정"처럼 뭉뚱그린 말이라 질문 본문에 글자로
+        # 걸리면 엉뚱한 개념이 붙는다(홀드아웃 92건 중 17건 오염 실측). LLM이 목록에서
+        # 고르는 건 문맥을 보고 하는 판단이라 무해하지만, 글자 매칭에는 문맥이 없다.
         self.term_index = [
-            t for t in self.terms if t.get("concept_ids") and len(_norm(t["term"])) >= 2
+            t
+            for t in self.terms
+            if t["sources"] != [_SOURCE_TOC] and len(_norm(t["term"])) >= 2
         ]
-        # 진입 용어 목록 + 용어→개념 번역표. 두 출처를 합친다.
-        #  ① 용어사전에서 개념이 걸린 행 — 실무어(CIF·SaaS·마일리지). 사례 제목만
-        #     걸린 행(115개)은 제외한다: 개념을 못 주므로 진입 산출물이 될 수 없다.
-        #  ② 개념 제목 — 용어사전은 실무 질의에서 뽑은 말이라 기준서 공식 용어가
-        #     term으로 없다(옛 토픽 33개 중 29개 부재: 변동대가·라이선싱·보증·공시…).
-        #     LLM이 "이건 라이선싱 문제"라고 알아봐도 목록에 없으면 고를 수 없어
-        #     판단력이 통째로 사라진다. 관할 문단이 없는 개념은 뺀다 — 골라도 가져올
-        #     게 없다(기준서 루트·인식·계약원가 3개가 여기 걸린다).
-        # norm 기준으로 합집합한다. "개별 판매가격"/"개별판매가격"처럼 공백만 다른
-        # 행이 따로 등재돼 있고, 제목과 term이 같은 경우도 9건 있다.
-        self.concept_terms = [t for t in self.term_index if t.get("concept_ids")]
-        self.concepts_by_term: dict[str, list[str]] = {}
-        self.entry_terms: list[str] = []
-
-        def _link(term: str, cids: list[str]) -> None:
-            key = _norm(term)
-            if key not in self.concepts_by_term:
-                self.entry_terms.append(term)
-            acc = self.concepts_by_term.setdefault(key, [])
-            for cid in cids:
-                if cid not in acc:
-                    acc.append(cid)
-
-        for t in self.concept_terms:
-            _link(t["term"], t["concept_ids"])
-        for cid, node in self.concepts.items():
-            if node.get("paras"):
-                _link(node["title"], [cid])
         # 개념 → 사례 역인덱스 — **주제 간선만** 탄다.
         # Why: case_links.json의 링크는 "이 사례가 이 문단을 인용했다"는 출처 표시다.
         # 그걸 주제로 쓰면 문단 하나를 스친 사례까지 딸려온다 — 링크 323개 중 54%가
