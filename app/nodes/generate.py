@@ -7,6 +7,8 @@
 import logging
 import re
 
+from pydantic_ai import UnexpectedModelBehavior
+
 from app.agents import (
     generate_agent,
     clarify_agent,
@@ -186,13 +188,18 @@ async def generate_answer(state: dict) -> dict:
     # LLM 호출 — is_situation + force_conclusion에 따라 agent 분기
     try:
         if is_situation and not force_conclusion:
-            # clarify_agent 실패 시 generate_agent로 fallback
-            # Why: C1 — result_validator의 ModelRetry 소진(retries=2)이나
-            # Gemini API 일시 에러로 clarify 실패 시 답변 불가 방지
+            # clarify_agent 실패 시 generate_agent로 fallback — 단, 인프라 장애일 때만.
+            # Why: 두 실패를 구분한다. output_validator의 ModelRetry 소진
+            # (UnexpectedModelBehavior)은 모델이 근거 문단·분기 요건을 못 맞춘 품질 실패이고,
+            # 검사가 없는 generate_agent로 넘기면 그 요건 자체가 무효화된다(폴백 구멍).
+            # 반면 Gemini API 5xx·타임아웃은 답변 품질과 무관하므로 폴백이 타당.
             try:
                 output = await _run_clarify(
                     state, messages, context_str, confusion_point
                 )
+            except UnexpectedModelBehavior:
+                logger.error("clarify_agent 근거 요건 미충족(재시도 소진) — 폴백 금지")
+                raise
             except Exception:
                 logger.warning(
                     "clarify_agent 실패 → generate_agent fallback", exc_info=True
@@ -239,9 +246,22 @@ async def generate_answer(state: dict) -> dict:
         if (state.get("checklist_state") or {}).get("concluded", False):
             follow_up_questions = []
 
-    except Exception:
-        logger.error("generate_answer failed", exc_info=True)
-        answer = "답변 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
+    except Exception as e:
+        # 근거 요건 미충족(재시도 소진)은 인프라 오류와 원인이 다르므로 문구를 구분한다.
+        # 검사를 통과 못 한 답변을 내보내는 대신 답변하지 않는 것이 이 경로의 정답.
+        grounding_failed = isinstance(e, UnexpectedModelBehavior)
+        logger.error(
+            "generate_answer failed (근거 요건 미충족)"
+            if grounding_failed
+            else "generate_answer failed",
+            exc_info=True,
+        )
+        answer = (
+            "검색된 근거 문서만으로는 인용 문단과 판단 분기를 확정하지 못해 "
+            "답변을 생성하지 않았습니다. 거래 상황을 조금 더 구체적으로 적어주세요."
+            if grounding_failed
+            else "답변 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
+        )
         follow_up_questions = []
         selected_branches = []
         structured_cited = []
